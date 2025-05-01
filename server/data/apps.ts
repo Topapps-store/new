@@ -378,14 +378,30 @@ export const getApps = (): App[] => {
   return apps;
 };
 
-// Get popular apps (first 8)
+// Get top 10 apps from last month
 export const getPopularApps = (): App[] => {
-  return apps.slice(0, 8);
+  // These apps would normally be sorted by download count for the last month
+  // For now, we're returning a static list of popular apps
+  return apps.filter(app => 
+    ["netflix", "spotify", "whatsapp", "instagram", "tiktok", 
+     "facebook", "mobile-legends", "vpn-secure", "youtube", "telegram"]
+    .includes(app.id)
+  ).slice(0, 10);
 };
 
 // Get recent apps (4 most recent)
 export const getRecentApps = (): App[] => {
   return apps.slice(8, 12);
+};
+
+// Get just-in-time apps (10 most downloaded from our curated list)
+export const getJustInTimeApps = (): App[] => {
+  // Return the 10 most downloaded apps from our specially curated list
+  return apps.filter(app => 
+    ["uber", "lyft", "doordash", "grubhub", "ubereats", 
+     "cashapp", "venmo", "turo", "instacart", "amazon"]
+    .includes(app.id)
+  ).slice(0, 10);
 };
 
 // Get app by ID

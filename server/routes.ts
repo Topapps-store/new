@@ -2,7 +2,7 @@ import express, { type Express } from "express";
 import type { Server } from "http";
 import { createServer } from "http";
 import { storage } from "./storage";
-import { getApps, getAppById, getPopularApps, getRecentApps, getRelatedApps, searchApps } from "./data/apps";
+import { getApps, getAppById, getPopularApps, getRecentApps, getRelatedApps, searchApps, getJustInTimeApps } from "./data/apps";
 import { getCategories, getCategoryById, getAppsByCategory } from "./data/categories";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -20,6 +20,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   apiRouter.get("/apps/recent", (req, res) => {
     res.json(getRecentApps());
+  });
+  
+  apiRouter.get("/apps/just-in-time", (req, res) => {
+    res.json(getJustInTimeApps());
   });
   
   apiRouter.get("/apps/related/:id", (req, res) => {

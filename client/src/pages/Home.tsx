@@ -5,9 +5,11 @@ import CategoryCard from "@/components/CategoryCard";
 import SponsoredBanner from "@/components/SponsoredBanner";
 import { useState } from "react";
 import { App, Category } from "@shared/schema";
+import { useLanguage } from "../context/LanguageContext";
 
 const Home = () => {
   const [showAllCategories, setShowAllCategories] = useState(false);
+  const { t } = useLanguage();
 
   const { data: popularApps, isLoading: isLoadingPopular } = useQuery<App[]>({
     queryKey: ["/api/apps/popular"],
@@ -15,6 +17,10 @@ const Home = () => {
 
   const { data: recentApps, isLoading: isLoadingRecent } = useQuery<App[]>({
     queryKey: ["/api/apps/recent"],
+  });
+  
+  const { data: justInTimeApps, isLoading: isLoadingJustInTime } = useQuery<App[]>({
+    queryKey: ["/api/apps/just-in-time"],
   });
 
   const { data: categories, isLoading: isLoadingCategories } = useQuery<Category[]>({
