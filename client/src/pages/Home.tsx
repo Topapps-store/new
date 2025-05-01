@@ -66,8 +66,8 @@ const Home = () => {
 
       {/* Sponsored Content Banner */}
       <div className="mt-10 flex justify-center">
-        <a href="https://www.dpbolvw.net/click-101417075-17024574" target="_blank" rel="noopener noreferrer">
-          <img src="https://www.lduhtrp.net/image-101417075-17024574" width="650" height="250" alt="Sponsored content" style={{maxWidth: '100%'}} />
+        <a href="https://www.tkqlhce.com/click-101417075-17024579" target="_blank" rel="noopener noreferrer">
+          <img src="https://www.tqlkg.com/image-101417075-17024579" width="970" height="90" alt="Sponsored content" style={{maxWidth: '100%'}} />
         </a>
       </div>
 
