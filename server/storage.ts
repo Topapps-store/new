@@ -209,7 +209,7 @@ export class DatabaseStorage implements IStorage {
       originalAppId: app.originalAppId || undefined,
       screenshots: app.screenshots,
       isAffiliate: app.isAffiliate || false,
-      lastSyncedAt: app.lastSyncedAt || undefined
+      lastSyncedAt: app.lastSyncedAt ? new Date(app.lastSyncedAt) : undefined
     };
   }
   

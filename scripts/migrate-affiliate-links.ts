@@ -73,7 +73,7 @@ async function migrateAffiliateLinks() {
       `);
     }
     
-    // Insert apps if they don't exist
+    // Insert apps if they don't exist - approach with fewer parameters
     for (const app of popularApps) {
       const appExists = await db.execute(sql`
         SELECT id FROM apps WHERE id = ${app.id}
@@ -88,14 +88,23 @@ async function migrateAffiliateLinks() {
             installs, download_url, google_play_url, screenshots, is_affiliate
           )
           VALUES (
-            ${app.id}, ${app.name}, ${app.categoryId}, 
+            ${app.id}, 
+            ${app.name}, 
+            ${app.categoryId}, 
             'Download the app to see full description', 
-            'https://placehold.co/512x512?text=${app.name}',
-            4.5, '1M+', '1.0.0', 'Varies', 'Recently', 
-            'Android 5.0+ / iOS 12.0+', 'App Developer',
-            '1,000,000+', 'https://topapps.store/download/' || ${app.id},
+            'https://placehold.co/512x512?text=' || ${app.name},
+            4.5, 
+            '1M+', 
+            '1.0.0', 
+            'Varies', 
+            'Recently', 
+            'Android 5.0+ / iOS 12.0+', 
+            'App Developer',
+            '1,000,000+', 
+            'https://topapps.store/download/' || ${app.id},
             'https://play.google.com/store/apps/details?id=com.' || ${app.id},
-            '[]'::jsonb, true
+            '[]'::jsonb, 
+            true
           )
         `);
       }
@@ -110,11 +119,18 @@ async function migrateAffiliateLinks() {
     ];
     
     for (const link of sampleAffiliateLinks) {
-      await db.execute(sql`
-        INSERT INTO affiliate_links (app_id, label, url, button_text)
-        VALUES (${link.appId}, ${link.label}, ${link.url}, ${link.buttonText})
-        ON CONFLICT DO NOTHING
+      // Check if the app exists first
+      const appExists = await db.execute(sql`
+        SELECT id FROM apps WHERE id = ${link.appId}
       `);
+      
+      if (appExists.rows.length > 0) {
+        await db.execute(sql`
+          INSERT INTO affiliate_links (app_id, label, url, button_text)
+          VALUES (${link.appId}, ${link.label}, ${link.url}, ${link.buttonText})
+          ON CONFLICT DO NOTHING
+        `);
+      }
     }
     
     log('Affiliate links migration completed successfully!', 'migration');
