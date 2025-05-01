@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "wouter";
 import StarRating from "@/components/StarRating";
 import { useState } from "react";
-import { App, AppLegacy } from "@shared/schema";
+import { App, AppLegacy, AffiliateLink } from "@shared/schema";
 import AppCard from "@/components/AppCard";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "../context/LanguageContext";
+import { apiRequest } from "@/lib/queryClient";
 
 // Type guard to check if the app is of type AppLegacy
 function isAppLegacy(app: App | AppLegacy): app is AppLegacy {
@@ -32,6 +33,12 @@ const AppDetail = () => {
   const { data: relatedApps, isLoading: isLoadingRelated } = useQuery<(App | AppLegacy)[]>({
     queryKey: ["/api/apps/related", appId],
   });
+  
+  // Fetch affiliate links for this app
+  const { data: affiliateLinks, isLoading: isLoadingAffiliateLinks } = useQuery<AffiliateLink[]>({
+    queryKey: [`/api/apps/${appId}/affiliate-links`],
+    enabled: !!appId,
+  });
 
   const handleDownloadClick = () => {
     console.log("Download click:", app?.id);
@@ -41,6 +48,22 @@ const AppDetail = () => {
   const handleGooglePlayClick = () => {
     console.log("Google Play redirect:", app?.id);
     // In a real implementation, this would redirect to Google Play
+  };
+  
+  const handleAffiliateLinkClick = async (linkId: number, linkUrl: string) => {
+    // Track the click
+    try {
+      await apiRequest('POST', `/api/affiliate-links/${linkId}/click`);
+      console.log(`Clicked affiliate link: ${linkId}`);
+      // Open the link in a new tab
+      window.open(linkUrl, '_blank', 'noopener,noreferrer');
+    } catch (error) {
+      console.error('Failed to track affiliate link click:', error);
+      // Still open the link even if tracking fails
+      window.open(linkUrl, '_blank', 'noopener,noreferrer');
+    }
+    
+    return false; // Prevent default link behavior
   };
 
   if (isLoading) {
@@ -138,17 +161,50 @@ const AppDetail = () => {
                   </div>
                 </div>
                 
-                {/* Advertisement banner */}
+                {/* Advertisement buttons with affiliate links */}
                 <div className="w-full mt-4 border-t border-gray-200 pt-4">
                   <div className="text-xs text-gray-500 mb-1">{t('sponsored.sponsored')}</div>
-                  <a 
-                    href="#advertisement-link" 
-                    className="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg mb-4"
-                    onClick={() => console.log("Advertisement download clicked")}
-                    data-event="click:advertisementDownload"
-                  >
-                    {t('appDetail.downloadAPK')}
-                  </a>
+                  
+                  {isLoadingAffiliateLinks ? (
+                    <div className="animate-pulse space-y-2">
+                      <div className="h-12 bg-gray-200 rounded-lg"></div>
+                      <div className="h-12 bg-gray-200 rounded-lg"></div>
+                    </div>
+                  ) : affiliateLinks && affiliateLinks.length > 0 ? (
+                    <div className="space-y-2">
+                      {affiliateLinks.map((link) => (
+                        <div key={link.id} className="relative">
+                          {link.label && (
+                            <div className="text-sm font-medium mb-1">{link.label}</div>
+                          )}
+                          <a 
+                            href={link.url}
+                            className="block w-full text-center font-bold py-3 px-4 rounded-lg mb-1"
+                            style={{ backgroundColor: link.buttonColor, color: 'white' }}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleAffiliateLinkClick(link.id, link.url);
+                            }}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-event="click:affiliateLink"
+                            data-affiliate-id={link.id}
+                          >
+                            {link.buttonText}
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <a 
+                      href={app.downloadUrl} 
+                      className="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg mb-4"
+                      onClick={() => console.log("Advertisement download clicked")}
+                      data-event="click:advertisementDownload"
+                    >
+                      {t('appDetail.downloadAPK')}
+                    </a>
+                  )}
                 </div>
                 
                 {/* Download buttons */}
