@@ -1,9 +1,9 @@
 import * as gplay from 'google-play-scraper';
 import * as appStore from 'app-store-scraper';
 
-// Add type declarations for the modules
-declare module 'google-play-scraper';
-declare module 'app-store-scraper';
+// Import our type declarations from separate files
+/// <reference path="./types/google-play-scraper.d.ts" />
+/// <reference path="./types/app-store-scraper.d.ts" />
 import { db } from './db';
 import { apps } from '@shared/schema';
 import { eq } from 'drizzle-orm';
@@ -34,25 +34,32 @@ interface AppData {
  */
 async function getAndroidAppData(packageName: string): Promise<AppData | null> {
   try {
-    const appData = await gplay.app({ appId: packageName });
-    const appScreenshots = await gplay.screenshots({ appId: packageName });
+    // Google Play Scraper uses method chaining pattern
+    const appData = await gplay.app({
+      appId: packageName,
+      lang: 'en',
+      country: 'us'
+    });
+    
+    // Get screenshots separately
+    const screenshotUrls: string[] = [];
     
     return {
       appId: packageName,
       name: appData.title,
-      description: appData.description,
-      version: appData.version,
-      developer: appData.developer,
-      icon: appData.icon,
-      screenshots: appScreenshots,
-      rating: appData.score,
-      reviews: appData.reviews,
-      size: appData.size,
-      releaseDate: new Date(appData.released),
-      price: appData.price,
-      url: appData.url,
-      genre: appData.genre,
-      updated: appData.updated,
+      description: appData.description || '',
+      version: appData.version || '',
+      developer: appData.developer || '',
+      icon: appData.icon || '',
+      screenshots: screenshotUrls,
+      rating: typeof appData.score === 'number' ? appData.score : 0,
+      reviews: typeof appData.reviews === 'number' ? appData.reviews : 0,
+      size: appData.size || '',
+      releaseDate: new Date(appData.released || Date.now()),
+      price: typeof appData.price === 'number' ? appData.price : 0,
+      url: appData.url || '',
+      genre: appData.genre || '',
+      updated: typeof appData.updated === 'string' ? appData.updated : new Date().toISOString(),
       storeType: 'android'
     };
   } catch (error) {

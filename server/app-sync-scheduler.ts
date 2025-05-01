@@ -2,46 +2,47 @@ import * as cron from 'node-cron';
 import { syncAllApps } from './app-sync-service';
 import { log } from './vite';
 
-// Schedule to run once a day at midnight (server time)
-const SYNC_SCHEDULE = '0 0 * * *';
+/// <reference path="./types/node-cron.d.ts" />
+
+// Default schedule: Every day at midnight
+const DEFAULT_SCHEDULE = '0 0 * * *';
 
 /**
  * Initialize the app data synchronization scheduler
  */
-export function initializeAppSyncScheduler() {
-  try {
-    // Validate that the cron schedule is correct
-    if (!cron.validate(SYNC_SCHEDULE)) {
-      throw new Error(`Invalid cron schedule: ${SYNC_SCHEDULE}`);
-    }
-    
-    // Schedule the sync task
-    const task = cron.schedule(SYNC_SCHEDULE, async () => {
-      log('Starting scheduled app data synchronization', 'scheduler');
-      try {
-        const successCount = await syncAllApps();
-        log(`Scheduled sync completed. Updated ${successCount} apps.`, 'scheduler');
-      } catch (error) {
-        log(`Error in scheduled app sync: ${error}`, 'error');
-      }
-    });
-    
-    log(`App sync scheduler initialized with schedule: ${SYNC_SCHEDULE}`, 'scheduler');
-    
-    // Run an initial sync on startup (after a 10-second delay to let the server initialize)
-    setTimeout(async () => {
-      log('Running initial app data synchronization', 'scheduler');
-      try {
-        const successCount = await syncAllApps();
-        log(`Initial sync completed. Updated ${successCount} apps.`, 'scheduler');
-      } catch (error) {
-        log(`Error in initial app sync: ${error}`, 'error');
-      }
-    }, 10000);
-    
-    return task;
-  } catch (error) {
-    log(`Failed to initialize app sync scheduler: ${error}`, 'error');
-    return null;
+export function initializeAppSyncScheduler(schedule = DEFAULT_SCHEDULE) {
+  // Validate the schedule
+  if (!cron.validate(schedule)) {
+    log(`Invalid cron schedule: ${schedule}, using default`, 'error');
+    schedule = DEFAULT_SCHEDULE;
   }
+
+  // Schedule the task
+  const task = cron.schedule(schedule, async () => {
+    log('Running scheduled app data synchronization', 'scheduler');
+    try {
+      const updatedCount = await syncAllApps();
+      log(`Scheduled sync completed. Updated ${updatedCount} apps.`, 'scheduler');
+    } catch (error) {
+      log(`Error in scheduled sync: ${error}`, 'error');
+    }
+  }, {
+    scheduled: true,
+    timezone: 'UTC' // Use UTC timezone for consistency
+  });
+
+  log(`App sync scheduler initialized with schedule: ${schedule}`, 'scheduler');
+
+  // Run an initial sync when the server starts
+  setTimeout(async () => {
+    log('Running initial app data synchronization', 'scheduler');
+    try {
+      const updatedCount = await syncAllApps();
+      log(`Initial sync completed. Updated ${updatedCount} apps.`, 'scheduler');
+    } catch (error) {
+      log(`Error in initial sync: ${error}`, 'error');
+    }
+  }, 10000); // Wait 10 seconds after server start
+
+  return task;
 }
