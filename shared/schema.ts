@@ -60,8 +60,11 @@ export const apps = pgTable("apps", {
   installs: varchar("installs", { length: 100 }).notNull(),
   downloadUrl: varchar("download_url", { length: 255 }).notNull(),
   googlePlayUrl: varchar("google_play_url", { length: 255 }).notNull(),
+  iosAppStoreUrl: varchar("ios_app_store_url", { length: 255 }),
+  originalAppId: varchar("original_app_id", { length: 100 }),
   screenshots: jsonb("screenshots").notNull().$type<string[]>(),
   isAffiliate: boolean("is_affiliate").default(false),
+  lastSyncedAt: timestamp("last_synced_at"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -97,8 +100,11 @@ export type AppLegacy = {
   installs: string;
   downloadUrl: string;
   googlePlayUrl: string;
+  iosAppStoreUrl?: string;
+  originalAppId?: string;
   screenshots: string[];
   isAffiliate?: boolean;
+  lastSyncedAt?: Date;
 }
 
 export type CategoryLegacy = {
