@@ -791,7 +791,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/cash-app/id711923939",
-      originalAppId: "711923939"
+      originalAppId: "711923939",
+      isAffiliate: true
     },
     {
       id: "netflix",
@@ -813,7 +814,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/netflix/id363590051",
-      originalAppId: "363590051"
+      originalAppId: "363590051",
+      isAffiliate: true
     },
     {
       id: "facebook",
@@ -835,7 +837,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/facebook/id284882215",
-      originalAppId: "284882215"
+      originalAppId: "284882215",
+      isAffiliate: false
     },
     {
       id: "youtube",
@@ -857,7 +860,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664",
-      originalAppId: "544007664"
+      originalAppId: "544007664",
+      isAffiliate: false
     },
     {
       id: "whatsapp",
@@ -879,7 +883,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/whatsapp-messenger/id310633997",
-      originalAppId: "310633997"
+      originalAppId: "310633997",
+      isAffiliate: false
     }
   ];
   
