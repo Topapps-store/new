@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
+import { useLanguage, Language } from "../context/LanguageContext";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -9,6 +10,36 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [location] = useLocation();
+  const { language, setLanguage, t } = useLanguage();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Language display names
+  const languageNames: Record<Language, string> = {
+    en: t('language.english'),
+    es: t('language.spanish'),
+    fr: t('language.french')
+  };
+
+  // Handle clicks outside dropdown to close it
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Change language handler
+  const handleLanguageChange = (lang: Language) => {
+    setLanguage(lang);
+    setIsDropdownOpen(false);
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -24,20 +55,37 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <Link href="/apps/all">
               <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/apps/all" ? "text-primary" : ""}`}>
                 <i className="fas fa-mobile-alt mr-1"></i>
-                <span className="hidden md:inline">Apps</span>
+                <span className="hidden md:inline">{t('nav.apps')}</span>
               </div>
             </Link>
             <Link href="/categories/games">
               <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/categories/games" ? "text-primary" : ""}`}>
                 <i className="fas fa-gamepad mr-1"></i>
-                <span className="hidden md:inline">Games</span>
+                <span className="hidden md:inline">{t('nav.games')}</span>
               </div>
             </Link>
-            <div className="relative">
-              <button className="text-gray-600 hover:text-primary flex items-center border border-gray-200 rounded px-2 py-1">
-                <span>English</span>
-                <i className="fas fa-chevron-down ml-1 text-xs"></i>
+            <div className="relative" ref={dropdownRef}>
+              <button 
+                className="text-gray-600 hover:text-primary flex items-center border border-gray-200 rounded px-2 py-1"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              >
+                <span>{languageNames[language]}</span>
+                <i className={`fas fa-chevron-${isDropdownOpen ? 'up' : 'down'} ml-1 text-xs`}></i>
               </button>
+              
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-1 w-36 bg-white border border-gray-200 rounded shadow-lg z-50">
+                  {Object.entries(languageNames).map(([langCode, langName]) => (
+                    <button
+                      key={langCode}
+                      className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${language === langCode ? 'bg-gray-50 text-primary' : 'text-gray-700'}`}
+                      onClick={() => handleLanguageChange(langCode as Language)}
+                    >
+                      {langName}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </nav>
         </div>
@@ -57,64 +105,64 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div>
               <h3 className="text-lg font-bold mb-4">TopApps.store</h3>
               <p className="text-gray-400 text-sm">
-                Your trusted source for Android apps and games. Download the latest versions of popular applications.
+                {t('footer.description')}
               </p>
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+              <h3 className="text-lg font-bold mb-4">{t('footer.quickLinks')}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">Home</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('nav.home')}</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/apps/all">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">All Apps</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('nav.apps')}</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/categories/games">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">Games</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('nav.games')}</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/categories">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">Categories</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('nav.categories')}</span>
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-4">Legal</h3>
+              <h3 className="text-lg font-bold mb-4">{t('footer.legal')}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/terms">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">Terms of Service</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('footer.termsOfService')}</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/privacy">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">Privacy Policy</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('footer.privacyPolicy')}</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/disclaimer">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">Disclaimer</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('footer.disclaimer')}</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/contact">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">Contact Us</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('footer.contactUs')}</span>
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-4">Connect With Us</h3>
+              <h3 className="text-lg font-bold mb-4">{t('footer.connectWithUs')}</h3>
               <div className="flex space-x-4">
                 <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-facebook-f"></i></a>
                 <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-twitter"></i></a>
@@ -122,15 +170,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-youtube"></i></a>
               </div>
               <p className="text-gray-400 text-sm mt-4">
-                Stay updated with the latest apps and promotions.
+                {t('footer.stayUpdated')}
               </p>
             </div>
           </div>
 
           <div className="border-t border-gray-700 mt-8 pt-6 text-sm text-gray-400">
-            <p>© {new Date().getFullYear()} TopApps.store. All rights reserved.</p>
+            <p>{t('footer.copyright')}</p>
             <p className="mt-2">
-              Android is a trademark of Google LLC. All app names, logos, and brands are property of their respective owners.
+              {t('footer.trademark')}
             </p>
           </div>
         </div>

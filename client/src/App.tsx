@@ -14,6 +14,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import Disclaimer from "@/pages/Disclaimer";
 import Contact from "@/pages/Contact";
 import Search from "@/pages/Search";
+import { LanguageProvider } from "./context/LanguageContext";
 
 function Router() {
   return (
@@ -38,8 +39,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router />
+        <LanguageProvider>
+          <Toaster />
+          <Router />
+        </LanguageProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

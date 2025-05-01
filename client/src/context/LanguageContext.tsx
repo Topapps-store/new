@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
 // Import translations
 import enTranslations from '../translations/en.json';
@@ -15,7 +15,7 @@ type TranslationObject = Record<string, any>;
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: string, params?: Record<string, string>) => string;
 }
 
 // Create language context
@@ -30,6 +30,7 @@ const translations: Record<Language, TranslationObject> = {
 
 // Function to get browser language
 const getBrowserLanguage = (): Language => {
+  if (typeof window === 'undefined') return 'en';
   const browserLang = navigator.language.split('-')[0];
   return (browserLang === 'en' || browserLang === 'es' || browserLang === 'fr') 
     ? browserLang as Language 
@@ -37,11 +38,14 @@ const getBrowserLanguage = (): Language => {
 };
 
 // Provider component
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export function LanguageProvider({ children }: { children: ReactNode }) {
   // Get language from localStorage or use browser language as fallback
   const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window === 'undefined') return 'en';
     const storedLanguage = localStorage.getItem('language') as Language;
-    return storedLanguage || getBrowserLanguage();
+    return (storedLanguage === 'en' || storedLanguage === 'es' || storedLanguage === 'fr') 
+      ? storedLanguage 
+      : getBrowserLanguage();
   });
 
   // Update localStorage when language changes
@@ -49,30 +53,38 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     localStorage.setItem('language', language);
   }, [language]);
 
-  // Translation function
-  const t = (key: string): string => {
+  // Translation function with support for parameter substitution
+  const t = (key: string, params?: Record<string, string>): string => {
     // Split the key by dots to access nested properties
     const keys = key.split('.');
     let value: any = translations[language];
     
     // Navigate through the nested object
     for (const k of keys) {
-      if (value && value[k] !== undefined) {
+      if (value && typeof value === 'object' && k in value) {
         value = value[k];
       } else {
-        // If key not found, return the key itself (for debugging purposes)
+        // If key not found, return the key itself
         return key;
       }
     }
     
-    // Replace dynamic values like {year} with actual values
-    if (typeof value === 'string') {
-      value = value.replace('{year}', new Date().getFullYear().toString());
-      return value;
+    // If value is not a string, return the key
+    if (typeof value !== 'string') {
+      return key;
     }
     
-    // If value is not a string, convert it to string or return the key
-    return typeof value === 'object' ? key : String(value);
+    // Replace dynamic values like {year} with actual values
+    let result = value.replace('{year}', new Date().getFullYear().toString());
+    
+    // Replace any provided parameters
+    if (params) {
+      Object.entries(params).forEach(([paramKey, paramValue]) => {
+        result = result.replace(`{${paramKey}}`, paramValue);
+      });
+    }
+    
+    return result;
   };
 
   return (
@@ -80,13 +92,13 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
       {children}
     </LanguageContext.Provider>
   );
-};
+}
 
 // Custom hook to use the language context
-export const useLanguage = (): LanguageContextType => {
+export function useLanguage() {
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
-};
+}
