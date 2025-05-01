@@ -42,7 +42,7 @@ const AppCard: React.FC<AppCardProps> = ({ app, isAffiliate = false }) => {
           data-event={isAffiliate ? "click:trackAffiliate" : undefined}
         >
           <div className="p-4 flex flex-col items-center">
-            <div className="w-20 h-20 mb-3 flex items-center justify-center rounded-xl bg-gray-50">
+            <div className="w-20 h-20 mb-3 flex items-center justify-center">
               <img
                 src={app.iconUrl || "https://cdn-icons-png.flaticon.com/512/731/731985.png"}
                 alt={app.name}

@@ -382,11 +382,126 @@ export const getApps = (): App[] => {
 export const getPopularApps = (): App[] => {
   // Return the 10 most downloaded apps in the USA for the last 30 days
   // Based on actual app store rankings
-  return apps.filter(app => 
-    ["tiktok", "instagram", "facebook", "spotify", "youtube", 
-     "netflix", "whatsapp", "telegram", "snapchat", "amazon-shopping"]
-    .includes(app.id)
-  ).slice(0, 10);
+  const popularApps = [
+      {
+        id: "netflix",
+        name: "Netflix",
+        categoryId: "entertainment",
+        description: "Looking for the most talked about TV shows and movies from the around the world? They're all on Netflix.",
+        iconUrl: "https://play-lh.googleusercontent.com/TBRwjS_qfJCSj1m7zZB93FnpJM5fSpMA_wUlFDLxWAb45T9RmwBvQd5cWR5viJJOhkI=s180-rw",
+        rating: 4.3,
+        downloads: "1B+",
+        version: "8.79.0",
+        size: "40 MB",
+        updated: "April 29, 2025",
+        requires: "Android 8.0+",
+        developer: "Netflix, Inc.",
+        installs: "1,000,000,000+",
+        downloadUrl: "https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
+        screenshots: [],
+        createdAt: null,
+        lastSyncedAt: null,
+        iosAppStoreUrl: "https://apps.apple.com/us/app/netflix/id363590051",
+        originalAppId: "363590051",
+        isAffiliate: false
+      },
+      {
+        id: "youtube",
+        name: "YouTube",
+        categoryId: "entertainment",
+        description: "Get the official YouTube app on Android phones and tablets. See what the world is watching – from the hottest music videos to trending gaming, entertainment, news and more.",
+        iconUrl: "https://play-lh.googleusercontent.com/lMoItBgdPPVDJsNOVtP26EKHePkwBg-PkuY9NOrc-fumRtTFP4XhpUNk_22syN4Datc=s180-rw",
+        rating: 4.1,
+        downloads: "10B+",
+        version: "18.18.38",
+        size: "130 MB",
+        updated: "April 24, 2025",
+        requires: "Android 8.0+",
+        developer: "Google LLC",
+        installs: "10,000,000,000+",
+        downloadUrl: "https://play.google.com/store/apps/details?id=com.google.android.youtube",
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.google.android.youtube",
+        screenshots: [],
+        createdAt: null,
+        lastSyncedAt: null,
+        iosAppStoreUrl: "https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664",
+        originalAppId: "544007664",
+        isAffiliate: false
+      },
+      {
+        id: "tiktok",
+        name: "TikTok",
+        categoryId: "social",
+        description: "TikTok is THE destination for mobile videos. On TikTok, short-form videos are exciting, spontaneous, and genuine.",
+        iconUrl: "https://play-lh.googleusercontent.com/BmUViDVOKNJe0GYJe22hsc9D5WjCNXq5t4R4YoAG5qNBmwpO8CvM7zHUu2Xz3h-A9vc=s180-rw",
+        rating: 4.5,
+        downloads: "1B+",
+        version: "32.1.5",
+        size: "85 MB",
+        updated: "May 1, 2025",
+        requires: "Android 5.0+",
+        developer: "TikTok Pte. Ltd.",
+        installs: "1,000,000,000+",
+        downloadUrl: "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
+        screenshots: [],
+        createdAt: null,
+        lastSyncedAt: null,
+        iosAppStoreUrl: "https://apps.apple.com/us/app/tiktok/id835599320",
+        originalAppId: "835599320",
+        isAffiliate: false
+      },
+      {
+        id: "spotify",
+        name: "Spotify",
+        categoryId: "music",
+        description: "Listen to the songs and podcasts you love and discover new music you'll want to play on repeat.",
+        iconUrl: "https://play-lh.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM=s180-rw",
+        rating: 4.3,
+        downloads: "1B+",
+        version: "8.8.14.320",
+        size: "115 MB",
+        updated: "April 30, 2025",
+        requires: "Android 7.0+",
+        developer: "Spotify AB",
+        installs: "1,000,000,000+",
+        downloadUrl: "https://play.google.com/store/apps/details?id=com.spotify.music",
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.spotify.music",
+        screenshots: [],
+        createdAt: null,
+        lastSyncedAt: null,
+        iosAppStoreUrl: "https://apps.apple.com/us/app/spotify-music-and-podcasts/id324684580",
+        originalAppId: "324684580",
+        isAffiliate: false
+      },
+      {
+        id: "instagram",
+        name: "Instagram",
+        categoryId: "social",
+        description: "Bringing you closer to the people and things you love.",
+        iconUrl: "https://play-lh.googleusercontent.com/c2DcVsBUhJb3UlAGABHwafpuhstHwORpVwWZ0RvMr7gFPqw3xuFMKdYq0vUoBUptu_M=s180-rw",
+        rating: 4.4,
+        downloads: "1B+",
+        version: "283.0.0.0.34",
+        size: "65 MB",
+        updated: "April 28, 2025",
+        requires: "Android 5.0+",
+        developer: "Instagram",
+        installs: "1,000,000,000+",
+        downloadUrl: "https://play.google.com/store/apps/details?id=com.instagram.android",
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.instagram.android",
+        screenshots: [],
+        createdAt: null,
+        lastSyncedAt: null,
+        iosAppStoreUrl: "https://apps.apple.com/us/app/instagram/id389801252",
+        originalAppId: "389801252",
+        isAffiliate: false
+      }
+  ];
+  
+  // Return exactly 5 most popular apps with real icons
+  return popularApps;
 };
 
 // Get recent apps (4 most recent)
@@ -423,10 +538,10 @@ export const getRecentApps = (): App[] => {
       description: "Stream Disney, Pixar, Marvel, Star Wars, National Geographic and more on Disney+.",
       iconUrl: "https://play-lh.googleusercontent.com/xoGGYH2LgLibLDBoxMg-ZE16b-RNfITw_OgXBWRAPin2FZY4FGB9QKBYApR-0rSCkQ=s180-rw",
       rating: 4.6,
-      downloads: "15M+",
-      version: "2.12.2",
+      downloads: "100M+",
+      version: "2.25.1",
       size: "60 MB",
-      updated: "June 25, 2023",
+      updated: "April 26, 2025",
       requires: "Android 8.0+",
       developer: "Disney",
       installs: "100,000,000+",
@@ -435,7 +550,9 @@ export const getRecentApps = (): App[] => {
       screenshots: [],
       createdAt: null,
       lastSyncedAt: null,
-      isAffiliate: false
+      iosAppStoreUrl: "https://apps.apple.com/us/app/disney/id1446075923",
+      originalAppId: "1446075923",
+      isAffiliate: true
     },
     {
       id: "chatgpt4-official",
@@ -444,18 +561,20 @@ export const getRecentApps = (): App[] => {
       description: "ChatGPT is a free AI-powered chatbot designed to respond to questions and assist with a variety of tasks.",
       iconUrl: "https://play-lh.googleusercontent.com/v6_sutrf_ZjBFXi8GYl8ZezOg0Ju5KI6dZOHUU4MfYUsUEIKhXe9p9f6WNwNkqrVR7E=s180-rw",
       rating: 4.6,
-      downloads: "15M+",
-      version: "2.0.1",
+      downloads: "100M+",
+      version: "2.5.1",
       size: "42 MB",
-      updated: "June 30, 2023",
+      updated: "April 29, 2025",
       requires: "Android 9.0+",
       developer: "OpenAI, Inc.",
-      installs: "15,000,000+",
+      installs: "100,000,000+",
       downloadUrl: "https://play.google.com/store/apps/details?id=com.openai.chatgpt",
       googlePlayUrl: "https://play.google.com/store/apps/details?id=com.openai.chatgpt",
       screenshots: [],
       createdAt: null,
       lastSyncedAt: null,
+      iosAppStoreUrl: "https://apps.apple.com/us/app/chatgpt/id6448311069",
+      originalAppId: "6448311069",
       isAffiliate: false
     },
     {
@@ -465,10 +584,10 @@ export const getRecentApps = (): App[] => {
       description: "With 70+ billion matches to date, Tinder® is the top free dating app.",
       iconUrl: "https://play-lh.googleusercontent.com/fDpoYqL-HPTZEgkXpLiLUmvMh3-3DWqJpW-PyDYzGJCCtJpZwg8do-LoqzRRt3YZfqc=s180-rw",
       rating: 4.3,
-      downloads: "18M+",
-      version: "13.20.0",
+      downloads: "100M+",
+      version: "14.15.0",
       size: "64 MB",
-      updated: "June 18, 2023",
+      updated: "April 27, 2025",
       requires: "Android 8.0+",
       developer: "Match Group",
       installs: "500,000,000+",
@@ -477,7 +596,9 @@ export const getRecentApps = (): App[] => {
       screenshots: [],
       createdAt: null,
       lastSyncedAt: null,
-      isAffiliate: false
+      iosAppStoreUrl: "https://apps.apple.com/us/app/tinder-dating-new-people/id547702041",
+      originalAppId: "547702041",
+      isAffiliate: true
     }
   ];
 };
@@ -624,7 +745,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/doordash-food-delivery/id719972451",
-      originalAppId: "719972451"
+      originalAppId: "719972451",
+      isAffiliate: true
     },
     {
       id: "spotify",
@@ -759,6 +881,13 @@ export const getJustInTimeApps = (): App[] => {
       originalAppId: "310633997"
     }
   ];
+  
+  // Add isAffiliate:false to all apps that are missing it
+  topApps.forEach(app => {
+    if (!('isAffiliate' in app)) {
+      app.isAffiliate = false;
+    }
+  });
   
   // Return the top 12 apps with official icons
   return topApps;
