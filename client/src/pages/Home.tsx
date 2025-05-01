@@ -32,9 +32,9 @@ const Home = () => {
       {/* Top 10 Apps Last Month Section */}
       <section>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">{t('top10AppsLastMonth')}</h2>
+          <h2 className="text-2xl font-bold">{t('home.top10AppsLastMonth')}</h2>
           <Link href="/apps/popular">
-            <span className="text-primary hover:underline cursor-pointer">{t('viewAll')}</span>
+            <span className="text-primary hover:underline cursor-pointer">{t('home.viewAll')}</span>
           </Link>
         </div>
         
@@ -65,13 +65,11 @@ const Home = () => {
       </section>
 
       {/* Sponsored Content Banner */}
-      <SponsoredBanner
-        title="Boost Your Device Performance!"
-        description="Try our recommended optimization tools to enhance your device speed and battery life."
-        imageUrl="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&h=768&q=80"
-        ctaText="Learn More"
-        ctaLink="#performance-boost"
-      />
+      <div className="mt-10 flex justify-center">
+        <a href="https://www.dpbolvw.net/click-101417075-17024574" target="_blank" rel="noopener noreferrer">
+          <img src="https://www.lduhtrp.net/image-101417075-17024574" width="650" height="250" alt="Sponsored content" style={{maxWidth: '100%'}} />
+        </a>
+      </div>
 
       {/* App Categories Section */}
       <section className="mt-10 bg-white rounded-lg shadow-md p-6">
@@ -118,9 +116,9 @@ const Home = () => {
       {/* Top 10 Just-In-Time Apps Section */}
       <section className="mt-10">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">{t('top10JustInTimeApps')}</h2>
+          <h2 className="text-2xl font-bold">{t('home.top10JustInTimeApps')}</h2>
           <Link href="/apps/just-in-time">
-            <span className="text-primary hover:underline cursor-pointer">{t('viewAll')}</span>
+            <span className="text-primary hover:underline cursor-pointer">{t('home.viewAll')}</span>
           </Link>
         </div>
         
@@ -153,9 +151,9 @@ const Home = () => {
       {/* Recent Apps Section */}
       <section className="mt-10">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">{t('recentApps')}</h2>
+          <h2 className="text-2xl font-bold">{t('home.recentApps')}</h2>
           <Link href="/apps/all">
-            <span className="text-primary hover:underline cursor-pointer">{t('viewAll')}</span>
+            <span className="text-primary hover:underline cursor-pointer">{t('home.viewAll')}</span>
           </Link>
         </div>
         

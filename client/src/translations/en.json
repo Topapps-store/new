@@ -27,7 +27,9 @@
     "viewAll": "View All",
     "categories": "Categories",
     "browseByCategory": "Browse by Category",
-    "seeMore": "See More"
+    "seeMore": "See More",
+    "top10AppsLastMonth": "Top 10 Apps Last Month",
+    "top10JustInTimeApps": "Top 10 Just-In-Time Apps"
   },
   "appDetail": {
     "description": "Description",
