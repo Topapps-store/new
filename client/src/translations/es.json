@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "apps": "Aplicaciones",
+    "categories": "Categorías",
+    "games": "Juegos",
+    "search": "Buscar aplicaciones..."
+  },
+  "footer": {
+    "description": "Tu fuente confiable para aplicaciones y juegos de Android. Descarga las últimas versiones de aplicaciones populares.",
+    "quickLinks": "Enlaces Rápidos",
+    "legal": "Legal",
+    "termsOfService": "Términos de Servicio",
+    "privacyPolicy": "Política de Privacidad",
+    "disclaimer": "Aviso Legal",
+    "contactUs": "Contáctanos",
+    "connectWithUs": "Conéctate con Nosotros",
+    "stayUpdated": "Mantente actualizado con las últimas aplicaciones y promociones.",
+    "copyright": "© {year} TopApps.store. Todos los derechos reservados.",
+    "trademark": "Android es una marca registrada de Google LLC. Todos los nombres de aplicaciones, logotipos y marcas son propiedad de sus respectivos dueños."
+  },
+  "home": {
+    "featuredApps": "Aplicaciones Destacadas",
+    "popularApps": "Aplicaciones Populares",
+    "recentApps": "Añadidas Recientemente",
+    "viewAll": "Ver Todas",
+    "categories": "Categorías",
+    "browseByCategory": "Navegar por Categoría",
+    "seeMore": "Ver Más"
+  },
+  "appDetail": {
+    "description": "Descripción",
+    "screenshots": "Capturas de Pantalla",
+    "information": "Información",
+    "version": "Versión",
+    "size": "Tamaño",
+    "updated": "Actualizada",
+    "requires": "Requiere",
+    "developer": "Desarrollador",
+    "installs": "Instalaciones",
+    "downloadAPK": "Descargar APK",
+    "googlePlay": "Google Play",
+    "relatedApps": "Aplicaciones Relacionadas"
+  },
+  "category": {
+    "appsInCategory": "Aplicaciones en {category}"
+  },
+  "sponsored": {
+    "sponsored": "PATROCINADO",
+    "premiumApps": "¡Obtén Aplicaciones Premium Gratis!",
+    "newsletter": "Suscríbete a nuestro boletín y obtén acceso a ofertas y promociones exclusivas de aplicaciones.",
+    "subscribeNow": "Suscríbete Ahora"
+  },
+  "language": {
+    "english": "Inglés",
+    "spanish": "Español",
+    "french": "Francés"
+  }
+}

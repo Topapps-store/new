@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "home": "Home",
+    "apps": "Apps",
+    "categories": "Categories",
+    "games": "Games",
+    "search": "Search apps..."
+  },
+  "footer": {
+    "description": "Your trusted source for Android apps and games. Download the latest versions of popular applications.",
+    "quickLinks": "Quick Links",
+    "legal": "Legal",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "disclaimer": "Disclaimer",
+    "contactUs": "Contact Us",
+    "connectWithUs": "Connect With Us",
+    "stayUpdated": "Stay updated with the latest apps and promotions.",
+    "copyright": "© {year} TopApps.store. All rights reserved.",
+    "trademark": "Android is a trademark of Google LLC. All app names, logos, and brands are property of their respective owners."
+  },
+  "home": {
+    "featuredApps": "Featured Apps",
+    "popularApps": "Popular Apps",
+    "recentApps": "Recently Added",
+    "viewAll": "View All",
+    "categories": "Categories",
+    "browseByCategory": "Browse by Category",
+    "seeMore": "See More"
+  },
+  "appDetail": {
+    "description": "Description",
+    "screenshots": "Screenshots",
+    "information": "Information",
+    "version": "Version",
+    "size": "Size",
+    "updated": "Updated",
+    "requires": "Requires",
+    "developer": "Developer",
+    "installs": "Installs",
+    "downloadAPK": "Download APK",
+    "googlePlay": "Google Play",
+    "relatedApps": "Related Apps"
+  },
+  "category": {
+    "appsInCategory": "Apps in {category}"
+  },
+  "sponsored": {
+    "sponsored": "SPONSORED",
+    "premiumApps": "Get Premium Apps for Free!",
+    "newsletter": "Subscribe to our newsletter and get access to exclusive app deals and promotions.",
+    "subscribeNow": "Subscribe Now"
+  },
+  "language": {
+    "english": "English",
+    "spanish": "Spanish",
+    "french": "French"
+  }
+}

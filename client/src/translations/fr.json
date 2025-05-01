@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "apps": "Applications",
+    "categories": "Catégories",
+    "games": "Jeux",
+    "search": "Rechercher des applications..."
+  },
+  "footer": {
+    "description": "Votre source de confiance pour les applications et jeux Android. Téléchargez les dernières versions des applications populaires.",
+    "quickLinks": "Liens Rapides",
+    "legal": "Légal",
+    "termsOfService": "Conditions d'Utilisation",
+    "privacyPolicy": "Politique de Confidentialité",
+    "disclaimer": "Avertissement",
+    "contactUs": "Contactez-nous",
+    "connectWithUs": "Connectez-vous avec Nous",
+    "stayUpdated": "Restez informé des dernières applications et promotions.",
+    "copyright": "© {year} TopApps.store. Tous droits réservés.",
+    "trademark": "Android est une marque déposée de Google LLC. Tous les noms d'applications, logos et marques sont la propriété de leurs propriétaires respectifs."
+  },
+  "home": {
+    "featuredApps": "Applications en Vedette",
+    "popularApps": "Applications Populaires",
+    "recentApps": "Ajoutées Récemment",
+    "viewAll": "Voir Tout",
+    "categories": "Catégories",
+    "browseByCategory": "Parcourir par Catégorie",
+    "seeMore": "Voir Plus"
+  },
+  "appDetail": {
+    "description": "Description",
+    "screenshots": "Captures d'Écran",
+    "information": "Information",
+    "version": "Version",
+    "size": "Taille",
+    "updated": "Mis à jour",
+    "requires": "Requiert",
+    "developer": "Développeur",
+    "installs": "Installations",
+    "downloadAPK": "Télécharger APK",
+    "googlePlay": "Google Play",
+    "relatedApps": "Applications Connexes"
+  },
+  "category": {
+    "appsInCategory": "Applications dans {category}"
+  },
+  "sponsored": {
+    "sponsored": "SPONSORISÉ",
+    "premiumApps": "Obtenez des Applications Premium Gratuitement!",
+    "newsletter": "Abonnez-vous à notre newsletter et accédez à des offres et promotions exclusives d'applications.",
+    "subscribeNow": "S'abonner Maintenant"
+  },
+  "language": {
+    "english": "Anglais",
+    "spanish": "Espagnol",
+    "french": "Français"
+  }
+}
