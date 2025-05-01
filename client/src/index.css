@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 50% 98%;
+  --foreground: 240 10% 3.9%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --primary: 202 100% 45%;  /* #0099E5 */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 205 100% 27%; /* #005A87 */
+  --secondary-foreground: 0 0% 98%;
+  --accent: 35 100% 50%;  /* #FF9900 */
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 5% 64.9%;
+  --radius: 0.5rem;
+  --chart-1: 202 100% 45%;
+  --chart-2: 200 70% 50%;
+  --chart-3: 205 100% 27%;
+  --chart-4: 213 80% 35%;
+  --chart-5: 35 100% 50%;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 202 100% 45%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 205 100% 27%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 35 100% 50%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --chart-1: 202 100% 45%;
+  --chart-2: 200 70% 50%;
+  --chart-3: 205 100% 27%;
+  --chart-4: 213 80% 35%;
+  --chart-5: 35 100% 50%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans bg-light text-dark;
+  }
+
+  .bg-light {
+    @apply bg-[#F5F9FC];
+  }
+
+  .text-dark {
+    @apply text-[#1A1A2E];
+  }
+
+  .text-primary {
+    @apply text-[#0099E5];
+  }
+
+  .bg-primary {
+    @apply bg-[#0099E5];
+  }
+
+  .bg-secondary {
+    @apply bg-[#005A87];
+  }
+
+  .text-accent {
+    @apply text-[#FF9900];
+  }
+
+  .bg-accent {
+    @apply bg-[#FF9900];
+  }
+}
