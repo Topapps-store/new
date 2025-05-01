@@ -2,6 +2,8 @@ import express, { type Express } from "express";
 import type { Server } from "http";
 import { createServer } from "http";
 import { storage } from "./storage";
+import { syncApp, syncAllAppsController } from './controllers/app-sync-controller';
+import { initializeAppSyncScheduler } from './app-sync-scheduler';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API Routes
@@ -113,7 +115,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
+  // App synchronization endpoints
+  apiRouter.post("/apps/sync/:id", syncApp);
+  apiRouter.post("/apps/sync-all", syncAllAppsController);
+  
   app.use("/api", apiRouter);
+
+  // Initialize app sync scheduler
+  initializeAppSyncScheduler();
 
   const httpServer = createServer(app);
   return httpServer;

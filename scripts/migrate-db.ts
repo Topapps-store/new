@@ -22,22 +22,22 @@ async function migrateDatabase() {
     `);
     
     log('Database migration completed successfully!', 'migration');
+    return true;
   } catch (error) {
     log(`Database migration failed: ${error}`, 'error');
-    process.exit(1);
+    console.error('Migration error:', error);
+    return false;
   }
 }
 
-// Run the migration when this script is executed directly
-if (require.main === module) {
-  migrateDatabase()
-    .then(() => {
-      process.exit(0);
-    })
-    .catch((error) => {
-      console.error('Migration error:', error);
-      process.exit(1);
-    });
-}
+// Run the migration immediately
+migrateDatabase()
+  .then((success) => {
+    if (success) {
+      console.log('✅ Database migration completed successfully!');
+    } else {
+      console.error('❌ Database migration failed');
+    }
+  });
 
 export default migrateDatabase;

@@ -175,14 +175,14 @@ const AppDetail = () => {
                     </a>
                     
                     <a 
-                      href="#app-store" 
-                      className="flex-1 text-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-2 rounded-lg"
+                      href={app.iosAppStoreUrl || "#app-store"} 
+                      className={`flex-1 text-center ${app.iosAppStoreUrl ? 'bg-gray-200 hover:bg-gray-300 text-gray-800' : 'bg-gray-100 text-gray-400'} font-bold py-3 px-2 rounded-lg`}
                       onClick={() => console.log("App Store redirect")}
                       data-event="click:redirectToAppStore"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <i className="fab fa-apple mr-1"></i> App Store
+                      <i className="fab fa-apple mr-1"></i> {t('appDetail.appStore')}
                     </a>
                   </div>
                 </div>
