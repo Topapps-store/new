@@ -1,7 +1,8 @@
-import * as gplay from 'google-play-scraper';
-import * as appStore from 'app-store-scraper';
+// Import the default export as a namespace
+import gplay from 'google-play-scraper';
+import appStore from 'app-store-scraper';
 
-// Import our type declarations from separate files
+// Import our type declarations
 /// <reference path="./types/google-play-scraper.d.ts" />
 /// <reference path="./types/app-store-scraper.d.ts" />
 import { db } from './db';
@@ -34,18 +35,44 @@ interface AppData {
  */
 async function getAndroidAppData(packageName: string): Promise<AppData | null> {
   try {
-    // Google Play Scraper uses method chaining pattern
+    // Map our simple ID to the actual Google Play package name if needed
+    const packageMap: Record<string, string> = {
+      'whatsapp': 'com.whatsapp',
+      'facebook': 'com.facebook.katana',
+      'instagram': 'com.instagram.android',
+      'tiktok': 'com.zhiliaoapp.musically',
+      'netflix': 'com.netflix.mediaclient',
+      'spotify': 'com.spotify.music',
+      'ing-espana': 'www.ingdirect.nativeframe',
+      'mobile-legends': 'com.mobile.legends',
+      'windows-11': 'com.microsoft.windows',
+      'rv-gesundheit': 'de.techniker.tk',
+      'doco-renfe': 'at.oebb.ts',
+      'vpn-secure': 'com.tunnelbear.android'
+    };
+
+    // Use the mapped package name if available
+    const actualPackageName = packageMap[packageName] || packageName;
+    
+    // Fetch app data
     const appData = await gplay.app({
-      appId: packageName,
+      appId: actualPackageName,
       lang: 'en',
       country: 'us'
     });
     
-    // Get screenshots separately
-    const screenshotUrls: string[] = [];
+    // Try to get screenshots
+    let screenshotUrls: string[] = [];
+    try {
+      if (appData.screenshots && appData.screenshots.length > 0) {
+        screenshotUrls = appData.screenshots;
+      }
+    } catch (e) {
+      log(`Could not fetch screenshots for ${packageName}`, 'warning');
+    }
     
     return {
-      appId: packageName,
+      appId: packageName, // Keep our original ID
       name: appData.title,
       description: appData.description || '',
       version: appData.version || '',
@@ -73,25 +100,60 @@ async function getAndroidAppData(packageName: string): Promise<AppData | null> {
  */
 async function getIosAppData(appId: string): Promise<AppData | null> {
   try {
-    const appData = await appStore.app({ id: appId });
-    const screenshots = await appStore.screenshots({ id: appId });
+    // Map our simple ID to actual iOS App Store ID if needed
+    const appIdMap: Record<string, string> = {
+      'whatsapp': '310633997',
+      'facebook': '284882215',
+      'instagram': '389801252',
+      'tiktok': '835599320',
+      'netflix': '363590051',
+      'spotify': '324684580',
+      'ing-espana': '542941827',
+      'mobile-legends': '1160056295'
+      // Add more mappings as needed
+    };
+
+    // Use the mapped ID if available
+    const actualAppId = appIdMap[appId] || appId;
+    
+    // Fetch the app data from App Store
+    const appData = await appStore.app({ 
+      id: actualAppId,
+      country: 'us'
+    });
+    
+    // Try to get screenshots
+    let screenshotUrls: string[] = [];
+    try {
+      if (appData.screenshots && appData.screenshots.length > 0) {
+        screenshotUrls = appData.screenshots;
+      } else {
+        // Try to get screenshots separately (may not be needed anymore)
+        const screenshots = await appStore.screenshots({ id: actualAppId });
+        if (screenshots && screenshots.length > 0) {
+          screenshotUrls = screenshots;
+        }
+      }
+    } catch (e) {
+      log(`Could not fetch screenshots for ${appId} from iOS App Store`, 'warning');
+    }
     
     return {
-      appId: appId,
+      appId: appId, // Keep our original ID
       name: appData.title,
-      description: appData.description,
-      version: appData.version,
-      developer: appData.developer,
-      icon: appData.icon,
-      screenshots: screenshots,
-      rating: appData.score,
-      reviews: appData.reviews,
-      size: appData.size,
-      releaseDate: new Date(appData.released),
-      price: appData.price,
-      url: appData.url,
-      genre: appData.genre,
-      updated: appData.updated,
+      description: appData.description || '',
+      version: appData.version || '',
+      developer: appData.developer || '',
+      icon: appData.icon || '',
+      screenshots: screenshotUrls,
+      rating: typeof appData.score === 'number' ? appData.score : 0,
+      reviews: typeof appData.reviews === 'number' ? appData.reviews : 0,
+      size: appData.size || '',
+      releaseDate: new Date(appData.released || Date.now()),
+      price: typeof appData.price === 'number' ? appData.price : 0,
+      url: appData.url || '',
+      genre: appData.primaryGenre || (appData.genres && appData.genres.length > 0 ? appData.genres[0] : ''),
+      updated: appData.updated || new Date().toISOString(),
       storeType: 'ios'
     };
   } catch (error) {
