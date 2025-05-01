@@ -4,7 +4,8 @@
     "apps": "Apps",
     "categories": "Categories",
     "games": "Games",
-    "search": "Search apps..."
+    "search": "Search apps...",
+    "back": "Back"
   },
   "footer": {
     "description": "Your trusted source for Android apps and games. Download the latest versions of popular applications.",
@@ -40,7 +41,11 @@
     "installs": "Installs",
     "downloadAPK": "Download APK",
     "googlePlay": "Google Play",
-    "relatedApps": "Related Apps"
+    "relatedApps": "Related Apps",
+    "language": "Language",
+    "readMore": "Read More",
+    "appStore": "App Store",
+    "platforms": "Platforms"
   },
   "category": {
     "appsInCategory": "Apps in {category}"
