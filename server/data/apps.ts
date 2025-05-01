@@ -768,7 +768,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/spotify-music-and-podcasts/id324684580",
-      originalAppId: "324684580"
+      originalAppId: "324684580",
+      isAffiliate: true
     },
     {
       id: "cashapp",
