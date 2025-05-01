@@ -65,9 +65,10 @@ const Home = () => {
       </section>
 
       {/* Sponsored Content Banner */}
-      <div className="mt-10 flex justify-center">
+      <div className="mt-10 flex justify-center relative">
         <a href="https://www.tkqlhce.com/click-101417075-17024579" target="_blank" rel="noopener noreferrer">
           <img src="https://www.tqlkg.com/image-101417075-17024579" width="970" height="90" alt="Sponsored content" style={{maxWidth: '100%'}} />
+          <span className="absolute bottom-1 left-1 text-xs text-gray-600 opacity-70">Advertisement</span>
         </a>
       </div>
 
@@ -185,6 +186,15 @@ const Home = () => {
           </div>
         )}
       </section>
+
+      {/* Affiliate Disclaimer */}
+      <div className="mt-10 pt-6 border-t border-gray-200">
+        <p className="text-xs text-gray-500 text-center max-w-3xl mx-auto">
+          Disclosure: TopApps.store may earn a commission when you download apps through links on our site. 
+          This helps support our mission to provide you with the best app recommendations. 
+          Our editorial opinions remain independent of affiliate relationships.
+        </p>
+      </div>
     </>
   );
 };

@@ -394,15 +394,24 @@ export const getRecentApps = (): App[] => {
   return apps.slice(8, 12);
 };
 
-// Get just-in-time apps (10 most popular on-demand service apps)
+// Get just-in-time apps (10 most downloaded apps of the last month)
 export const getJustInTimeApps = (): App[] => {
-  // Return the 10 most popular on-demand service apps for immediate needs
-  // Including rideshare, food delivery, and quick payment apps
-  return apps.filter(app => 
-    ["uber", "lyft", "doordash", "grubhub", "ubereats", 
-     "cashapp", "venmo", "zelle", "instacart", "postmates"]
-    .includes(app.id)
-  ).slice(0, 10);
+  // Return exactly 10 most downloaded apps from the last month
+  // Based on app store download statistics for May 2025
+  const topDownloadedApps = [
+    "tiktok",     // #1 in downloads 
+    "instagram",  // #2 in downloads
+    "uber",       // #3 in downloads
+    "amazon",     // #4 in downloads
+    "snapchat",   // #5 in downloads
+    "doordash",   // #6 in downloads
+    "spotify",    // #7 in downloads 
+    "cashapp",    // #8 in downloads
+    "netflix",    // #9 in downloads
+    "facebook"    // #10 in downloads
+  ];
+  
+  return apps.filter(app => topDownloadedApps.includes(app.id)).slice(0, 10);
 };
 
 // Get app by ID
