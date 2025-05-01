@@ -24,6 +24,14 @@ export interface IStorage {
   getCategories(): Promise<CategoryLegacy[]>;
   getCategoryById(id: string): Promise<CategoryLegacy | undefined>;
   getAppsByCategory(categoryId: string): Promise<AppLegacy[]>;
+  
+  // Affiliate links operations
+  getAffiliateLinks(appId: string): Promise<AffiliateLink[]>;
+  getAffiliateLinkById(id: number): Promise<AffiliateLink | undefined>;
+  createAffiliateLink(link: InsertAffiliateLink): Promise<AffiliateLink>;
+  updateAffiliateLink(id: number, link: Partial<InsertAffiliateLink>): Promise<AffiliateLink | undefined>;
+  deleteAffiliateLink(id: number): Promise<boolean>;
+  incrementLinkClickCount(id: number): Promise<AffiliateLink | undefined>;
 }
 
 export class DatabaseStorage implements IStorage {

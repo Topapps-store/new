@@ -113,3 +113,35 @@ export type CategoryLegacy = {
   icon?: string;
   color?: string;
 }
+
+// Affiliate Links table for advertisement buttons
+export const affiliateLinks = pgTable("affiliate_links", {
+  id: serial("id").primaryKey(),
+  appId: varchar("app_id", { length: 100 }).references(() => apps.id),
+  label: varchar("label", { length: 100 }).notNull(),
+  url: varchar("url", { length: 255 }).notNull(),
+  buttonText: varchar("button_text", { length: 100 }).notNull().default("Download Now"),
+  buttonColor: varchar("button_color", { length: 50 }).notNull().default("#4CAF50"),
+  isActive: boolean("is_active").notNull().default(true),
+  displayOrder: integer("display_order").notNull().default(1),
+  clickCount: integer("click_count").notNull().default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const affiliateLinksRelations = relations(affiliateLinks, ({ one }) => ({
+  app: one(apps, {
+    fields: [affiliateLinks.appId],
+    references: [apps.id]
+  })
+}));
+
+export const insertAffiliateLinkSchema = createInsertSchema(affiliateLinks).omit({
+  id: true,
+  clickCount: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertAffiliateLink = z.infer<typeof insertAffiliateLinkSchema>;
+export type AffiliateLink = typeof affiliateLinks.$inferSelect;
