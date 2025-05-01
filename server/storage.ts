@@ -1,7 +1,8 @@
 import { 
   App, AppLegacy, Category, CategoryLegacy, 
   InsertApp, InsertCategory, InsertUser, User,
-  apps, categories, users
+  AffiliateLink, InsertAffiliateLink,
+  apps, categories, users, affiliateLinks
 } from "@shared/schema";
 import { db } from "./db";
 import { asc, desc, eq } from "drizzle-orm";
@@ -204,9 +205,68 @@ export class DatabaseStorage implements IStorage {
       installs: app.installs,
       downloadUrl: app.downloadUrl,
       googlePlayUrl: app.googlePlayUrl,
+      iosAppStoreUrl: app.iosAppStoreUrl || undefined,
+      originalAppId: app.originalAppId || undefined,
       screenshots: app.screenshots,
-      isAffiliate: app.isAffiliate || false
+      isAffiliate: app.isAffiliate || false,
+      lastSyncedAt: app.lastSyncedAt || undefined
     };
+  }
+  
+  // Affiliate link methods
+  async getAffiliateLinks(appId: string): Promise<AffiliateLink[]> {
+    return db.select()
+      .from(affiliateLinks)
+      .where(eq(affiliateLinks.appId, appId))
+      .orderBy(asc(affiliateLinks.displayOrder));
+  }
+  
+  async getAffiliateLinkById(id: number): Promise<AffiliateLink | undefined> {
+    const [link] = await db.select()
+      .from(affiliateLinks)
+      .where(eq(affiliateLinks.id, id));
+    
+    return link || undefined;
+  }
+  
+  async createAffiliateLink(link: InsertAffiliateLink): Promise<AffiliateLink> {
+    const [createdLink] = await db.insert(affiliateLinks)
+      .values(link)
+      .returning();
+    
+    return createdLink;
+  }
+  
+  async updateAffiliateLink(id: number, link: Partial<InsertAffiliateLink>): Promise<AffiliateLink | undefined> {
+    const [updatedLink] = await db.update(affiliateLinks)
+      .set(link)
+      .where(eq(affiliateLinks.id, id))
+      .returning();
+    
+    return updatedLink || undefined;
+  }
+  
+  async deleteAffiliateLink(id: number): Promise<boolean> {
+    const [deletedLink] = await db.delete(affiliateLinks)
+      .where(eq(affiliateLinks.id, id))
+      .returning();
+    
+    return !!deletedLink;
+  }
+  
+  async incrementLinkClickCount(id: number): Promise<AffiliateLink | undefined> {
+    const [link] = await db.select()
+      .from(affiliateLinks)
+      .where(eq(affiliateLinks.id, id));
+    
+    if (!link) return undefined;
+    
+    const [updatedLink] = await db.update(affiliateLinks)
+      .set({ clickCount: link.clickCount + 1 })
+      .where(eq(affiliateLinks.id, id))
+      .returning();
+    
+    return updatedLink || undefined;
   }
 }
 

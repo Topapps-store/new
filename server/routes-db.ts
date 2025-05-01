@@ -119,6 +119,84 @@ export async function registerRoutes(app: Express): Promise<Server> {
   apiRouter.post("/apps/sync/:id", syncApp);
   apiRouter.post("/apps/sync-all", syncAllAppsController);
   
+  // Affiliate links routes
+  apiRouter.get("/apps/:appId/affiliate-links", async (req, res) => {
+    try {
+      const { appId } = req.params;
+      const links = await storage.getAffiliateLinks(appId);
+      res.json(links);
+    } catch (error) {
+      console.error(`Error fetching affiliate links for app ${req.params.appId}:`, error);
+      res.status(500).json({ message: "Failed to fetch affiliate links" });
+    }
+  });
+  
+  apiRouter.get("/affiliate-links/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const link = await storage.getAffiliateLinkById(Number(id));
+      if (!link) {
+        return res.status(404).json({ message: "Affiliate link not found" });
+      }
+      res.json(link);
+    } catch (error) {
+      console.error(`Error fetching affiliate link ${req.params.id}:`, error);
+      res.status(500).json({ message: "Failed to fetch affiliate link" });
+    }
+  });
+  
+  apiRouter.post("/affiliate-links", express.json(), async (req, res) => {
+    try {
+      const link = await storage.createAffiliateLink(req.body);
+      res.status(201).json(link);
+    } catch (error) {
+      console.error("Error creating affiliate link:", error);
+      res.status(400).json({ message: "Failed to create affiliate link", error: String(error) });
+    }
+  });
+  
+  apiRouter.put("/affiliate-links/:id", express.json(), async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updatedLink = await storage.updateAffiliateLink(Number(id), req.body);
+      if (!updatedLink) {
+        return res.status(404).json({ message: "Affiliate link not found" });
+      }
+      res.json(updatedLink);
+    } catch (error) {
+      console.error(`Error updating affiliate link ${req.params.id}:`, error);
+      res.status(400).json({ message: "Failed to update affiliate link", error: String(error) });
+    }
+  });
+  
+  apiRouter.delete("/affiliate-links/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const success = await storage.deleteAffiliateLink(Number(id));
+      if (!success) {
+        return res.status(404).json({ message: "Affiliate link not found" });
+      }
+      res.status(204).end();
+    } catch (error) {
+      console.error(`Error deleting affiliate link ${req.params.id}:`, error);
+      res.status(500).json({ message: "Failed to delete affiliate link" });
+    }
+  });
+  
+  apiRouter.post("/affiliate-links/:id/click", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updatedLink = await storage.incrementLinkClickCount(Number(id));
+      if (!updatedLink) {
+        return res.status(404).json({ message: "Affiliate link not found" });
+      }
+      res.json(updatedLink);
+    } catch (error) {
+      console.error(`Error incrementing click count for affiliate link ${req.params.id}:`, error);
+      res.status(500).json({ message: "Failed to increment click count" });
+    }
+  });
+  
   app.use("/api", apiRouter);
 
   // Initialize app sync scheduler
