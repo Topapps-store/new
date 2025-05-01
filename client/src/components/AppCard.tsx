@@ -42,11 +42,15 @@ const AppCard: React.FC<AppCardProps> = ({ app, isAffiliate = false }) => {
           data-event={isAffiliate ? "click:trackAffiliate" : undefined}
         >
           <div className="p-4 flex flex-col items-center">
-            <div className="w-20 h-20 mb-3 flex items-center justify-center">
+            <div className="w-20 h-20 mb-3 flex items-center justify-center rounded-xl bg-gray-50">
               <img
-                src={app.iconUrl}
+                src={app.iconUrl || "https://cdn-icons-png.flaticon.com/512/731/731985.png"}
                 alt={app.name}
-                className="w-20 h-20 object-contain"
+                className="w-20 h-20 object-contain rounded-xl shadow-sm"
+                onError={(e) => {
+                  // Fallback to a generic app icon if the original URL fails
+                  e.currentTarget.src = "https://cdn-icons-png.flaticon.com/512/731/731985.png";
+                }}
               />
             </div>
             <h3 className="font-medium text-center line-clamp-2 h-12">{app.name}</h3>
