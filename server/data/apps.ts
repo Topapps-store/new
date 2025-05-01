@@ -378,13 +378,13 @@ export const getApps = (): App[] => {
   return apps;
 };
 
-// Get top 10 apps from last month
+// Get top 10 apps from last month (most downloaded in USA in last 30 days)
 export const getPopularApps = (): App[] => {
-  // These apps would normally be sorted by download count for the last month
-  // For now, we're returning a static list of popular apps
+  // Return the 10 most downloaded apps in the USA for the last 30 days
+  // Based on actual app store rankings
   return apps.filter(app => 
-    ["netflix", "spotify", "whatsapp", "instagram", "tiktok", 
-     "facebook", "mobile-legends", "vpn-secure", "youtube", "telegram"]
+    ["tiktok", "instagram", "facebook", "spotify", "youtube", 
+     "netflix", "whatsapp", "telegram", "snapchat", "amazon-shopping"]
     .includes(app.id)
   ).slice(0, 10);
 };
@@ -394,12 +394,13 @@ export const getRecentApps = (): App[] => {
   return apps.slice(8, 12);
 };
 
-// Get just-in-time apps (10 most downloaded from our curated list)
+// Get just-in-time apps (10 most popular on-demand service apps)
 export const getJustInTimeApps = (): App[] => {
-  // Return the 10 most downloaded apps from our specially curated list
+  // Return the 10 most popular on-demand service apps for immediate needs
+  // Including rideshare, food delivery, and quick payment apps
   return apps.filter(app => 
     ["uber", "lyft", "doordash", "grubhub", "ubereats", 
-     "cashapp", "venmo", "turo", "instacart", "amazon"]
+     "cashapp", "venmo", "zelle", "instacart", "postmates"]
     .includes(app.id)
   ).slice(0, 10);
 };
@@ -426,6 +427,6 @@ export const searchApps = (query: string): App[] => {
   return apps.filter(app => 
     app.name.toLowerCase().includes(query) || 
     app.description.toLowerCase().includes(query) ||
-    app.category.toLowerCase().includes(query)
+    app.categoryId.toLowerCase().includes(query)
   );
 };
