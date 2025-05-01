@@ -1,11 +1,24 @@
 import { Link } from "wouter";
 import StarRating from "./StarRating";
-import { App } from "@shared/schema";
+import { App, AppLegacy } from "@shared/schema";
 
 type AppCardProps = {
-  app: App;
+  app: App | AppLegacy;
   isAffiliate?: boolean;
 };
+
+// Type guard to check if the app is of type AppLegacy
+function isAppLegacy(app: App | AppLegacy): app is AppLegacy {
+  return 'category' in app;
+}
+
+// Function to get category name
+function getCategoryName(app: App | AppLegacy): string {
+  if (isAppLegacy(app)) {
+    return app.category;
+  }
+  return 'Unknown'; // For App type that doesn't have category property
+}
 
 const AppCard: React.FC<AppCardProps> = ({ app, isAffiliate = false }) => {
   const handleAffiliateClick = () => {
@@ -38,7 +51,7 @@ const AppCard: React.FC<AppCardProps> = ({ app, isAffiliate = false }) => {
             </div>
             <h3 className="font-medium text-center line-clamp-2 h-12">{app.name}</h3>
             <span className="text-xs text-gray-500 py-1 px-2 bg-gray-100 rounded-full mt-1">
-              {app.category}
+              {getCategoryName(app)}
             </span>
             <div className="flex items-center mt-2">
               <StarRating rating={app.rating} />

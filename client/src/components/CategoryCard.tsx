@@ -112,13 +112,11 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
   const colorClass = getRandomColorClass(category.id);
   
   return (
-    <Link href={`/categories/${category.id}`}>
-      <a className="flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors">
-        <div className={`w-10 h-10 flex items-center justify-center ${colorClass} rounded-lg mr-3`}>
-          <i className={iconClass}></i>
-        </div>
-        <span>{category.name}</span>
-      </a>
+    <Link href={`/categories/${category.id}`} className="flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors">
+      <div className={`w-10 h-10 flex items-center justify-center ${colorClass} rounded-lg mr-3`}>
+        <i className={iconClass}></i>
+      </div>
+      <span>{category.name}</span>
     </Link>
   );
 };
