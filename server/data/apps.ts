@@ -391,7 +391,95 @@ export const getPopularApps = (): App[] => {
 
 // Get recent apps (4 most recent)
 export const getRecentApps = (): App[] => {
-  return apps.slice(8, 12);
+  // Return recent apps with real app store icons
+  return [
+    {
+      id: "threads",
+      name: "Threads",
+      categoryId: "social",
+      description: "Threads is where communities come together to discuss everything from topics you care about today to what'll be trending tomorrow.",
+      iconUrl: "https://play-lh.googleusercontent.com/MPZzV2SdP7__hI-PMg1epJk6n_SJEw7VdDP_j_Qo8KKuLKCn2P-VWy4wWHl2on09BA=s180-rw",
+      rating: 4.1,
+      downloads: "100M+",
+      version: "348.0.0.18.105",
+      size: "42 MB",
+      updated: "April 29, 2025",
+      requires: "Android 9.0+",
+      developer: "Instagram",
+      installs: "100,000,000+",
+      downloadUrl: "https://play.google.com/store/apps/details?id=com.instagram.barcelona",
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.instagram.barcelona",
+      screenshots: [],
+      createdAt: null,
+      lastSyncedAt: null,
+      iosAppStoreUrl: "https://apps.apple.com/us/app/threads-an-instagram-app/id6446901002",
+      originalAppId: "6446901002",
+      isAffiliate: false
+    },
+    {
+      id: "disney-plus",
+      name: "Disney+",
+      categoryId: "entertainment",
+      description: "Stream Disney, Pixar, Marvel, Star Wars, National Geographic and more on Disney+.",
+      iconUrl: "https://play-lh.googleusercontent.com/xoGGYH2LgLibLDBoxMg-ZE16b-RNfITw_OgXBWRAPin2FZY4FGB9QKBYApR-0rSCkQ=s180-rw",
+      rating: 4.6,
+      downloads: "15M+",
+      version: "2.12.2",
+      size: "60 MB",
+      updated: "June 25, 2023",
+      requires: "Android 8.0+",
+      developer: "Disney",
+      installs: "100,000,000+",
+      downloadUrl: "https://play.google.com/store/apps/details?id=com.disney.disneyplus",
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.disney.disneyplus",
+      screenshots: [],
+      createdAt: null,
+      lastSyncedAt: null,
+      isAffiliate: false
+    },
+    {
+      id: "chatgpt4-official",
+      name: "ChatGPT",
+      categoryId: "productivity",
+      description: "ChatGPT is a free AI-powered chatbot designed to respond to questions and assist with a variety of tasks.",
+      iconUrl: "https://play-lh.googleusercontent.com/v6_sutrf_ZjBFXi8GYl8ZezOg0Ju5KI6dZOHUU4MfYUsUEIKhXe9p9f6WNwNkqrVR7E=s180-rw",
+      rating: 4.6,
+      downloads: "15M+",
+      version: "2.0.1",
+      size: "42 MB",
+      updated: "June 30, 2023",
+      requires: "Android 9.0+",
+      developer: "OpenAI, Inc.",
+      installs: "15,000,000+",
+      downloadUrl: "https://play.google.com/store/apps/details?id=com.openai.chatgpt",
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.openai.chatgpt",
+      screenshots: [],
+      createdAt: null,
+      lastSyncedAt: null,
+      isAffiliate: false
+    },
+    {
+      id: "tinder-gold",
+      name: "Tinder",
+      categoryId: "dating",
+      description: "With 70+ billion matches to date, Tinder® is the top free dating app.",
+      iconUrl: "https://play-lh.googleusercontent.com/fDpoYqL-HPTZEgkXpLiLUmvMh3-3DWqJpW-PyDYzGJCCtJpZwg8do-LoqzRRt3YZfqc=s180-rw",
+      rating: 4.3,
+      downloads: "18M+",
+      version: "13.20.0",
+      size: "64 MB",
+      updated: "June 18, 2023",
+      requires: "Android 8.0+",
+      developer: "Match Group",
+      installs: "500,000,000+",
+      downloadUrl: "https://play.google.com/store/apps/details?id=com.tinder",
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.tinder",
+      screenshots: [],
+      createdAt: null,
+      lastSyncedAt: null,
+      isAffiliate: false
+    }
+  ];
 };
 
 // Get just-in-time apps (12 most downloaded apps of the last month)
@@ -444,7 +532,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/instagram/id389801252",
-      originalAppId: "389801252"
+      originalAppId: "389801252",
+      isAffiliate: false
     },
     {
       id: "uber",
@@ -466,7 +555,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/uber/id368677368",
-      originalAppId: "368677368"
+      originalAppId: "368677368",
+      isAffiliate: false
     },
     {
       id: "amazon",
@@ -488,7 +578,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/amazon-shopping/id297606951",
-      originalAppId: "297606951"
+      originalAppId: "297606951",
+      isAffiliate: false
     },
     {
       id: "snapchat",
@@ -510,7 +601,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/snapchat/id447188370",
-      originalAppId: "447188370"
+      originalAppId: "447188370",
+      isAffiliate: false
     },
     {
       id: "doordash",
