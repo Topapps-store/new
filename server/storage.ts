@@ -17,6 +17,7 @@ export interface IStorage {
   getApps(): Promise<AppLegacy[]>;
   getPopularApps(): Promise<AppLegacy[]>;  
   getRecentApps(): Promise<AppLegacy[]>;
+  getJustInTimeApps(): Promise<AppLegacy[]>;
   getAppById(id: string): Promise<AppLegacy | undefined>;
   getRelatedApps(id: string): Promise<AppLegacy[]>;
   searchApps(query: string): Promise<AppLegacy[]>;
@@ -93,6 +94,29 @@ export class DatabaseStorage implements IStorage {
       const category = categoriesList.find(cat => cat.id === app.categoryId);
       return this.convertToAppLegacy(app, category?.name || 'Unknown');
     }).slice(0, 8);
+  }
+  
+  async getJustInTimeApps(): Promise<AppLegacy[]> {
+    // Get specially curated "just-in-time" apps - apps for on-demand services
+    const appsList = await db.select().from(apps);
+    const categoriesList = await db.select().from(categories);
+    
+    // Filter the specific apps we want to display in the just-in-time section
+    // These would typically be rideshare, food delivery, and other on-demand services
+    const justInTimeAppIds = [
+      "uber", "lyft", "doordash", "grubhub", "ubereats", 
+      "cashapp", "venmo", "turo", "instacart", "amazon"
+    ];
+    
+    const filteredApps = appsList.filter(app => 
+      justInTimeAppIds.includes(app.id)
+    );
+    
+    // Convert database apps to AppLegacy format
+    return filteredApps.map(app => {
+      const category = categoriesList.find(cat => cat.id === app.categoryId);
+      return this.convertToAppLegacy(app, category?.name || 'Unknown');
+    }).slice(0, 10);
   }
   
   async getAppById(id: string): Promise<AppLegacy | undefined> {

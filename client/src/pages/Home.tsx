@@ -29,16 +29,21 @@ const Home = () => {
 
   return (
     <>
-      {/* Popular Apps Section */}
+      {/* Top 10 Apps Last Month Section */}
       <section>
-        <h2 className="text-2xl font-bold mb-6">Popular Android Apps</h2>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold">{t('top10AppsLastMonth')}</h2>
+          <Link href="/apps/popular">
+            <span className="text-primary hover:underline cursor-pointer">{t('viewAll')}</span>
+          </Link>
+        </div>
         
         {isLoadingPopular ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[...Array(8)].map((_, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {[...Array(10)].map((_, i) => (
               <div key={i} className="bg-white rounded-lg shadow-md p-4 h-48 animate-pulse">
                 <div className="flex flex-col items-center">
-                  <div className="w-20 h-20 bg-gray-200 rounded-full mb-3"></div>
+                  <div className="w-16 h-16 bg-gray-200 rounded-full mb-3"></div>
                   <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
                   <div className="h-3 bg-gray-200 rounded w-1/2 mb-3"></div>
                   <div className="flex space-x-1">
@@ -51,7 +56,7 @@ const Home = () => {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {popularApps?.map((app) => (
               <AppCard key={app.id} app={app} />
             ))}
@@ -110,12 +115,47 @@ const Home = () => {
         )}
       </section>
 
+      {/* Top 10 Just-In-Time Apps Section */}
+      <section className="mt-10">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold">{t('top10JustInTimeApps')}</h2>
+          <Link href="/apps/just-in-time">
+            <span className="text-primary hover:underline cursor-pointer">{t('viewAll')}</span>
+          </Link>
+        </div>
+        
+        {isLoadingJustInTime ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="bg-white rounded-lg shadow-md p-4 h-48 animate-pulse">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-gray-200 rounded-full mb-3"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                  <div className="h-3 bg-gray-200 rounded w-1/2 mb-3"></div>
+                  <div className="flex space-x-1">
+                    {[...Array(5)].map((_, j) => (
+                      <div key={j} className="w-3 h-3 bg-gray-200 rounded-full"></div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {justInTimeApps?.map((app) => (
+              <AppCard key={app.id} app={app} />
+            ))}
+          </div>
+        )}
+      </section>
+      
       {/* Recent Apps Section */}
       <section className="mt-10">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Recent Apps</h2>
+          <h2 className="text-2xl font-bold">{t('recentApps')}</h2>
           <Link href="/apps/all">
-            <span className="text-primary hover:underline cursor-pointer">View All</span>
+            <span className="text-primary hover:underline cursor-pointer">{t('viewAll')}</span>
           </Link>
         </div>
         

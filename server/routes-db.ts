@@ -40,6 +40,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
+  apiRouter.get("/apps/just-in-time", async (req, res) => {
+    try {
+      const apps = await storage.getJustInTimeApps();
+      res.json(apps);
+    } catch (error) {
+      console.error("Error fetching just-in-time apps:", error);
+      res.status(500).json({ message: "Failed to fetch just-in-time apps" });
+    }
+  });
+  
   apiRouter.get("/apps/related/:id", async (req, res) => {
     try {
       const apps = await storage.getRelatedApps(req.params.id);
