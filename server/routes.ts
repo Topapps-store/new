@@ -1,6 +1,7 @@
 import express, { type Express } from "express";
 import type { Server } from "http";
 import { createServer } from "http";
+import { storage } from "./storage";
 import { getApps, getAppById, getPopularApps, getRecentApps, getRelatedApps, searchApps } from "./data/apps";
 import { getCategories, getCategoryById, getAppsByCategory } from "./data/categories";
 
@@ -21,6 +22,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json(getRecentApps());
   });
   
+  apiRouter.get("/apps/related/:id", (req, res) => {
+    res.json(getRelatedApps(req.params.id));
+  });
+  
+  // This route must come after the more specific routes
   apiRouter.get("/apps/:id", (req, res) => {
     const app = getAppById(req.params.id);
     if (app) {
@@ -28,10 +34,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } else {
       res.status(404).json({ message: "App not found" });
     }
-  });
-  
-  apiRouter.get("/apps/related/:id", (req, res) => {
-    res.json(getRelatedApps(req.params.id));
   });
   
   // Categories endpoints

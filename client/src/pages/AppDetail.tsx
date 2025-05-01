@@ -2,19 +2,32 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "wouter";
 import StarRating from "@/components/StarRating";
 import { useState } from "react";
-import { App } from "@shared/schema";
+import { App, AppLegacy } from "@shared/schema";
 import AppCard from "@/components/AppCard";
 import { Badge } from "@/components/ui/badge";
+
+// Type guard to check if the app is of type AppLegacy
+function isAppLegacy(app: App | AppLegacy): app is AppLegacy {
+  return 'category' in app;
+}
+
+// Function to get category name
+function getCategoryName(app: App | AppLegacy): string {
+  if (isAppLegacy(app)) {
+    return app.category;
+  }
+  return 'Unknown'; // For App type that doesn't have category property
+}
 
 const AppDetail = () => {
   const { appId } = useParams();
   const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info">("description");
 
-  const { data: app, isLoading } = useQuery<App>({
+  const { data: app, isLoading } = useQuery<App | AppLegacy>({
     queryKey: [`/api/apps/${appId}`],
   });
 
-  const { data: relatedApps, isLoading: isLoadingRelated } = useQuery<App[]>({
+  const { data: relatedApps, isLoading: isLoadingRelated } = useQuery<(App | AppLegacy)[]>({
     queryKey: ["/api/apps/related", appId],
   });
 
@@ -82,7 +95,7 @@ const AppDetail = () => {
                 />
                 <h1 className="text-2xl font-bold text-center">{app.name}</h1>
                 <Badge variant="category" className="mt-1">
-                  {app.category}
+                  {isAppLegacy(app) ? app.category : 'Unknown'}
                 </Badge>
                 <div className="flex items-center mt-2">
                   <StarRating rating={app.rating} showScore={true} />
