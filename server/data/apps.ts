@@ -394,12 +394,12 @@ export const getRecentApps = (): App[] => {
   return apps.slice(8, 12);
 };
 
-// Get just-in-time apps (10 most downloaded apps of the last month)
+// Get just-in-time apps (12 most downloaded apps of the last month)
 export const getJustInTimeApps = (): App[] => {
-  // Return exactly 10 most downloaded apps from the last month with official icons
+  // Return exactly 12 most downloaded apps from the last month with official icons
   // Based on app store download statistics for May 2025
   
-  // Create array of top 10 apps with properly defined icon URLs
+  // Create array of top 12 apps with properly defined icon URLs
   const topApps: App[] = [
     {
       id: "tiktok",
@@ -421,7 +421,8 @@ export const getJustInTimeApps = (): App[] => {
       createdAt: null,
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/tiktok/id835599320",
-      originalAppId: "835599320"
+      originalAppId: "835599320",
+      isAffiliate: false
     },
     {
       id: "instagram",
@@ -471,8 +472,8 @@ export const getJustInTimeApps = (): App[] => {
       id: "amazon",
       name: "Amazon Shopping",
       categoryId: "shopping",
-      description: "Shop millions of products, scan barcodes for prices, read reviews, and get fast delivery.",
-      iconUrl: "https://play-lh.googleusercontent.com/QPKtPRTJyhrYoPqYmjP81aCpBWNU6iHoGhg8GIASQ6x5uOxMuCJ5QNMN1dKOGaeJ5wQH=s180-rw",
+      description: "Shop millions of products, read reviews, check deals, and get fast delivery with Amazon.",
+      iconUrl: "https://play-lh.googleusercontent.com/VPqK75BwKMtTDFF6UQS6E3GYdYqzvZfddDxoKRH-DSlXIcYLN_EeSy5OXKx0bhBTdw=w480-h960-rw",
       rating: 4.3,
       downloads: "500M+",
       version: "26.9.0.100",
@@ -620,10 +621,54 @@ export const getJustInTimeApps = (): App[] => {
       lastSyncedAt: null,
       iosAppStoreUrl: "https://apps.apple.com/us/app/facebook/id284882215",
       originalAppId: "284882215"
+    },
+    {
+      id: "youtube",
+      name: "YouTube",
+      categoryId: "entertainment",
+      description: "Get the official YouTube app on Android phones and tablets. See what the world is watching – from the hottest music videos to trending gaming, entertainment, news and more.",
+      iconUrl: "https://play-lh.googleusercontent.com/lMoItBgdPPVDJsNOVtP26EKHePkwBg-PkuY9NOrc-fumRtTFP4XhpUNk_22syN4Datc=s180-rw",
+      rating: 4.1,
+      downloads: "10B+",
+      version: "18.18.38",
+      size: "130 MB",
+      updated: "April 24, 2025",
+      requires: "Android 8.0+",
+      developer: "Google LLC",
+      installs: "10,000,000,000+",
+      downloadUrl: "https://play.google.com/store/apps/details?id=com.google.android.youtube",
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.google.android.youtube",
+      screenshots: [],
+      createdAt: null,
+      lastSyncedAt: null,
+      iosAppStoreUrl: "https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664",
+      originalAppId: "544007664"
+    },
+    {
+      id: "whatsapp",
+      name: "WhatsApp Messenger",
+      categoryId: "social",
+      description: "WhatsApp is a FREE messaging and video calling app. It's used by over 2 billion people in more than 180 countries to connect with friends and family, anytime and anywhere.",
+      iconUrl: "https://play-lh.googleusercontent.com/bYtqbOcTYOlgc6gqZ2rwb8lptHuwlNE75zYJu6Bn076-hTmvd96HH-6v7S0YUAAJXoJN=s180-rw",
+      rating: 4.2,
+      downloads: "5B+",
+      version: "2.25.8.10",
+      size: "55 MB",
+      updated: "April 26, 2025",
+      requires: "Android 5.0+",
+      developer: "WhatsApp LLC",
+      installs: "5,000,000,000+",
+      downloadUrl: "https://play.google.com/store/apps/details?id=com.whatsapp",
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.whatsapp",
+      screenshots: [],
+      createdAt: null,
+      lastSyncedAt: null,
+      iosAppStoreUrl: "https://apps.apple.com/us/app/whatsapp-messenger/id310633997",
+      originalAppId: "310633997"
     }
   ];
   
-  // Return the top 10 apps with official icons
+  // Return the top 12 apps with official icons
   return topApps;
 };
 
