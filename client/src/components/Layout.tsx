@@ -22,16 +22,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
           <nav className="flex items-center space-x-4">
             <Link href="/apps/all">
-              <a className={`text-gray-600 hover:text-primary flex items-center ${location === "/apps/all" ? "text-primary" : ""}`}>
+              <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/apps/all" ? "text-primary" : ""}`}>
                 <i className="fas fa-mobile-alt mr-1"></i>
                 <span className="hidden md:inline">Apps</span>
-              </a>
+              </div>
             </Link>
             <Link href="/categories/games">
-              <a className={`text-gray-600 hover:text-primary flex items-center ${location === "/categories/games" ? "text-primary" : ""}`}>
+              <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/categories/games" ? "text-primary" : ""}`}>
                 <i className="fas fa-gamepad mr-1"></i>
                 <span className="hidden md:inline">Games</span>
-              </a>
+              </div>
             </Link>
             <div className="relative">
               <button className="text-gray-600 hover:text-primary flex items-center border border-gray-200 rounded px-2 py-1">
@@ -64,20 +64,52 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div>
               <h3 className="text-lg font-bold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li><Link href="/"><a className="text-gray-400 hover:text-white">Home</a></Link></li>
-                <li><Link href="/apps/all"><a className="text-gray-400 hover:text-white">All Apps</a></Link></li>
-                <li><Link href="/categories/games"><a className="text-gray-400 hover:text-white">Games</a></Link></li>
-                <li><Link href="/categories"><a className="text-gray-400 hover:text-white">Categories</a></Link></li>
+                <li>
+                  <Link href="/">
+                    <span className="text-gray-400 hover:text-white cursor-pointer">Home</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/apps/all">
+                    <span className="text-gray-400 hover:text-white cursor-pointer">All Apps</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/categories/games">
+                    <span className="text-gray-400 hover:text-white cursor-pointer">Games</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/categories">
+                    <span className="text-gray-400 hover:text-white cursor-pointer">Categories</span>
+                  </Link>
+                </li>
               </ul>
             </div>
 
             <div>
               <h3 className="text-lg font-bold mb-4">Legal</h3>
               <ul className="space-y-2">
-                <li><Link href="/terms"><a className="text-gray-400 hover:text-white">Terms of Service</a></Link></li>
-                <li><Link href="/privacy"><a className="text-gray-400 hover:text-white">Privacy Policy</a></Link></li>
-                <li><Link href="/disclaimer"><a className="text-gray-400 hover:text-white">Disclaimer</a></Link></li>
-                <li><Link href="/contact"><a className="text-gray-400 hover:text-white">Contact Us</a></Link></li>
+                <li>
+                  <Link href="/terms">
+                    <span className="text-gray-400 hover:text-white cursor-pointer">Terms of Service</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/privacy">
+                    <span className="text-gray-400 hover:text-white cursor-pointer">Privacy Policy</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/disclaimer">
+                    <span className="text-gray-400 hover:text-white cursor-pointer">Disclaimer</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact">
+                    <span className="text-gray-400 hover:text-white cursor-pointer">Contact Us</span>
+                  </Link>
+                </li>
               </ul>
             </div>
 

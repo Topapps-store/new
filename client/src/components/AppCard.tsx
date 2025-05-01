@@ -23,8 +23,8 @@ const AppCard: React.FC<AppCardProps> = ({ app, isAffiliate = false }) => {
       )}
       
       <Link href={`/apps/${app.id}`}>
-        <a
-          className="block"
+        <div
+          className="block cursor-pointer"
           onClick={isAffiliate ? handleAffiliateClick : undefined}
           data-event={isAffiliate ? "click:trackAffiliate" : undefined}
         >
@@ -44,7 +44,7 @@ const AppCard: React.FC<AppCardProps> = ({ app, isAffiliate = false }) => {
               <StarRating rating={app.rating} />
             </div>
           </div>
-        </a>
+        </div>
       </Link>
     </div>
   );

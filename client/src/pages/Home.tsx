@@ -109,7 +109,7 @@ const Home = () => {
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Recent Apps</h2>
           <Link href="/apps/all">
-            <a className="text-primary hover:underline">View All</a>
+            <span className="text-primary hover:underline cursor-pointer">View All</span>
           </Link>
         </div>
         
