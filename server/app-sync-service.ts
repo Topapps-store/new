@@ -354,10 +354,115 @@ export async function syncAppInfo(appId: string, storeType: 'android' | 'ios' | 
 }
 
 /**
+ * Add missing apps to the database
+ */
+async function ensureMissingApps() {
+  try {
+    // A list of apps that we want to ensure are in the database
+    const essentialApps = [
+      "uber", "lyft", "doordash", "grubhub", "ubereats", 
+      "cashapp", "venmo", "turo", "instacart", "amazon",
+      "zelle", "taskrabbit", "thumbtack", "handy", "teladoc", 
+      "zocdoc", "temu", "shein", "bird", "lime", 
+      "easypark", "parkmobile", "spothero", "parkwhiz", "paybyphone"
+    ];
+
+    // Check which apps are missing
+    let existingAppIds = (await db.select({ id: apps.id }).from(apps)).map(a => a.id);
+    const missingAppIds = essentialApps.filter(id => !existingAppIds.includes(id));
+    
+    if (missingAppIds.length === 0) {
+      log("All essential apps are already in the database", 'app-sync');
+      return;
+    }
+    
+    log(`Adding ${missingAppIds.length} missing apps to the database...`, 'app-sync');
+    
+    // Map of app categories
+    const appCategories: Record<string, string> = {
+      "uber": "ride-sharing",
+      "lyft": "ride-sharing",
+      "doordash": "food-delivery",
+      "grubhub": "food-delivery",
+      "ubereats": "food-delivery",
+      "cashapp": "finance",
+      "venmo": "finance",
+      "zelle": "finance",
+      "turo": "car-rental",
+      "instacart": "grocery",
+      "amazon": "shopping",
+      "taskrabbit": "services",
+      "thumbtack": "services",
+      "handy": "services",
+      "teladoc": "health",
+      "zocdoc": "health",
+      "temu": "shopping",
+      "shein": "shopping",
+      "bird": "mobility",
+      "lime": "mobility",
+      "easypark": "parking",
+      "parkmobile": "parking",
+      "spothero": "parking",
+      "parkwhiz": "parking",
+      "paybyphone": "parking"
+    };
+    
+    // Insert missing apps with placeholder data (will be updated on sync)
+    for (const appId of missingAppIds) {
+      const categoryId = appCategories[appId] || "utilities";
+      
+      // Check if the category exists
+      let categoryResult = await db.select().from(categories).where(eq(categories.id, categoryId));
+      if (categoryResult.length === 0) {
+        // Create the category if it doesn't exist
+        await db.insert(categories).values({
+          id: categoryId,
+          name: categoryId.charAt(0).toUpperCase() + categoryId.slice(1).replace('-', ' '),
+          icon: "icon-" + categoryId,
+          color: "#4285F4"
+        });
+        log(`Created category: ${categoryId}`, 'app-sync');
+      }
+      
+      // Add the app with placeholder data
+      const appName = appId.charAt(0).toUpperCase() + appId.slice(1);
+      await db.insert(apps).values({
+        id: appId,
+        originalAppId: appId,
+        name: appName,
+        categoryId: categoryId,
+        description: `${appName} app description will be updated on sync.`,
+        iconUrl: "https://via.placeholder.com/512",
+        screenshots: [],
+        rating: 0,
+        downloads: "0+",
+        version: "1.0.0",
+        size: "Varies",
+        updated: new Date().toISOString(),
+        requires: "Android 5.0+",
+        developer: "Unknown",
+        installs: "0+",
+        googlePlayUrl: "",
+        createdAt: new Date()
+      });
+      
+      log(`Added app: ${appId} to database`, 'app-sync');
+    }
+    
+    log(`Successfully added ${missingAppIds.length} missing apps`, 'app-sync');
+  } catch (error) {
+    log(`Error ensuring missing apps: ${error}`, 'error');
+  }
+}
+
+/**
  * Sync all apps in the database
  */
 export async function syncAllApps() {
   try {
+    // First, ensure all essential apps are in the database
+    await ensureMissingApps();
+    
     const allApps = await db.select().from(apps);
     let successCount = 0;
     
