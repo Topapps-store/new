@@ -7,10 +7,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/context/LanguageContext';
-import { Loader2, LogOut, BarChart3, AppWindow, Link as LinkIcon, Settings } from 'lucide-react';
+import { Loader2, LogOut, BarChart3, AppWindow, Link as LinkIcon, Settings, RefreshCw } from 'lucide-react';
 import type { AppLegacy, AffiliateLink } from '../../shared/schema';
+import { AppUpdatesTab } from '@/components/admin/AppUpdatesTab';
 
-type AdminTab = 'dashboard' | 'apps' | 'affiliate-links' | 'settings';
+type AdminTab = 'dashboard' | 'apps' | 'affiliate-links' | 'app-updates' | 'settings';
 
 export default function AdminDashboard() {
   return (
@@ -70,7 +71,7 @@ function AdminDashboardContent() {
           onValueChange={(value) => setActiveTab(value as AdminTab)}
           className="space-y-4"
         >
-          <TabsList className="grid grid-cols-4 w-full max-w-2xl">
+          <TabsList className="grid grid-cols-5 w-full max-w-3xl">
             <TabsTrigger value="dashboard">
               <BarChart3 className="h-4 w-4 mr-2" />
               {t('admin.dashboard')}
@@ -82,6 +83,10 @@ function AdminDashboardContent() {
             <TabsTrigger value="affiliate-links">
               <LinkIcon className="h-4 w-4 mr-2" />
               {t('admin.affiliateLinks')}
+            </TabsTrigger>
+            <TabsTrigger value="app-updates">
+              <RefreshCw className="h-4 w-4 mr-2" />
+              {t('admin.appUpdates')}
             </TabsTrigger>
             <TabsTrigger value="settings">
               <Settings className="h-4 w-4 mr-2" />
@@ -99,6 +104,10 @@ function AdminDashboardContent() {
 
           <TabsContent value="affiliate-links" className="space-y-4">
             <AffiliateLinksTab />
+          </TabsContent>
+          
+          <TabsContent value="app-updates" className="space-y-4">
+            <AppUpdatesTab />
           </TabsContent>
 
           <TabsContent value="settings" className="space-y-4">
