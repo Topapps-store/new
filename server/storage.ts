@@ -6,7 +6,7 @@ import {
   apps, categories, users, affiliateLinks, appVersionHistory
 } from "@shared/schema";
 import { db } from "./db";
-import { asc, desc, eq } from "drizzle-orm";
+import { asc, desc, eq, inArray } from "drizzle-orm";
 
 export interface IStorage {
   // User operations
@@ -82,9 +82,25 @@ export class DatabaseStorage implements IStorage {
   }
   
   async getPopularApps(): Promise<AppLegacy[]> {
+    // You can choose between two approaches:
+    
+    // APPROACH 1: Sort by downloads (default behavior)
     // Get apps with most downloads - parsed as number for sorting
     const appsList = await db.select().from(apps)
       .orderBy(desc(apps.downloads));
+    
+    // APPROACH 2: Use a fixed list of specific app IDs you want to feature
+    // Uncomment the code below and add the app IDs you want to feature
+    /*
+    const popularAppIds = [
+      "facebook", "instagram", "tiktok", "snapchat", "whatsapp", 
+      "spotify", "netflix", "youtube", "pinterest", "twitter"
+    ];
+    
+    const appsList = await db.select().from(apps).where(
+      inArray(apps.id, popularAppIds)
+    );
+    */
     
     const categoriesList = await db.select().from(categories);
     
@@ -92,7 +108,7 @@ export class DatabaseStorage implements IStorage {
     return appsList.map(app => {
       const category = categoriesList.find(cat => cat.id === app.categoryId);
       return this.convertToAppLegacy(app, category?.name || 'Unknown');
-    }).slice(0, 8);
+    }).slice(0, 10); // Showing up to 10 popular apps
   }
   
   async getRecentApps(): Promise<AppLegacy[]> {
