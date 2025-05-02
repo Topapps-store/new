@@ -6,9 +6,10 @@ import appStore from 'app-store-scraper';
 /// <reference path="./types/google-play-scraper.d.ts" />
 /// <reference path="./types/app-store-scraper.d.ts" />
 import { db } from './db';
-import { apps } from '@shared/schema';
+import { apps, appVersionHistory } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import { log } from './vite';
+import { storage } from './storage';
 
 // Common interface for both stores
 interface AppData {
@@ -179,6 +180,19 @@ async function updateAppInDatabase(appData: AppData) {
       ? 'Android 5.0+' 
       : 'iOS 12.0+';
       
+    // Get the current app to check for version changes
+    const [currentApp] = await db.select()
+      .from(apps)
+      .where(eq(apps.originalAppId, appData.appId));
+    
+    if (!currentApp) {
+      log(`App ${appData.appId} not found in database`, 'warning');
+      return false;
+    }
+    
+    // Check if the version has changed
+    const versionChanged = currentApp.version !== appData.version;
+      
     // Build the update object
     const updateData = {
       name: appData.name,
@@ -193,6 +207,7 @@ async function updateAppInDatabase(appData: AppData) {
       requires: requires,
       developer: appData.developer,
       installs: downloads,
+      lastSyncedAt: new Date(),
       // Only update the respective store URL
       ...(appData.storeType === 'android' ? { googlePlayUrl: appData.url } : { iosAppStoreUrl: appData.url })
     };
@@ -206,9 +221,36 @@ async function updateAppInDatabase(appData: AppData) {
       
     if (updatedApp) {
       log(`Updated app ${appData.name} (${appData.appId}) from ${appData.storeType} store`, 'app-sync');
+      
+      // If version has changed, record it in version history
+      if (versionChanged) {
+        try {
+          // Extract release notes if available (we don't always have this info from the store APIs)
+          // In a real implementation, we might want to track the actual changelog from the store
+          const releaseNotes = `New version ${appData.version} released. Updated on ${appData.updated}.`;
+          
+          // Determine if this is an important update (in a real app, this would be more sophisticated)
+          const isImportant = false; // We could implement logic to detect major version changes (e.g., 1.x to 2.0)
+          
+          // Add to version history
+          await storage.addAppVersionHistory({
+            appId: updatedApp.id,
+            version: appData.version,
+            releaseNotes,
+            isNotified: false,
+            isImportant,
+            changesDetected: true
+          });
+          
+          log(`Recorded version change for ${appData.name}: ${currentApp.version} -> ${appData.version}`, 'app-sync');
+        } catch (error) {
+          log(`Error recording version history: ${error}`, 'error');
+        }
+      }
+      
       return true;
     } else {
-      log(`App ${appData.appId} not found in database`, 'warning');
+      log(`App ${appData.appId} update failed`, 'warning');
       return false;
     }
   } catch (error) {

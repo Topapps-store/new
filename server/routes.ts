@@ -190,6 +190,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
+  // App Version History routes
+  apiRouter.get("/app-updates/recent", async (req, res) => {
+    try {
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : 10;
+      const updates = await storage.getRecentAppUpdates(limit);
+      res.json(updates);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch recent app updates' });
+    }
+  });
+  
+  apiRouter.get("/app-updates/unnotified", async (req, res) => {
+    try {
+      const updates = await storage.getUnnotifiedUpdates();
+      res.json(updates);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch unnotified updates' });
+    }
+  });
+  
+  apiRouter.get("/app-updates/:appId", async (req, res) => {
+    try {
+      const { appId } = req.params;
+      const versionHistory = await storage.getAppVersionHistory(appId);
+      res.json(versionHistory);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch app version history' });
+    }
+  });
+  
+  apiRouter.patch("/app-updates/:id/mark-notified", requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updatedVersion = await storage.markVersionNotified(parseInt(id));
+      
+      if (!updatedVersion) {
+        return res.status(404).json({ message: 'Version history record not found' });
+      }
+      
+      res.json(updatedVersion);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to mark version as notified' });
+    }
+  });
+  
   app.use("/api", apiRouter);
 
   const httpServer = createServer(app);

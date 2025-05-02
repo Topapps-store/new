@@ -427,16 +427,22 @@ export class DatabaseStorage implements IStorage {
       .orderBy(desc(appVersionHistory.updateDate))
       .limit(limit);
     
-    // Get the associated apps
+    if (versionHistories.length === 0) {
+      return [];
+    }
+    
+    // Get the associated apps - handle 'in' operator issue by using OR conditions
     const appIds = versionHistories.map(vh => vh.appId);
-    const appsList = await db.select().from(apps).where(
-      appIds.length > 0 ? apps.id.in(appIds) : undefined
-    );
+    
+    // Get all apps and filter in memory
+    const appsList = await db.select().from(apps);
+    const filteredApps = appsList.filter(app => appIds.includes(app.id));
+    
     const categoriesList = await db.select().from(categories);
     
     // Combine the data
     return versionHistories.map(versionHistory => {
-      const app = appsList.find(a => a.id === versionHistory.appId);
+      const app = filteredApps.find(a => a.id === versionHistory.appId);
       if (!app) {
         throw new Error(`App with ID ${versionHistory.appId} not found`);
       }
@@ -458,16 +464,22 @@ export class DatabaseStorage implements IStorage {
       .where(eq(appVersionHistory.isNotified, false))
       .orderBy(desc(appVersionHistory.updateDate));
     
-    // Get the associated apps
+    if (versionHistories.length === 0) {
+      return [];
+    }
+    
+    // Get the associated apps - handle 'in' operator issue by using OR conditions
     const appIds = versionHistories.map(vh => vh.appId);
-    const appsList = await db.select().from(apps).where(
-      appIds.length > 0 ? apps.id.in(appIds) : undefined
-    );
+    
+    // Get all apps and filter in memory
+    const appsList = await db.select().from(apps);
+    const filteredApps = appsList.filter(app => appIds.includes(app.id));
+    
     const categoriesList = await db.select().from(categories);
     
     // Combine the data
     return versionHistories.map(versionHistory => {
-      const app = appsList.find(a => a.id === versionHistory.appId);
+      const app = filteredApps.find(a => a.id === versionHistory.appId);
       if (!app) {
         throw new Error(`App with ID ${versionHistory.appId} not found`);
       }
