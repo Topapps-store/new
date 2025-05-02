@@ -21,6 +21,7 @@ export interface IStorage {
   getAppById(id: string): Promise<AppLegacy | undefined>;
   getRelatedApps(id: string): Promise<AppLegacy[]>;
   searchApps(query: string): Promise<AppLegacy[]>;
+  updateApp(id: string, appData: Partial<AppLegacy>): Promise<AppLegacy | undefined>;
   
   // Category operations
   getCategories(): Promise<CategoryLegacy[]>;
@@ -29,11 +30,13 @@ export interface IStorage {
   
   // Affiliate links operations
   getAffiliateLinks(appId: string): Promise<AffiliateLink[]>;
+  getAllAffiliateLinks(): Promise<AffiliateLink[]>;
   getAffiliateLinkById(id: number): Promise<AffiliateLink | undefined>;
   createAffiliateLink(link: InsertAffiliateLink): Promise<AffiliateLink>;
   updateAffiliateLink(id: number, link: Partial<InsertAffiliateLink>): Promise<AffiliateLink | undefined>;
   deleteAffiliateLink(id: number): Promise<boolean>;
   incrementLinkClickCount(id: number): Promise<AffiliateLink | undefined>;
+  getAffiliateLinkAnalytics(): Promise<{appId: string, appName: string, totalClicks: number}[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -291,6 +294,82 @@ export class DatabaseStorage implements IStorage {
       .returning();
     
     return updatedLink || undefined;
+  }
+  
+  // Admin methods
+  async updateApp(id: string, appData: Partial<AppLegacy>): Promise<AppLegacy | undefined> {
+    // Get the original app first
+    const [app] = await db.select().from(apps).where(eq(apps.id, id));
+    
+    if (!app) return undefined;
+    
+    // Prepare update data (convert from AppLegacy to the DB schema)
+    const updateData: Partial<typeof apps.$inferInsert> = {};
+    
+    if (appData.name) updateData.name = appData.name;
+    if (appData.description) updateData.description = appData.description;
+    if (appData.iconUrl) updateData.iconUrl = appData.iconUrl;
+    if (appData.rating !== undefined) updateData.rating = appData.rating;
+    if (appData.downloads) updateData.downloads = appData.downloads;
+    if (appData.version) updateData.version = appData.version;
+    if (appData.size) updateData.size = appData.size;
+    if (appData.updated) updateData.updated = appData.updated;
+    if (appData.requires) updateData.requires = appData.requires;
+    if (appData.developer) updateData.developer = appData.developer;
+    if (appData.installs) updateData.installs = appData.installs;
+    if (appData.downloadUrl) updateData.downloadUrl = appData.downloadUrl;
+    if (appData.googlePlayUrl) updateData.googlePlayUrl = appData.googlePlayUrl;
+    if (appData.iosAppStoreUrl) updateData.iosAppStoreUrl = appData.iosAppStoreUrl;
+    if (appData.originalAppId) updateData.originalAppId = appData.originalAppId;
+    if (appData.isAffiliate !== undefined) updateData.isAffiliate = appData.isAffiliate;
+    
+    // Handle screenshots (convert to string array)
+    if (appData.screenshots && Array.isArray(appData.screenshots)) {
+      updateData.screenshots = appData.screenshots;
+    }
+    
+    // Update the app in DB
+    const [updatedApp] = await db.update(apps)
+      .set(updateData)
+      .where(eq(apps.id, id))
+      .returning();
+    
+    if (!updatedApp) return undefined;
+    
+    // Get the updated category to return the full app info
+    const [category] = await db.select().from(categories).where(eq(categories.id, updatedApp.categoryId));
+    
+    return this.convertToAppLegacy(updatedApp, category?.name || 'Unknown');
+  }
+  
+  async getAllAffiliateLinks(): Promise<AffiliateLink[]> {
+    return db.select().from(affiliateLinks).orderBy(asc(affiliateLinks.appId), asc(affiliateLinks.displayOrder));
+  }
+  
+  async getAffiliateLinkAnalytics(): Promise<{appId: string, appName: string, totalClicks: number}[]> {
+    // Get all affiliate links and their click counts
+    const links = await db.select().from(affiliateLinks);
+    
+    // Get all app info
+    const appsList = await db.select().from(apps);
+    
+    // Group by app and calculate total clicks
+    const analytics = links.reduce((acc: Record<string, {appId: string, appName: string, totalClicks: number}>, link) => {
+      if (!acc[link.appId]) {
+        const app = appsList.find(a => a.id === link.appId);
+        acc[link.appId] = {
+          appId: link.appId,
+          appName: app?.name || 'Unknown App',
+          totalClicks: 0
+        };
+      }
+      
+      acc[link.appId].totalClicks += link.clickCount;
+      return acc;
+    }, {});
+    
+    // Convert to array and sort by total clicks (descending)
+    return Object.values(analytics).sort((a, b) => b.totalClicks - a.totalClicks);
   }
 }
 
