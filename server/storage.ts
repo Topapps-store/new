@@ -23,6 +23,7 @@ export interface IStorage {
   getRelatedApps(id: string): Promise<AppLegacy[]>;
   searchApps(query: string): Promise<AppLegacy[]>;
   updateApp(id: string, appData: Partial<AppLegacy>): Promise<AppLegacy | undefined>;
+  deleteApp(id: string): Promise<boolean>;
   
   // Category operations
   getCategories(): Promise<CategoryLegacy[]>;
@@ -349,6 +350,19 @@ export class DatabaseStorage implements IStorage {
     const [category] = await db.select().from(categories).where(eq(categories.id, updatedApp.categoryId));
     
     return this.convertToAppLegacy(updatedApp, category?.name || 'Unknown');
+  }
+  
+  async deleteApp(id: string): Promise<boolean> {
+    // First, delete any affiliate links associated with this app
+    await db.delete(affiliateLinks).where(eq(affiliateLinks.appId, id));
+    
+    // Then, delete any version history associated with this app
+    await db.delete(appVersionHistory).where(eq(appVersionHistory.appId, id));
+    
+    // Finally, delete the app itself
+    const [deletedApp] = await db.delete(apps).where(eq(apps.id, id)).returning();
+    
+    return !!deletedApp;
   }
   
   async getAllAffiliateLinks(): Promise<AffiliateLink[]> {

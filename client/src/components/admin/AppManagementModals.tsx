@@ -28,6 +28,11 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 
+interface Category {
+  id: string;
+  name: string;
+}
+
 // Add App Modal
 export function AddAppModal({ 
   isOpen, 
@@ -139,7 +144,7 @@ export function AddAppModal({
   };
 
   // Fetch categories to populate the select dropdown
-  const { data: categories = [] } = useQuery<Array<{id: string, name: string}>>({
+  const { data: categories = [] } = useQuery<Category[]>({
     queryKey: ['/api/categories'],
     retry: false,
   });
@@ -193,7 +198,7 @@ export function AddAppModal({
                 <SelectValue placeholder={t('admin.selectCategory')} />
               </SelectTrigger>
               <SelectContent>
-                {categories.map((category) => (
+                {categories.map((category: Category) => (
                   <SelectItem key={category.id} value={category.id}>
                     {category.name}
                   </SelectItem>
@@ -389,7 +394,7 @@ export function EditAppModal({
   };
 
   // Fetch categories to populate the select dropdown
-  const { data: categories = [] } = useQuery<Array<{id: string, name: string}>>({
+  const { data: categories = [] } = useQuery<Category[]>({
     queryKey: ['/api/categories'],
     retry: false,
   });
@@ -427,7 +432,7 @@ export function EditAppModal({
                 <SelectValue placeholder={t('admin.selectCategory')} />
               </SelectTrigger>
               <SelectContent>
-                {categories.map((category) => (
+                {categories.map((category: Category) => (
                   <SelectItem key={category.id} value={category.id}>
                     {category.name}
                   </SelectItem>
@@ -539,6 +544,8 @@ export function LogoUploadModal({
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [logoPreview, setLogoPreview] = useState<string | null>(app.iconUrl);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [logoUrlInput, setLogoUrlInput] = useState('');
+  const [activeTab, setActiveTab] = useState<'upload' | 'url'>('upload');
 
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -645,9 +652,6 @@ export function LogoUploadModal({
       setIsLoading(false);
     }
   };
-
-  const [logoUrlInput, setLogoUrlInput] = useState('');
-  const [activeTab, setActiveTab] = useState<'upload' | 'url'>('upload');
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
