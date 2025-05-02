@@ -7,6 +7,7 @@ import AppCard from "@/components/AppCard";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "../context/LanguageContext";
 import { apiRequest } from "@/lib/queryClient";
+import { AppVersionHistory } from "@/components/AppVersionHistory";
 
 // Type guard to check if the app is of type AppLegacy
 function isAppLegacy(app: App | AppLegacy): app is AppLegacy {
@@ -23,7 +24,7 @@ function getCategoryName(app: App | AppLegacy): string {
 
 const AppDetail = () => {
   const { appId } = useParams();
-  const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info">("description");
+  const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info" | "versions">("description");
   const { t } = useLanguage();
 
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
@@ -53,7 +54,7 @@ const AppDetail = () => {
   const handleAffiliateLinkClick = async (linkId: number, linkUrl: string) => {
     // Track the click
     try {
-      await apiRequest('POST', `/api/affiliate-links/${linkId}/click`);
+      await apiRequest(`/api/affiliate-links/${linkId}/click`, { method: 'POST' });
       console.log(`Clicked affiliate link: ${linkId}`);
       // Open the link in a new tab
       window.open(linkUrl, '_blank', 'noopener,noreferrer');
@@ -277,6 +278,16 @@ const AppDetail = () => {
                 >
                   {t('appDetail.information')}
                 </button>
+                <button
+                  className={`pb-2 font-medium ${
+                    activeTab === "versions"
+                      ? "text-primary border-b-2 border-primary"
+                      : "text-gray-500"
+                  }`}
+                  onClick={() => setActiveTab("versions")}
+                >
+                  {t('appDetail.versionHistory')}
+                </button>
               </div>
               
               {activeTab === "description" && (
@@ -359,6 +370,12 @@ const AppDetail = () => {
                       <Badge variant="outline" className="text-xs">Free Download</Badge>
                     </div>
                   </div>
+                </div>
+              )}
+              
+              {activeTab === "versions" && (
+                <div className="mb-6">
+                  <AppVersionHistory appId={app.id} />
                 </div>
               )}
               
