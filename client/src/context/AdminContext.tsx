@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
-import { useLocation, useNavigate } from 'wouter';
+import { useLocation } from 'wouter';
 import { apiRequest } from '@/lib/queryClient';
 
 type AdminUser = {
@@ -26,12 +26,15 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
   const checkAuth = async (): Promise<boolean> => {
     try {
-      const response = await apiRequest<{ authenticated: boolean; user: AdminUser | null }>('/api/auth/check', {
+      const response = await apiRequest('/api/auth/check', {
         method: 'GET',
       });
 
-      if (response.authenticated && response.user) {
-        setUser(response.user);
+      // Type the response properly
+      const authData = response as { authenticated: boolean; user: AdminUser | null };
+
+      if (authData.authenticated && authData.user) {
+        setUser(authData.user);
         return true;
       } else {
         setUser(null);
@@ -54,14 +57,16 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const login = async (username: string, password: string): Promise<AdminUser> => {
     setIsLoading(true);
     try {
-      const response = await apiRequest<AdminUser>('/api/auth/login', {
+      const response = await apiRequest('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
 
-      setUser(response);
-      return response;
+      // Type the response properly
+      const userData = response as AdminUser;
+      setUser(userData);
+      return userData;
     } catch (error) {
       console.error('Login error:', error);
       throw error;
@@ -75,6 +80,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
     try {
       await apiRequest('/api/auth/logout', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
       });
       setUser(null);
       navigate('/admin/login');
@@ -111,7 +117,7 @@ export function useAdmin() {
 
 export function AdminGuard({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading } = useAdmin();
-  const [, navigate] = useNavigate();
+  const [, navigate] = useLocation();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {

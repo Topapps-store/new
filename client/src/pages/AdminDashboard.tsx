@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/context/LanguageContext';
-import { Loader2, LogOut, BarChart3, App, Link as LinkIcon, Settings } from 'lucide-react';
+import { Loader2, LogOut, BarChart3, AppWindow, Link as LinkIcon, Settings } from 'lucide-react';
 
 type AdminTab = 'dashboard' | 'apps' | 'affiliate-links' | 'settings';
 
@@ -75,7 +75,7 @@ function AdminDashboardContent() {
               {t('admin.dashboard')}
             </TabsTrigger>
             <TabsTrigger value="apps">
-              <App className="h-4 w-4 mr-2" />
+              <AppWindow className="h-4 w-4 mr-2" />
               {t('admin.apps')}
             </TabsTrigger>
             <TabsTrigger value="affiliate-links">
@@ -111,7 +111,7 @@ function AdminDashboardContent() {
 
 function DashboardTab() {
   const { t } = useLanguage();
-  const { data: analytics, isLoading } = useQuery({
+  const { data: analytics = [], isLoading } = useQuery<Array<{appId: string, appName: string, totalClicks: number}>>({
     queryKey: ['/api/admin/affiliate-links/analytics'],
     retry: false,
   });

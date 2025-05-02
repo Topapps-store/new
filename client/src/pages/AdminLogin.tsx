@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'wouter';
+import { useLocation } from 'wouter';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,7 +15,7 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
-  const [, navigate] = useNavigate();
+  const [, navigate] = useLocation();
   const { t } = useLanguage();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -24,16 +24,19 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const response = await apiRequest<{ id: number; username: string; isAdmin: boolean }>('/api/auth/login', {
+      const response = await apiRequest('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
 
-      if (response.isAdmin) {
+      // Type the response properly
+      const userData = response as { id: number; username: string; isAdmin: boolean };
+
+      if (userData.isAdmin) {
         toast({
           title: t('admin.loginSuccess'),
-          description: t('admin.welcomeBack', { username: response.username }),
+          description: t('admin.welcomeBack', { username: userData.username }),
         });
         navigate('/admin/dashboard');
       } else {
