@@ -91,7 +91,7 @@ export function AppUpdatesTab() {
                       </div>
                       
                       <div className="text-sm text-gray-500 mt-1">
-                        {t('admin.updated')}: {new Date(update.versionHistory.updateDate).toLocaleDateString()}
+                        {t('admin.updated')}: {update.versionHistory.updateDate ? new Date(update.versionHistory.updateDate).toLocaleDateString() : ''}
                       </div>
                       
                       <div className="mt-2">

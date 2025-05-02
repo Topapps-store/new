@@ -73,7 +73,7 @@ export function AppUpdatesBanner() {
         <p className="text-sm text-slate-700">{currentUpdate.versionHistory.releaseNotes || t('updates.appUpdated')}</p>
         
         <div className="text-xs text-slate-500 mt-1">
-          {t('updates.updated')}: {new Date(currentUpdate.versionHistory.updateDate).toLocaleDateString()}
+          {t('updates.updated')}: {currentUpdate.versionHistory.updateDate ? new Date(currentUpdate.versionHistory.updateDate).toLocaleDateString() : ''}
         </div>
       </div>
       

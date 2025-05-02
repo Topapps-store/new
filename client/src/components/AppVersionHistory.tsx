@@ -67,7 +67,7 @@ export function AppVersionHistory({ appId }: AppVersionHistoryProps) {
               </p>
               
               <div className="text-xs text-slate-500">
-                {t('appDetail.updated')}: {new Date(version.updateDate).toLocaleDateString()}
+                {t('appDetail.updated')}: {version.updateDate ? new Date(version.updateDate).toLocaleDateString() : ''}
               </div>
             </div>
           ))}

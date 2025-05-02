@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { Loader2, LogOut, BarChart3, AppWindow, Link as LinkIcon, Settings, RefreshCw } from 'lucide-react';
-import type { AppLegacy, AffiliateLink } from '../../shared/schema';
+import type { AppLegacy, AffiliateLink } from '@shared/schema';
 import { AppUpdatesTab } from '@/components/admin/AppUpdatesTab';
 
 type AdminTab = 'dashboard' | 'apps' | 'affiliate-links' | 'app-updates' | 'settings';
