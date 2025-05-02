@@ -1,5 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes-db"; // Using database routes
+import { registerRoutes } from "./routes"; // Using routes with auth endpoints
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
