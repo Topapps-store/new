@@ -40,7 +40,17 @@
     "installs": "Installations",
     "downloadAPK": "Télécharger APK",
     "googlePlay": "Google Play",
-    "relatedApps": "Applications Connexes"
+    "relatedApps": "Applications Connexes",
+    "language": "Langue",
+    "readMore": "Lire Plus",
+    "appStore": "App Store",
+    "platforms": "Plateformes",
+    "versionHistory": "Historique des Versions",
+    "noVersionHistory": "Aucun historique de version disponible pour cette application",
+    "recentUpdates": "Mises à jour récentes",
+    "majorUpdate": "Mise à Jour Majeure",
+    "latest": "Plus Récente",
+    "noReleaseNotes": "Aucune note de version disponible pour cette version"
   },
   "category": {
     "appsInCategory": "Applications dans {category}"
