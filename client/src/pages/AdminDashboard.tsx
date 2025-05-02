@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { Loader2, LogOut, BarChart3, AppWindow, Link as LinkIcon, Settings } from 'lucide-react';
+import type { AppLegacy, AffiliateLink } from '../../shared/schema';
 
 type AdminTab = 'dashboard' | 'apps' | 'affiliate-links' | 'settings';
 
@@ -209,7 +210,7 @@ function DashboardTab() {
 
 function AppsTab() {
   const { t } = useLanguage();
-  const { data: apps, isLoading } = useQuery({
+  const { data: apps = [], isLoading } = useQuery<AppLegacy[]>({
     queryKey: ['/api/admin/apps'],
     retry: false,
   });
@@ -285,7 +286,7 @@ function AppsTab() {
 
 function AffiliateLinksTab() {
   const { t } = useLanguage();
-  const { data: links, isLoading } = useQuery({
+  const { data: links = [], isLoading } = useQuery<AffiliateLink[]>({
     queryKey: ['/api/admin/affiliate-links'],
     retry: false,
   });
