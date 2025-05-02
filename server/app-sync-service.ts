@@ -455,23 +455,83 @@ async function ensureMissingApps() {
       // Add the app with placeholder data
       const appName = appId.charAt(0).toUpperCase() + appId.slice(1);
       
-      // Direct SQL insert since we need to specify the ID
-      await db.execute(sql`
-        INSERT INTO apps (
-          id, name, category_id, description, icon_url, 
-          rating, downloads, version, size, updated, 
-          requires, developer, installs, download_url, 
-          google_play_url, original_app_id, screenshots
-        ) VALUES (
-          ${appId}, ${appName}, ${categoryId}, 
-          ${appName + " app description will be updated on sync."}, 
-          ${"https://via.placeholder.com/512"}, 
-          ${0}, ${"0+"}, ${"1.0.0"}, ${"Varies"}, 
-          ${new Date().toISOString()}, ${"Android 5.0+"}, 
-          ${"Unknown"}, ${"0+"}, ${""},
-          ${""}, ${appId}, ${"[]"}
-        )
-      `);
+      try {
+        // First, trigger an immediate sync from Google Play to get real data
+        const androidData = await getAndroidAppData(appId);
+        
+        if (androidData) {
+          // We got real data from Google Play, so use that
+          await db.insert(apps).values({
+            id: appId,
+            name: androidData.name,
+            categoryId: categoryId,
+            description: androidData.description,
+            iconUrl: androidData.icon,
+            screenshots: androidData.screenshots,
+            rating: androidData.rating,
+            downloads: `${androidData.reviews}+`,
+            version: androidData.version,
+            size: androidData.size,
+            updated: androidData.updated,
+            requires: 'Android 5.0+',
+            developer: androidData.developer,
+            installs: `${androidData.reviews}+`,
+            downloadUrl: '',
+            googlePlayUrl: androidData.url,
+            originalAppId: appId
+          });
+          
+          log(`Added app ${appId} with real data from Google Play`, 'app-sync');
+        } else {
+          // Fall back to placeholder data if we couldn't get real data
+          await db.insert(apps).values({
+            id: appId,
+            name: appName,
+            categoryId: categoryId,
+            description: `${appName} app description will be updated on sync.`,
+            iconUrl: 'https://via.placeholder.com/512',
+            screenshots: [],
+            rating: 0,
+            downloads: '0+',
+            version: '1.0.0',
+            size: 'Varies',
+            updated: new Date().toISOString(),
+            requires: 'Android 5.0+',
+            developer: 'Unknown',
+            installs: '0+',
+            downloadUrl: '',
+            googlePlayUrl: '',
+            originalAppId: appId
+          });
+          
+          log(`Added app ${appId} with placeholder data (Google Play fetch failed)`, 'app-sync');
+        }
+      } catch (error) {
+        log(`Error adding app ${appId}: ${error}`, 'error');
+        
+        // Still attempt to add with placeholder data as a fallback
+        await db.insert(apps).values({
+          id: appId,
+          name: appName,
+          categoryId: categoryId,
+          description: `${appName} app description will be updated on sync.`,
+          iconUrl: 'https://via.placeholder.com/512',
+          screenshots: [],
+          rating: 0,
+          downloads: '0+',
+          version: '1.0.0',
+          size: 'Varies',
+          updated: new Date().toISOString(),
+          requires: 'Android 5.0+',
+          developer: 'Unknown',
+          installs: '0+',
+          downloadUrl: '',
+          googlePlayUrl: '',
+          originalAppId: appId
+        });
+        
+        log(`Added app ${appId} with placeholder data after error`, 'app-sync');
+      }
       
       log(`Added app: ${appId} to database`, 'app-sync');
     }
