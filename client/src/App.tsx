@@ -18,6 +18,7 @@ import AdminLogin from "@/pages/AdminLogin";
 import AdminDashboard from "@/pages/AdminDashboard";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AdminProvider } from "./context/AdminContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 function Router() {
   return (
@@ -50,14 +51,16 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <LanguageProvider>
-          <AdminProvider>
-            <Toaster />
-            <Router />
-          </AdminProvider>
-        </LanguageProvider>
-      </TooltipProvider>
+      <ThemeProvider>
+        <TooltipProvider>
+          <LanguageProvider>
+            <AdminProvider>
+              <Toaster />
+              <Router />
+            </AdminProvider>
+          </LanguageProvider>
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
