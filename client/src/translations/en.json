@@ -47,7 +47,13 @@
     "language": "Language",
     "readMore": "Read More",
     "appStore": "App Store",
-    "platforms": "Platforms"
+    "platforms": "Platforms",
+    "versionHistory": "Version History",
+    "noVersionHistory": "No version history available for this app",
+    "recentUpdates": "Recent app updates",
+    "majorUpdate": "Major Update",
+    "latest": "Latest",
+    "noReleaseNotes": "No release notes available for this version"
   },
   "category": {
     "appsInCategory": "Apps in {category}"
