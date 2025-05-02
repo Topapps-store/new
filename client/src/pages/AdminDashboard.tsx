@@ -281,6 +281,40 @@ function AppsTab() {
     setIsLogoUploadModalOpen(true);
   };
   
+  const handleSyncApp = async (app: AppLegacy) => {
+    try {
+      toast({
+        title: t('admin.syncingApp'),
+        description: t('admin.syncingAppDescription', { appName: app.name }),
+      });
+      
+      const response = await fetch(`/api/admin/apps/${app.id}/sync`, {
+        method: 'POST',
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to sync app');
+      }
+      
+      const data = await response.json();
+      
+      toast({
+        title: t('admin.syncComplete'),
+        description: t('admin.appSyncCompleteDescription', { appName: app.name }),
+      });
+      
+      // Refetch apps after sync
+      refetch();
+    } catch (error) {
+      console.error('Error syncing app:', error);
+      toast({
+        variant: 'destructive',
+        title: t('admin.syncError'),
+        description: t('admin.appSyncErrorDescription'),
+      });
+    }
+  };
+  
   const confirmDeleteApp = async () => {
     if (!selectedApp) return;
     
@@ -393,6 +427,15 @@ function AppsTab() {
                           onClick={() => handleEditApp(app)}
                         >
                           {t('admin.edit')}
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="mr-2"
+                          onClick={() => handleSyncApp(app)}
+                        >
+                          <RefreshCw className="h-4 w-4 mr-1" />
+                          {t('admin.sync')}
                         </Button>
                         <Button 
                           variant="destructive" 
