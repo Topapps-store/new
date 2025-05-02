@@ -147,3 +147,31 @@ export const insertAffiliateLinkSchema = createInsertSchema(affiliateLinks).omit
 
 export type InsertAffiliateLink = z.infer<typeof insertAffiliateLinkSchema>;
 export type AffiliateLink = typeof affiliateLinks.$inferSelect;
+
+// App Version History table
+export const appVersionHistory = pgTable("app_version_history", {
+  id: serial("id").primaryKey(),
+  appId: varchar("app_id", { length: 100 }).notNull()
+    .references(() => apps.id),
+  version: varchar("version", { length: 50 }).notNull(),
+  releaseNotes: text("release_notes"),
+  updateDate: timestamp("update_date").defaultNow(),
+  isNotified: boolean("is_notified").notNull().default(false),
+  isImportant: boolean("is_important").notNull().default(false),
+  changesDetected: boolean("changes_detected").notNull().default(false),
+});
+
+export const appVersionHistoryRelations = relations(appVersionHistory, ({ one }) => ({
+  app: one(apps, {
+    fields: [appVersionHistory.appId],
+    references: [apps.id]
+  })
+}));
+
+export const insertAppVersionHistorySchema = createInsertSchema(appVersionHistory).omit({
+  id: true,
+  updateDate: true,
+});
+
+export type InsertAppVersionHistory = z.infer<typeof insertAppVersionHistorySchema>;
+export type AppVersionHistory = typeof appVersionHistory.$inferSelect;

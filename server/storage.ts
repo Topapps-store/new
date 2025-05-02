@@ -2,7 +2,8 @@ import {
   App, AppLegacy, Category, CategoryLegacy, 
   InsertApp, InsertCategory, InsertUser, User,
   AffiliateLink, InsertAffiliateLink,
-  apps, categories, users, affiliateLinks
+  AppVersionHistory, InsertAppVersionHistory,
+  apps, categories, users, affiliateLinks, appVersionHistory
 } from "@shared/schema";
 import { db } from "./db";
 import { asc, desc, eq } from "drizzle-orm";
@@ -37,6 +38,14 @@ export interface IStorage {
   deleteAffiliateLink(id: number): Promise<boolean>;
   incrementLinkClickCount(id: number): Promise<AffiliateLink | undefined>;
   getAffiliateLinkAnalytics(): Promise<{appId: string, appName: string, totalClicks: number}[]>;
+  
+  // App version history operations
+  getAppVersionHistory(appId: string): Promise<AppVersionHistory[]>;
+  getLatestAppVersion(appId: string): Promise<AppVersionHistory | undefined>;
+  addAppVersionHistory(versionHistory: InsertAppVersionHistory): Promise<AppVersionHistory>;
+  markVersionNotified(id: number): Promise<AppVersionHistory | undefined>;
+  getRecentAppUpdates(limit?: number): Promise<{app: AppLegacy, versionHistory: AppVersionHistory}[]>;
+  getUnnotifiedUpdates(): Promise<{app: AppLegacy, versionHistory: AppVersionHistory}[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -374,6 +383,103 @@ export class DatabaseStorage implements IStorage {
     
     // Convert to array and sort by total clicks (descending)
     return Object.values(analytics).sort((a, b) => b.totalClicks - a.totalClicks);
+  }
+  
+  // App Version History methods
+  async getAppVersionHistory(appId: string): Promise<AppVersionHistory[]> {
+    return db.select()
+      .from(appVersionHistory)
+      .where(eq(appVersionHistory.appId, appId))
+      .orderBy(desc(appVersionHistory.updateDate));
+  }
+  
+  async getLatestAppVersion(appId: string): Promise<AppVersionHistory | undefined> {
+    const [latestVersion] = await db.select()
+      .from(appVersionHistory)
+      .where(eq(appVersionHistory.appId, appId))
+      .orderBy(desc(appVersionHistory.updateDate))
+      .limit(1);
+    
+    return latestVersion || undefined;
+  }
+  
+  async addAppVersionHistory(versionHistory: InsertAppVersionHistory): Promise<AppVersionHistory> {
+    const [created] = await db.insert(appVersionHistory)
+      .values(versionHistory)
+      .returning();
+    
+    return created;
+  }
+  
+  async markVersionNotified(id: number): Promise<AppVersionHistory | undefined> {
+    const [updated] = await db.update(appVersionHistory)
+      .set({ isNotified: true })
+      .where(eq(appVersionHistory.id, id))
+      .returning();
+    
+    return updated || undefined;
+  }
+  
+  async getRecentAppUpdates(limit: number = 10): Promise<{app: AppLegacy, versionHistory: AppVersionHistory}[]> {
+    // Get the latest version updates
+    const versionHistories = await db.select()
+      .from(appVersionHistory)
+      .orderBy(desc(appVersionHistory.updateDate))
+      .limit(limit);
+    
+    // Get the associated apps
+    const appIds = versionHistories.map(vh => vh.appId);
+    const appsList = await db.select().from(apps).where(
+      appIds.length > 0 ? apps.id.in(appIds) : undefined
+    );
+    const categoriesList = await db.select().from(categories);
+    
+    // Combine the data
+    return versionHistories.map(versionHistory => {
+      const app = appsList.find(a => a.id === versionHistory.appId);
+      if (!app) {
+        throw new Error(`App with ID ${versionHistory.appId} not found`);
+      }
+      
+      const category = categoriesList.find(cat => cat.id === app.categoryId);
+      const appLegacy = this.convertToAppLegacy(app, category?.name || 'Unknown');
+      
+      return {
+        app: appLegacy,
+        versionHistory
+      };
+    });
+  }
+  
+  async getUnnotifiedUpdates(): Promise<{app: AppLegacy, versionHistory: AppVersionHistory}[]> {
+    // Get unnotified version updates
+    const versionHistories = await db.select()
+      .from(appVersionHistory)
+      .where(eq(appVersionHistory.isNotified, false))
+      .orderBy(desc(appVersionHistory.updateDate));
+    
+    // Get the associated apps
+    const appIds = versionHistories.map(vh => vh.appId);
+    const appsList = await db.select().from(apps).where(
+      appIds.length > 0 ? apps.id.in(appIds) : undefined
+    );
+    const categoriesList = await db.select().from(categories);
+    
+    // Combine the data
+    return versionHistories.map(versionHistory => {
+      const app = appsList.find(a => a.id === versionHistory.appId);
+      if (!app) {
+        throw new Error(`App with ID ${versionHistory.appId} not found`);
+      }
+      
+      const category = categoriesList.find(cat => cat.id === app.categoryId);
+      const appLegacy = this.convertToAppLegacy(app, category?.name || 'Unknown');
+      
+      return {
+        app: appLegacy,
+        versionHistory
+      };
+    });
   }
 }
 
