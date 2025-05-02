@@ -354,19 +354,23 @@ export class DatabaseStorage implements IStorage {
     const appsList = await db.select().from(apps);
     
     // Group by app and calculate total clicks
-    const analytics = links.reduce((acc: Record<string, {appId: string, appName: string, totalClicks: number}>, link) => {
-      if (!acc[link.appId]) {
-        const app = appsList.find(a => a.id === link.appId);
-        acc[link.appId] = {
-          appId: link.appId,
-          appName: app?.name || 'Unknown App',
-          totalClicks: 0
-        };
+    const analytics: Record<string, {appId: string, appName: string, totalClicks: number}> = {};
+    
+    // Process each link
+    for (const link of links) {
+      if (link.appId) {
+        if (!analytics[link.appId]) {
+          const app = appsList.find(a => a.id === link.appId);
+          analytics[link.appId] = {
+            appId: link.appId,
+            appName: app?.name || 'Unknown App',
+            totalClicks: 0
+          };
+        }
+        
+        analytics[link.appId].totalClicks += link.clickCount;
       }
-      
-      acc[link.appId].totalClicks += link.clickCount;
-      return acc;
-    }, {});
+    }
     
     // Convert to array and sort by total clicks (descending)
     return Object.values(analytics).sort((a, b) => b.totalClicks - a.totalClicks);
