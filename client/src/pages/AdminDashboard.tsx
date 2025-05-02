@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { useAdmin, AdminGuard } from '@/context/AdminContext';
+import { useTheme } from '@/context/ThemeContext';
 import { useQuery } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,6 +17,7 @@ import {
   LogoUploadModal, 
   DeleteAppDialog 
 } from '@/components/admin/AppManagementModals';
+import { SimpleThemeToggle } from '@/components/admin/ThemeToggle';
 
 type AdminTab = 'dashboard' | 'apps' | 'affiliate-links' | 'app-updates' | 'settings';
 
@@ -52,20 +54,23 @@ function AdminDashboardContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-admin-sidebar transition-colors duration-200">
       {/* Admin Header */}
-      <header className="bg-white border-b">
+      <header className="bg-admin border-admin border-b transition-colors duration-200">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <h1 className="text-2xl font-bold">TopApps Admin</h1>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-admin-muted">
               {t('admin.loggedInAs')} <span className="font-medium">{user?.username}</span>
             </span>
           </div>
-          <Button variant="outline" size="sm" onClick={handleLogout}>
-            <LogOut className="h-4 w-4 mr-2" />
-            {t('admin.logout')}
-          </Button>
+          <div className="flex items-center space-x-2">
+            <SimpleThemeToggle />
+            <Button variant="outline" size="sm" onClick={handleLogout}>
+              <LogOut className="h-4 w-4 mr-2" />
+              {t('admin.logout')}
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -137,30 +142,30 @@ function DashboardTab() {
       <h2 className="text-3xl font-bold">{t('admin.dashboardOverview')}</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
+        <Card className="bg-admin-card border-admin transition-colors duration-200">
           <CardHeader className="pb-2">
             <CardTitle>{t('admin.totalApps')}</CardTitle>
-            <CardDescription>{t('admin.appsInSystem')}</CardDescription>
+            <CardDescription className="text-admin-muted">{t('admin.appsInSystem')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">42</p>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="bg-admin-card border-admin transition-colors duration-200">
           <CardHeader className="pb-2">
             <CardTitle>{t('admin.affiliateLinks')}</CardTitle>
-            <CardDescription>{t('admin.activeLinks')}</CardDescription>
+            <CardDescription className="text-admin-muted">{t('admin.activeLinks')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">38</p>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="bg-admin-card border-admin transition-colors duration-200">
           <CardHeader className="pb-2">
             <CardTitle>{t('admin.linkClicks')}</CardTitle>
-            <CardDescription>{t('admin.totalTraffic')}</CardDescription>
+            <CardDescription className="text-admin-muted">{t('admin.totalTraffic')}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">1,246</p>
@@ -168,10 +173,10 @@ function DashboardTab() {
         </Card>
       </div>
       
-      <Card>
+      <Card className="bg-admin-card border-admin transition-colors duration-200">
         <CardHeader>
           <CardTitle>{t('admin.affiliatePerformance')}</CardTitle>
-          <CardDescription>{t('admin.topPerformingLinks')}</CardDescription>
+          <CardDescription className="text-admin-muted">{t('admin.topPerformingLinks')}</CardDescription>
         </CardHeader>
         <CardContent>
           {isLoading ? (
@@ -367,10 +372,10 @@ function AppsTab() {
         </div>
       </div>
       
-      <Card>
+      <Card className="bg-admin-card border-admin transition-colors duration-200">
         <CardHeader>
           <CardTitle>{t('admin.appsList')}</CardTitle>
-          <CardDescription>{t('admin.manageAppDetails')}</CardDescription>
+          <CardDescription className="text-admin-muted">{t('admin.manageAppDetails')}</CardDescription>
         </CardHeader>
         <CardContent>
           {isLoading ? (
