@@ -26,12 +26,9 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
   const checkAuth = async (): Promise<boolean> => {
     try {
-      const response = await apiRequest('/api/auth/check', {
+      const authData = await apiRequest<{ authenticated: boolean; user: AdminUser | null }>('/api/auth/check', {
         method: 'GET',
       });
-
-      // Type the response properly
-      const authData = response as { authenticated: boolean; user: AdminUser | null };
 
       if (authData.authenticated && authData.user) {
         setUser(authData.user);
@@ -57,14 +54,12 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const login = async (username: string, password: string): Promise<AdminUser> => {
     setIsLoading(true);
     try {
-      const response = await apiRequest('/api/auth/login', {
+      const userData = await apiRequest<AdminUser>('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
 
-      // Type the response properly
-      const userData = response as AdminUser;
       setUser(userData);
       return userData;
     } catch (error) {
@@ -78,9 +73,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const logout = async (): Promise<void> => {
     setIsLoading(true);
     try {
-      await apiRequest('/api/auth/logout', {
+      await apiRequest<void>('/api/auth/logout', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
       });
       setUser(null);
       navigate('/admin/login');

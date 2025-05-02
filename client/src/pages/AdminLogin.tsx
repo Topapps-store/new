@@ -24,14 +24,11 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const response = await apiRequest('/api/auth/login', {
+      const userData = await apiRequest<{ id: number; username: string; isAdmin: boolean }>('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
-
-      // Type the response properly
-      const userData = response as { id: number; username: string; isAdmin: boolean };
 
       if (userData.isAdmin) {
         toast({
