@@ -5,11 +5,12 @@ import { storage } from "./storage";
 import { getApps, getAppById, getPopularApps, getRecentApps, getRelatedApps, searchApps, getJustInTimeApps } from "./data/apps";
 import { getCategories, getCategoryById, getAppsByCategory } from "./data/categories";
 import session from "express-session";
+import multer from "multer";
 import { login, logout, checkAuth, requireAuth, requireAdmin } from "./controllers/auth-controller";
 import {
   getAppsForAdmin,
   getAppForAdmin,
-  updateApp,
+  updateApp as adminUpdateApp,
   syncApp,
   getAffiliateLinks,
   createAffiliateLink,
@@ -17,6 +18,14 @@ import {
   deleteAffiliateLink,
   getAffiliateLinkAnalytics
 } from "./controllers/admin-controller";
+import {
+  createApp,
+  updateApp,
+  deleteApp,
+  uploadLogo,
+  updateLogoFromUrl,
+  manualSyncApp
+} from "./controllers/app-management-controller";
 import { InsertAffiliateLink, insertAffiliateLinkSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -44,11 +53,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Admin routes
   const adminRouter = express.Router();
   
+  // Configure multer for file uploads
+  const logoUpload = multer({ 
+    storage: multer.memoryStorage(),
+    limits: {
+      fileSize: 5 * 1024 * 1024, // 5MB limit
+    },
+    fileFilter: (req, file, cb) => {
+      // Only accept images
+      if (!file.mimetype.startsWith('image/')) {
+        return cb(new Error('Only image files are allowed'));
+      }
+      cb(null, true);
+    }
+  });
+
   // Admin app routes
   adminRouter.get("/apps", requireAdmin, getAppsForAdmin);
   adminRouter.get("/apps/:id", requireAdmin, getAppForAdmin);
+  adminRouter.post("/apps", requireAdmin, createApp);
   adminRouter.put("/apps/:id", requireAdmin, updateApp);
-  adminRouter.post("/apps/:id/sync", requireAdmin, syncApp);
+  adminRouter.delete("/apps/:id", requireAdmin, deleteApp);
+  adminRouter.post("/apps/:id/logo", requireAdmin, logoUpload.single('logo'), uploadLogo);
+  adminRouter.post("/apps/:id/logo-url", requireAdmin, updateLogoFromUrl);
+  adminRouter.post("/apps/:id/sync", requireAdmin, manualSyncApp);
   
   // Admin affiliate link routes
   adminRouter.get("/affiliate-links", requireAdmin, getAffiliateLinks);

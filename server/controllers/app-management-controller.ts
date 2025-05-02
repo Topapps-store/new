@@ -4,6 +4,8 @@ import { syncAppInfo } from '../app-sync-service';
 import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
+import { log } from '../vite';
+import multer from 'multer';
 
 // Convert fs.writeFile to promise-based
 const writeFile = promisify(fs.writeFile);
@@ -146,7 +148,7 @@ export async function deleteApp(req: Request, res: Response) {
 /**
  * Upload app logo
  */
-export async function uploadLogo(req: Request, res: Response) {
+export async function uploadLogo(req: Request & { file?: Express.Multer.File }, res: Response) {
   try {
     const { id } = req.params;
     
