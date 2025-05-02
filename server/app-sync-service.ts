@@ -6,8 +6,8 @@ import appStore from 'app-store-scraper';
 /// <reference path="./types/google-play-scraper.d.ts" />
 /// <reference path="./types/app-store-scraper.d.ts" />
 import { db } from './db';
-import { apps, appVersionHistory } from '@shared/schema';
-import { eq } from 'drizzle-orm';
+import { apps, appVersionHistory, categories } from '@shared/schema';
+import { eq, isNull, sql } from 'drizzle-orm';
 import { log } from './vite';
 import { storage } from './storage';
 
@@ -271,7 +271,7 @@ async function updateAppInDatabase(appData: AppData) {
     let [updatedApp] = await db
       .update(apps)
       .set(updateData)
-      .where(eq(apps.original_app_id, appData.appId))
+      .where(eq(apps.originalAppId, appData.appId))
       .returning();
     
     // If no app was found with the exact match, try to find by our internal ID
@@ -279,7 +279,7 @@ async function updateAppInDatabase(appData: AppData) {
       [updatedApp] = await db
         .update(apps)
         .set(updateData)
-        .where(eq(apps.id, appId))
+        .where(eq(apps.id, appData.appId))
         .returning();
     }
       
@@ -367,22 +367,22 @@ export async function syncAppInfo(appId: string, storeType: 'android' | 'ios' | 
  */
 async function ensureMissingApps() {
   try {
-    // First, let's update existing apps that don't have an original_app_id
+    // First, let's update existing apps that don't have an originalAppId
     const appsWithoutOriginalId = await db
       .select()
       .from(apps)
-      .where(eq(apps.original_app_id, ''));
+      .where(eq(apps.originalAppId, ''));
 
     if (appsWithoutOriginalId.length > 0) {
-      log(`Found ${appsWithoutOriginalId.length} apps without original_app_id. Updating...`, 'app-sync');
+      log(`Found ${appsWithoutOriginalId.length} apps without originalAppId. Updating...`, 'app-sync');
       
       for (const app of appsWithoutOriginalId) {
         await db
           .update(apps)
-          .set({ original_app_id: app.id })
+          .set({ originalAppId: app.id })
           .where(eq(apps.id, app.id));
         
-        log(`Updated app ${app.name} with original_app_id = ${app.id}`, 'app-sync');
+        log(`Updated app ${app.name} with originalAppId = ${app.id}`, 'app-sync');
       }
     }
 
@@ -454,25 +454,24 @@ async function ensureMissingApps() {
       
       // Add the app with placeholder data
       const appName = appId.charAt(0).toUpperCase() + appId.slice(1);
-      await db.insert(apps).values({
-        id: appId,
-        originalAppId: appId,
-        name: appName,
-        categoryId: categoryId,
-        description: `${appName} app description will be updated on sync.`,
-        iconUrl: "https://via.placeholder.com/512",
-        screenshots: [],
-        rating: 0,
-        downloads: "0+",
-        version: "1.0.0",
-        size: "Varies",
-        updated: new Date().toISOString(),
-        requires: "Android 5.0+",
-        developer: "Unknown",
-        installs: "0+",
-        googlePlayUrl: "",
-        createdAt: new Date()
-      });
+      
+      // Direct SQL insert since we need to specify the ID
+      await db.execute(sql`
+        INSERT INTO apps (
+          id, name, category_id, description, icon_url, 
+          rating, downloads, version, size, updated, 
+          requires, developer, installs, download_url, 
+          google_play_url, original_app_id, screenshots
+        ) VALUES (
+          ${appId}, ${appName}, ${categoryId}, 
+          ${appName + " app description will be updated on sync."}, 
+          ${"https://via.placeholder.com/512"}, 
+          ${0}, ${"0+"}, ${"1.0.0"}, ${"Varies"}, 
+          ${new Date().toISOString()}, ${"Android 5.0+"}, 
+          ${"Unknown"}, ${"0+"}, ${""},
+          ${""}, ${appId}, ${"[]"}
+        )
+      `);
       
       log(`Added app: ${appId} to database`, 'app-sync');
     }
