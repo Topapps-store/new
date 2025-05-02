@@ -10,6 +10,12 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Loader2, LogOut, BarChart3, AppWindow, Link as LinkIcon, Settings, RefreshCw } from 'lucide-react';
 import type { AppLegacy, AffiliateLink } from '@shared/schema';
 import { AppUpdatesTab } from '@/components/admin/AppUpdatesTab';
+import { 
+  AddAppModal, 
+  EditAppModal, 
+  LogoUploadModal, 
+  DeleteAppDialog 
+} from '@/components/admin/AppManagementModals';
 
 type AdminTab = 'dashboard' | 'apps' | 'affiliate-links' | 'app-updates' | 'settings';
 
@@ -219,18 +225,112 @@ function DashboardTab() {
 
 function AppsTab() {
   const { t } = useLanguage();
-  const { data: apps = [], isLoading } = useQuery<AppLegacy[]>({
+  const { toast } = useToast();
+  const [isAddAppModalOpen, setIsAddAppModalOpen] = useState(false);
+  const [isEditAppModalOpen, setIsEditAppModalOpen] = useState(false);
+  const [selectedApp, setSelectedApp] = useState<AppLegacy | null>(null);
+  const [isLogoUploadModalOpen, setIsLogoUploadModalOpen] = useState(false);
+  const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
+  
+  const { data: apps = [], isLoading, refetch } = useQuery<AppLegacy[]>({
     queryKey: ['/api/admin/apps'],
     retry: false,
   });
+  
+  const handleSyncAllApps = async () => {
+    try {
+      toast({
+        title: t('admin.syncingApps'),
+        description: t('admin.syncingAppsDescription'),
+      });
+      
+      // Call API to sync all apps
+      await fetch('/api/admin/sync-all-apps', {
+        method: 'POST',
+      });
+      
+      toast({
+        title: t('admin.syncComplete'),
+        description: t('admin.syncCompleteDescription'),
+      });
+      
+      // Refetch apps after sync
+      refetch();
+    } catch (error) {
+      console.error('Error syncing apps:', error);
+      toast({
+        variant: 'destructive',
+        title: t('admin.syncError'),
+        description: t('admin.syncErrorDescription'),
+      });
+    }
+  };
+  
+  const handleEditApp = (app: AppLegacy) => {
+    setSelectedApp(app);
+    setIsEditAppModalOpen(true);
+  };
+  
+  const handleDeleteApp = (app: AppLegacy) => {
+    setSelectedApp(app);
+    setIsConfirmDeleteOpen(true);
+  };
+  
+  const handleUploadLogo = (app: AppLegacy) => {
+    setSelectedApp(app);
+    setIsLogoUploadModalOpen(true);
+  };
+  
+  const confirmDeleteApp = async () => {
+    if (!selectedApp) return;
+    
+    try {
+      await fetch(`/api/admin/apps/${selectedApp.id}`, {
+        method: 'DELETE',
+      });
+      
+      toast({
+        title: t('admin.appDeleted'),
+        description: t('admin.appDeletedDescription'),
+      });
+      
+      // Refetch apps after deletion
+      refetch();
+      setIsConfirmDeleteOpen(false);
+    } catch (error) {
+      console.error('Error deleting app:', error);
+      toast({
+        variant: 'destructive',
+        title: t('admin.deleteError'),
+        description: t('admin.deleteErrorDescription'),
+      });
+    }
+  };
+  
+  const formatDate = (dateString: string) => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString();
+    } catch (e) {
+      return dateString;
+    }
+  };
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold">{t('admin.manageApps')}</h2>
-        <Button>
-          {t('admin.syncAllApps')}
-        </Button>
+        <div className="flex space-x-2">
+          <Button 
+            variant="outline"
+            onClick={() => setIsAddAppModalOpen(true)}
+          >
+            {t('admin.addNewApp')}
+          </Button>
+          <Button onClick={handleSyncAllApps}>
+            {t('admin.syncAllApps')}
+          </Button>
+        </div>
       </div>
       
       <Card>
@@ -248,6 +348,7 @@ function AppsTab() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b">
+                    <th className="text-left py-2">{t('admin.icon')}</th>
                     <th className="text-left py-2">{t('admin.appName')}</th>
                     <th className="text-center py-2">{t('admin.category')}</th>
                     <th className="text-center py-2">{t('admin.rating')}</th>
@@ -256,29 +357,53 @@ function AppsTab() {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* This would be populated with actual apps data */}
-                  <tr className="border-b">
-                    <td className="py-2">Netflix</td>
-                    <td className="text-center">Entertainment</td>
-                    <td className="text-center">4.5</td>
-                    <td className="text-center">2023-05-15</td>
-                    <td className="text-right">
-                      <Button variant="outline" size="sm">
-                        {t('admin.edit')}
-                      </Button>
-                    </td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="py-2">Spotify</td>
-                    <td className="text-center">Music</td>
-                    <td className="text-center">4.7</td>
-                    <td className="text-center">2023-05-20</td>
-                    <td className="text-right">
-                      <Button variant="outline" size="sm">
-                        {t('admin.edit')}
-                      </Button>
-                    </td>
-                  </tr>
+                  {apps.map((app) => (
+                    <tr key={app.id} className="border-b">
+                      <td className="py-2">
+                        <div className="relative w-10 h-10 rounded-md overflow-hidden">
+                          <img 
+                            src={app.iconUrl} 
+                            alt={app.name}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = 'https://via.placeholder.com/80';
+                            }}
+                          />
+                          <button 
+                            className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity"
+                            onClick={() => handleUploadLogo(app)}
+                            title={t('admin.changeIcon')}
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                      <td className="py-2">{app.name}</td>
+                      <td className="text-center">{app.category}</td>
+                      <td className="text-center">{app.rating.toFixed(1)}</td>
+                      <td className="text-center">{formatDate(app.updated)}</td>
+                      <td className="text-right">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="mr-2"
+                          onClick={() => handleEditApp(app)}
+                        >
+                          {t('admin.edit')}
+                        </Button>
+                        <Button 
+                          variant="destructive" 
+                          size="sm"
+                          onClick={() => handleDeleteApp(app)}
+                        >
+                          {t('admin.delete')}
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -289,6 +414,54 @@ function AppsTab() {
           )}
         </CardContent>
       </Card>
+      
+      {/* Add App Modal */}
+      {isAddAppModalOpen && (
+        <AddAppModal 
+          isOpen={isAddAppModalOpen} 
+          onClose={() => setIsAddAppModalOpen(false)} 
+          onAppAdded={() => {
+            refetch();
+            setIsAddAppModalOpen(false);
+          }}
+        />
+      )}
+      
+      {/* Edit App Modal */}
+      {isEditAppModalOpen && selectedApp && (
+        <EditAppModal 
+          isOpen={isEditAppModalOpen} 
+          onClose={() => setIsEditAppModalOpen(false)} 
+          app={selectedApp}
+          onAppUpdated={() => {
+            refetch();
+            setIsEditAppModalOpen(false);
+          }}
+        />
+      )}
+      
+      {/* Logo Upload Modal */}
+      {isLogoUploadModalOpen && selectedApp && (
+        <LogoUploadModal 
+          isOpen={isLogoUploadModalOpen} 
+          onClose={() => setIsLogoUploadModalOpen(false)} 
+          app={selectedApp}
+          onLogoUploaded={() => {
+            refetch();
+            setIsLogoUploadModalOpen(false);
+          }}
+        />
+      )}
+      
+      {/* Confirm Delete Dialog */}
+      {isConfirmDeleteOpen && selectedApp && (
+        <DeleteAppDialog
+          isOpen={isConfirmDeleteOpen}
+          onClose={() => setIsConfirmDeleteOpen(false)}
+          onConfirm={confirmDeleteApp}
+          appName={selectedApp.name}
+        />
+      )}
     </div>
   );
 }
