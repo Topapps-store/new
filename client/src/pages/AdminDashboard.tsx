@@ -530,10 +530,10 @@ function AffiliateLinksTab() {
         </Button>
       </div>
       
-      <Card>
+      <Card className="bg-admin-card border-admin transition-colors duration-200">
         <CardHeader>
           <CardTitle>{t('admin.affiliateLinksList')}</CardTitle>
-          <CardDescription>{t('admin.manageAffiliateLinksDesc')}</CardDescription>
+          <CardDescription className="text-admin-muted">{t('admin.manageAffiliateLinksDesc')}</CardDescription>
         </CardHeader>
         <CardContent>
           {isLoading ? (
@@ -598,20 +598,21 @@ function AffiliateLinksTab() {
 
 function SettingsTab() {
   const { t } = useLanguage();
+  const { theme, setTheme } = useTheme();
   
   return (
     <div className="space-y-6">
       <h2 className="text-3xl font-bold">{t('admin.settings')}</h2>
       
-      <Card>
+      <Card className="bg-admin-card border-admin transition-colors duration-200">
         <CardHeader>
           <CardTitle>{t('admin.generalSettings')}</CardTitle>
-          <CardDescription>{t('admin.configureGeneralSettings')}</CardDescription>
+          <CardDescription className="text-admin-muted">{t('admin.configureGeneralSettings')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
             <h3 className="font-medium mb-2">{t('admin.appSynchronization')}</h3>
-            <p className="text-sm text-gray-600 mb-2">{t('admin.syncScheduleDescription')}</p>
+            <p className="text-sm text-admin-muted mb-2">{t('admin.syncScheduleDescription')}</p>
             <Button variant="outline">
               {t('admin.configureSchedule')}
             </Button>
@@ -619,10 +620,33 @@ function SettingsTab() {
           
           <div>
             <h3 className="font-medium mb-2">{t('admin.adminAccount')}</h3>
-            <p className="text-sm text-gray-600 mb-2">{t('admin.changePasswordDescription')}</p>
+            <p className="text-sm text-admin-muted mb-2">{t('admin.changePasswordDescription')}</p>
             <Button variant="outline">
               {t('admin.changePassword')}
             </Button>
+          </div>
+          
+          <div>
+            <h3 className="font-medium mb-2">{t('admin.appearance')}</h3>
+            <p className="text-sm text-admin-muted mb-2">{t('admin.theme')}</p>
+            <div className="flex items-center space-x-4">
+              <Button 
+                variant={theme === 'light' ? 'default' : 'outline'} 
+                size="sm"
+                onClick={() => setTheme('light')}
+                className="w-24"
+              >
+                Light
+              </Button>
+              <Button 
+                variant={theme === 'dark' ? 'default' : 'outline'} 
+                size="sm"
+                onClick={() => setTheme('dark')}
+                className="w-24"
+              >
+                Dark
+              </Button>
+            </div>
           </div>
         </CardContent>
       </Card>

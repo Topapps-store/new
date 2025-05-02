@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { apiRequest } from '@/lib/queryClient';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
+import { SimpleThemeToggle } from '@/components/admin/ThemeToggle';
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('');
@@ -50,11 +52,14 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <Card className="w-full max-w-md">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-admin-sidebar transition-colors duration-200 p-4">
+      <div className="absolute top-4 right-4">
+        <SimpleThemeToggle />
+      </div>
+      <Card className="w-full max-w-md bg-admin-card border-admin transition-colors duration-200">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-center">{t('admin.login')}</CardTitle>
-          <CardDescription className="text-center">
+          <CardDescription className="text-center text-admin-muted">
             {t('admin.enterCredentials')}
           </CardDescription>
         </CardHeader>
