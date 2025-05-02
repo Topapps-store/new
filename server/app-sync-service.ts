@@ -267,12 +267,21 @@ async function updateAppInDatabase(appData: AppData) {
       ...(appData.storeType === 'android' ? { googlePlayUrl: appData.url } : { iosAppStoreUrl: appData.url })
     };
 
-    // Find app by ID and update
-    const [updatedApp] = await db
+    // First try to find by original AppId (exact match)
+    let [updatedApp] = await db
       .update(apps)
       .set(updateData)
-      .where(eq(apps.originalAppId, appData.appId))
+      .where(eq(apps.original_app_id, appData.appId))
       .returning();
+    
+    // If no app was found with the exact match, try to find by our internal ID
+    if (!updatedApp) {
+      [updatedApp] = await db
+        .update(apps)
+        .set(updateData)
+        .where(eq(apps.id, appId))
+        .returning();
+    }
       
     if (updatedApp) {
       log(`Updated app ${appData.name} (${appData.appId}) from ${appData.storeType} store`, 'app-sync');
@@ -358,6 +367,25 @@ export async function syncAppInfo(appId: string, storeType: 'android' | 'ios' | 
  */
 async function ensureMissingApps() {
   try {
+    // First, let's update existing apps that don't have an original_app_id
+    const appsWithoutOriginalId = await db
+      .select()
+      .from(apps)
+      .where(eq(apps.original_app_id, ''));
+
+    if (appsWithoutOriginalId.length > 0) {
+      log(`Found ${appsWithoutOriginalId.length} apps without original_app_id. Updating...`, 'app-sync');
+      
+      for (const app of appsWithoutOriginalId) {
+        await db
+          .update(apps)
+          .set({ original_app_id: app.id })
+          .where(eq(apps.id, app.id));
+        
+        log(`Updated app ${app.name} with original_app_id = ${app.id}`, 'app-sync');
+      }
+    }
+
     // A list of apps that we want to ensure are in the database
     const essentialApps = [
       "uber", "lyft", "doordash", "grubhub", "ubereats", 
