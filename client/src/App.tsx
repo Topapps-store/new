@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
@@ -19,36 +19,46 @@ import AdminDashboard from "@/pages/AdminDashboard";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AdminProvider } from "./context/AdminContext";
 import { ThemeProvider } from "./context/ThemeContext";
-import { useScrollToTop } from "./hooks/useScrollToTop";
+import { useEffect } from "react";
+
+function ScrollToTop() {
+  const [location] = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  
+  return null;
+}
 
 function Router() {
-  // This hook will scroll to top on route changes
-  useScrollToTop();
-  
   return (
-    <Switch>
-      {/* Admin routes without Layout */}
-      <Route path="/admin/login" component={AdminLogin} />
-      <Route path="/admin/dashboard" component={AdminDashboard} />
-      
-      {/* Main site routes with Layout */}
-      <Route path="*">
-        <Layout>
-          <Switch>
-            <Route path="/" component={Home} />
-            <Route path="/apps/all" component={AllApps} />
-            <Route path="/apps/:appId" component={AppDetail} />
-            <Route path="/categories/:categoryId" component={Category} />
-            <Route path="/search" component={Search} />
-            <Route path="/terms" component={TermsOfService} />
-            <Route path="/privacy" component={PrivacyPolicy} />
-            <Route path="/disclaimer" component={Disclaimer} />
-            <Route path="/contact" component={Contact} />
-            <Route component={NotFound} />
-          </Switch>
-        </Layout>
-      </Route>
-    </Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
+        {/* Admin routes without Layout */}
+        <Route path="/admin/login" component={AdminLogin} />
+        <Route path="/admin/dashboard" component={AdminDashboard} />
+        
+        {/* Main site routes with Layout */}
+        <Route path="*">
+          <Layout>
+            <Switch>
+              <Route path="/" component={Home} />
+              <Route path="/apps/all" component={AllApps} />
+              <Route path="/apps/:appId" component={AppDetail} />
+              <Route path="/categories/:categoryId" component={Category} />
+              <Route path="/search" component={Search} />
+              <Route path="/terms" component={TermsOfService} />
+              <Route path="/privacy" component={PrivacyPolicy} />
+              <Route path="/disclaimer" component={Disclaimer} />
+              <Route path="/contact" component={Contact} />
+              <Route component={NotFound} />
+            </Switch>
+          </Layout>
+        </Route>
+      </Switch>
+    </>
   );
 }
 
