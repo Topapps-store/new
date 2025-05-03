@@ -1,5 +1,15 @@
+// Define the supported languages type
+type SupportedLanguage = 'en' | 'es' | 'fr';
+
+// Define the translation dictionary type with proper indexing
+type TranslationDictionary = {
+  [key in SupportedLanguage]: {
+    [key: string]: string;
+  };
+};
+
 // Translation dictionary for frequently used terms
-const TRANSLATION_DICTIONARY = {
+const TRANSLATION_DICTIONARY: TranslationDictionary = {
   en: {
     // English is the source language
   },
@@ -56,11 +66,11 @@ const TRANSLATION_DICTIONARY = {
 };
 
 // Simple rule-based translation function
-function translateWithRules(text: string, targetLanguage: string): string {
+function translateWithRules(text: string, targetLanguage: SupportedLanguage): string {
   if (targetLanguage === 'en') return text; // No translation needed
   
   // Check if the text is in our dictionary for direct translation
-  if (TRANSLATION_DICTIONARY[targetLanguage]?.[text]) {
+  if (TRANSLATION_DICTIONARY[targetLanguage] && text in TRANSLATION_DICTIONARY[targetLanguage]) {
     return TRANSLATION_DICTIONARY[targetLanguage][text];
   }
   
@@ -114,27 +124,28 @@ function translateWithRules(text: string, targetLanguage: string): string {
 }
 
 // Main function to translate any text
-export function translateText(text: string, targetLanguage: string): string {
+export function translateText(text: string, targetLanguage: SupportedLanguage | string): string {
   if (!text || targetLanguage === 'en') return text;
   
-  return translateWithRules(text, targetLanguage);
+  // Cast to the supported language type
+  return translateWithRules(text, targetLanguage as SupportedLanguage);
 }
 
 // Function to translate app description
-export function translateAppDescription(description: string, targetLanguage: string): string {
+export function translateAppDescription(description: string, targetLanguage: SupportedLanguage | string): string {
   if (!description || targetLanguage === 'en') return description;
   
   // Split description by sentences and translate each
   const sentences = description.split(/(?<=[.!?])\s+/);
   const translatedSentences = sentences.map(sentence => 
-    translateWithRules(sentence, targetLanguage)
+    translateWithRules(sentence, targetLanguage as SupportedLanguage)
   );
   
   return translatedSentences.join(' ');
 }
 
 // Function to translate app information
-export function translateAppInfo(info: Record<string, any>, targetLanguage: string): Record<string, any> {
+export function translateAppInfo(info: Record<string, any>, targetLanguage: SupportedLanguage | string): Record<string, any> {
   if (!info || targetLanguage === 'en') return info;
   
   const translatedInfo = { ...info };

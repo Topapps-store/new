@@ -25,7 +25,7 @@ function getCategoryName(app: App | AppLegacy): string {
 const AppDetail = () => {
   const { appId } = useParams();
   const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info" | "versions">("description");
-  const { t } = useLanguage();
+  const { t, translateAppContent, translateAppDescription } = useLanguage();
 
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
     queryKey: [`/api/apps/${appId}`],
@@ -292,12 +292,14 @@ const AppDetail = () => {
               
               {activeTab === "description" && (
                 <div className="mb-6">
-                  <p className="text-gray-700 whitespace-pre-line">{app.description}</p>
+                  <p className="text-gray-700 whitespace-pre-line">
+                    {translateAppDescription(app.description)}
+                  </p>
                   
                   {/* Show more button */}
                   <div className="mt-4">
                     <button className="text-primary hover:text-blue-600 font-medium">
-                      Read More <i className="fas fa-chevron-down ml-1"></i>
+                      {t('appDetail.readMore')} <i className="fas fa-chevron-down ml-1"></i>
                     </button>
                   </div>
                 </div>
