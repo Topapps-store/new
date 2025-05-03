@@ -52,11 +52,18 @@ const TermsOfService = () => {
           TopApps.store does not make any commitment to update the materials.
         </p>
         
-        <h2>6. Links</h2>
+        <h2>6. Links and Third-Party Services</h2>
         <p>
           TopApps.store has not reviewed all of the sites linked to its website and is not responsible for the contents 
           of any such linked site. The inclusion of any link does not imply endorsement by TopApps.store of the site. 
           Use of any such linked website is at the user's own risk.
+        </p>
+        <p>
+          <strong>Third-Party Liability:</strong> By using TopApps.store, you expressly release us from any and all liability 
+          arising from your use of any third-party website, application, or service accessed through links on our site. We 
+          have no control over third parties and assume no responsibility for any actions, policies, or practices of any 
+          third parties you may encounter through our site. Any interactions you have with third parties found on or through 
+          our site are solely between you and that third party.
         </p>
         
         <h2>7. Modifications</h2>

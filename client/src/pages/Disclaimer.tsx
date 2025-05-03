@@ -15,11 +15,18 @@ const Disclaimer = () => {
           the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the site.
         </p>
         
-        <h2>2. External Links</h2>
+        <h2>2. External Links and Third Parties</h2>
         <p>
-          TopApps.store may contain links to external websites that are not provided or maintained by or in any way affiliated 
-          with us. We do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these 
-          external websites.
+          TopApps.store may contain links to external websites, download sources, and third-party services that are not 
+          provided, maintained by, or in any way affiliated with us. We do not guarantee the accuracy, relevance, 
+          timeliness, or completeness of any information on these external websites or services.
+        </p>
+        <p>
+          <strong>Important:</strong> TopApps.store is NOT responsible for the actions, content, privacy practices, or 
+          conduct of any third parties that users may access through links provided on our website. When you click on a 
+          link to a third-party website or service, you are subject to the terms and policies of that third party, not 
+          those of TopApps.store. We strongly recommend reviewing the terms of service and privacy policies of any 
+          third-party websites or services before using them.
         </p>
         
         <h2>3. App Downloads</h2>
@@ -72,7 +79,26 @@ const Disclaimer = () => {
           or otherwise does not constitute or imply endorsement, sponsorship, or recommendation by us.
         </p>
         
-        <h2>8. Changes to This Disclaimer</h2>
+        <h2>8. No Responsibility for Third Party Actions</h2>
+        <p>
+          TopApps.store explicitly disclaims all responsibility and liability for any actions, conduct, content, transactions, 
+          communications, or any other activities that occur as a result of your interactions with any third parties that you 
+          access through our website. This includes but is not limited to:
+        </p>
+        <ul>
+          <li>App developers whose applications you download</li>
+          <li>Advertisers and affiliate partners whose links you click</li>
+          <li>App stores or download platforms you visit</li>
+          <li>Any other external websites or services you access via links on our site</li>
+        </ul>
+        <p>
+          We do not endorse, verify, monitor, or have any control over these third parties. Any harm, damage, loss, or any 
+          negative consequences that result from your interactions with third parties are solely between you and those third 
+          parties. By using TopApps.store, you acknowledge and agree that you are choosing to interact with these third 
+          parties at your own risk.
+        </p>
+        
+        <h2>9. Changes to This Disclaimer</h2>
         <p>
           We may update this Disclaimer from time to time. We will notify you of any changes by posting the new Disclaimer on 
           this page and updating the "Last updated" date.

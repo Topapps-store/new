@@ -54,11 +54,21 @@ const PrivacyPolicy = () => {
           on your device until you delete them or they expire).
         </p>
         
-        <h2>4. Third-Party Services</h2>
+        <h2>4. Third-Party Services and Links</h2>
         <p>
-          Our website may contain links to third-party websites or services that are not owned or controlled by TopApps.store. 
-          We have no control over and assume no responsibility for the content, privacy policies, or practices of any 
-          third-party websites or services.
+          Our website may contain links to third-party websites, applications, or services that are not owned or controlled 
+          by TopApps.store. We have no control over and assume no responsibility for the content, privacy policies, 
+          data collection practices, or conduct of any third-party websites, applications, or services.
+        </p>
+        <p>
+          <strong>Important notice regarding third parties:</strong> When you leave our website by clicking on any external link 
+          (including app download links, affiliate links, and advertiser links), you are subject to the privacy policies and 
+          terms of service of those third parties. We strongly encourage you to review the privacy policies of any third-party 
+          site or service before providing any personal information or downloading any content.
+        </p>
+        <p>
+          TopApps.store is not liable for any privacy practices, data breaches, or other actions of third parties that you 
+          access through our website. Your interactions with these third parties are solely between you and them.
         </p>
         <p>
           We may use third-party services such as Google Analytics to monitor and analyze the use of our website. These 
