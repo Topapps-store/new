@@ -49,11 +49,11 @@
     "appStore": "App Store",
     "platforms": "Plateformes",
     "versionHistory": "Historique des Versions",
-    "noVersionHistory": "Aucun historique de version disponible pour cette application",
+    "noVersionHistory": "Aucun Historique de Version Disponible pour Cette Application",
     "recentUpdates": "Mises à Jour Récentes",
     "majorUpdate": "Mise à Jour Majeure",
     "latest": "Plus Récente",
-    "noReleaseNotes": "Aucune note de version disponible pour cette version"
+    "noReleaseNotes": "Aucune Note de Version Disponible pour Cette Version"
   },
   "category": {
     "appsInCategory": "Applications dans {category}"
@@ -118,14 +118,14 @@
     "label": "Étiquette",
     "buttonText": "Texte du Bouton",
     "delete": "Supprimer",
-    "noAffiliateLinksAvailable": "Aucun lien d'affiliation disponible",
+    "noAffiliateLinksAvailable": "Aucun Lien d'Affiliation Disponible",
     "generalSettings": "Paramètres Généraux",
-    "configureGeneralSettings": "Configurer les paramètres généraux du système",
+    "configureGeneralSettings": "Configurer les Paramètres Généraux du Système",
     "appSynchronization": "Synchronisation des Applications",
-    "syncScheduleDescription": "Configurer le calendrier de synchronisation des données d'applications",
+    "syncScheduleDescription": "Configurer le Calendrier de Synchronisation des Données d'Applications",
     "configureSchedule": "Configurer le Calendrier",
     "adminAccount": "Compte Administrateur",
-    "changePasswordDescription": "Changer le mot de passe de votre compte administrateur",
+    "changePasswordDescription": "Changer le Mot de Passe de Votre Compte Administrateur",
     "changePassword": "Changer le Mot de Passe"
   }
 }

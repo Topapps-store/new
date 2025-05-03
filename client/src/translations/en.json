@@ -49,11 +49,11 @@
     "appStore": "App Store",
     "platforms": "Platforms",
     "versionHistory": "Version History",
-    "noVersionHistory": "No version history available for this app",
+    "noVersionHistory": "No Version History Available for This App",
     "recentUpdates": "Recent App Updates",
     "majorUpdate": "Major Update",
     "latest": "Latest",
-    "noReleaseNotes": "No release notes available for this version"
+    "noReleaseNotes": "No Release Notes Available for This Version"
   },
   "category": {
     "appsInCategory": "Apps in {category}"

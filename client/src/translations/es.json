@@ -49,11 +49,11 @@
     "appStore": "App Store",
     "platforms": "Plataformas",
     "versionHistory": "Historial de Versiones",
-    "noVersionHistory": "No hay historial de versiones disponible para esta aplicación",
+    "noVersionHistory": "No Hay Historial de Versiones Disponible para Esta Aplicación",
     "recentUpdates": "Actualizaciones Recientes",
     "majorUpdate": "Actualización Mayor",
     "latest": "Más Reciente",
-    "noReleaseNotes": "No hay notas de lanzamiento disponibles para esta versión"
+    "noReleaseNotes": "No Hay Notas de Lanzamiento Disponibles para Esta Versión"
   },
   "category": {
     "appsInCategory": "Aplicaciones en {category}"
@@ -118,14 +118,14 @@
     "label": "Etiqueta",
     "buttonText": "Texto del Botón",
     "delete": "Eliminar",
-    "noAffiliateLinksAvailable": "No hay enlaces de afiliados disponibles",
+    "noAffiliateLinksAvailable": "No Hay Enlaces de Afiliados Disponibles",
     "generalSettings": "Configuración General",
-    "configureGeneralSettings": "Configurar ajustes generales del sistema",
+    "configureGeneralSettings": "Configurar Ajustes Generales del Sistema",
     "appSynchronization": "Sincronización de Aplicaciones",
-    "syncScheduleDescription": "Configurar la programación de sincronización de datos de aplicaciones",
+    "syncScheduleDescription": "Configurar la Programación de Sincronización de Datos de Aplicaciones",
     "configureSchedule": "Configurar Programación",
     "adminAccount": "Cuenta de Administrador",
-    "changePasswordDescription": "Cambiar la contraseña de tu cuenta de administrador",
+    "changePasswordDescription": "Cambiar la Contraseña de tu Cuenta de Administrador",
     "changePassword": "Cambiar Contraseña"
   }
 }
