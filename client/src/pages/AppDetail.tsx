@@ -208,7 +208,7 @@ const AppDetail = () => {
                   )}
                 </div>
                 
-                {/* Download buttons */}
+                {/* Download button */}
                 <div className="w-full mt-2">
                   <a 
                     href={app.downloadUrl} 
@@ -218,30 +218,6 @@ const AppDetail = () => {
                   >
                     {t('appDetail.downloadAPK')}
                   </a>
-                  
-                  <div className="flex space-x-2">
-                    <a 
-                      href={app.googlePlayUrl} 
-                      className="flex-1 text-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-2 rounded-lg"
-                      onClick={handleGooglePlayClick}
-                      data-event="click:redirectToStore"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <i className="fab fa-google-play mr-1"></i> {t('appDetail.googlePlay')}
-                    </a>
-                    
-                    <a 
-                      href={app.iosAppStoreUrl || "#app-store"} 
-                      className={`flex-1 text-center ${app.iosAppStoreUrl ? 'bg-gray-200 hover:bg-gray-300 text-gray-800' : 'bg-gray-100 text-gray-400'} font-bold py-3 px-2 rounded-lg`}
-                      onClick={() => console.log("App Store redirect")}
-                      data-event="click:redirectToAppStore"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <i className="fab fa-apple mr-1"></i> {t('appDetail.appStore')}
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
