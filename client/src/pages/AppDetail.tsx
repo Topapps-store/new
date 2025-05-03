@@ -426,7 +426,7 @@ const AppDetail = () => {
         {relatedApps && relatedApps.length > 5 && (
           <div className="text-center mt-4">
             <button className="text-primary hover:text-blue-600 font-medium">
-              Load More <i className="fas fa-chevron-down ml-1"></i>
+              {t('appDetail.loadMore')} <i className="fas fa-chevron-down ml-1"></i>
             </button>
           </div>
         )}
