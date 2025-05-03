@@ -343,33 +343,33 @@ const AppDetail = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">{t('appDetail.updated')}</p>
-                      <p className="font-medium">{app.updated}</p>
+                      <p className="font-medium">{translateAppContent(app.updated)}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">{t('appDetail.requires')}</p>
-                      <p className="font-medium">{app.requires}</p>
+                      <p className="font-medium">{translateAppContent(app.requires)}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">{t('appDetail.developer')}</p>
-                      <p className="font-medium">{app.developer}</p>
+                      <p className="font-medium">{translateAppContent(app.developer)}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">{t('appDetail.installs')}</p>
-                      <p className="font-medium">{app.installs}</p>
+                      <p className="font-medium">{translateAppContent(app.installs)}</p>
                     </div>
                     <div className="col-span-2">
-                      <p className="text-sm text-gray-500">Platforms</p>
-                      <p className="font-medium">Android, iOS</p>
+                      <p className="text-sm text-gray-500">{t('appDetail.platforms')}</p>
+                      <p className="font-medium">{translateAppContent("Android, iOS")}</p>
                     </div>
                   </div>
                   
                   {/* Additional info and compatibility badges */}
                   <div className="mt-4">
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="outline" className="text-xs">Android 5.0+</Badge>
-                      <Badge variant="outline" className="text-xs">iOS 12.0+</Badge>
-                      <Badge variant="outline" className="text-xs">No Ads</Badge>
-                      <Badge variant="outline" className="text-xs">Free Download</Badge>
+                      <Badge variant="outline" className="text-xs">{translateAppContent("Android 5.0+")}</Badge>
+                      <Badge variant="outline" className="text-xs">{translateAppContent("iOS 12.0+")}</Badge>
+                      <Badge variant="outline" className="text-xs">{translateAppContent("No Ads")}</Badge>
+                      <Badge variant="outline" className="text-xs">{translateAppContent("Free Download")}</Badge>
                     </div>
                   </div>
                 </div>

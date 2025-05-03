@@ -11,7 +11,7 @@ type TranslationDictionary = {
 // Translation dictionary for frequently used terms
 const TRANSLATION_DICTIONARY: TranslationDictionary = {
   en: {
-    // English is the source language
+    // English is the source language, used as the source for translations
   },
   es: {
     // Spanish translations for common terms
@@ -37,6 +37,14 @@ const TRANSLATION_DICTIONARY: TranslationDictionary = {
     "Get it on": "Conseguir en",
     "Google Play": "Google Play",
     "App Store": "App Store",
+    "Platforms": "Plataformas",
+    "Android, iOS": "Android, iOS",
+    "No Ads": "Sin Anuncios",
+    "Free Download": "Descarga Gratuita",
+    "Load More": "Cargar Más",
+    "Related Apps": "Aplicaciones Relacionadas",
+    "Premium Apps": "Aplicaciones Premium",
+    "Subscribe Now": "Suscríbete Ahora",
   },
   fr: {
     // French translations for common terms
@@ -62,6 +70,14 @@ const TRANSLATION_DICTIONARY: TranslationDictionary = {
     "Get it on": "Obtenir sur",
     "Google Play": "Google Play",
     "App Store": "App Store",
+    "Platforms": "Plateformes",
+    "Android, iOS": "Android, iOS",
+    "No Ads": "Sans Publicités",
+    "Free Download": "Téléchargement Gratuit",
+    "Load More": "Charger Plus",
+    "Related Apps": "Applications Similaires",
+    "Premium Apps": "Applications Premium",
+    "Subscribe Now": "S'abonner Maintenant",
   }
 };
 
