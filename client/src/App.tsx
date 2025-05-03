@@ -19,8 +19,12 @@ import AdminDashboard from "@/pages/AdminDashboard";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AdminProvider } from "./context/AdminContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import { useScrollToTop } from "./hooks/useScrollToTop";
 
 function Router() {
+  // This hook will scroll to top on route changes
+  useScrollToTop();
+  
   return (
     <Switch>
       {/* Admin routes without Layout */}
