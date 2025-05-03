@@ -25,7 +25,7 @@ function getCategoryName(app: App | AppLegacy): string {
 const AppDetail = () => {
   const { appId } = useParams();
   const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info" | "versions">("description");
-  const { t, translateAppContent, translateAppDescription } = useLanguage();
+  const { t } = useLanguage();
 
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
     queryKey: [`/api/apps/${appId}`],
@@ -293,7 +293,7 @@ const AppDetail = () => {
               {activeTab === "description" && (
                 <div className="mb-6">
                   <p className="text-gray-700 whitespace-pre-line">
-                    {translateAppDescription(app.description)}
+                    {app.description}
                   </p>
                   
                   {/* Show more button */}
@@ -343,33 +343,33 @@ const AppDetail = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">{t('appDetail.updated')}</p>
-                      <p className="font-medium">{translateAppContent(app.updated)}</p>
+                      <p className="font-medium">{app.updated}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">{t('appDetail.requires')}</p>
-                      <p className="font-medium">{translateAppContent(app.requires)}</p>
+                      <p className="font-medium">{app.requires}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">{t('appDetail.developer')}</p>
-                      <p className="font-medium">{translateAppContent(app.developer)}</p>
+                      <p className="font-medium">{app.developer}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">{t('appDetail.installs')}</p>
-                      <p className="font-medium">{translateAppContent(app.installs)}</p>
+                      <p className="font-medium">{app.installs}</p>
                     </div>
                     <div className="col-span-2">
                       <p className="text-sm text-gray-500">{t('appDetail.platforms')}</p>
-                      <p className="font-medium">{translateAppContent("Android, iOS")}</p>
+                      <p className="font-medium">{t('appDetail.androidIOS')}</p>
                     </div>
                   </div>
                   
                   {/* Additional info and compatibility badges */}
                   <div className="mt-4">
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="outline" className="text-xs">{translateAppContent("Android 5.0+")}</Badge>
-                      <Badge variant="outline" className="text-xs">{translateAppContent("iOS 12.0+")}</Badge>
-                      <Badge variant="outline" className="text-xs">{translateAppContent("No Ads")}</Badge>
-                      <Badge variant="outline" className="text-xs">{translateAppContent("Free Download")}</Badge>
+                      <Badge variant="outline" className="text-xs">Android 5.0+</Badge>
+                      <Badge variant="outline" className="text-xs">iOS 12.0+</Badge>
+                      <Badge variant="outline" className="text-xs">{t('appDetail.noAds')}</Badge>
+                      <Badge variant="outline" className="text-xs">{t('appDetail.freeDownload')}</Badge>
                     </div>
                   </div>
                 </div>

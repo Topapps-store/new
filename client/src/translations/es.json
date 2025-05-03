@@ -48,12 +48,16 @@
     "readMore": "Leer Más",
     "appStore": "App Store",
     "platforms": "Plataformas",
+    "androidIOS": "Android, iOS",
+    "noAds": "Sin Anuncios",
+    "freeDownload": "Descarga Gratuita",
     "versionHistory": "Historial de Versiones",
     "noVersionHistory": "No Hay Historial de Versiones Disponible para Esta Aplicación",
     "recentUpdates": "Actualizaciones Recientes",
     "majorUpdate": "Actualización Mayor",
     "latest": "Más Reciente",
-    "noReleaseNotes": "No Hay Notas de Lanzamiento Disponibles para Esta Versión"
+    "noReleaseNotes": "No Hay Notas de Lanzamiento Disponibles para Esta Versión",
+    "loadMore": "Cargar Más"
   },
   "category": {
     "appsInCategory": "Aplicaciones en {category}"

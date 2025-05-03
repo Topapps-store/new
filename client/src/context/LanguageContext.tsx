@@ -5,9 +5,6 @@ import enTranslations from '../translations/en.json';
 import esTranslations from '../translations/es.json';
 import frTranslations from '../translations/fr.json';
 
-// Import translation service for app content
-import { translateText, translateAppDescription, translateAppInfo } from '../services/translationService';
-
 // Type for supported languages
 export type Language = 'en' | 'es' | 'fr';
 
@@ -19,9 +16,6 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string, params?: Record<string, string>) => string;
-  translateAppContent: (content: string) => string;
-  translateAppDescription: (description: string) => string;
-  translateAppInfo: (info: Record<string, any>) => Record<string, any>;
 }
 
 // Create language context
@@ -92,28 +86,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     
     return result;
   };
-  
-  // App content translation helpers
-  const translateAppContent = (content: string): string => {
-    return translateText(content, language);
-  };
-  
-  const translateAppDesc = (description: string): string => {
-    return translateAppDescription(description, language);
-  };
-  
-  const translateAppData = (info: Record<string, any>): Record<string, any> => {
-    return translateAppInfo(info, language);
-  };
 
   return (
     <LanguageContext.Provider value={{ 
       language, 
       setLanguage, 
-      t,
-      translateAppContent: translateAppContent,
-      translateAppDescription: translateAppDesc,
-      translateAppInfo: translateAppData
+      t
     }}>
       {children}
     </LanguageContext.Provider>

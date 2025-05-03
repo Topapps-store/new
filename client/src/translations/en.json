@@ -48,12 +48,16 @@
     "readMore": "Read More",
     "appStore": "App Store",
     "platforms": "Platforms",
+    "androidIOS": "Android, iOS",
+    "noAds": "No Ads",
+    "freeDownload": "Free Download",
     "versionHistory": "Version History",
     "noVersionHistory": "No Version History Available for This App",
     "recentUpdates": "Recent App Updates",
     "majorUpdate": "Major Update",
     "latest": "Latest",
-    "noReleaseNotes": "No Release Notes Available for This Version"
+    "noReleaseNotes": "No Release Notes Available for This Version",
+    "loadMore": "Load More"
   },
   "category": {
     "appsInCategory": "Apps in {category}"
