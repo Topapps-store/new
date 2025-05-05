@@ -426,6 +426,11 @@ const AppDetail = () => {
           </div>
         </div>
       </div>
+      
+      {/* Affiliate Link Disclosure */}
+      <div className="mt-8 border-t pt-6 text-center text-sm text-gray-500">
+        <p>{t('sponsored.affiliateDisclosure')}</p>
+      </div>
     </div>
   );
 };
