@@ -208,17 +208,7 @@ const AppDetail = () => {
                   )}
                 </div>
                 
-                {/* Download button */}
-                <div className="w-full mt-2">
-                  <a 
-                    href={app.downloadUrl} 
-                    className="block w-full text-center bg-primary hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg mb-3"
-                    onClick={handleDownloadClick}
-                    data-event="click:downloadApp"
-                  >
-                    {t('appDetail.downloadAPK')}
-                  </a>
-                </div>
+                {/* No second download button */}
               </div>
             </div>
             
