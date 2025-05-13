@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes"; // Using routes with auth endpoints
 import { setupVite, serveStatic, log } from "./vite";
+import { setupAcmeChallengeRoutes } from "./acme-challenge";
 
 const app = express();
 app.use(express.json());
@@ -73,6 +74,9 @@ app.use((req, res, next) => {
 
   next();
 });
+
+// Setup ACME challenge routes for SSL certificate verification
+setupAcmeChallengeRoutes(app);
 
 (async () => {
   const server = await registerRoutes(app);
