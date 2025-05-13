@@ -152,14 +152,6 @@ const AppDetail = () => {
                       <p className="font-medium">{app.developer}</p>
                     </div>
                   </div>
-                  
-                  <div className="flex items-center border border-gray-200 rounded-lg p-2">
-                    <i className="fas fa-tag text-gray-500 w-8"></i>
-                    <div>
-                      <p className="text-sm text-gray-500">#Version</p>
-                      <p className="font-medium">{app.version}</p>
-                    </div>
-                  </div>
                 </div>
                 
                 {/* Advertisement buttons with affiliate links */}
