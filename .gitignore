@@ -4,3 +4,17 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# Build output
+client/dist/
+functions/_assets/
+.cloudflare/functions/

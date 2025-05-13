@@ -1,0 +1,23 @@
+name = "topapps-api"
+main = "functions/api.js"
+compatibility_date = "2023-05-18"
+
+# Add your custom domain here (once set up in Cloudflare)
+# routes = [
+#   { pattern = "api.topapps.store/*", zone_id = "your-zone-id" }
+# ]
+
+[site]
+bucket = "client/dist"
+
+[build]
+command = "./build.sh"
+
+# Add KV Namespace or D1 Database if needed
+# [[kv_namespaces]]
+# binding = "MY_KV"
+# id = "your-kv-id"
+
+[env.production]
+# Production-specific settings
+workers_dev = false
