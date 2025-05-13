@@ -20,6 +20,12 @@ app.use((req, res, next) => {
     return next();
   }
   
+  // Always allow ACME challenge requests over HTTP
+  if (req.path.startsWith('/.well-known/acme-challenge/')) {
+    log(`Allowing HTTP access to ACME challenge: ${req.path}`);
+    return next();
+  }
+  
   // Redirect to HTTPS
   log(`Redirecting ${req.method} ${req.url} to HTTPS`);
   res.redirect(`https://${req.headers.host}${req.url}`);
