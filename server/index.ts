@@ -6,6 +6,44 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Force HTTPS redirection in production
+app.use((req, res, next) => {
+  // Skip for localhost and development
+  if (
+    app.get("env") !== "production" || 
+    req.headers.host?.includes("localhost") || 
+    req.headers.host?.includes("repl.co") ||
+    req.secure || 
+    req.headers["x-forwarded-proto"] === "https"
+  ) {
+    return next();
+  }
+  
+  // Redirect to HTTPS
+  log(`Redirecting ${req.method} ${req.url} to HTTPS`);
+  res.redirect(`https://${req.headers.host}${req.url}`);
+});
+
+// Add security headers
+app.use((req, res, next) => {
+  // Add Strict-Transport-Security to enforce HTTPS
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  
+  // Prevent clickjacking
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  
+  // Enable XSS protection in browsers
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  
+  // Prevent MIME type sniffing
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  
+  // Set content security policy - relaxed for React application needs
+  res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: blob: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;");
+  
+  next();
+});
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
