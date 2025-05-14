@@ -14,7 +14,6 @@ type TranslationObject = Record<string, any>;
 // Type for context value
 interface LanguageContextType {
   language: Language;
-  setLanguage: (lang: Language) => void;
   t: (key: string, params?: Record<string, string>) => string;
 }
 
