@@ -1,5 +1,5 @@
-import { db } from "../server/db";
-import { apps, categories } from "../shared/schema";
+import { db, runMigrations } from "../server/db-sqlite";
+import { apps, categories } from "../shared/schema-sqlite";
 import { syncAppInfo } from "../server/app-sync-service";
 import { eq } from "drizzle-orm";
 
@@ -103,8 +103,7 @@ async function processApp(appInfo: any) {
         .set({
           googlePlayUrl: appInfo.googlePlayUrl,
           originalAppId: appInfo.originalAppId,
-          categoryId: appInfo.categoryId,
-          isAffiliate: true
+          categoryId: appInfo.categoryId
         })
         .where(eq(apps.id, appInfo.id))
         .returning();
@@ -127,7 +126,7 @@ async function processApp(appInfo: any) {
           categoryId: appInfo.categoryId,
           description: `Descripción de ${formattedName} que se actualizará desde Google Play.`,
           iconUrl: 'https://via.placeholder.com/512',
-          screenshots: [],
+          screenshots: JSON.stringify([]),
           rating: 0,
           downloads: '0+',
           version: '1.0.0',
@@ -138,8 +137,7 @@ async function processApp(appInfo: any) {
           installs: '0+',
           downloadUrl: `https://topapps.store/download/${appInfo.id}`,
           googlePlayUrl: appInfo.googlePlayUrl,
-          originalAppId: appInfo.originalAppId,
-          isAffiliate: true
+          originalAppId: appInfo.originalAppId
         })
         .returning();
       
@@ -171,6 +169,15 @@ async function processApp(appInfo: any) {
 async function main() {
   try {
     console.log("Iniciando importación de todas las aplicaciones...");
+    
+    // Inicializar la base de datos SQLite
+    console.log("Inicializando la base de datos...");
+    const dbInitResult = runMigrations();
+    if (!dbInitResult) {
+      console.error("Error al inicializar la base de datos. No se puede continuar.");
+      return;
+    }
+    console.log("Base de datos inicializada correctamente.");
     
     // Asegurar que todas las categorías existan
     await ensureCategories();
