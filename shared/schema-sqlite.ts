@@ -61,7 +61,6 @@ export const apps = sqliteTable("apps", {
   installs: text("installs"),
   downloadUrl: text("download_url"),
   googlePlayUrl: text("google_play_url"),
-  iosAppStoreUrl: text("ios_app_store_url"),
   originalAppId: text("original_app_id"),
   screenshots: text("screenshots", { mode: "json" }).$type<string[]>(),
   lastSyncedAt: integer("last_synced_at", { mode: "timestamp" }),
@@ -104,7 +103,6 @@ export type AppLegacy = {
   installs: string;
   downloadUrl: string;
   googlePlayUrl: string;
-  iosAppStoreUrl?: string;
   originalAppId?: string;
   screenshots: string[];
   isAffiliate?: boolean;

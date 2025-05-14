@@ -1,5 +1,4 @@
 import gplay from 'google-play-scraper';
-import appStore from 'app-store-scraper';
 import { db } from './db';
 import { eq } from 'drizzle-orm';
 import { apps, appVersionHistory } from '@shared/schema';
@@ -21,13 +20,12 @@ interface AppData {
   url: string;
   genre: string;
   updated: string;
-  storeType: 'android' | 'ios' | 'both';
 }
 
 /**
  * Fetch app data from Google Play Store
  */
-async function getAndroidAppData(packageName: string): Promise<AppData | null> {
+async function getGooglePlayAppData(packageName: string): Promise<AppData | null> {
   try {
     const appData = await gplay.app({
       appId: packageName,
@@ -50,45 +48,10 @@ async function getAndroidAppData(packageName: string): Promise<AppData | null> {
       price: appData.price || 0,
       url: appData.url,
       genre: appData.genre || '',
-      updated: appData.updated || new Date().toDateString(),
-      storeType: 'android'
+      updated: appData.updated || new Date().toDateString()
     };
   } catch (error) {
-    log(`Error fetching Android app data for ${packageName}: ${error}`, 'error');
-    return null;
-  }
-}
-
-/**
- * Fetch app data from Apple App Store
- */
-async function getIosAppData(appId: string): Promise<AppData | null> {
-  try {
-    const appData = await appStore.app({
-      id: appId,
-      country: 'us'
-    });
-
-    return {
-      appId: appId,
-      name: appData.title,
-      description: appData.description,
-      version: appData.version,
-      developer: appData.developer,
-      icon: appData.icon,
-      screenshots: appData.screenshots || [],
-      rating: typeof appData.score === 'number' ? appData.score : 0,
-      reviews: appData.reviews || 0,
-      size: appData.size || '',
-      releaseDate: new Date(appData.released || Date.now()),
-      price: appData.price || 0,
-      url: appData.url,
-      genre: appData.primaryGenre || '',
-      updated: appData.updated || new Date().toDateString(),
-      storeType: 'ios'
-    };
-  } catch (error) {
-    log(`Error fetching iOS app data for ${appId}: ${error}`, 'error');
+    log(`Error fetching Google Play app data for ${packageName}: ${error}`, 'error');
     return null;
   }
 }
@@ -152,7 +115,7 @@ async function updateAppInDatabase(appData: AppData, appId: string) {
 /**
  * Synchronize app information for a single app
  */
-export async function syncAppInfo(appId: string, storeType: 'android' | 'ios' | 'both' = 'both') {
+export async function syncAppInfo(appId: string) {
   try {
     // Get app from database
     const [app] = await db.select().from(apps).where(eq(apps.id, appId));
@@ -162,7 +125,7 @@ export async function syncAppInfo(appId: string, storeType: 'android' | 'ios' | 
       return false;
     }
 
-    // Get originalAppId (package name for Android or app ID for iOS)
+    // Get originalAppId (package name for Google Play)
     const originalAppId = app.originalAppId || '';
 
     if (!originalAppId) {
@@ -170,20 +133,8 @@ export async function syncAppInfo(appId: string, storeType: 'android' | 'ios' | 
       return false;
     }
 
-    let appData: AppData | null = null;
-
-    // Fetch from Android store if needed
-    if (storeType === 'android' || storeType === 'both') {
-      appData = await getAndroidAppData(originalAppId);
-    }
-
-    // Fetch from iOS store if needed and Android didn't work
-    if ((storeType === 'ios' || (storeType === 'both' && !appData)) && app.iosAppStoreUrl) {
-      const iosAppId = app.iosAppStoreUrl.split('/id')[1];
-      if (iosAppId) {
-        appData = await getIosAppData(iosAppId);
-      }
-    }
+    // Fetch from Google Play Store
+    const appData = await getGooglePlayAppData(originalAppId);
 
     // Update database if appData was fetched
     if (appData) {

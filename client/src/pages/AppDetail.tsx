@@ -232,7 +232,7 @@ const AppDetail = () => {
                   )}
                 </div>
                 
-                {/* Official App Store Buttons */}
+                {/* Official Google Play Button */}
                 <div className="w-full mb-2 flex gap-2 justify-center">
                   {app.googlePlayUrl && (
                     <a
@@ -244,18 +244,6 @@ const AppDetail = () => {
                     >
                       <i className="fab fa-google-play mr-1.5"></i>
                       Google Play
-                    </a>
-                  )}
-                  
-                  {app.iosAppStoreUrl && (
-                    <a
-                      href={app.iosAppStoreUrl}
-                      className="flex items-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium py-1.5 px-3 rounded-md transition-colors"
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      <i className="fab fa-app-store-ios mr-1.5"></i>
-                      App Store
                     </a>
                   )}
                 </div>
