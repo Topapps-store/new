@@ -48,6 +48,7 @@ export function AddAppModal({
   const [isLoading, setIsLoading] = useState(false);
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'manual' | 'import'>('import');
   const [formData, setFormData] = useState({
     id: '',
     name: '',
