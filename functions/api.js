@@ -1,5 +1,4 @@
 import { getDatabase, convertToAppLegacy } from './db.js';
-import { eq, desc, like, and, not } from 'drizzle-orm';
 
 export default {
   async fetch(request, env, ctx) {
