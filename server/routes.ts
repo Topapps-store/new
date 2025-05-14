@@ -26,6 +26,7 @@ import {
   updateLogoFromUrl,
   manualSyncApp
 } from "./controllers/app-management-controller";
+import { importFromGooglePlay } from "./controllers/google-play-import-controller";
 import { InsertAffiliateLink, insertAffiliateLinkSchema } from "@shared/schema";
 import { z } from "zod";
 
