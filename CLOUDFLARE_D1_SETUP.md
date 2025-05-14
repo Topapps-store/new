@@ -19,14 +19,31 @@ Este documento detalla cómo configurar la base de datos D1 de Cloudflare para e
    wrangler d1 create topapps
    ```
 
-   Después de crear la base de datos, Wrangler mostrará el ID de la base de datos. Copia este ID.
+   Después de crear la base de datos, Wrangler mostrará un mensaje similar a este:
+   ```
+   ✅ Successfully created DB 'topapps'
+   Created D1 database 'topapps' (5d1ce3d2-8fb2-45e5-ad39-98d5efbc9e00)
+   ```
+
+   Copia el ID (en este ejemplo: `5d1ce3d2-8fb2-45e5-ad39-98d5efbc9e00`).
 
 4. Actualiza el archivo `wrangler.toml` con el ID de la base de datos:
    ```toml
    [[d1_databases]]
    binding = "DB"
    database_name = "topapps"
-   database_id = "TU_ID_DE_BASE_DE_DATOS"
+   database_id = "5d1ce3d2-8fb2-45e5-ad39-98d5efbc9e00" # Reemplaza con tu ID
+   ```
+
+   También asegúrate de actualizar la configuración de producción:
+   ```toml
+   [env.production]
+   workers_dev = false
+
+   [[env.production.d1_databases]]
+   binding = "DB"
+   database_name = "topapps"
+   database_id = "5d1ce3d2-8fb2-45e5-ad39-98d5efbc9e00" # El mismo ID
    ```
 
 ## Configuración del esquema de la base de datos

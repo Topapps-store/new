@@ -17,8 +17,14 @@ command = "./build-cloudflare.sh"
 [[d1_databases]]
 binding = "DB"
 database_name = "topapps"
-database_id = ""  # Replace with your actual D1 database ID when deploying
+database_id = "5d1ce3d2-8fb2-45e5-ad39-98d5efbc9e00"  # ID de ejemplo - debes reemplazarlo con tu ID real de D1
 
 [env.production]
 # Production-specific settings
 workers_dev = false
+
+# Usa la misma configuración de base de datos en producción
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "topapps"
+database_id = "5d1ce3d2-8fb2-45e5-ad39-98d5efbc9e00"  # Usa el mismo ID de tu base de datos D1
