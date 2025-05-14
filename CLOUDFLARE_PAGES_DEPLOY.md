@@ -132,3 +132,21 @@ Visita esta URL y verifica que:
 1. La página principal se carga correctamente
 2. Las aplicaciones se muestran (si hay datos en la base de datos)
 3. Las traducciones funcionan si estás usando un navegador en otro idioma
+
+## Inicialización de la Base de Datos
+
+Después del despliegue, necesitarás inicializar la base de datos D1 con datos de prueba:
+
+1. Revisa el archivo `db_init.md` para obtener instrucciones detalladas sobre cómo inicializar la base de datos D1.
+
+2. Ejecuta el siguiente comando para cargar el esquema y los datos iniciales:
+   ```bash
+   wrangler d1 execute topapps --file=./schema.sql
+   ```
+
+3. Verifica que los datos se hayan cargado correctamente:
+   ```bash
+   wrangler d1 execute topapps --command="SELECT COUNT(*) FROM apps"
+   ```
+
+Si experimentas problemas de lentitud o las aplicaciones no se muestran, es probable que necesites inicializar la base de datos D1 siguiendo las instrucciones anteriores.
