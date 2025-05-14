@@ -1,0 +1,17 @@
+# D1 database configuration for Cloudflare
+# This configuration is for Cloudflare's D1 database
+
+[[d1_databases]]
+binding = "DB" # The binding name used in your Worker code
+database_name = "topapps" # Name your database
+database_id = "" # When deploying, replace with actual database ID
+
+# Migration settings for your D1 database
+[[migrations]]
+tag = "init" # A unique tag for this migration
+new_classes = ["users", "categories", "apps", "affiliate_links", "app_version_history"] # Tables created in this migration
+
+# Note: For database_id, you'll need to:
+# 1. Create a D1 database in the Cloudflare dashboard
+# 2. Get the ID from the dashboard
+# 3. Place it in this file before deployment

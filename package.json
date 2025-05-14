@@ -11,6 +11,7 @@
     "db:push": "drizzle-kit push"
   },
   "dependencies": {
+    "@cloudflare/workers-types": "^4.20250514.0",
     "@google-cloud/translate": "^9.0.1",
     "@hookform/resolvers": "^3.10.0",
     "@jridgewell/trace-mapping": "^0.3.25",
@@ -49,6 +50,7 @@
     "@types/multer": "^1.4.12",
     "app-store-scraper": "^0.18.0",
     "bcrypt": "^5.1.1",
+    "better-sqlite3": "^11.10.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
