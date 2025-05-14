@@ -983,7 +983,21 @@ export class MemStorage implements IStorage {
   }
   
   async getPopularApps(): Promise<AppLegacy[]> {
-    return this.apps.map(app => {
+    // Sort by downloads (converting to numeric value for sorting)
+    const sortedApps = [...this.apps].sort((a, b) => {
+      const getNumericDownloads = (downloads: string) => {
+        const match = downloads.match(/(\d+)([KM])?/);
+        if (!match) return 0;
+        const base = parseInt(match[1], 10);
+        const multiplier = match[2] === 'K' ? 1000 : match[2] === 'M' ? 1000000 : 1;
+        return base * multiplier;
+      };
+      
+      return getNumericDownloads(b.downloads) - getNumericDownloads(a.downloads);
+    });
+    
+    // Limit to 10 apps
+    return sortedApps.slice(0, 10).map(app => {
       const category = this.categories.find(c => c.id === app.categoryId);
       return this.convertToAppLegacy(app, category?.name || 'Unknown');
     });
