@@ -18,6 +18,7 @@ import {
   DeleteAppDialog 
 } from '@/components/admin/AppManagementModals';
 import { SimpleThemeToggle } from '@/components/admin/ThemeToggle';
+import { CategoryManager } from '@/components/admin/CategoryManager';
 
 type AdminTab = 'dashboard' | 'apps' | 'affiliate-links' | 'app-updates' | 'settings';
 
@@ -651,6 +652,18 @@ function SettingsTab() {
               </Button>
             </div>
           </div>
+        </CardContent>
+      </Card>
+      
+      <Card className="bg-admin-card border-admin transition-colors duration-200">
+        <CardHeader>
+          <CardTitle>{t('admin.categoryManagement')}</CardTitle>
+          <CardDescription className="text-admin-muted">{t('admin.manageCategoriesDescription')}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <CategoryManager onCategoryAdded={() => {
+            // Aquí podriamos mostrar una notificación o refrescar datos si es necesario
+          }} />
         </CardContent>
       </Card>
     </div>
