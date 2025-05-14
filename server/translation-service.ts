@@ -120,11 +120,21 @@ export async function translateObject(
     if (obj.hasOwnProperty(key)) {
       const value = obj[key];
 
-      // Los campos que contienen texto que debe traducirse
-      const textFields = ['name', 'description', 'title', 'content', 'text', 'developer', 'requires'];
+      // Campos que NO deben traducirse (IDs, URLs, fechas, etc.)
+      const nonTextFields = [
+        'id', 'url', 'iconUrl', 'appId', 'categoryId', 'originalAppId', 'googlePlayUrl', 'iosAppStoreUrl', 
+        'downloadUrl', 'screenshots', 'rating', 'version', 'size', 'releaseDate', 'lastSyncedAt', 'createdAt', 
+        'updatedAt', 'price', 'reviews', 'installs', 'isNotified', 'icon', 'color'
+      ];
 
-      if (typeof value === 'string' && textFields.includes(key)) {
-        translatedObj[key] = await translateText(value, targetLanguage);
+      // Traducimos TODOS los campos de texto que no estén en la lista de exclusión
+      if (typeof value === 'string' && !nonTextFields.includes(key)) {
+        // Solo traducimos si el texto tiene al menos 3 caracteres y no es solo números
+        if (value.length > 2 && !/^\d+$/.test(value)) {
+          translatedObj[key] = await translateText(value, targetLanguage);
+        } else {
+          translatedObj[key] = value;
+        }
       } else if (typeof value === 'object' && value !== null) {
         translatedObj[key] = await translateObject(value, targetLanguage);
       } else {

@@ -55,17 +55,18 @@ export function translationMiddleware() {
           // Procesamos la traducción de manera asíncrona
           (async () => {
             try {
-              // Solo traducimos ciertas rutas
-              const pathsToTranslate = [
-                '/api/apps',
-                '/api/categories',
-                '/api/app-updates'
+              // Traducimos TODAS las respuestas de la API
+              // Solo excluimos rutas que sabemos que no contienen texto que deba ser traducido
+              const pathsToExclude = [
+                '/api/auth',
+                '/api/admin/upload',
+                '/api/health'
               ];
               
-              let shouldTranslate = false;
-              for (const path of pathsToTranslate) {
+              let shouldTranslate = true;
+              for (const path of pathsToExclude) {
                 if (req.path.startsWith(path)) {
-                  shouldTranslate = true;
+                  shouldTranslate = false;
                   break;
                 }
               }
