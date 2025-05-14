@@ -11,7 +11,7 @@ compatibility_date = "2023-05-18"
 bucket = "dist/public"
 
 [build]
-command = "./build.sh"
+command = "./build-cloudflare.sh"
 
 # D1 Database configuration
 [[d1_databases]]
