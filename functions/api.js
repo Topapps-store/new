@@ -1,4 +1,5 @@
-import { getDatabase, convertToAppLegacy } from './db.js';
+import { getDatabaseForCloudflare, convertToAppLegacy } from './db.js';
+import { eq, desc, like, and, not } from 'drizzle-orm';
 
 export default {
   async fetch(request, env, ctx) {
@@ -17,8 +18,8 @@ export default {
         });
       }
       
-      // Get the database
-      const db = getDatabase(env);
+      // Get the D1 database connection
+      const db = getDatabaseForCloudflare(env);
       
       // Handle API routes
       if (url.pathname.startsWith('/api/')) {

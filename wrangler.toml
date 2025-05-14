@@ -8,15 +8,16 @@ compatibility_date = "2023-05-18"
 # ]
 
 [site]
-bucket = "client/dist"
+bucket = "dist/public"
 
 [build]
 command = "./build.sh"
 
-# Add KV Namespace or D1 Database if needed
-# [[kv_namespaces]]
-# binding = "MY_KV"
-# id = "your-kv-id"
+# D1 Database configuration
+[[d1_databases]]
+binding = "DB"
+database_name = "topapps"
+database_id = ""  # Replace with your actual D1 database ID when deploying
 
 [env.production]
 # Production-specific settings

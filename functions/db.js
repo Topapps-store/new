@@ -1,5 +1,6 @@
 // Cloudflare D1 database adapter for Workers
 import { drizzle } from 'drizzle-orm/d1';
+import { eq, desc, like, and, not } from 'drizzle-orm';
 
 // Note: Cloudflare Workers can't directly import from TypeScript files
 // So we'll define a simplified schema here
@@ -63,13 +64,16 @@ const schema = {
   }
 };
 
-export function getDatabase(env) {
+export function getDatabaseForCloudflare(env) {
   if (!env.DB) {
     console.error('D1 database binding not found');
     return null;
   }
   
-  return drizzle(env.DB);
+  const db = drizzle(env.DB);
+  // Add schema information that's needed by the API
+  db._ = { schema };
+  return db;
 }
 
 // Helper function to convert app database model to legacy format

@@ -10,36 +10,23 @@ export NODE_VERSION=20
 echo "Starting build process for TopApps.store..."
 echo "NODE_ENV: $NODE_ENV"
 
-# Check for database environment variables
-if [ -z "$DATABASE_URL" ]; then
-  echo "Warning: DATABASE_URL is not set. This might cause issues with database connections."
-else
-  echo "Database configuration detected."
-fi
-
 # Install dependencies
 echo "Installing dependencies..."
 npm install
-
-# Run database migrations if needed (only in production)
-if [ "$NODE_ENV" = "production" ] && [ ! -z "$DATABASE_URL" ]; then
-  echo "Running database migrations..."
-  # Uncomment the following line if you need to run migrations
-  # npx drizzle-kit push:pg
-fi
 
 # Build frontend app
 echo "Building frontend app..."
 npm run build
 
-# Create API function for Cloudflare
-echo "Creating API function for Cloudflare..."
+# Create API function for Cloudflare - we're now using the pre-built functions/api.js
+echo "Preparing API function for Cloudflare..."
 mkdir -p functions
-npx esbuild server/cloudflare.ts --platform=node --packages=external --bundle --format=esm --outfile=functions/api.js
+# Just make sure the functions directory exists, but don't rebuild the API file
+# as we now manually maintain the Cloudflare Workers code in the functions/ directory
 
 # Create a _headers file for security
 echo "Creating security headers file..."
-cat > client/dist/_headers << EOL
+cat > dist/public/_headers << EOL
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
