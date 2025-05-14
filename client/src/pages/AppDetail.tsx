@@ -194,13 +194,27 @@ const AppDetail = () => {
                             data-event="click:affiliateLink"
                             data-affiliate-id={link.id}
                           >
+                            {/* Button content with animated download icon */}
                             <span className="relative z-10 flex items-center justify-center">
                               <svg className="w-5 h-5 mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd"></path>
                               </svg>
                               {link.buttonText}
                             </span>
+                            
+                            {/* Hover overlay effect */}
                             <span className="absolute inset-0 h-full w-full scale-0 rounded-lg transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></span>
+                            
+                            {/* Reflection animation effect */}
+                            <span 
+                              className="absolute top-0 left-0 w-1/3 h-full bg-white/20 transform -skew-x-12 opacity-0 group-hover:animate-shimmer"
+                              style={{
+                                animation: 'shimmer 2s infinite',
+                              }}
+                            ></span>
+                            
+                            {/* Pulsing outline effect */}
+                            <span className="absolute inset-0 rounded-lg ring-2 ring-white/30 animate-pulse-slow"></span>
                           </a>
                         </div>
                       ))}
@@ -215,13 +229,27 @@ const AppDetail = () => {
                       onClick={() => console.log("Advertisement download clicked")}
                       data-event="click:advertisementDownload"
                     >
+                      {/* Button content */}
                       <span className="relative z-10 flex items-center justify-center">
                         <svg className="w-5 h-5 mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                           <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd"></path>
                         </svg>
                         {t('appDetail.downloadAPK')}
                       </span>
+                      
+                      {/* Hover effect */}
                       <span className="absolute inset-0 h-full w-full scale-0 rounded-lg transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></span>
+                      
+                      {/* Reflection animation */}
+                      <span 
+                        className="absolute top-0 left-0 w-1/3 h-full bg-white/20 transform -skew-x-12 opacity-0 group-hover:animate-shimmer"
+                        style={{
+                          animation: 'shimmer 2s infinite',
+                        }}
+                      ></span>
+                      
+                      {/* Pulsing glow effect */}
+                      <span className="absolute inset-0 rounded-lg ring-2 ring-white/30 animate-pulse-slow"></span>
                     </a>
                   )}
                 </div>
