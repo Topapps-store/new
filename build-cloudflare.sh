@@ -2,6 +2,9 @@
 
 echo "Starting Cloudflare Pages build process..."
 
+# Use Node.js LTS version (18.x)
+export NODE_VERSION=18
+
 # Asegurarnos de que existe el directorio dist/public
 mkdir -p dist/public
 

@@ -9,6 +9,7 @@ compatibility_date = "2023-05-18"
 
 [site]
 bucket = "dist/public"
+pages_build_output_dir = "dist/public"
 
 [build]
 command = "./build-cloudflare.sh"

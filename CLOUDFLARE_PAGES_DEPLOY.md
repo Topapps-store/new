@@ -22,7 +22,7 @@ Este documento explica el proceso de despliegue de TopApps en Cloudflare Pages c
    - **Build output directory**: `dist/public`
    - **Root directory**: `/` (déjalo vacío)
    - **Environment variables**: Asegúrate de añadir las siguientes:
-     - `NODE_VERSION`: `16` (o superior)
+     - `NODE_VERSION`: `18` (versión LTS recomendada)
      - `DEEPL_API_KEY`: Tu clave API de DeepL
 
 6. En la sección "Functions", asegúrate de que:
@@ -46,12 +46,44 @@ Para probar el despliegue localmente antes de enviar a Cloudflare:
    wrangler login
    ```
 
-3. Prueba tu aplicación localmente:
+3. Construye y prueba tu aplicación localmente:
    ```bash
-   wrangler pages dev dist/public --binding DB=<database-id>
+   # Construye la aplicación
+   npm run build
+   
+   # Ejecuta con Wrangler
+   wrangler pages dev dist/public --binding DB=8252c0e2-972e-4994-b168-d9b8f9d6fddd
    ```
 
 ### 3. Solución de Problemas Comunes
+
+#### Error con la versión de Node.js
+
+Si encuentras errores relacionados con la versión de Node.js (como `node-build: definition not found`), asegúrate de tener configurada la versión correcta de Node.js:
+
+1. Agrega un archivo `.nvmrc` en la raíz del proyecto con el contenido:
+   ```
+   18
+   ```
+
+2. Agrega un archivo `.node-version` con el mismo contenido.
+
+3. En la configuración de Cloudflare Pages, asegúrate de agregar la variable de entorno:
+   - `NODE_VERSION`: `18`
+
+#### Error con wrangler.toml no válido
+
+Si encuentras un error como:
+```
+A wrangler.toml file was found but it does not appear to be valid.
+```
+
+Asegúrate de que el archivo `wrangler.toml` incluye la propiedad `pages_build_output_dir`:
+```toml
+[site]
+bucket = "dist/public"
+pages_build_output_dir = "dist/public"
+```
 
 #### Error: Permission denied en build.sh
 
@@ -81,7 +113,7 @@ Asegúrate de que tanto la sección principal como la sección `[env.production]
 [[d1_databases]]
 binding = "DB"
 database_name = "topapps"
-database_id = "TU_ID_DE_BASE_DE_DATOS" # Reemplaza con tu ID real
+database_id = "8252c0e2-972e-4994-b168-d9b8f9d6fddd" # Tu ID real
 
 [env.production]
 # ...
@@ -89,7 +121,7 @@ database_id = "TU_ID_DE_BASE_DE_DATOS" # Reemplaza con tu ID real
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "topapps"
-database_id = "TU_ID_DE_BASE_DE_DATOS" # El mismo ID
+database_id = "8252c0e2-972e-4994-b168-d9b8f9d6fddd" # El mismo ID
 ```
 
 ## Verificación del Despliegue
