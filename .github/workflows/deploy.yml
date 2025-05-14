@@ -29,8 +29,14 @@ jobs:
           chmod +x build.sh
           ./build.sh
         env:
-          # Add any build environment variables here
           NODE_ENV: production
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          PGHOST: ${{ secrets.PGHOST }}
+          PGUSER: ${{ secrets.PGUSER }}
+          PGPASSWORD: ${{ secrets.PGPASSWORD }}
+          PGDATABASE: ${{ secrets.PGDATABASE }}
+          PGPORT: ${{ secrets.PGPORT }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
           
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
