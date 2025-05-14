@@ -132,10 +132,23 @@ function AdminDashboardContent() {
 
 function DashboardTab() {
   const { t } = useLanguage();
-  const { data: analytics = [], isLoading } = useQuery<Array<{appId: string, appName: string, totalClicks: number}>>({
+  const { data: analytics = [], isLoading: isLoadingAnalytics } = useQuery<Array<{appId: string, appName: string, totalClicks: number}>>({
     queryKey: ['/api/admin/affiliate-links/analytics'],
     retry: false,
   });
+  
+  const { data: apps = [], isLoading: isLoadingApps } = useQuery<AppLegacy[]>({
+    queryKey: ['/api/admin/apps'],
+    retry: false,
+  });
+  
+  const { data: links = [], isLoading: isLoadingLinks } = useQuery<AffiliateLink[]>({
+    queryKey: ['/api/admin/affiliate-links'],
+    retry: false,
+  });
+  
+  // Calculate total click count from all affiliate links
+  const totalClicks = analytics.reduce((sum, item) => sum + item.totalClicks, 0);
 
   return (
     <div className="space-y-6">
@@ -148,7 +161,13 @@ function DashboardTab() {
             <CardDescription className="text-admin-muted">{t('admin.appsInSystem')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">42</p>
+            <p className="text-4xl font-bold">
+              {isLoadingApps ? (
+                <Loader2 className="h-6 w-6 inline animate-spin" />
+              ) : (
+                apps.length
+              )}
+            </p>
           </CardContent>
         </Card>
         
@@ -158,7 +177,13 @@ function DashboardTab() {
             <CardDescription className="text-admin-muted">{t('admin.activeLinks')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">38</p>
+            <p className="text-4xl font-bold">
+              {isLoadingLinks ? (
+                <Loader2 className="h-6 w-6 inline animate-spin" />
+              ) : (
+                links.length
+              )}
+            </p>
           </CardContent>
         </Card>
         
@@ -168,7 +193,13 @@ function DashboardTab() {
             <CardDescription className="text-admin-muted">{t('admin.totalTraffic')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">1,246</p>
+            <p className="text-4xl font-bold">
+              {isLoadingAnalytics ? (
+                <Loader2 className="h-6 w-6 inline animate-spin" />
+              ) : (
+                totalClicks.toLocaleString()
+              )}
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -193,27 +224,12 @@ function DashboardTab() {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* This would normally be analytics data */}
-                  <tr className="border-b">
-                    <td className="py-2">TikTok</td>
-                    <td className="text-right">358</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="py-2">Netflix</td>
-                    <td className="text-right">246</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="py-2">Spotify</td>
-                    <td className="text-right">198</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="py-2">Instagram</td>
-                    <td className="text-right">167</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="py-2">WhatsApp</td>
-                    <td className="text-right">110</td>
-                  </tr>
+                  {analytics.map((analytic, index) => (
+                    <tr key={analytic.appId} className="border-b">
+                      <td className="py-2">{analytic.appName}</td>
+                      <td className="text-right">{analytic.totalClicks}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -553,35 +569,22 @@ function AffiliateLinksTab() {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* This would be populated with actual affiliate links data */}
-                  <tr className="border-b">
-                    <td className="py-2">TikTok</td>
-                    <td>Premium Download</td>
-                    <td className="text-center">Get Premium</td>
-                    <td className="text-center">358</td>
-                    <td className="text-right">
-                      <Button variant="outline" size="sm" className="mr-2">
-                        {t('admin.edit')}
-                      </Button>
-                      <Button variant="destructive" size="sm">
-                        {t('admin.delete')}
-                      </Button>
-                    </td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="py-2">Netflix</td>
-                    <td>Free Trial</td>
-                    <td className="text-center">Start Free Trial</td>
-                    <td className="text-center">246</td>
-                    <td className="text-right">
-                      <Button variant="outline" size="sm" className="mr-2">
-                        {t('admin.edit')}
-                      </Button>
-                      <Button variant="destructive" size="sm">
-                        {t('admin.delete')}
-                      </Button>
-                    </td>
-                  </tr>
+                  {links.map(link => (
+                    <tr key={link.id} className="border-b">
+                      <td className="py-2">{link.appId}</td>
+                      <td>{link.label}</td>
+                      <td className="text-center">{link.buttonText}</td>
+                      <td className="text-center">{link.clickCount}</td>
+                      <td className="text-right">
+                        <Button variant="outline" size="sm" className="mr-2">
+                          {t('admin.edit')}
+                        </Button>
+                        <Button variant="destructive" size="sm">
+                          {t('admin.delete')}
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
