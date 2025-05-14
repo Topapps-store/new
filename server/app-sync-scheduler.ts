@@ -5,7 +5,7 @@ import { log } from './vite';
 // Default schedule is every day at 4:00 AM
 const DEFAULT_SCHEDULE = '0 4 * * *';
 
-let syncJob: cron.ScheduledTask | null = null;
+let syncJob: ReturnType<typeof cron.schedule> | null = null;
 
 /**
  * Initialize the app data synchronization scheduler

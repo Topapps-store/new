@@ -33,6 +33,9 @@ import { InsertAffiliateLink, insertAffiliateLinkSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Middleware para analizar el cuerpo de las solicitudes
+  app.use(express.json());
+
   // Configure session middleware
   app.use(session({
     secret: process.env.SESSION_SECRET || 'topapps-secret-key',
@@ -44,6 +47,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }
   }));
+  
+  // Middleware de traducción automática si la API de DeepL está disponible
+  if (isTranslationAvailable()) {
+    app.use(translationMiddleware());
+    console.log('Translation middleware enabled with DeepL API');
+  } else {
+    console.log('DeepL API key not found, translations disabled');
+  }
 
   // API Routes
   const apiRouter = express.Router();

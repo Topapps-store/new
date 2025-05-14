@@ -107,11 +107,10 @@ async function updateAppInDatabase(appData: AppData, appId: string) {
     // If version changed, add to version history
     if (versionChanged) {
       await db.insert(appVersionHistory).values({
-        app_id: appId,
+        appId: appId,
         version: appData.version,
-        releaseDate: new Date(),
-        changes: 'Automatically detected version update',
-        notified: false
+        releaseNotes: 'Automatically detected version update',
+        isNotified: false
       });
     }
 
