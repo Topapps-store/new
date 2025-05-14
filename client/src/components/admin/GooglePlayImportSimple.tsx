@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/context/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
@@ -19,9 +20,11 @@ export function GooglePlayImportSimple({ onAppAdded }: GooglePlayImportSimplePro
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [googlePlayUrl, setGooglePlayUrl] = useState('');
+  const [appStoreUrl, setAppStoreUrl] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [customAppId, setCustomAppId] = useState('');
   const [isImporting, setIsImporting] = useState(false);
+  const [activeTab, setActiveTab] = useState<'android' | 'ios'>('android');
 
   // Fetch categories
   const { data: categories = [] } = useQuery<Category[]>({
@@ -30,11 +33,13 @@ export function GooglePlayImportSimple({ onAppAdded }: GooglePlayImportSimplePro
   });
 
   const handleImport = async () => {
-    if (!googlePlayUrl) {
+    const url = activeTab === 'android' ? googlePlayUrl : appStoreUrl;
+    
+    if (!url) {
       toast({
         variant: 'destructive',
-        title: t('admin.googlePlayUrlRequired'),
-        description: t('admin.pleaseEnterGooglePlayUrl'),
+        title: activeTab === 'android' ? t('admin.googlePlayUrlRequired') : t('admin.appStoreUrlRequired'),
+        description: activeTab === 'android' ? t('admin.pleaseEnterGooglePlayUrl') : t('admin.pleaseEnterAppStoreUrl'),
       });
       return;
     }
@@ -57,9 +62,11 @@ export function GooglePlayImportSimple({ onAppAdded }: GooglePlayImportSimplePro
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          googlePlayUrl,
+          googlePlayUrl: activeTab === 'android' ? googlePlayUrl : '',
+          appStoreUrl: activeTab === 'ios' ? appStoreUrl : '',
           categoryId: selectedCategory,
           customAppId: customAppId || undefined,
+          storeType: activeTab,
         }),
       });
 
@@ -77,6 +84,7 @@ export function GooglePlayImportSimple({ onAppAdded }: GooglePlayImportSimplePro
 
       // Reset form
       setGooglePlayUrl('');
+      setAppStoreUrl('');
       setCustomAppId('');
       setSelectedCategory('');
 
@@ -99,19 +107,44 @@ export function GooglePlayImportSimple({ onAppAdded }: GooglePlayImportSimplePro
 
   return (
     <div className="space-y-4">
-      <div className="space-y-2">
-        <Label htmlFor="googlePlayUrl">{t('admin.googlePlayUrl')}</Label>
-        <Input
-          id="googlePlayUrl"
-          value={googlePlayUrl}
-          onChange={(e) => setGooglePlayUrl(e.target.value)}
-          placeholder="https://play.google.com/store/apps/details?id=com.example.app"
-          disabled={isImporting}
-        />
-        <p className="text-xs text-muted-foreground">
-          {t('admin.enterFullGooglePlayUrl')}
-        </p>
-      </div>
+      <Tabs defaultValue="android" value={activeTab} onValueChange={(value) => setActiveTab(value as 'android' | 'ios')}>
+        <TabsList className="grid grid-cols-2 mb-4">
+          <TabsTrigger value="android">Google Play</TabsTrigger>
+          <TabsTrigger value="ios">App Store</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="android">
+          <div className="space-y-2">
+            <Label htmlFor="googlePlayUrl">{t('admin.googlePlayUrl')}</Label>
+            <Input
+              id="googlePlayUrl"
+              value={googlePlayUrl}
+              onChange={(e) => setGooglePlayUrl(e.target.value)}
+              placeholder="https://play.google.com/store/apps/details?id=com.example.app"
+              disabled={isImporting}
+            />
+            <p className="text-xs text-muted-foreground">
+              {t('admin.enterFullGooglePlayUrl')}
+            </p>
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="ios">
+          <div className="space-y-2">
+            <Label htmlFor="appStoreUrl">{t('admin.appStoreUrl')}</Label>
+            <Input
+              id="appStoreUrl"
+              value={appStoreUrl}
+              onChange={(e) => setAppStoreUrl(e.target.value)}
+              placeholder="https://apps.apple.com/app/id123456789"
+              disabled={isImporting}
+            />
+            <p className="text-xs text-muted-foreground">
+              {t('admin.enterFullAppStoreUrl')}
+            </p>
+          </div>
+        </TabsContent>
+      </Tabs>
 
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
@@ -146,9 +179,13 @@ export function GooglePlayImportSimple({ onAppAdded }: GooglePlayImportSimplePro
         </div>
       </div>
 
+      <p className="text-sm text-center text-muted-foreground">
+        {t('admin.autoImportDescription')}
+      </p>
+
       <Button
         onClick={handleImport}
-        disabled={isImporting || !googlePlayUrl || !selectedCategory}
+        disabled={isImporting || (activeTab === 'android' ? !googlePlayUrl : !appStoreUrl) || !selectedCategory}
         className="w-full"
       >
         {isImporting ? (

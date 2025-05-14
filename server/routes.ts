@@ -6,6 +6,8 @@ import { getApps, getAppById, getPopularApps, getRecentApps, getRelatedApps, sea
 import { getCategories, getCategoryById, getAppsByCategory } from "./data/categories";
 import session from "express-session";
 import multer from "multer";
+import { translationMiddleware } from "./translation-middleware";
+import { isTranslationAvailable } from "./translation-service";
 import { login, logout, checkAuth, requireAuth, requireAdmin } from "./controllers/auth-controller";
 import {
   getAppsForAdmin,
@@ -78,6 +80,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   adminRouter.post("/apps/:id/logo", requireAdmin, logoUpload.single('logo'), uploadLogo);
   adminRouter.post("/apps/:id/logo-url", requireAdmin, updateLogoFromUrl);
   adminRouter.post("/apps/:id/sync", requireAdmin, manualSyncApp);
+  adminRouter.post("/import-google-play", requireAdmin, importFromGooglePlay);
   
   // Admin affiliate link routes
   adminRouter.get("/affiliate-links", requireAdmin, getAffiliateLinks);
