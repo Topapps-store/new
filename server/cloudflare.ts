@@ -29,16 +29,67 @@ if (fs.existsSync(staticDir)) {
 // Cloudflare Pages Functions handler
 export default {
   async fetch(request: Request, env: any, ctx: any) {
-    // Create a URL object from the request URL
-    const url = new URL(request.url);
-    
-    // Handle the request using Express
-    return await new Promise((resolve) => {
-      const expressReq = createRequest(request, url);
-      const expressRes = createResponse(resolve);
+    try {
+      // Add environment variables to process.env for compatibility
+      if (typeof process === 'undefined' || !process.env) {
+        (globalThis as any).process = { env: {} };
+      }
       
-      app(expressReq, expressRes);
-    });
+      // Map Cloudflare environment variables to process.env
+      if (env) {
+        Object.keys(env).forEach(key => {
+          process.env[key] = env[key];
+        });
+        
+        // Ensure critical environment variables are set
+        if (env.DATABASE_URL) {
+          process.env.DATABASE_URL = env.DATABASE_URL;
+        }
+        
+        // Set NODE_ENV if not already set
+        if (!process.env.NODE_ENV) {
+          process.env.NODE_ENV = 'production';
+        }
+      }
+      
+      // Create a URL object from the request URL
+      const url = new URL(request.url);
+      
+      // Handle API health check separately for quick response
+      if (url.pathname === '/api/health') {
+        return new Response(JSON.stringify({
+          status: 'ok',
+          timestamp: new Date().toISOString(),
+          environment: process.env.NODE_ENV
+        }), {
+          headers: { 'Content-Type': 'application/json' },
+          status: 200
+        });
+      }
+      
+      // Handle the request using Express
+      return await new Promise((resolve) => {
+        const expressReq = createRequest(request, url);
+        const expressRes = createResponse(resolve);
+        
+        app(expressReq, expressRes);
+      });
+    } catch (err) {
+      // Enhanced error handling
+      console.error('Cloudflare function error:', err);
+      
+      // Safely extract error message
+      const errorMessage = err instanceof Error ? err.message : 'Internal Server Error';
+      
+      return new Response(JSON.stringify({
+        error: errorMessage,
+        path: new URL(request.url).pathname,
+        timestamp: new Date().toISOString()
+      }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
   }
 };
 
