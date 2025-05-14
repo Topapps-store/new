@@ -156,13 +156,8 @@ const AppDetail = () => {
                 
                 {/* Advertisement buttons with affiliate links */}
                 <div className="w-full mt-4 border-t border-gray-200 pt-4">
-                  <div className="flex items-center mb-2">
-                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 mr-1">
-                      {t('sponsored.sponsored')}
-                    </span>
-                    <span className="text-xs text-gray-500">
-                      • {t('sponsored.supportOurSite')}
-                    </span>
+                  <div className="text-xs text-gray-500 mb-1">
+                    {t('sponsored.sponsored')}
                   </div>
                   
                   {isLoadingAffiliateLinks ? (
