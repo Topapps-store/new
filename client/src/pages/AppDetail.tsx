@@ -136,8 +136,8 @@ const AppDetail = () => {
                 </div>
                 
                 {/* Advertisement buttons with affiliate links - moved up, below rating */}
-                <div className="w-full mb-3">
-                  <div className="text-xs text-gray-500 mb-1">
+                <div className="w-full mb-3 flex flex-col items-center">
+                  <div className="text-xs text-gray-500 mb-3 self-start">
                     {t('sponsored.sponsored')}
                   </div>
                   
@@ -233,17 +233,17 @@ const AppDetail = () => {
                 </div>
                 
                 {/* App Info Cards - more compact */}
-                <div className="w-full space-y-1">
-                  <div className="flex items-center border border-gray-200 rounded-lg p-1.5">
-                    <i className="fas fa-language text-gray-500 w-6"></i>
+                <div className="w-full space-y-3 mt-2">
+                  <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
+                    <i className="fas fa-download text-green-500 w-6 text-lg"></i>
                     <div>
-                      <p className="text-xs text-gray-500">{t('appDetail.language')}</p>
-                      <p className="font-medium text-sm">English</p>
+                      <p className="text-xs text-gray-500">{t('appDetail.downloads')}</p>
+                      <p className="font-medium text-sm">{app.downloads || '10M+'}</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center border border-gray-200 rounded-lg p-1.5">
-                    <i className="fas fa-code-branch text-gray-500 w-6"></i>
+                  <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
+                    <i className="fas fa-code-branch text-blue-500 w-6 text-lg"></i>
                     <div>
                       <p className="text-xs text-gray-500">{t('appDetail.developer')}</p>
                       <p className="font-medium text-sm">{app.developer}</p>
