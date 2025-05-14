@@ -155,11 +155,12 @@ const AppDetail = () => {
                           )}
                           <a 
                             href={link.url}
-                            className="group relative block w-full text-center font-bold py-4 px-5 rounded-lg mb-1 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden scale-125"
+                            className="group relative block w-4/5 mx-auto text-center font-bold py-3 px-5 rounded-full mb-1 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden scale-125"
                             style={{ 
                               backgroundColor: link.buttonColor || '#22c55e', 
                               color: 'white',
-                              boxShadow: `0 4px 14px 0 ${link.buttonColor ? link.buttonColor + '80' : 'rgba(34, 197, 94, 0.4)'}` 
+                              boxShadow: `0 4px 16px 0 ${link.buttonColor ? link.buttonColor + '80' : 'rgba(34, 197, 94, 0.6)'}`,
+                              textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
                             }}
                             onClick={(e) => {
                               e.preventDefault();
@@ -198,9 +199,10 @@ const AppDetail = () => {
                   ) : (
                     <a 
                       href={app.downloadUrl} 
-                      className="group relative block w-full text-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-5 rounded-lg mb-4 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 overflow-hidden scale-125"
+                      className="group relative block w-4/5 mx-auto text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full mb-4 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 overflow-hidden scale-125"
                       style={{
-                        boxShadow: '0 4px 14px 0 rgba(34, 197, 94, 0.4)'
+                        boxShadow: '0 4px 16px 0 rgba(34, 197, 94, 0.6)',
+                        textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
                       }}
                       onClick={() => console.log("Advertisement download clicked")}
                       data-event="click:advertisementDownload"
