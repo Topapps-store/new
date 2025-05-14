@@ -7,9 +7,10 @@ const isCloudflare = typeof WebSocket !== 'undefined';
 
 // Only set WebSocket constructor if we're not in a Cloudflare environment
 if (!isCloudflare) {
-  // Import ws only in node environment
-  const ws = require('ws');
-  neonConfig.webSocketConstructor = ws;
+  // Import ws - using dynamic import for ESM compatibility
+  import('ws').then(ws => {
+    neonConfig.webSocketConstructor = ws.default;
+  });
 }
 
 if (!process.env.DATABASE_URL) {

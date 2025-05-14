@@ -24,7 +24,7 @@ function getCategoryName(app: App | AppLegacy): string {
 
 const AppDetail = () => {
   const { appId } = useParams();
-  const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info" | "versions">("description");
+  const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info">("description");
   const { t } = useLanguage();
 
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
