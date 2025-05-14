@@ -156,24 +156,35 @@ const AppDetail = () => {
                 
                 {/* Advertisement buttons with affiliate links */}
                 <div className="w-full mt-4 border-t border-gray-200 pt-4">
-                  <div className="text-xs text-gray-500 mb-1">{t('sponsored.sponsored')}</div>
+                  <div className="flex items-center mb-2">
+                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 mr-1">
+                      {t('sponsored.sponsored')}
+                    </span>
+                    <span className="text-xs text-gray-500">
+                      • {t('sponsored.supportOurSite')}
+                    </span>
+                  </div>
                   
                   {isLoadingAffiliateLinks ? (
                     <div className="animate-pulse space-y-2">
-                      <div className="h-12 bg-gray-200 rounded-lg"></div>
-                      <div className="h-12 bg-gray-200 rounded-lg"></div>
+                      <div className="h-14 bg-gray-200 rounded-lg"></div>
+                      <div className="h-14 bg-gray-200 rounded-lg"></div>
                     </div>
                   ) : affiliateLinks && affiliateLinks.length > 0 ? (
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       {affiliateLinks.map((link) => (
-                        <div key={link.id} className="relative">
+                        <div key={link.id} className="relative transform hover:scale-105 transition-all duration-300">
                           {link.label && (
                             <div className="text-sm font-medium mb-1">{link.label}</div>
                           )}
                           <a 
                             href={link.url}
-                            className="block w-full text-center font-bold py-3 px-4 rounded-lg mb-1"
-                            style={{ backgroundColor: link.buttonColor, color: 'white' }}
+                            className="group relative block w-full text-center font-bold py-4 px-5 rounded-lg mb-1 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
+                            style={{ 
+                              backgroundColor: link.buttonColor || '#22c55e', 
+                              color: 'white',
+                              boxShadow: `0 4px 14px 0 ${link.buttonColor ? link.buttonColor + '80' : 'rgba(34, 197, 94, 0.4)'}` 
+                            }}
                             onClick={(e) => {
                               e.preventDefault();
                               handleAffiliateLinkClick(link.id, link.url);
@@ -183,7 +194,13 @@ const AppDetail = () => {
                             data-event="click:affiliateLink"
                             data-affiliate-id={link.id}
                           >
-                            {link.buttonText}
+                            <span className="relative z-10 flex items-center justify-center">
+                              <svg className="w-5 h-5 mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                              </svg>
+                              {link.buttonText}
+                            </span>
+                            <span className="absolute inset-0 h-full w-full scale-0 rounded-lg transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></span>
                           </a>
                         </div>
                       ))}
@@ -191,11 +208,20 @@ const AppDetail = () => {
                   ) : (
                     <a 
                       href={app.downloadUrl} 
-                      className="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg mb-4"
+                      className="group relative block w-full text-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-5 rounded-lg mb-4 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 overflow-hidden"
+                      style={{
+                        boxShadow: '0 4px 14px 0 rgba(34, 197, 94, 0.4)'
+                      }}
                       onClick={() => console.log("Advertisement download clicked")}
                       data-event="click:advertisementDownload"
                     >
-                      {t('appDetail.downloadAPK')}
+                      <span className="relative z-10 flex items-center justify-center">
+                        <svg className="w-5 h-5 mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                        </svg>
+                        {t('appDetail.downloadAPK')}
+                      </span>
+                      <span className="absolute inset-0 h-full w-full scale-0 rounded-lg transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></span>
                     </a>
                   )}
                 </div>
