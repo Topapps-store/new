@@ -7,7 +7,7 @@ import AppCard from "@/components/AppCard";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "../context/LanguageContext";
 import { apiRequest } from "@/lib/queryClient";
-import { AppVersionHistory } from "@/components/AppVersionHistory";
+
 
 // Type guard to check if the app is of type AppLegacy
 function isAppLegacy(app: App | AppLegacy): app is AppLegacy {
@@ -236,16 +236,7 @@ const AppDetail = () => {
                 >
                   {t('appDetail.information')}
                 </button>
-                <button
-                  className={`pb-2 font-medium ${
-                    activeTab === "versions"
-                      ? "text-primary border-b-2 border-primary"
-                      : "text-gray-500"
-                  }`}
-                  onClick={() => setActiveTab("versions")}
-                >
-                  {t('appDetail.versionHistory')}
-                </button>
+
               </div>
               
               {activeTab === "description" && (
@@ -330,12 +321,6 @@ const AppDetail = () => {
                       <Badge variant="outline" className="text-xs">{t('appDetail.freeDownload')}</Badge>
                     </div>
                   </div>
-                </div>
-              )}
-              
-              {activeTab === "versions" && (
-                <div className="mb-6">
-                  <AppVersionHistory appId={app.id} />
                 </div>
               )}
               
