@@ -1,4 +1,5 @@
 import gplay from 'google-play-scraper';
+import appStore from 'app-store-scraper';
 import { db } from './db';
 import { eq } from 'drizzle-orm';
 import { apps, appVersionHistory } from '@shared/schema';
@@ -62,8 +63,34 @@ async function getAndroidAppData(packageName: string): Promise<AppData | null> {
  * Fetch app data from Apple App Store
  */
 async function getIosAppData(appId: string): Promise<AppData | null> {
-  // Placeholder for iOS app data fetching, to be implemented later
-  return null;
+  try {
+    const appData = await appStore.app({
+      id: appId,
+      country: 'us'
+    });
+
+    return {
+      appId: appId,
+      name: appData.title,
+      description: appData.description,
+      version: appData.version,
+      developer: appData.developer,
+      icon: appData.icon,
+      screenshots: appData.screenshots || [],
+      rating: typeof appData.score === 'number' ? appData.score : 0,
+      reviews: appData.reviews || 0,
+      size: appData.size || '',
+      releaseDate: new Date(appData.released || Date.now()),
+      price: appData.price || 0,
+      url: appData.url,
+      genre: appData.primaryGenre || '',
+      updated: appData.updated || new Date().toDateString(),
+      storeType: 'ios'
+    };
+  } catch (error) {
+    log(`Error fetching iOS app data for ${appId}: ${error}`, 'error');
+    return null;
+  }
 }
 
 /**
