@@ -17,7 +17,7 @@ command = "./build-cloudflare.sh"
 # D1 Database configuration
 [[d1_databases]]
 binding = "DB"
-database_name = "topapps"
+database_name = "topappsdb"
 database_id = "8252c0e2-972e-4994-b168-d9b8f9d6fddd"  # ID real de la base de datos D1
 
 [env.production]
@@ -27,5 +27,5 @@ workers_dev = false
 # D1 Database for production
 [[env.production.d1_databases]]
 binding = "DB"
-database_name = "topapps"
+database_name = "topappsdb"
 database_id = "8252c0e2-972e-4994-b168-d9b8f9d6fddd"
