@@ -29,7 +29,8 @@ import {
   manualSyncApp
 } from "./controllers/app-management-controller";
 import { importFromGooglePlay } from "./controllers/google-play-import-controller";
-import { InsertAffiliateLink, insertAffiliateLinkSchema } from "@shared/schema";
+import { createCategory, deleteCategory } from "./controllers/categories-controller";
+import { InsertAffiliateLink, insertAffiliateLinkSchema, insertCategorySchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -92,6 +93,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
   adminRouter.post("/apps/:id/logo-url", requireAdmin, updateLogoFromUrl);
   adminRouter.post("/apps/:id/sync", requireAdmin, manualSyncApp);
   adminRouter.post("/import-google-play", requireAdmin, importFromGooglePlay);
+  
+  // Admin category routes
+  adminRouter.post("/categories", requireAdmin, (req, res, next) => {
+    try {
+      // Validate request body
+      insertCategorySchema.parse(req.body);
+      next();
+    } catch (error) {
+      res.status(400).json({ message: "Invalid category data", error });
+    }
+  }, createCategory);
+  adminRouter.delete("/categories/:id", requireAdmin, deleteCategory);
   
   // Admin affiliate link routes
   adminRouter.get("/affiliate-links", requireAdmin, getAffiliateLinks);
