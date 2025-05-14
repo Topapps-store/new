@@ -109,8 +109,8 @@ const AppDetail = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Back button */}
-      <div className="mb-4">
+      {/* Back button - reduced margin */}
+      <div className="mb-2">
         <Link href="/">
           <div className="flex items-center text-gray-600 hover:text-primary cursor-pointer">
             <i className="fas fa-arrow-left mr-2"></i>
@@ -120,61 +120,61 @@ const AppDetail = () => {
       </div>
 
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="p-6">
+        <div className="p-4">
           <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/3 mb-6 md:mb-0">
+            <div className="md:w-1/3 mb-4 md:mb-0">
               <div className="flex flex-col items-center">
                 <img 
                   src={app.iconUrl} 
                   alt={app.name} 
-                  className="w-32 h-32 object-contain mb-3 rounded-xl"
+                  className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
-                <h1 className="text-2xl font-bold text-center">{app.name}</h1>
+                <h1 className="text-xl font-bold text-center">{app.name}</h1>
                 
-                <div className="flex items-center mt-2">
+                <div className="flex items-center mt-1">
                   <StarRating rating={app.rating} showScore={true} />
                 </div>
                 
-                {/* App Info Cards */}
-                <div className="w-full mt-4 space-y-2">
-                  <div className="flex items-center border border-gray-200 rounded-lg p-2">
-                    <i className="fas fa-language text-gray-500 w-8"></i>
+                {/* App Info Cards - more compact */}
+                <div className="w-full mt-2 space-y-1">
+                  <div className="flex items-center border border-gray-200 rounded-lg p-1.5">
+                    <i className="fas fa-language text-gray-500 w-6"></i>
                     <div>
-                      <p className="text-sm text-gray-500">{t('appDetail.language')}</p>
-                      <p className="font-medium">English</p>
+                      <p className="text-xs text-gray-500">{t('appDetail.language')}</p>
+                      <p className="font-medium text-sm">English</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center border border-gray-200 rounded-lg p-2">
-                    <i className="fas fa-code-branch text-gray-500 w-8"></i>
+                  <div className="flex items-center border border-gray-200 rounded-lg p-1.5">
+                    <i className="fas fa-code-branch text-gray-500 w-6"></i>
                     <div>
-                      <p className="text-sm text-gray-500">{t('appDetail.developer')}</p>
-                      <p className="font-medium">{app.developer}</p>
+                      <p className="text-xs text-gray-500">{t('appDetail.developer')}</p>
+                      <p className="font-medium text-sm">{app.developer}</p>
                     </div>
                   </div>
                 </div>
                 
-                {/* Advertisement buttons with affiliate links */}
-                <div className="w-full mt-4 border-t border-gray-200 pt-4">
+                {/* Advertisement buttons with affiliate links - more compact */}
+                <div className="w-full mt-2 border-t border-gray-200 pt-2">
                   <div className="text-xs text-gray-500 mb-1">
                     {t('sponsored.sponsored')}
                   </div>
                   
                   {isLoadingAffiliateLinks ? (
                     <div className="animate-pulse space-y-2">
-                      <div className="h-14 bg-gray-200 rounded-lg"></div>
-                      <div className="h-14 bg-gray-200 rounded-lg"></div>
+                      <div className="h-12 bg-gray-200 rounded-lg"></div>
+                      <div className="h-12 bg-gray-200 rounded-lg"></div>
                     </div>
                   ) : affiliateLinks && affiliateLinks.length > 0 ? (
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       {affiliateLinks.map((link) => (
                         <div key={link.id} className="relative transform hover:scale-105 transition-all duration-300">
                           {link.label && (
-                            <div className="text-sm font-medium mb-1">{link.label}</div>
+                            <div className="text-xs font-medium mb-0.5">{link.label}</div>
                           )}
                           <a 
                             href={link.url}
-                            className="group relative block w-full text-center font-bold py-4 px-5 rounded-lg mb-1 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
+                            className="group relative block w-full text-center font-bold py-3 px-4 rounded-lg mb-1 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
                             style={{ 
                               backgroundColor: link.buttonColor || '#22c55e', 
                               color: 'white',
@@ -253,10 +253,10 @@ const AppDetail = () => {
               </div>
             </div>
             
-            <div className="md:w-2/3 md:pl-8">
-              <div className="flex space-x-6 border-b mb-6">
+            <div className="md:w-2/3 md:pl-4">
+              <div className="flex space-x-4 border-b mb-3">
                 <button
-                  className={`pb-2 font-medium ${
+                  className={`pb-1 text-sm font-medium ${
                     activeTab === "description"
                       ? "text-primary border-b-2 border-primary"
                       : "text-gray-500"
@@ -266,7 +266,7 @@ const AppDetail = () => {
                   {t('appDetail.description')}
                 </button>
                 <button
-                  className={`pb-2 font-medium ${
+                  className={`pb-1 text-sm font-medium ${
                     activeTab === "screenshots"
                       ? "text-primary border-b-2 border-primary"
                       : "text-gray-500"
@@ -276,7 +276,7 @@ const AppDetail = () => {
                   {t('appDetail.screenshots')}
                 </button>
                 <button
-                  className={`pb-2 font-medium ${
+                  className={`pb-1 text-sm font-medium ${
                     activeTab === "info"
                       ? "text-primary border-b-2 border-primary"
                       : "text-gray-500"
@@ -289,14 +289,14 @@ const AppDetail = () => {
               </div>
               
               {activeTab === "description" && (
-                <div className="mb-6">
-                  <p className="text-gray-700 whitespace-pre-line">
+                <div className="mb-3">
+                  <p className="text-gray-700 whitespace-pre-line text-sm">
                     {app.description}
                   </p>
                   
                   {/* Show more button */}
-                  <div className="mt-4">
-                    <button className="text-primary hover:text-blue-600 font-medium">
+                  <div className="mt-2">
+                    <button className="text-primary hover:text-blue-600 font-medium text-sm">
                       {t('appDetail.readMore')} <i className="fas fa-chevron-down ml-1"></i>
                     </button>
                   </div>
