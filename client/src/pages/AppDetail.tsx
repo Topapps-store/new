@@ -7,6 +7,7 @@ import AppCard from "@/components/AppCard";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "../context/LanguageContext";
 import { apiRequest } from "@/lib/queryClient";
+import { Download, PlayCircle } from "lucide-react";
 
 
 // Type guard to check if the app is of type AppLegacy
@@ -298,11 +299,12 @@ const AppDetail = () => {
                   <div className="mt-4">
                     <a 
                       href={`https://play.google.com/store/apps/details?id=${app.id}`}
-                      className="inline-block font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                      className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                       onClick={handleGooglePlayClick}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
+                      <PlayCircle size={20} />
                       Google Play
                     </a>
                   </div>
