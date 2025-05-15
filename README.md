@@ -1,6 +1,14 @@
 # TopApps.store
 
-A dynamic app discovery platform leveraging advanced synchronization and intelligent recommendation technologies to provide personalized mobile application experiences.
+Una plataforma dinámica de descubrimiento de aplicaciones que ofrece experiencias personalizadas de aplicaciones móviles con características avanzadas de sincronización y recomendación inteligente.
+
+## Principales características
+
+- **Sincronización automática de datos**: Actualizaciones diarias de información de aplicaciones desde Google Play Store y Apple App Store
+- **Detección automática de idioma**: Soporte multilingüe automático con traducciones mediante DeepL API
+- **Links de afiliados personalizables**: Sistema integrado para monetización mediante botones de afiliados
+- **Interfaz administrativa completa**: Panel de control para gestionar aplicaciones, categorías y enlaces de afiliados
+- **Sistema de autenticación seguro**: Protección de rutas administrativas con JWT
 
 ## Deployment to Cloudflare Pages
 
@@ -38,8 +46,9 @@ This project is configured for deployment to Cloudflare Pages via GitHub integra
    - Root directory: `/` (default)
 
 7. Add the following environment variables:
-   - `DATABASE_URL`: Your Postgres connection string
+   - `DATABASE_URL`: Your Neon PostgreSQL connection string
    - `SESSION_SECRET`: A random string for session encryption
+   - `DEEPL_API_KEY`: Your DeepL API key for translations
    - `NODE_VERSION`: 20
 
 8. Click "Save and Deploy"
@@ -70,8 +79,9 @@ After deploying your app for the first time, you'll need to run database migrati
 
 The following environment variables are required:
 
-- `DATABASE_URL`: PostgreSQL connection string
+- `DATABASE_URL`: Neon PostgreSQL connection string
 - `SESSION_SECRET`: Secret for session encryption
+- `DEEPL_API_KEY`: DeepL API key for automatic translations
 - `PORT`: The port to run the server on (default: 5000)
 
 ## Project Structure
