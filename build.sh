@@ -24,8 +24,8 @@ npm install
 # Run database migrations if needed (only in production)
 if [ "$NODE_ENV" = "production" ] && [ ! -z "$DATABASE_URL" ]; then
   echo "Running database migrations..."
-  # Uncomment the following line if you need to run migrations
-  # npx drizzle-kit push:pg
+  # Now we're actually running migrations in production
+  npx drizzle-kit push:pg
 fi
 
 # Build frontend app

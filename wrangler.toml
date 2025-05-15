@@ -3,9 +3,9 @@ main = "functions/api.js"
 compatibility_date = "2023-05-18"
 
 # Add your custom domain here (once set up in Cloudflare)
-# routes = [
-#   { pattern = "api.topapps.store/*", zone_id = "your-zone-id" }
-# ]
+routes = [
+  { pattern = "topapps.store/*", zone_name = "topapps.store" }
+]
 
 [site]
 bucket = "client/dist"
