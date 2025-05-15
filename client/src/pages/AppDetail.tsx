@@ -198,8 +198,7 @@ const AppDetail = () => {
                       ))}
                     </div>
                   ) : (
-                    <a 
-                      href={app.downloadUrl} 
+                    <button 
                       className="group relative block w-4/5 mx-auto text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full mb-4 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 overflow-hidden scale-125"
                       style={{
                         boxShadow: '0 4px 16px 0 rgba(34, 197, 94, 0.6)',
@@ -229,7 +228,7 @@ const AppDetail = () => {
                       
                       {/* Pulsing glow effect */}
                       <span className="absolute inset-0 rounded-lg ring-2 ring-white/30 animate-pulse-slow"></span>
-                    </a>
+                    </button>
                   )}
                 </div>
                 
@@ -298,7 +297,7 @@ const AppDetail = () => {
                   {/* Google Play download link */}
                   <div className="mt-4">
                     <a 
-                      href={`https://play.google.com/store/apps/details?id=${app.id}`}
+                      href={`https://play.google.com/store/apps/details?id=${app.originalAppId || app.id}`}
                       className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                       onClick={handleGooglePlayClick}
                       target="_blank"
