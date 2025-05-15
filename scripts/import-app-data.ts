@@ -114,7 +114,7 @@ const googlePlayApps = [
     id: 'spotify',
     name: 'Spotify: Music and Podcasts',
     categoryId: 'entertainment',
-    description: 'Listen to songs, play podcasts, create playlists and discover music you'll love.',
+    description: 'Listen to songs, play podcasts, create playlists and discover music you will love.',
     iconUrl: 'https://play-lh.googleusercontent.com/cShys-AmJ93dB0SV8kE6Fl5eSaf4-qMMZdwEDKI5VEmKAXfzOqbiaeAsqqrEBCTdIEs=s180-rw',
     rating: 4.4,
     downloads: '1B+',
