@@ -309,7 +309,7 @@ const AppDetail = () => {
                   {/* Google Play download button */}
                   <div className="mt-4">
                     <a 
-                      href={app.storeType === 'android' || app.storeType === 'both' ? `https://play.google.com/store/apps/details?id=${app.packageName || app.id}` : '#'}
+                      href={`https://play.google.com/store/apps/details?id=${app.id}`}
                       className="flex items-center justify-center bg-black text-white rounded-lg px-6 py-3 font-medium hover:bg-gray-800 transition-colors"
                       onClick={handleGooglePlayClick}
                       target="_blank"
@@ -321,7 +321,7 @@ const AppDetail = () => {
                         <path d="M17.9 8.1l-4.346 2.45l-0.6 0.337l9.2 9.2c0.4-0.2 0.7-0.5 0.9-0.9l-4.4-10.2C18.5 8.6 18.2 8.3 17.9 8.1z" />
                         <path d="M3.6 21.7c0.2 0.2 0.5 0.4 0.8 0.5l13.4 7.6c0.2 0.1 0.4 0.2 0.6 0.2c0.4 0 0.8-0.1 1.2-0.3c0.2-0.1 0.3-0.2 0.5-0.3l-9.3-9.3L3.6 21.7z" />
                       </svg>
-                      {t('appDetail.googlePlayButton')}
+                      Google Play
                     </a>
                   </div>
                 </div>
