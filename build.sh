@@ -35,7 +35,49 @@ npm run build
 # Create API function for Cloudflare
 echo "Creating API function for Cloudflare..."
 mkdir -p functions
-npx esbuild server/cloudflare.ts --platform=node --packages=external --bundle --format=esm --outfile=functions/api.js
+
+# Generar funciones para Cloudflare Pages
+echo "Transformando TypeScript a JavaScript para Cloudflare Functions..."
+npx esbuild server/cloudflare.ts \
+  --platform=node \
+  --packages=external \
+  --bundle \
+  --format=esm \
+  --outfile=functions/api.js \
+  --sourcemap \
+  --define:process.env.NODE_ENV=\"production\"
+
+# Asegurar que los archivos de funciones tienen la estructura correcta
+if [ ! -f functions/api/[[path]].js ]; then
+  echo "Creando funciones de enrutamiento para Cloudflare Pages..."
+  mkdir -p functions/api
+  
+  # Crear archivo de ruta para API
+  cat > functions/api/[[path]].js << EOL
+// Cloudflare Pages Function - API route handler
+import { default as handler } from '../api.js';
+
+export function onRequest(context) {
+  return handler.fetch(context.request, context.env, context);
+}
+EOL
+
+  # Crear archivo de captura para SPA
+  cat > functions/[[catchall]].js << EOL
+// Cloudflare Pages Function - Catch-all route handler
+import { default as handler } from './api.js';
+
+export function onRequest(context) {
+  const url = new URL(context.request.url);
+  
+  if (url.pathname.startsWith('/api/')) {
+    return handler.fetch(context.request, context.env, context);
+  }
+  
+  return context.next();
+}
+EOL
+fi
 
 # Create _routes.json file for Cloudflare Pages to properly route requests
 echo "Creating Cloudflare routes configuration..."
