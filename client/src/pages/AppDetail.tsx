@@ -232,22 +232,6 @@ const AppDetail = () => {
                   )}
                 </div>
                 
-                {/* Official Google Play Button */}
-                <div className="w-full mb-2 flex gap-2 justify-center">
-                  {app.googlePlayUrl && (
-                    <a
-                      href={app.googlePlayUrl}
-                      className="flex items-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium py-1.5 px-3 rounded-md transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={handleGooglePlayClick}
-                    >
-                      <i className="fab fa-google-play mr-1.5"></i>
-                      Google Play
-                    </a>
-                  )}
-                </div>
-                
                 {/* App Info Cards - more compact */}
                 <div className="w-full space-y-3 mt-2">
                   <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">

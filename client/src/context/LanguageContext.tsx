@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, ReactNode } from 'react';
+import { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
 // Import translations
 import enTranslations from '../translations/en.json';
@@ -14,6 +14,7 @@ type TranslationObject = Record<string, any>;
 // Type for context value
 interface LanguageContextType {
   language: Language;
+  setLanguage: (lang: Language) => void;
   t: (key: string, params?: Record<string, string>) => string;
 }
 
@@ -38,8 +39,19 @@ const getBrowserLanguage = (): Language => {
 
 // Provider component
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Use browser language always
-  const [language] = useState<Language>(getBrowserLanguage());
+  // Get language from localStorage or use browser language as fallback
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window === 'undefined') return 'en';
+    const storedLanguage = localStorage.getItem('language') as Language;
+    return (storedLanguage === 'en' || storedLanguage === 'es' || storedLanguage === 'fr') 
+      ? storedLanguage 
+      : getBrowserLanguage();
+  });
+
+  // Update localStorage when language changes
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
 
   // Translation function with support for parameter substitution
   const t = (key: string, params?: Record<string, string>): string => {
@@ -78,6 +90,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   return (
     <LanguageContext.Provider value={{ 
       language, 
+      setLanguage, 
       t
     }}>
       {children}

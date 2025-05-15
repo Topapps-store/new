@@ -6,8 +6,6 @@ import { getApps, getAppById, getPopularApps, getRecentApps, getRelatedApps, sea
 import { getCategories, getCategoryById, getAppsByCategory } from "./data/categories";
 import session from "express-session";
 import multer from "multer";
-import { translationMiddleware } from "./translation-middleware";
-import { isTranslationAvailable } from "./translation-service";
 import { login, logout, checkAuth, requireAuth, requireAdmin } from "./controllers/auth-controller";
 import {
   getAppsForAdmin,
@@ -28,15 +26,10 @@ import {
   updateLogoFromUrl,
   manualSyncApp
 } from "./controllers/app-management-controller";
-import { importFromGooglePlay } from "./controllers/google-play-import-controller";
-import { createCategory, deleteCategory } from "./controllers/categories-controller";
-import { InsertAffiliateLink, insertAffiliateLinkSchema, insertCategorySchema } from "@shared/schema";
+import { InsertAffiliateLink, insertAffiliateLinkSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Middleware para analizar el cuerpo de las solicitudes
-  app.use(express.json());
-
   // Configure session middleware
   app.use(session({
     secret: process.env.SESSION_SECRET || 'topapps-secret-key',
@@ -48,14 +41,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }
   }));
-  
-  // Middleware de traducción automática si la API de DeepL está disponible
-  if (isTranslationAvailable()) {
-    app.use(translationMiddleware());
-    console.log('Translation middleware enabled with DeepL API');
-  } else {
-    console.log('DeepL API key not found, translations disabled');
-  }
 
   // API Routes
   const apiRouter = express.Router();
@@ -92,19 +77,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   adminRouter.post("/apps/:id/logo", requireAdmin, logoUpload.single('logo'), uploadLogo);
   adminRouter.post("/apps/:id/logo-url", requireAdmin, updateLogoFromUrl);
   adminRouter.post("/apps/:id/sync", requireAdmin, manualSyncApp);
-  adminRouter.post("/import-google-play", requireAdmin, importFromGooglePlay);
-  
-  // Admin category routes
-  adminRouter.post("/categories", requireAdmin, (req, res, next) => {
-    try {
-      // Validate request body
-      insertCategorySchema.parse(req.body);
-      next();
-    } catch (error) {
-      res.status(400).json({ message: "Invalid category data", error });
-    }
-  }, createCategory);
-  adminRouter.delete("/categories/:id", requireAdmin, deleteCategory);
   
   // Admin affiliate link routes
   adminRouter.get("/affiliate-links", requireAdmin, getAffiliateLinks);

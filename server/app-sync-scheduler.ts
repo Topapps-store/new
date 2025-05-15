@@ -1,61 +1,48 @@
-import cron from 'node-cron';
+import * as cron from 'node-cron';
 import { syncAllApps } from './app-sync-service';
 import { log } from './vite';
 
-// Default schedule is every day at 4:00 AM
-const DEFAULT_SCHEDULE = '0 4 * * *';
+/// <reference path="./types/node-cron.d.ts" />
 
-let syncJob: ReturnType<typeof cron.schedule> | null = null;
+// Default schedule: Every day at midnight
+const DEFAULT_SCHEDULE = '0 0 * * *';
 
 /**
  * Initialize the app data synchronization scheduler
  */
 export function initializeAppSyncScheduler(schedule = DEFAULT_SCHEDULE) {
-  if (syncJob) {
-    syncJob.stop();
+  // Validate the schedule
+  if (!cron.validate(schedule)) {
+    log(`Invalid cron schedule: ${schedule}, using default`, 'error');
+    schedule = DEFAULT_SCHEDULE;
   }
 
-  syncJob = cron.schedule(schedule, async () => {
-    log('Starting scheduled app sync operation', 'info');
+  // Schedule the task
+  const task = cron.schedule(schedule, async () => {
+    log('Running scheduled app data synchronization', 'scheduler');
     try {
-      const syncedCount = await syncAllApps();
-      log(`Scheduled app sync completed. Updated ${syncedCount} apps successfully.`, 'info');
+      const updatedCount = await syncAllApps();
+      log(`Scheduled sync completed. Updated ${updatedCount} apps.`, 'scheduler');
     } catch (error) {
-      log(`Error during scheduled app sync: ${error}`, 'error');
+      log(`Error in scheduled sync: ${error}`, 'error');
     }
   }, {
     scheduled: true,
-    timezone: 'UTC'
+    timezone: 'UTC' // Use UTC timezone for consistency
   });
 
-  log(`App sync scheduler initialized with schedule: ${schedule}`, 'info');
-  return syncJob;
-}
+  log(`App sync scheduler initialized with schedule: ${schedule}`, 'scheduler');
 
-/**
- * Stop the app sync scheduler
- */
-export function stopAppSyncScheduler() {
-  if (syncJob) {
-    syncJob.stop();
-    syncJob = null;
-    log('App sync scheduler stopped', 'info');
-    return true;
-  }
-  return false;
-}
+  // Run an initial sync when the server starts
+  setTimeout(async () => {
+    log('Running initial app data synchronization', 'scheduler');
+    try {
+      const updatedCount = await syncAllApps();
+      log(`Initial sync completed. Updated ${updatedCount} apps.`, 'scheduler');
+    } catch (error) {
+      log(`Error in initial sync: ${error}`, 'error');
+    }
+  }, 10000); // Wait 10 seconds after server start
 
-/**
- * Run a manual sync of all apps
- */
-export async function runManualSync() {
-  log('Starting manual app sync operation', 'info');
-  try {
-    const syncedCount = await syncAllApps();
-    log(`Manual app sync completed. Updated ${syncedCount} apps successfully.`, 'info');
-    return syncedCount;
-  } catch (error) {
-    log(`Error during manual app sync: ${error}`, 'error');
-    throw error;
-  }
+  return task;
 }

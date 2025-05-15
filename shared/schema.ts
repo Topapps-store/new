@@ -1,15 +1,15 @@
-import { sqliteTable, text, integer, real, blob } from "drizzle-orm/sqlite-core";
+import { pgTable, text, serial, integer, boolean, jsonb, real, timestamp, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 import { relations } from "drizzle-orm";
 
 // Users table
-export const users = sqliteTable("users", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
-  isAdmin: integer("is_admin", { mode: 'boolean' }).notNull().default(false),
-  createdAt: text("created_at").default(String(new Date().toISOString())),
+  isAdmin: boolean("is_admin").notNull().default(false),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({
@@ -22,12 +22,12 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
 // Categories table
-export const categories = sqliteTable("categories", {
-  id: text("id").primaryKey(),
-  name: text("name").notNull(),
-  icon: text("icon"),
-  color: text("color"),
-  createdAt: text("created_at").default(String(new Date().toISOString())),
+export const categories = pgTable("categories", {
+  id: varchar("id", { length: 50 }).primaryKey(),
+  name: varchar("name", { length: 100 }).notNull(),
+  icon: varchar("icon", { length: 255 }),
+  color: varchar("color", { length: 50 }),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
@@ -45,29 +45,29 @@ export type InsertCategory = z.infer<typeof insertCategorySchema>;
 export type Category = typeof categories.$inferSelect;
 
 // Apps table
-export const apps = sqliteTable("apps", {
-  id: text("id").primaryKey(),
-  name: text("name").notNull(),
-  categoryId: text("category_id").notNull()
+export const apps = pgTable("apps", {
+  id: varchar("id", { length: 100 }).primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  categoryId: varchar("category_id", { length: 50 }).notNull()
     .references(() => categories.id),
   description: text("description").notNull(),
-  iconUrl: text("icon_url").notNull(),
+  iconUrl: varchar("icon_url", { length: 255 }).notNull(),
   rating: real("rating").notNull(),
-  downloads: text("downloads").notNull(),
-  version: text("version").notNull(),
-  size: text("size").notNull(),
-  updated: text("updated").notNull(),
-  requires: text("requires").notNull(),
-  developer: text("developer").notNull(),
-  installs: text("installs").notNull(),
-  downloadUrl: text("download_url").notNull(),
-  googlePlayUrl: text("google_play_url").notNull(),
-  iosAppStoreUrl: text("ios_app_store_url"),
-  originalAppId: text("original_app_id"),
-  screenshots: text("screenshots").notNull().$type<string>(), // Stored as JSON string in SQLite
-  isAffiliate: integer("is_affiliate", { mode: 'boolean' }).default(false),
-  lastSyncedAt: text("last_synced_at"),
-  createdAt: text("created_at").default(String(new Date().toISOString())),
+  downloads: varchar("downloads", { length: 50 }).notNull(),
+  version: varchar("version", { length: 50 }).notNull(),
+  size: varchar("size", { length: 50 }).notNull(),
+  updated: varchar("updated", { length: 100 }).notNull(),
+  requires: varchar("requires", { length: 100 }).notNull(),
+  developer: varchar("developer", { length: 255 }).notNull(),
+  installs: varchar("installs", { length: 100 }).notNull(),
+  downloadUrl: varchar("download_url", { length: 255 }).notNull(),
+  googlePlayUrl: varchar("google_play_url", { length: 255 }).notNull(),
+  iosAppStoreUrl: varchar("ios_app_store_url", { length: 255 }),
+  originalAppId: varchar("original_app_id", { length: 100 }),
+  screenshots: jsonb("screenshots").notNull().$type<string[]>(),
+  isAffiliate: boolean("is_affiliate").default(false),
+  lastSyncedAt: timestamp("last_synced_at"),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const appsRelations = relations(apps, ({ one }) => ({
@@ -117,18 +117,18 @@ export type CategoryLegacy = {
 }
 
 // Affiliate Links table for advertisement buttons
-export const affiliateLinks = sqliteTable("affiliate_links", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  appId: text("app_id").references(() => apps.id),
-  label: text("label").notNull(),
-  url: text("url").notNull(),
-  buttonText: text("button_text").notNull().default("Download Now"),
-  buttonColor: text("button_color").notNull().default("#4CAF50"),
-  isActive: integer("is_active", { mode: 'boolean' }).notNull().default(true),
+export const affiliateLinks = pgTable("affiliate_links", {
+  id: serial("id").primaryKey(),
+  appId: varchar("app_id", { length: 100 }).references(() => apps.id),
+  label: varchar("label", { length: 100 }).notNull(),
+  url: varchar("url", { length: 255 }).notNull(),
+  buttonText: varchar("button_text", { length: 100 }).notNull().default("Download Now"),
+  buttonColor: varchar("button_color", { length: 50 }).notNull().default("#4CAF50"),
+  isActive: boolean("is_active").notNull().default(true),
   displayOrder: integer("display_order").notNull().default(1),
   clickCount: integer("click_count").notNull().default(0),
-  createdAt: text("created_at").default(String(new Date().toISOString())),
-  updatedAt: text("updated_at").default(String(new Date().toISOString())),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 export const affiliateLinksRelations = relations(affiliateLinks, ({ one }) => ({
@@ -149,16 +149,16 @@ export type InsertAffiliateLink = z.infer<typeof insertAffiliateLinkSchema>;
 export type AffiliateLink = typeof affiliateLinks.$inferSelect;
 
 // App Version History table
-export const appVersionHistory = sqliteTable("app_version_history", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  appId: text("app_id").notNull()
+export const appVersionHistory = pgTable("app_version_history", {
+  id: serial("id").primaryKey(),
+  appId: varchar("app_id", { length: 100 }).notNull()
     .references(() => apps.id),
-  version: text("version").notNull(),
+  version: varchar("version", { length: 50 }).notNull(),
   releaseNotes: text("release_notes"),
-  updateDate: text("update_date").default(String(new Date().toISOString())),
-  isNotified: integer("is_notified", { mode: 'boolean' }).notNull().default(false),
-  isImportant: integer("is_important", { mode: 'boolean' }).notNull().default(false),
-  changesDetected: integer("changes_detected", { mode: 'boolean' }).notNull().default(false),
+  updateDate: timestamp("update_date").defaultNow(),
+  isNotified: boolean("is_notified").notNull().default(false),
+  isImportant: boolean("is_important").notNull().default(false),
+  changesDetected: boolean("changes_detected").notNull().default(false),
 });
 
 export const appVersionHistoryRelations = relations(appVersionHistory, ({ one }) => ({

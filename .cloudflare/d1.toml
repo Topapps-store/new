@@ -1,4 +1,0 @@
-# D1 database configuration for local development
-# This file is used by Cloudflare's Wrangler tool
-
-database_name = "topapps"

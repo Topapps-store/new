@@ -1,42 +1,28 @@
-import { drizzle } from 'drizzle-orm/d1';
+import { Pool, neonConfig } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-serverless';
 import * as schema from "@shared/schema";
-import BetterSqlite3 from 'better-sqlite3';
-import { drizzle as drizzleSqlite } from 'drizzle-orm/better-sqlite3';
-import { join } from 'path';
 
-// This file handles both environments: 
-// 1. Local development (Replit) using better-sqlite3
-// 2. Production (Cloudflare) using D1
+// Check if we're running in a Cloudflare environment
+const isCloudflare = typeof WebSocket !== 'undefined';
 
-// For local development
-let localDb;
-
-// Function that will be used in the Express server
-export function getDatabaseForServer() {
-  // Only create the local database if we're not in production
-  if (process.env.NODE_ENV !== 'production') {
-    try {
-      const dataDir = process.env.DATA_DIR || '.';
-      const sqlite = new BetterSqlite3(join(dataDir, 'topapps.db'));
-      localDb = drizzleSqlite(sqlite, { schema });
-      return localDb;
-    } catch (error) {
-      console.error('Failed to initialize local SQLite database:', error);
-      throw error;
-    }
-  } else {
-    console.warn('Warning: Attempting to use getDatabaseForServer in production.');
-    return null;
-  }
+// Only set WebSocket constructor if we're not in a Cloudflare environment
+if (!isCloudflare) {
+  // Import ws - using dynamic import for ESM compatibility
+  import('ws').then(ws => {
+    neonConfig.webSocketConstructor = ws.default;
+  });
 }
 
-// This will be imported by the Cloudflare function
-export function getDatabaseForCloudflare(env) {
-  if (!env || !env.DB) {
-    throw new Error('D1 database binding not found.');
-  }
-  return drizzle(env.DB, { schema });
+if (!process.env.DATABASE_URL) {
+  throw new Error(
+    "DATABASE_URL must be set. Did you forget to provision a database?",
+  );
 }
 
-// For backward compatibility
-export const db = process.env.NODE_ENV !== 'production' ? getDatabaseForServer() : null;
+export const pool = new Pool({ 
+  connectionString: process.env.DATABASE_URL,
+  // Enable TLS/SSL for better security
+  ssl: true,
+});
+
+export const db = drizzle({ client: pool, schema });

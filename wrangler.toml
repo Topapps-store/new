@@ -8,24 +8,16 @@ compatibility_date = "2023-05-18"
 # ]
 
 [site]
-bucket = "dist/public"
-pages_build_output_dir = "dist/public"
+bucket = "client/dist"
 
 [build]
-command = "./build-cloudflare.sh"
+command = "./build.sh"
 
-# D1 Database configuration
-[[d1_databases]]
-binding = "DB"
-database_name = "topapps"
-database_id = "8252c0e2-972e-4994-b168-d9b8f9d6fddd"  # ID real de la base de datos D1
+# Add KV Namespace or D1 Database if needed
+# [[kv_namespaces]]
+# binding = "MY_KV"
+# id = "your-kv-id"
 
 [env.production]
 # Production-specific settings
 workers_dev = false
-
-# D1 Database for production
-[[env.production.d1_databases]]
-binding = "DB"
-database_name = "topapps"
-database_id = "8252c0e2-972e-4994-b168-d9b8f9d6fddd"
