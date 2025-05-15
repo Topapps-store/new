@@ -68,7 +68,7 @@ const Home = () => {
       <div className="mt-10 flex justify-center relative">
         <a href="https://www.tkqlhce.com/click-101417075-17024579" target="_blank" rel="noopener noreferrer">
           <img src="https://www.tqlkg.com/image-101417075-17024579" width="970" height="90" alt="Sponsored content" style={{maxWidth: '100%'}} />
-          <span className="absolute bottom-1 left-1 text-xs text-gray-600 opacity-70">Advertisement</span>
+          <span className="absolute bottom-1 left-1 text-[10px] text-gray-600 opacity-70">Advertisement</span>
         </a>
       </div>
 

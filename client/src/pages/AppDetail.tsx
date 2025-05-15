@@ -164,7 +164,7 @@ const AppDetail = () => {
                 
                 {/* Advertisement buttons with affiliate links - moved up, below rating */}
                 <div className="w-full mb-3 flex flex-col items-center">
-                  <div className="text-xs text-gray-500 mb-3 self-start">
+                  <div className="text-[10px] text-gray-500 mb-3 self-start">
                     {t('sponsored.sponsored')}
                   </div>
                   
