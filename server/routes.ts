@@ -28,6 +28,7 @@ import {
 } from "./controllers/app-management-controller";
 import { InsertAffiliateLink, insertAffiliateLinkSchema } from "@shared/schema";
 import { z } from "zod";
+import { translateText, bulkTranslate } from "./translation-service";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Configure session middleware
@@ -260,6 +261,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(updatedVersion);
     } catch (error) {
       res.status(500).json({ message: 'Failed to mark version as notified' });
+    }
+  });
+  
+  // Translation API endpoints
+  apiRouter.post("/translate", async (req, res) => {
+    try {
+      const { text, targetLang, sourceLang } = req.body;
+      
+      if (!text || !targetLang) {
+        return res.status(400).json({ error: 'Missing required parameters' });
+      }
+      
+      const translatedText = await translateText(text, targetLang, sourceLang);
+      return res.json({ translatedText });
+    } catch (error) {
+      console.error('Translation error:', error);
+      return res.status(500).json({ error: 'Translation failed' });
+    }
+  });
+
+  apiRouter.post("/translate/bulk", async (req, res) => {
+    try {
+      const { texts, targetLang } = req.body;
+      
+      if (!Array.isArray(texts) || !targetLang) {
+        return res.status(400).json({ error: 'Missing required parameters' });
+      }
+      
+      const translatedTexts = await bulkTranslate(texts, targetLang);
+      return res.json({ translatedTexts });
+    } catch (error) {
+      console.error('Bulk translation error:', error);
+      return res.status(500).json({ error: 'Bulk translation failed' });
     }
   });
   

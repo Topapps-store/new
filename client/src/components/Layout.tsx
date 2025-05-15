@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import { Link, useLocation } from "wouter";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
-import { useLanguage, Language } from "../context/LanguageContext";
+import { useLanguage } from "../context/LanguageContext";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -10,36 +10,7 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [location] = useLocation();
-  const { language, setLanguage, t } = useLanguage();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Language display names
-  const languageNames: Record<Language, string> = {
-    en: t('language.english'),
-    es: t('language.spanish'),
-    fr: t('language.french')
-  };
-
-  // Handle clicks outside dropdown to close it
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropdownOpen(false);
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  // Change language handler
-  const handleLanguageChange = (lang: Language) => {
-    setLanguage(lang);
-    setIsDropdownOpen(false);
-  };
+  const { t } = useLanguage();
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -64,29 +35,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <span className="hidden md:inline">{t('nav.games')}</span>
               </div>
             </Link>
-            <div className="relative" ref={dropdownRef}>
-              <button 
-                className="text-gray-600 hover:text-primary flex items-center border border-gray-200 rounded px-2 py-1"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              >
-                <span>{languageNames[language]}</span>
-                <i className={`fas fa-chevron-${isDropdownOpen ? 'up' : 'down'} ml-1 text-xs`}></i>
-              </button>
-              
-              {isDropdownOpen && (
-                <div className="absolute right-0 mt-1 w-36 bg-white border border-gray-200 rounded shadow-lg z-50">
-                  {Object.entries(languageNames).map(([langCode, langName]) => (
-                    <button
-                      key={langCode}
-                      className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${language === langCode ? 'bg-gray-50 text-primary' : 'text-gray-700'}`}
-                      onClick={() => handleLanguageChange(langCode as Language)}
-                    >
-                      {langName}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
           </nav>
         </div>
 
