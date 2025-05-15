@@ -1,12 +1,23 @@
 # Guía de Despliegue en Cloudflare Pages
 
-Esta guía te ayudará a desplegar TopApps en Cloudflare Pages utilizando GitHub.
+Esta guía te ayudará a desplegar TopApps en Cloudflare Pages utilizando GitHub. Con la nueva estrategia, **el frontend se alojará en Cloudflare Pages pero la API seguirá funcionando desde Replit**.
+
+## Estrategia de Despliegue
+
+- **Frontend**: Alojado en Cloudflare Pages
+- **API**: Alojada en Replit (https://topapps.replit.app/api)
+- **Base de datos**: Neon PostgreSQL
+
+Esta arquitectura tiene varias ventajas:
+1. El frontend se beneficia de la red global CDN de Cloudflare
+2. La API sigue usando la conexión estable a la base de datos en Replit
+3. Separación clara de responsabilidades
 
 ## Requisitos Previos
 
 1. Una cuenta en GitHub con el repositorio de TopApps
 2. Una cuenta en Cloudflare
-3. Una base de datos PostgreSQL en Neon (ya configurada)
+3. La instancia de Replit debe estar funcionando y accesible (https://topapps.replit.app)
 
 ## Paso 1: Preparar el Repositorio en GitHub
 
@@ -37,11 +48,8 @@ git push -u origin main
    - Build output directory: `dist`
    - Root directory: `/` (dejar en blanco)
 
-7. En la sección "Environment variables", agrega las siguientes variables:
+7. En la sección "Environment variables", agrega la siguiente variable:
    - `NODE_VERSION`: `20`
-   - `DATABASE_URL`: Tu URL de conexión a Neon PostgreSQL
-   - `SESSION_SECRET`: Una cadena segura para sesiones
-   - `DEEPL_API_KEY`: Tu clave API de DeepL para traducciones
 
 8. Haz clic en "Save and Deploy"
 
@@ -56,34 +64,34 @@ git push -u origin main
 
 1. Una vez completado el despliegue, visita tu sitio en el dominio Cloudflare Pages asignado (o tu dominio personalizado)
 2. Verifica que:
-   - La aplicación carga correctamente
-   - Las API funcionan (prueba cargar aplicaciones, categorías, etc.)
-   - La base de datos está conectada (la aplicación muestra datos)
+   - El frontend carga correctamente
+   - Las solicitudes a la API se redirigen correctamente a Replit
+   - Los datos se muestran correctamente en la aplicación
 
-## Solución de Problemas
+## Cómo Funciona
 
-Si encuentras problemas con las funciones de Cloudflare:
+1. Cuando un usuario visita tu sitio en Cloudflare Pages, se carga el frontend (React)
+2. Cuando la aplicación hace solicitudes a `/api/...`, estas son interceptadas por la función `[[path]].js` en Cloudflare
+3. La función reenvía estas solicitudes a la API alojada en Replit (https://topapps.replit.app/api/...)
+4. Los datos se devuelven al frontend y se muestran al usuario
 
-1. Verifica los logs de despliegue en Cloudflare
-2. Asegúrate de que tienes todas las variables de entorno configuradas
-3. Verifica que la estructura de archivos en la carpeta `functions` es correcta:
-   - `functions/api.js`
-   - `functions/api/[[path]].js`
-   - `functions/[[catchall]].js`
-   - `functions/_middleware.js`
-   - `functions/_routes.json`
+## Mantenimiento y Actualizaciones
 
-## Mantenimiento
+### Actualizaciones del Frontend:
 
-Para actualizaciones futuras:
-
-1. Realiza tus cambios en el código
+1. Realiza tus cambios en el código del frontend
 2. Haz commit y push a GitHub
 3. Cloudflare Pages desplegará automáticamente las actualizaciones
 
+### Actualizaciones de la API:
+
+1. Realiza tus cambios en el código de la API en Replit
+2. La API se actualizará instantáneamente en Replit
+3. No es necesario volver a desplegar Cloudflare Pages
+
 ## Notas Adicionales
 
-- Las migraciones de base de datos se ejecutan automáticamente durante el despliegue gracias al script `build.sh`
-- La aplicación está configurada para usar la base de datos Neon PostgreSQL
-- Se ha configurado el archivo `_redirects` para manejar correctamente las rutas SPA
-- La aplicación tiene configurado CORS para permitir solicitudes desde cualquier origen
+- Esta arquitectura reduce la complejidad del despliegue en Cloudflare
+- La instancia de Replit debe mantenerse en funcionamiento
+- Si Replit cambia su URL, deberás actualizar la URL en `functions/[[path]].js`
+- Se ha configurado CORS para permitir solicitudes entre dominios

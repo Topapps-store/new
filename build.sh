@@ -32,48 +32,93 @@ fi
 echo "Building frontend app..."
 npm run build
 
-# Create API function for Cloudflare
-echo "Creating API function for Cloudflare..."
+# Preparar las funciones para Cloudflare
+echo "Preparando funciones para Cloudflare Pages..."
 mkdir -p functions
 
-# Generar funciones para Cloudflare Pages
-echo "Transformando TypeScript a JavaScript para Cloudflare Functions..."
-npx esbuild server/cloudflare.ts \
-  --platform=node \
-  --packages=external \
-  --bundle \
-  --format=esm \
-  --outfile=functions/api.js \
-  --sourcemap \
-  --define:process.env.NODE_ENV=\"production\"
-
 # Asegurar que los archivos de funciones tienen la estructura correcta
-if [ ! -f functions/api/[[path]].js ]; then
-  echo "Creando funciones de enrutamiento para Cloudflare Pages..."
-  mkdir -p functions/api
+echo "Verificando estructura de funciones para Cloudflare Pages..."
+
+# Verificar que existe el archivo principal de funciones
+if [ ! -f functions/[[path]].js ]; then
+  echo "Creando archivo principal de función para Cloudflare Pages..."
   
-  # Crear archivo de ruta para API
-  cat > functions/api/[[path]].js << EOL
-// Cloudflare Pages Function - API route handler
-import { default as handler } from '../api.js';
-
-export function onRequest(context) {
-  return handler.fetch(context.request, context.env, context);
-}
-EOL
-
-  # Crear archivo de captura para SPA
-  cat > functions/[[catchall]].js << EOL
-// Cloudflare Pages Function - Catch-all route handler
-import { default as handler } from './api.js';
-
-export function onRequest(context) {
+  # Crear archivo de ruta principal
+  cat > functions/[[path]].js << EOL
+// Función principal para Cloudflare Pages
+export async function onRequest(context) {
   const url = new URL(context.request.url);
+  const path = url.pathname;
   
-  if (url.pathname.startsWith('/api/')) {
-    return handler.fetch(context.request, context.env, context);
+  // Para solicitudes a la API, redirigir a Replit
+  if (path.startsWith('/api/')) {
+    try {
+      // URL de la API en Replit
+      const apiBaseUrl = 'https://topapps.replit.app';
+      const apiUrl = \`\${apiBaseUrl}\${path}\${url.search}\`;
+      
+      // Hacer la solicitud a la API en Replit
+      const response = await fetch(apiUrl, {
+        method: context.request.method,
+        headers: context.request.headers,
+        body: ['GET', 'HEAD'].includes(context.request.method) ? undefined : await context.request.arrayBuffer(),
+        redirect: 'follow'
+      });
+      
+      // Crear la respuesta para Cloudflare
+      const responseHeaders = new Headers(response.headers);
+      
+      // Agregar cabeceras CORS
+      responseHeaders.set('Access-Control-Allow-Origin', '*');
+      responseHeaders.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      responseHeaders.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      
+      return new Response(await response.arrayBuffer(), {
+        status: response.status,
+        statusText: response.statusText,
+        headers: responseHeaders
+      });
+    } catch (error) {
+      // Manejar errores
+      return new Response(JSON.stringify({
+        error: 'Error al conectar con la API',
+        message: error.message,
+        path
+      }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
   }
   
+  // Para todas las demás solicitudes, dejar que Cloudflare Pages las maneje
+  return context.next();
+}
+EOL
+fi
+
+# Verificar que existe el archivo de middleware
+if [ ! -f functions/_middleware.js ]; then
+  echo "Creando archivo de middleware para Cloudflare Pages..."
+  
+  # Crear archivo de middleware
+  cat > functions/_middleware.js << EOL
+// Middleware para Cloudflare Pages Functions
+export async function onRequest(context) {
+  // Procesamiento de CORS para solicitudes OPTIONS
+  if (context.request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Max-Age': '86400',
+      }
+    });
+  }
+  
+  // Continuar con el siguiente middleware o función
   return context.next();
 }
 EOL
