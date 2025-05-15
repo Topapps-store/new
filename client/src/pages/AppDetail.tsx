@@ -7,7 +7,7 @@ import AppCard from "@/components/AppCard";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "../context/LanguageContext";
 import { apiRequest } from "@/lib/queryClient";
-import googlePlayLogo from "../assets/google-play-bw.svg";
+import googlePlayLogo from "../assets/google-play-original.svg";
 
 
 // Type guard to check if the app is of type AppLegacy
@@ -26,7 +26,6 @@ function getCategoryName(app: App | AppLegacy): string {
 const AppDetail = () => {
   const { appId } = useParams();
   const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info">("description");
-  const [showFullDescription, setShowFullDescription] = useState(false);
   const { t } = useLanguage();
 
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
@@ -292,20 +291,9 @@ const AppDetail = () => {
               
               {activeTab === "description" && (
                 <div className="mb-3">
-                  <p className={`text-gray-700 whitespace-pre-line text-sm ${!showFullDescription ? 'line-clamp-4' : ''}`}>
+                  <p className="text-gray-700 whitespace-pre-line text-sm">
                     {app.description}
                   </p>
-                  
-                  {/* Show more button */}
-                  <div className="mt-2 mb-4">
-                    <button 
-                      onClick={() => setShowFullDescription(!showFullDescription)}
-                      className="text-primary hover:text-blue-600 font-medium text-sm flex items-center"
-                    >
-                      {showFullDescription ? t('appDetail.readLess') : t('appDetail.readMore')} 
-                      <i className={`fas fa-chevron-${showFullDescription ? 'up' : 'down'} ml-1`}></i>
-                    </button>
-                  </div>
                   
                   {/* Google Play download button */}
                   <div className="mt-4">
