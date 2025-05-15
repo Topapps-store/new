@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "../context/LanguageContext";
 import { apiRequest } from "@/lib/queryClient";
 import { Download, PlayCircle } from "lucide-react";
+import { processAffiliateUrl } from "@/lib/url-utils";
 
 
 // Type guard to check if the app is of type AppLegacy
@@ -47,9 +48,26 @@ const AppDetail = () => {
     // In a real implementation, this would track the download
   };
 
-  const handleGooglePlayClick = () => {
+  const handleGooglePlayClick = (e: React.MouseEvent) => {
+    // Don't prevent default here to allow the native link behavior
     console.log("Google Play redirect:", app?.id);
-    // In a real implementation, this would redirect to Google Play
+    
+    // Add tracking parameters to the URL if needed
+    const href = e.currentTarget.getAttribute('href');
+    if (href) {
+      try {
+        // Add basic UTM parameters for tracking
+        const urlObj = new URL(href);
+        urlObj.searchParams.set('utm_source', 'topapps');
+        urlObj.searchParams.set('utm_medium', 'app_detail');
+        urlObj.searchParams.set('utm_campaign', 'google_play');
+        
+        // Replace the href with the updated URL
+        e.currentTarget.setAttribute('href', urlObj.toString());
+      } catch (error) {
+        console.error('Error processing Google Play URL:', error);
+      }
+    }
   };
   
   const handleAffiliateLinkClick = async (linkId: number, linkUrl: string) => {
@@ -57,12 +75,20 @@ const AppDetail = () => {
     try {
       await apiRequest(`/api/affiliate-links/${linkId}/click`, { method: 'POST' });
       console.log(`Clicked affiliate link: ${linkId}`);
-      // Open the link in a new tab
-      window.open(linkUrl, '_blank', 'noopener,noreferrer');
+      
+      // Process affiliate URL to preserve and add tracking parameters
+      const processedUrl = processAffiliateUrl(linkUrl, app?.id || '', linkId);
+      console.log(`Original URL: ${linkUrl}`);
+      console.log(`Processed URL: ${processedUrl}`);
+      
+      // Open the processed link in a new tab
+      window.open(processedUrl, '_blank', 'noopener,noreferrer');
     } catch (error) {
       console.error('Failed to track affiliate link click:', error);
-      // Still open the link even if tracking fails
-      window.open(linkUrl, '_blank', 'noopener,noreferrer');
+      
+      // Still open the link even if tracking fails, but with processed URL
+      const processedUrl = processAffiliateUrl(linkUrl, app?.id || '', linkId);
+      window.open(processedUrl, '_blank', 'noopener,noreferrer');
     }
     
     return false; // Prevent default link behavior
@@ -299,9 +325,11 @@ const AppDetail = () => {
                     <a 
                       href={app.googlePlayUrl || app.downloadUrl}
                       className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
-                      onClick={handleGooglePlayClick}
+                      onClick={(e) => handleGooglePlayClick(e)}
                       target="_blank"
                       rel="noopener noreferrer"
+                      data-app-id={app.id}
+                      data-event="click:googlePlay"
                     >
                       <PlayCircle size={20} />
                       Google Play
