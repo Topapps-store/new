@@ -37,6 +37,28 @@ echo "Creating API function for Cloudflare..."
 mkdir -p functions
 npx esbuild server/cloudflare.ts --platform=node --packages=external --bundle --format=esm --outfile=functions/api.js
 
+# Create _routes.json file for Cloudflare Pages to properly route requests
+echo "Creating Cloudflare routes configuration..."
+cat > functions/_routes.json << EOL
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": [
+    "/assets/*",
+    "/*.ico",
+    "/*.svg",
+    "/*.png",
+    "/*.jpg",
+    "/*.jpeg",
+    "/*.gif",
+    "/*.css",
+    "/*.js",
+    "/*.woff",
+    "/*.woff2"
+  ]
+}
+EOL
+
 # Create a _headers file for security
 echo "Creating security headers file..."
 mkdir -p dist/public
@@ -50,5 +72,9 @@ cat > dist/public/_headers << EOL
   X-XSS-Protection: 1; mode=block
   Content-Security-Policy: upgrade-insecure-requests
 EOL
+
+# Copy _redirects file for client-side routing
+echo "Copying _redirects file for SPA routing..."
+cp public/_redirects dist/
 
 echo "Build completed successfully!"

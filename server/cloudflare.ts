@@ -18,11 +18,31 @@ registerRoutes(app);
 // Serve static files from the client/dist directory
 const staticDir = path.join(process.cwd(), 'client', 'dist');
 if (fs.existsSync(staticDir)) {
-  app.use(express.static(staticDir));
+  app.use(express.static(staticDir, {
+    index: false, // Don't auto-serve index.html
+    setHeaders: (res, filePath) => {
+      // Set cache control headers for static assets
+      if (filePath.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'public, max-age=0');
+      } else if (filePath.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg)$/)) {
+        res.setHeader('Cache-Control', 'public, max-age=86400'); // 1 day
+      }
+    }
+  }));
   
-  // For any other request, serve the index.html file
+  // For any other request, serve the index.html file (client-side routing)
   app.get('*', (req, res) => {
-    res.sendFile(path.join(staticDir, 'index.html'));
+    // Skip API routes
+    if (req.path.startsWith('/api/')) {
+      return res.status(404).json({ error: 'API endpoint not found' });
+    }
+    
+    try {
+      res.sendFile(path.join(staticDir, 'index.html'));
+    } catch (error) {
+      console.error('Error serving index.html:', error);
+      res.status(500).send('Error serving application');
+    }
   });
 }
 
