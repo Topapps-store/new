@@ -310,18 +310,16 @@ const AppDetail = () => {
                   <div className="mt-4">
                     <a 
                       href={`https://play.google.com/store/apps/details?id=${app.id}`}
-                      className="flex items-center justify-center bg-black text-white rounded-lg px-6 py-3 font-medium hover:bg-gray-800 transition-colors"
+                      className="inline-block hover:opacity-80 transition-opacity"
                       onClick={handleGooglePlayClick}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.954 11.616L3.8 2.5C3.6 2.3 3.3 2.1 3 2v20c0.3-0.1 0.6-0.3 0.8-0.5l9.154-9.116L12.954 11.616z" />
-                        <path d="M3.6 2.3C3.1 2.8 2.8 3.5 2.8 4.2v15.5c0 0.7 0.3 1.4 0.8 1.9l9.235-9.295L3.6 2.3z" fill="white" />
-                        <path d="M17.9 8.1l-4.346 2.45l-0.6 0.337l9.2 9.2c0.4-0.2 0.7-0.5 0.9-0.9l-4.4-10.2C18.5 8.6 18.2 8.3 17.9 8.1z" />
-                        <path d="M3.6 21.7c0.2 0.2 0.5 0.4 0.8 0.5l13.4 7.6c0.2 0.1 0.4 0.2 0.6 0.2c0.4 0 0.8-0.1 1.2-0.3c0.2-0.1 0.3-0.2 0.5-0.3l-9.3-9.3L3.6 21.7z" />
-                      </svg>
-                      Google Play
+                      <img 
+                        src="/src/assets/google-play-bw.svg" 
+                        alt="Download on Google Play" 
+                        className="h-10 w-auto"
+                      />
                     </a>
                   </div>
                 </div>
