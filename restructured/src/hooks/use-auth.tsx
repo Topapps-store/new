@@ -167,20 +167,29 @@ export function AuthProvider({ children }: AuthProviderProps) {
   } = useQuery({
     queryKey: ["/api/auth/check"],
     queryFn: async () => {
-      // Add token to request if available
-      const token = localStorage.getItem("auth_token");
-      const headers: HeadersInit = {};
-      
-      if (token) {
-        headers["Authorization"] = `Bearer ${token}`;
+      try {
+        // Add token to request if available
+        const token = localStorage.getItem("auth_token");
+        const headers: HeadersInit = {};
+        
+        if (token) {
+          headers["Authorization"] = `Bearer ${token}`;
+        }
+        
+        const res = await fetch("/api/auth/check", { headers });
+        if (res.status === 401) {
+          return { authenticated: false, user: null };
+        }
+        
+        if (!res.ok) {
+          throw new Error("Failed to check authentication");
+        }
+        
+        return await res.json();
+      } catch (err) {
+        console.warn("Auth check failed:", err);
+        return { authenticated: false, user: null };
       }
-      
-      const res = await fetch("/api/auth/check", { headers });
-      if (!res.ok) {
-        throw new Error("Failed to check authentication");
-      }
-      
-      return await res.json();
     },
     retry: false,
   });

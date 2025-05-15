@@ -1,89 +1,101 @@
-import React, { createContext, useState, useEffect, useCallback, ReactNode } from 'react';
+import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
-// Supported languages
-export type Language = 'EN' | 'ES' | 'FR' | 'DE' | 'IT' | 'PT' | 'RU' | 'JA' | 'ZH';
+// Tipos de lenguajes soportados
+export type SupportedLanguage = 'EN' | 'ES' | 'FR' | 'DE' | 'IT' | 'PT' | 'RU' | 'JA' | 'ZH';
 
+// Interfaz del contexto de idioma
 interface LanguageContextType {
-  language: Language;
+  currentLanguage: SupportedLanguage;
+  detectedLanguage: SupportedLanguage;
+  isAutoDetect: boolean;
+  setAutoDetect: (value: boolean) => void;
+  setLanguage: (language: SupportedLanguage) => void;
   translateText: (text: string) => Promise<string>;
-  translateMultiple: (texts: string[]) => Promise<string[]>;
-  detectedLanguage: Language;
 }
 
-export const LanguageContext = createContext<LanguageContextType>({
-  language: 'EN',
-  translateText: async (text) => text,
-  translateMultiple: async (texts) => texts,
-  detectedLanguage: 'EN',
-});
-
-interface LanguageProviderProps {
-  children: ReactNode;
+// Cache de traducciones para mejorar rendimiento
+interface TranslationCache {
+  [key: string]: {
+    [languageCode: string]: string;
+  };
 }
 
-export function LanguageProvider({ children }: LanguageProviderProps) {
-  // State for current language and detected browser language
-  const [language, setLanguage] = useState<Language>('EN');
-  const [detectedLanguage, setDetectedLanguage] = useState<Language>('EN');
+// Crear el contexto
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+// Mapeo de códigos de navegador a nuestros códigos de idioma
+const browserLanguageMap: Record<string, SupportedLanguage> = {
+  'en': 'EN',
+  'es': 'ES',
+  'fr': 'FR',
+  'de': 'DE',
+  'it': 'IT',
+  'pt': 'PT',
+  'ru': 'RU',
+  'ja': 'JA',
+  'zh': 'ZH',
+};
+
+// Detectar el idioma del navegador
+function detectBrowserLanguage(): SupportedLanguage {
+  if (typeof window === 'undefined') return 'EN';
   
-  // Translation cache to minimize API calls
-  const [translationCache, setTranslationCache] = useState<{
-    [text: string]: { [lang: string]: string };
-  }>({});
+  const browserLang = navigator.language.split('-')[0].toLowerCase();
+  return browserLanguageMap[browserLang] || 'EN';
+}
+
+// Proveedor del contexto de idioma
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const { toast } = useToast();
+  const [currentLanguage, setCurrentLanguage] = useState<SupportedLanguage>('EN');
+  const [detectedLanguage, setDetectedLanguage] = useState<SupportedLanguage>('EN');
+  const [isAutoDetect, setIsAutoDetect] = useState(true);
   
-  // Detect language from browser on mount
+  // Cache de traducciones en memoria
+  const [translationCache] = useState<TranslationCache>({});
+  
+  // Detectar idioma al cargar
   useEffect(() => {
-    const detectBrowserLanguage = () => {
-      try {
-        const browserLang = navigator.language || (navigator as any).userLanguage;
-        const lang = browserLang.split('-')[0].toUpperCase() as Language;
-        
-        // Map to supported languages
-        const supportedLangs: Record<string, Language> = {
-          'EN': 'EN',
-          'ES': 'ES',
-          'FR': 'FR',
-          'DE': 'DE',
-          'IT': 'IT',
-          'PT': 'PT',
-          'RU': 'RU',
-          'JA': 'JA',
-          'ZH': 'ZH',
-        };
-        
-        const detectedLang = supportedLangs[lang] || 'EN';
-        setDetectedLanguage(detectedLang);
-        setLanguage(detectedLang);
-      } catch (error) {
-        console.error('Error detecting browser language:', error);
-        setDetectedLanguage('EN');
-        setLanguage('EN');
-      }
-    };
+    const detected = detectBrowserLanguage();
+    setDetectedLanguage(detected);
     
-    detectBrowserLanguage();
-  }, []);
+    if (isAutoDetect) {
+      setCurrentLanguage(detected);
+    }
+  }, [isAutoDetect]);
   
-  // Translate a single text
-  const translateText = useCallback(async (text: string): Promise<string> => {
-    // Don't translate empty strings
-    if (!text || text.trim() === '') {
+  // Función para cambiar el idioma manualmente
+  const setLanguage = (language: SupportedLanguage) => {
+    setCurrentLanguage(language);
+    setIsAutoDetect(false);
+  };
+  
+  // Función para activar/desactivar detección automática
+  const setAutoDetect = (value: boolean) => {
+    setIsAutoDetect(value);
+    if (value) {
+      setCurrentLanguage(detectedLanguage);
+    }
+  };
+  
+  // Función para traducir texto
+  const translateText = async (text: string): Promise<string> => {
+    // Si el idioma es inglés o el texto está vacío, devolver el texto original
+    if (currentLanguage === 'EN' || !text.trim()) {
       return text;
     }
     
-    // Use English if the detected language is the same as the target language
-    if (language === 'EN' || language === detectedLanguage) {
-      return text;
-    }
-    
-    // Check cache first
-    const cacheKey = text.substring(0, 100); // Use first 100 chars as key
-    if (translationCache[cacheKey]?.[language]) {
-      return translationCache[cacheKey][language];
+    // Verificar si la traducción está en caché
+    if (
+      translationCache[text] && 
+      translationCache[text][currentLanguage]
+    ) {
+      return translationCache[text][currentLanguage];
     }
     
     try {
-      // Call API for translation
+      // Realizar la petición de traducción
       const response = await fetch('/api/translate', {
         method: 'POST',
         headers: {
@@ -91,99 +103,44 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
         },
         body: JSON.stringify({
           text,
-          targetLang: language,
+          targetLang: currentLanguage,
         }),
       });
       
       if (!response.ok) {
-        console.error('Translation API error:', response.statusText);
-        return text;
+        throw new Error('Translation failed');
       }
       
       const data = await response.json();
-      const translatedText = data.translation || text;
+      const translatedText = data.translatedText;
       
-      // Update cache
-      setTranslationCache(prev => ({
-        ...prev,
-        [cacheKey]: {
-          ...(prev[cacheKey] || {}),
-          [language]: translatedText,
-        },
-      }));
+      // Guardar en caché
+      if (!translationCache[text]) {
+        translationCache[text] = {};
+      }
+      translationCache[text][currentLanguage] = translatedText;
       
       return translatedText;
     } catch (error) {
-      console.error('Translation error:', error);
-      return text;
-    }
-  }, [language, detectedLanguage, translationCache]);
-  
-  // Translate multiple texts at once
-  const translateMultiple = useCallback(async (texts: string[]): Promise<string[]> => {
-    // Filter out empty strings
-    const nonEmptyTexts = texts.filter(text => text && text.trim() !== '');
-    
-    // Use English if the detected language is the same as the target language
-    if (language === 'EN' || language === detectedLanguage || nonEmptyTexts.length === 0) {
-      return texts;
-    }
-    
-    try {
-      // Call API for batch translation
-      const response = await fetch('/api/translate/batch', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          texts: nonEmptyTexts,
-          targetLang: language,
-        }),
+      console.error('Error translating text:', error);
+      toast({
+        title: 'Translation Error',
+        description: 'Could not translate content. Using original text.',
+        variant: 'destructive',
       });
-      
-      if (!response.ok) {
-        console.error('Batch translation API error:', response.statusText);
-        return texts;
-      }
-      
-      const data = await response.json();
-      const translatedTexts = data.translations || nonEmptyTexts;
-      
-      // Update cache for each text
-      const newCache = { ...translationCache };
-      nonEmptyTexts.forEach((text, index) => {
-        const cacheKey = text.substring(0, 100);
-        if (!newCache[cacheKey]) {
-          newCache[cacheKey] = {};
-        }
-        newCache[cacheKey][language] = translatedTexts[index];
-      });
-      
-      setTranslationCache(newCache);
-      
-      // Return translated texts in the original order
-      return texts.map(text => {
-        if (!text || text.trim() === '') {
-          return text;
-        }
-        
-        const index = nonEmptyTexts.indexOf(text);
-        return index >= 0 ? translatedTexts[index] : text;
-      });
-    } catch (error) {
-      console.error('Batch translation error:', error);
-      return texts;
+      return text; // Devolver texto original en caso de error
     }
-  }, [language, detectedLanguage, translationCache]);
+  };
   
   return (
-    <LanguageContext.Provider
+    <LanguageContext.Provider 
       value={{
-        language,
-        translateText,
-        translateMultiple,
+        currentLanguage,
         detectedLanguage,
+        isAutoDetect,
+        setAutoDetect,
+        setLanguage,
+        translateText,
       }}
     >
       {children}
@@ -191,11 +148,11 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   );
 }
 
-// Custom hook for using the language context
+// Hook para usar el contexto de idioma
 export function useLanguage() {
-  const context = React.useContext(LanguageContext);
+  const context = useContext(LanguageContext);
   
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   

@@ -1,28 +1,28 @@
 import { Route, Switch, useLocation } from 'wouter';
-import { useEffect } from 'react';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from '@/components/ui/toaster';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { AuthProvider } from '@/hooks/use-auth';
 import { ProtectedRoute } from '@/lib/protected-route';
+import { queryClient } from '@/lib/query-client';
+import { useEffect } from 'react';
 
-// Pages
-import HomePage from '@/pages/Home';
-import AppDetailPage from '@/pages/AppDetail';
-import CategoryPage from '@/pages/Category';
-import SearchPage from '@/pages/Search';
-import AuthPage from '@/pages/Auth';
+// Importar páginas
+import Home from '@/pages/Home';
+import AppDetail from '@/pages/AppDetail';
+import Category from '@/pages/Category';
+import Search from '@/pages/Search';
+import Auth from '@/pages/Auth';
 import AdminDashboard from '@/pages/AdminDashboard';
-import PrivacyPolicyPage from '@/pages/legal/PrivacyPolicy';
-import TermsOfServicePage from '@/pages/legal/TermsOfService';
-import DisclaimerPage from '@/pages/legal/Disclaimer';
-import NotFoundPage from '@/pages/NotFound';
+import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
+import TermsOfService from '@/pages/legal/TermsOfService';
+import Disclaimer from '@/pages/legal/Disclaimer';
+import NotFound from '@/pages/NotFound';
 
-// Layout
+// Importar layout
 import { Layout } from '@/components/layout/Layout';
 
-/**
- * Scroll to top on route change component
- */
+// Componente para manejar el scroll al cambiar de ruta
 function ScrollToTop() {
   const [location] = useLocation();
   
@@ -33,38 +33,30 @@ function ScrollToTop() {
   return null;
 }
 
-/**
- * Main application component
- */
-export function App() {
+function App() {
   return (
-    <AuthProvider>
+    <QueryClientProvider client={queryClient}>
       <LanguageProvider>
-        <Layout>
-          <Router />
+        <AuthProvider>
+          <Layout>
+            <Switch>
+              <Route path="/" component={Home} />
+              <Route path="/app/:id" component={AppDetail} />
+              <Route path="/category/:id" component={Category} />
+              <Route path="/search" component={Search} />
+              <Route path="/auth" component={Auth} />
+              <ProtectedRoute path="/admin" component={AdminDashboard} />
+              <Route path="/privacy-policy" component={PrivacyPolicy} />
+              <Route path="/terms-of-service" component={TermsOfService} />
+              <Route path="/disclaimer" component={Disclaimer} />
+              <Route component={NotFound} />
+            </Switch>
+          </Layout>
           <Toaster />
-        </Layout>
+        </AuthProvider>
       </LanguageProvider>
-    </AuthProvider>
+    </QueryClientProvider>
   );
 }
 
-/**
- * Application routes
- */
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={HomePage} />
-      <Route path="/app/:id" component={AppDetailPage} />
-      <Route path="/category/:id" component={CategoryPage} />
-      <Route path="/search" component={SearchPage} />
-      <Route path="/auth" component={AuthPage} />
-      <ProtectedRoute path="/admin" component={AdminDashboard} />
-      <Route path="/privacy-policy" component={PrivacyPolicyPage} />
-      <Route path="/terms-of-service" component={TermsOfServicePage} />
-      <Route path="/disclaimer" component={DisclaimerPage} />
-      <Route component={NotFoundPage} />
-    </Switch>
-  );
-}
+export default App;

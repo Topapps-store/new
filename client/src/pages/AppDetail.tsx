@@ -25,6 +25,7 @@ function getCategoryName(app: App | AppLegacy): string {
 const AppDetail = () => {
   const { appId } = useParams();
   const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info">("description");
+  const [showFullDescription, setShowFullDescription] = useState(false);
   const { t } = useLanguage();
 
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
@@ -290,14 +291,18 @@ const AppDetail = () => {
               
               {activeTab === "description" && (
                 <div className="mb-3">
-                  <p className="text-gray-700 whitespace-pre-line text-sm">
+                  <p className={`text-gray-700 whitespace-pre-line text-sm ${!showFullDescription ? 'line-clamp-4' : ''}`}>
                     {app.description}
                   </p>
                   
                   {/* Show more button */}
                   <div className="mt-2">
-                    <button className="text-primary hover:text-blue-600 font-medium text-sm">
-                      {t('appDetail.readMore')} <i className="fas fa-chevron-down ml-1"></i>
+                    <button 
+                      onClick={() => setShowFullDescription(!showFullDescription)}
+                      className="text-primary hover:text-blue-600 font-medium text-sm flex items-center"
+                    >
+                      {showFullDescription ? t('appDetail.readLess') : t('appDetail.readMore')} 
+                      <i className={`fas fa-chevron-${showFullDescription ? 'up' : 'down'} ml-1`}></i>
                     </button>
                   </div>
                 </div>
