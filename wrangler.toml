@@ -21,3 +21,4 @@ command = "./build.sh"
 [env.production]
 # Production-specific settings
 workers_dev = false
+
