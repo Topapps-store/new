@@ -3,7 +3,6 @@ import { Link } from "wouter";
 import AppCard from "@/components/AppCard";
 import CategoryCard from "@/components/CategoryCard";
 import SponsoredBanner from "@/components/SponsoredBanner";
-import { AppUpdatesBanner } from "@/components/AppUpdatesBanner";
 import { useState } from "react";
 import { App, Category } from "@shared/schema";
 import { useLanguage } from "../context/LanguageContext";
@@ -30,9 +29,6 @@ const Home = () => {
 
   return (
     <>
-      {/* App Updates Banner */}
-      <AppUpdatesBanner />
-      
       {/* Top 10 Apps Last Month Section */}
       <section>
         <div className="flex justify-between items-center mb-6">
