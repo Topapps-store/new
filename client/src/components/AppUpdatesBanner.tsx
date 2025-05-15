@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import type { AppLegacy, AppVersionHistory } from '@shared/schema';
-import { Badge } from '@/components/ui/badge';
+
 import { Button } from '@/components/ui/button';
 import { X, Bell, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
@@ -65,9 +65,9 @@ export function AppUpdatesBanner() {
       <div className="flex-grow pr-6">
         <div className="flex items-center gap-2 mb-1">
           <span className="font-semibold">{currentUpdate.app.name}</span>
-          <Badge variant="outline" className="bg-blue-100 text-blue-800">
+          <span className="text-xs text-blue-800">
             {t('updates.newVersion')} {currentUpdate.versionHistory.version}
-          </Badge>
+          </span>
         </div>
         
         <p className="text-sm text-slate-700">{currentUpdate.versionHistory.releaseNotes || t('updates.appUpdated')}</p>
