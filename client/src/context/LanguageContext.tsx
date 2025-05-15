@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect, ReactNode, useCallback } from 'react';
+import { createContext, useState, useContext, ReactNode, useCallback } from 'react';
 import axios from 'axios';
 
 // Import translations
@@ -25,6 +25,7 @@ type TranslationCache = Record<string, string>;
 // Type for context value
 interface LanguageContextType {
   language: Language;
+  setLanguage: (lang: Language) => void;
   t: (key: string, params?: Record<string, string>) => string;
 }
 
@@ -65,10 +66,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       return text;
     }
 
+    const lang = language as Language; // Cast to ensure type safety
+    
     // Check cache first
     const cacheKey = text.toLowerCase().trim();
-    if (translationCache[language][cacheKey]) {
-      return translationCache[language][cacheKey];
+    if (translationCache[lang][cacheKey]) {
+      return translationCache[lang][cacheKey];
     }
 
     try {
@@ -80,7 +83,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       const translatedText = response.data.translatedText;
       
       // Update cache
-      translationCache[language][cacheKey] = translatedText;
+      translationCache[lang][cacheKey] = translatedText;
       
       return translatedText;
     } catch (error) {
@@ -125,37 +128,36 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       return result;
     }
     
+    const lang = language as Language; // Cast to ensure type safety
+    
     // For non-English languages, check if we have the translation in our static files first
-    if (language !== 'en') {
-      let localizedValue: any = translations[language];
-      for (const k of keys) {
-        if (localizedValue && typeof localizedValue === 'object' && k in localizedValue) {
-          localizedValue = localizedValue[k];
-        } else {
-          localizedValue = null;
-          break;
-        }
+    let localizedValue: any = translations[lang];
+    for (const k of keys) {
+      if (localizedValue && typeof localizedValue === 'object' && k in localizedValue) {
+        localizedValue = localizedValue[k];
+      } else {
+        localizedValue = null;
+        break;
+      }
+    }
+    
+    // If we have a static translation, use it
+    if (typeof localizedValue === 'string') {
+      let localizedResult = localizedValue.replace('{year}', new Date().getFullYear().toString());
+      
+      // Replace any provided parameters
+      if (params) {
+        Object.entries(params).forEach(([paramKey, paramValue]) => {
+          localizedResult = localizedResult.replace(`{${paramKey}}`, paramValue);
+        });
       }
       
-      // If we have a static translation, use it
-      if (typeof localizedValue === 'string') {
-        let localizedResult = localizedValue.replace('{year}', new Date().getFullYear().toString());
-        
-        // Replace any provided parameters
-        if (params) {
-          Object.entries(params).forEach(([paramKey, paramValue]) => {
-            localizedResult = localizedResult.replace(`{${paramKey}}`, paramValue);
-          });
-        }
-        
-        return localizedResult;
-      }
+      return localizedResult;
     }
     
     // If no static translation available, request translation for this text
     // Start a translation request but return the original text for now
-    // (we'll update the UI once the translation arrives)
-    translateText(result, languageCodeMap[language])
+    translateText(result, languageCodeMap[lang])
       .then(translatedText => {
         // This will be handled asynchronously
         // The next time this key is requested, it will be in the cache
@@ -166,13 +168,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     
     // Return cached translation if available, otherwise original text
     const cacheKey = result.toLowerCase().trim();
-    return translationCache[language][cacheKey] || result;
+    return translationCache[lang][cacheKey] || result;
   }, [language, translateText]);
 
   return (
     <LanguageContext.Provider value={{ 
       language, 
-      setLanguage, 
+      setLanguage,
       t
     }}>
       {children}
