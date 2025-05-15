@@ -1,4 +1,5 @@
-import { Route, Switch } from 'wouter';
+import { Route, Switch, useLocation } from 'wouter';
+import { useEffect } from 'react';
 import { Toaster } from '@/components/ui/toaster';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { AuthProvider } from '@/hooks/use-auth';
@@ -23,9 +24,11 @@ import { Layout } from '@/components/layout/Layout';
  * Scroll to top on route change component
  */
 function ScrollToTop() {
+  const [location] = useLocation();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, [location]);
   
   return null;
 }
