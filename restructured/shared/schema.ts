@@ -70,18 +70,10 @@ export const apps = pgTable("apps", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-export const appsRelations = relations(apps, ({ one, many }) => ({
+export const appsRelations = relations(apps, ({ one }) => ({
   category: one(categories, {
     fields: [apps.categoryId],
     references: [categories.id]
-  }),
-  affiliateLinks: many(affiliateLinks, { 
-    fields: [apps.id], 
-    references: [affiliateLinks.appId] 
-  }),
-  versionHistory: many(appVersionHistory, {
-    fields: [apps.id],
-    references: [appVersionHistory.appId]
   })
 }));
 
