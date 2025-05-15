@@ -39,8 +39,8 @@ npx esbuild server/cloudflare.ts --platform=node --packages=external --bundle --
 
 # Create a _headers file for security
 echo "Creating security headers file..."
-mkdir -p dist/public
-cat > dist/public/_headers << EOL
+mkdir -p client/dist
+cat > client/dist/_headers << EOL
 
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
