@@ -7,6 +7,7 @@ import AppCard from "@/components/AppCard";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "../context/LanguageContext";
 import { apiRequest } from "@/lib/queryClient";
+import googlePlayLogo from "../assets/google-play-bw.svg";
 
 
 // Type guard to check if the app is of type AppLegacy
@@ -316,7 +317,7 @@ const AppDetail = () => {
                       rel="noopener noreferrer"
                     >
                       <img 
-                        src="/src/assets/google-play-bw.svg" 
+                        src={googlePlayLogo} 
                         alt="Download on Google Play" 
                         className="h-10 w-auto"
                       />
