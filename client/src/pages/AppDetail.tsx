@@ -297,7 +297,7 @@ const AppDetail = () => {
                   {/* Google Play download link */}
                   <div className="mt-4">
                     <a 
-                      href={`https://play.google.com/store/apps/details?id=${app.originalAppId || app.id}`}
+                      href={app.googlePlayUrl || app.downloadUrl}
                       className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                       onClick={handleGooglePlayClick}
                       target="_blank"
