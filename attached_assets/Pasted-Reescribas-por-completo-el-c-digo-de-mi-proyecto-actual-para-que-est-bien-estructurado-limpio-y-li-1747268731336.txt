@@ -1,0 +1,62 @@
+Reescribas por completo el código de mi proyecto actual para que esté bien estructurado, limpio y listo para producción en Cloudflare Pages. No quiero perder las funcionalidades que ya tenía, pero necesito orden y escalabilidad. Por favor:
+
+Mantener la estructura estética actual (diseño visual de la web tal como está ahora)
+
+Botón verde "Sponsored download" en cada página de app, con el mismo diseño y posición actual
+
+Traducción automática del contenido usando la API de DeepL
+→ Ya tengo la variable de entorno DEEPL_API_KEY configurada
+
+Dashboard de usuario protegido (admin)
+→ Login con usuario: admin y contraseña: admin123
+→ Desde el dashboard se debe poder añadir nuevas apps ingresando solo el link de Google Play
+
+Al enviar el link, debe obtener automáticamente:
+Logo
+Nombre de la app
+Descripción
+Valoración (rating)
+Número de descargas
+Nombre del desarrollador
+
+Usar una base de datos PostgreSQL externa alojada en Neon
+→ El acceso se realizará desde funciones backend mediante el paquete pg
+→ La variable de entorno DATABASE_URL ya está prevista en la configuración
+
+Organizar el proyecto por carpetas:
+/functions/ para funciones y APIs
+/components/ para componentes de UI (si se usa React)
+/styles/, /assets/ si aplica
+
+Incluir un vite.config.ts funcional
+
+Backend compatible con Cloudflare Pages (Functions)
+
+UI puede ser React, HTML + JS plano o lo más práctico para mantener
+
+El código debe ser modular, limpio, escalable y comentado
+
+Todos los datos que ya tengo (apps registradas, credenciales del usuario admin, etc.) deben estar:
+Incluidos en el nuevo sistema
+Guardados en un archivo .sql listo para ser ejecutado o importado en la nueva base de datos PostgreSQL en Neon
+
+Este archivo debe contener:
+Instrucciones SQL para crear las tablas necesarias (apps, users, etc.)
+Insertar todos los datos actuales (apps existentes + usuario admin)
+
+Revisa todos los scripts del proyecto y:
+Recupera cualquier lista de apps existente (arrays, objetos, variables, etc.) con sus enlaces
+Compila una lista única, ordenada y sin duplicados
+Organiza esta lista en un solo archivo limpio y simplificado (por ejemplo data/appsList.js o similar)
+Esta lista debe poder ser fácilmente importada o insertada en la base de datos
+
+Tener un proyecto moderno, limpio y listo para producción, totalmente compatible con GitHub y Cloudflare Pages, y que pueda ser desplegado automáticamente al hacer git push.
+
+Gracias. Puedes reescribir desde cero sobre los archivos actuales o generar una nueva estructura. Yo me encargo de migrar y probar el funcionamiento después.
+
+
+
+
+
+
+
