@@ -7,7 +7,6 @@ import AppCard from "@/components/AppCard";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "../context/LanguageContext";
 import { apiRequest } from "@/lib/queryClient";
-import googlePlayLogo from "../assets/google-play-original.svg";
 
 
 // Type guard to check if the app is of type AppLegacy
@@ -295,20 +294,16 @@ const AppDetail = () => {
                     {app.description}
                   </p>
                   
-                  {/* Google Play download button */}
+                  {/* Google Play download link */}
                   <div className="mt-4">
                     <a 
                       href={`https://play.google.com/store/apps/details?id=${app.id}`}
-                      className="inline-block hover:opacity-80 transition-opacity"
+                      className="inline-block font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                       onClick={handleGooglePlayClick}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img 
-                        src={googlePlayLogo} 
-                        alt="Download on Google Play" 
-                        className="h-10 w-auto"
-                      />
+                      Google Play
                     </a>
                   </div>
                 </div>
