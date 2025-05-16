@@ -10,6 +10,7 @@ import Home from "@/pages/Home";
 import AppDetail from "@/pages/AppDetail";
 import Category from "@/pages/Category";
 import AllApps from "@/pages/AllApps";
+import AddApp from "@/pages/AddApp";
 import TermsOfService from "@/pages/TermsOfService";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import Disclaimer from "@/pages/Disclaimer";
@@ -20,6 +21,7 @@ import AdminDashboard from "@/pages/AdminDashboard";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AdminProvider } from "./context/AdminContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import { ToastProvider } from "./hooks/use-toast";
 import { useEffect } from "react";
 
 function ScrollToTop() {

@@ -29,6 +29,7 @@ import {
 import { InsertAffiliateLink, insertAffiliateLinkSchema } from "@shared/schema";
 import { z } from "zod";
 import { translateText, bulkTranslate } from "./translation-service";
+import { addAppFromPlayStore } from "./controllers/appController";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Configure session middleware
@@ -264,6 +265,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
+  // Add app from Google Play Store
+  apiRouter.post("/apps/add-from-playstore", async (req, res) => {
+    addAppFromPlayStore(req, res);
+  });
+
   // Translation API endpoints
   apiRouter.post("/translate", async (req, res) => {
     try {
