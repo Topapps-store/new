@@ -70,7 +70,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
 
   return (
     <button 
-      className={`group relative block w-4/5 mx-auto text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full mb-4 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 overflow-hidden scale-125 ${className}`}
+      className={`group relative block w-4/5 mx-auto text-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-full mb-4 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 overflow-hidden ${className}`}
       style={{
         boxShadow: '0 4px 16px 0 rgba(34, 197, 94, 0.6)',
         textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
@@ -81,10 +81,10 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     >
       {/* Contenido del botón */}
       <span className="relative z-10 flex items-center justify-center">
-        <svg className="w-5 h-5 mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <svg className="w-7 h-7 mr-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd"></path>
         </svg>
-        {t('appDetail.downloadAPK')}
+        <span className="text-lg">{t('appDetail.downloadAPK')}</span>
       </span>
       
       {/* Efecto de hover */}
