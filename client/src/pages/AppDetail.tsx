@@ -183,13 +183,16 @@ const AppDetail = () => {
                     {t('sponsored.sponsored')}
                   </div>
                   
-                  {isLoadingAffiliateLinks ? (
-                    <div className="animate-pulse space-y-2">
-                      <div className="h-14 bg-gray-200 rounded-lg"></div>
-                      <div className="h-14 bg-gray-200 rounded-lg"></div>
-                    </div>
-                  ) : affiliateLinks && affiliateLinks.length > 0 ? (
-                    <div className="space-y-2">
+                  {/* Siempre mostramos el botón de descarga verde */}
+                  <DownloadButton 
+                    appId={app?.id || ''} 
+                    customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
+                  />
+                  
+                  {/* Si hay enlaces de afiliado, los mostramos debajo del botón de descarga */}
+                  {!isLoadingAffiliateLinks && affiliateLinks && affiliateLinks.length > 0 && (
+                    <div className="space-y-2 mt-3">
+                      <div className="text-xs text-gray-500 text-center mb-1">{t('appDetail.alternativeDownloads')}</div>
                       {affiliateLinks.map((link) => (
                         <div key={link.id} className="relative transform hover:scale-105 transition-all duration-300">
                           {link.label && (
@@ -197,11 +200,11 @@ const AppDetail = () => {
                           )}
                           <a 
                             href={link.url}
-                            className="group relative block w-4/5 mx-auto text-center font-bold py-3 px-5 rounded-full mb-1 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden scale-125"
+                            className="group relative block w-4/5 mx-auto text-center font-bold py-3 px-5 rounded-full mb-1 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
                             style={{ 
-                              backgroundColor: link.buttonColor || '#22c55e', 
+                              backgroundColor: link.buttonColor || '#4f46e5', 
                               color: 'white',
-                              boxShadow: `0 4px 16px 0 ${link.buttonColor ? link.buttonColor + '80' : 'rgba(34, 197, 94, 0.6)'}`,
+                              boxShadow: `0 4px 16px 0 ${link.buttonColor ? link.buttonColor + '80' : 'rgba(79, 70, 229, 0.6)'}`,
                               textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
                             }}
                             onClick={(e) => {
@@ -238,11 +241,15 @@ const AppDetail = () => {
                         </div>
                       ))}
                     </div>
-                  ) : (
-                    <DownloadButton 
-                      appId={app?.id || ''} 
-                      customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
-                    />
+                  )}
+                  
+                  {/* Mostrar un skeleton loader mientras se cargan los enlaces de afiliado */}
+                  {isLoadingAffiliateLinks && (
+                    <div className="animate-pulse space-y-2 mt-3">
+                      <div className="h-3 bg-gray-200 rounded w-1/2 mx-auto mb-2"></div>
+                      <div className="h-12 bg-gray-200 rounded-full w-4/5 mx-auto mb-2"></div>
+                      <div className="h-12 bg-gray-200 rounded-full w-4/5 mx-auto"></div>
+                    </div>
                   )}
                 </div>
                 
