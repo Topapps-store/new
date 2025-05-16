@@ -196,7 +196,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!query) {
         return res.json([]);
       }
-      const apps = await storage.searchApps(query);
+      const apps = await dataService.searchApps(query);
       res.json(apps);
     } catch (error) {
       res.status(500).json({ message: "Error searching apps" });

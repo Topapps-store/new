@@ -1,19 +1,23 @@
 #!/bin/bash
 
-echo "=== TopApps.store - Sincronizador automático de aplicaciones ==="
-echo ""
+# Script para automatizar la sincronización de aplicaciones
+# Este script procesa nuevas aplicaciones desde pending-apps.json
+# y actualiza la información de las aplicaciones existentes
 
-# Paso 1: Procesar nuevas aplicaciones desde enlaces pendientes
-echo "Paso 1: Procesando nuevas aplicaciones desde enlaces pendientes..."
+echo "🚀 Iniciando sincronización de aplicaciones..."
+
+# Instalación de dependencias (si no están instaladas)
+if ! npm list google-play-scraper >/dev/null 2>&1; then
+  echo "📦 Instalando dependencias necesarias..."
+  npm install google-play-scraper
+fi
+
+# Procesar nuevas aplicaciones
+echo "🔍 Procesando nuevas aplicaciones..."
 node scripts/process-pending-apps.js
 
-echo ""
-echo "Paso 2: Actualizando aplicaciones existentes con datos nuevos de Google Play..."
+# Sincronizar aplicaciones existentes
+echo "🔄 Sincronizando aplicaciones existentes..."
 node scripts/sync-existing-apps.js
 
-echo ""
-echo "=== Sincronización Completa ==="
-echo "Para añadir más aplicaciones:"
-echo "1. Edita el archivo client/src/data/pending-apps.json"
-echo "2. Añade nuevas URLs de Google Play en el array 'pendingUrls'"
-echo "3. Ejecuta este script nuevamente"
+echo "✅ Sincronización completada."
