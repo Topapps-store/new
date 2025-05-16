@@ -35,6 +35,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <span className="hidden md:inline">{t('nav.games')}</span>
               </div>
             </Link>
+            <Link href="/apps/add">
+              <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/apps/add" ? "text-primary" : ""}`}>
+                <i className="fas fa-plus-circle mr-1"></i>
+                <span className="hidden md:inline">{t('nav.addApp')}</span>
+              </div>
+            </Link>
           </nav>
         </div>
 

@@ -4,6 +4,7 @@ import { createServer } from "http";
 import { storage } from "./storage";
 import { getApps, getAppById, getPopularApps, getRecentApps, getRelatedApps, searchApps, getJustInTimeApps } from "./data/apps";
 import { getCategories, getCategoryById, getAppsByCategory } from "./data/categories";
+import { addAppFromPlayStore } from "./controllers/appController";
 import session from "express-session";
 import multer from "multer";
 import { login, logout, checkAuth, requireAuth, requireAdmin } from "./controllers/auth-controller";
@@ -204,6 +205,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Error searching apps" });
     }
   });
+  
+  // Endpoint para añadir aplicaciones desde Google Play Store
+  apiRouter.post("/apps/add-from-playstore", addAppFromPlayStore);
   
   // Affiliate link click tracking
   apiRouter.post("/affiliate-links/:id/click", async (req, res) => {
