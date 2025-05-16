@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "id": "whatsapp",
+    "name": "WhatsApp",
+    "description": "Mensajería y llamadas gratuitas, simples, seguras y confiables, disponibles en teléfonos alrededor del mundo.",
+    "icon": "https://play-lh.googleusercontent.com/bYtqbOcTYOlgc6gqZ2rwb8lptHuwlNE75zYJu6Bn076-hTmvd96HH-6v7S0YUAAJXoJN=s180-rw",
+    "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.whatsapp",
+    "rating": 4.5,
+    "downloads": "5B+",
+    "developer": "WhatsApp LLC",
+    "categoryId": "comunicacion",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/U36Jte8G84pV9OYY2bFNgS5VhbJCnUjpKcYsYdFf60bNV6Hl7WEwXtdNqEXmCqOXAsE=w720-h310-rw",
+      "https://play-lh.googleusercontent.com/Ni0S2Ltuia4Q1BFeNGyO2YOUVyYHUE_BTvVbw8xXLsb20nI5uHgJuOc9GEt1A7Jj3ms=w720-h310-rw",
+      "https://play-lh.googleusercontent.com/jLdC-70gXTWNyuFLrqODDWwUgBLM1XJ9Pq1V3Xn_xpeChQ-MBzQ8WFRzrSe9yd3OJA=w720-h310-rw"
+    ],
+    "createdAt": "2023-05-10T12:34:56.789Z",
+    "updatedAt": "2023-10-15T09:45:23.456Z",
+    "featured": true,
+    "trending": true,
+    "priority": 1,
+    "version": "2.23.19.76",
+    "size": "48MB"
+  }
+]

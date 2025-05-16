@@ -1,34 +1,37 @@
 #!/bin/bash
-set -e
 
-echo "🚀 Iniciando construcción para Cloudflare Pages..."
+# Script de compilación para Cloudflare Pages
+# Este script prepara el proyecto para despliegue en Cloudflare Pages
 
-# Configurar entorno
-export NODE_ENV=production
+# Mostrar versión de Node.js
+echo "🔍 Versión de Node.js: $(node -v)"
+echo "🔍 Versión de npm: $(npm -v)"
+
+# Establecer variables de entorno
+export IS_STATIC=true
+export CF_PAGES=true
 
 # Instalar dependencias
 echo "📦 Instalando dependencias..."
 npm install
 
-# Construir el frontend
-echo "🏗️ Construyendo el frontend..."
+# Ejecutar proceso de compilación
+echo "🏗️ Compilando proyecto..."
 npm run build
 
-# Copiar _redirects para SPA routing
-echo "📋 Configurando redirecciones SPA..."
-cat > dist/public/_redirects << EOL
-/api/*  https://topapps.replit.app/api/:splat  200
-/*      /index.html                            200
-EOL
+# Asegurar que las funciones de Cloudflare están en el lugar correcto
+echo "🔄 Configurando funciones de Cloudflare..."
+if [ ! -d "dist/functions" ]; then
+  mkdir -p dist/functions
+fi
 
-# Crear un archivo nojekyll para evitar problemas con GitHub Pages
-touch dist/public/.nojekyll
+# Copiar archivos de funciones si no están presentes en dist/
+cp -r functions/* dist/functions/
 
-echo "✅ Construcción completada para Cloudflare Pages!"
-echo "   Directorio de salida: dist/public"
-echo ""
-echo "Configuración recomendada para Cloudflare Pages:"
-echo "- Build command: ./cloudflare-build.sh"
-echo "- Build output directory: dist/public"
-echo ""
-echo "NOTA: Esta configuración redirigirá todas las solicitudes API a tu instancia de Replit."
+# Asegurar que existe el archivo _redirects
+if [ ! -f "dist/_redirects" ]; then
+  echo "/* /index.html 200" > dist/_redirects
+  echo "✅ Creado archivo de redirecciones para SPA"
+fi
+
+echo "✅ Compilación completada. Proyecto listo para despliegue en Cloudflare Pages."

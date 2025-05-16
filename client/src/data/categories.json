@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "id": "comunicacion",
+    "name": "Comunicación",
+    "description": "Aplicaciones para mantenerse en contacto con amigos, familiares y colegas",
+    "icon": "message-square",
+    "createdAt": "2023-01-15T10:00:00.000Z",
+    "updatedAt": "2023-01-15T10:00:00.000Z"
+  },
+  {
+    "id": "social",
+    "name": "Redes Sociales",
+    "description": "Conecta con personas, comparte contenido y sigue tendencias",
+    "icon": "users",
+    "createdAt": "2023-01-15T10:05:00.000Z",
+    "updatedAt": "2023-01-15T10:05:00.000Z"
+  },
+  {
+    "id": "productividad",
+    "name": "Productividad",
+    "description": "Gestiona tareas, organiza tu tiempo y mejora tu eficiencia",
+    "icon": "clipboard",
+    "createdAt": "2023-01-15T10:10:00.000Z",
+    "updatedAt": "2023-01-15T10:10:00.000Z"
+  },
+  {
+    "id": "entretenimiento",
+    "name": "Entretenimiento",
+    "description": "Disfruta de videos, música y contenido multimedia",
+    "icon": "play-circle",
+    "createdAt": "2023-01-15T10:15:00.000Z",
+    "updatedAt": "2023-01-15T10:15:00.000Z"
+  },
+  {
+    "id": "finanzas",
+    "name": "Finanzas",
+    "description": "Administra tu dinero, realiza pagos y controla tus gastos",
+    "icon": "dollar-sign",
+    "createdAt": "2023-01-15T10:20:00.000Z",
+    "updatedAt": "2023-01-15T10:20:00.000Z"
+  }
+]
