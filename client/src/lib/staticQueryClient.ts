@@ -54,8 +54,17 @@ export const staticQueryFn: QueryFunction = async ({ queryKey }) => {
     }
   }
   
-  if (url.match(/^\/api\/apps\/related\/[^/]+$/)) {
-    const appId = extractParam(url, /^\/api\/apps\/related\/([^/]+)$/);
+  // Manejar ruta de aplicaciones relacionadas - dos formatos posibles
+  if (url.startsWith('/api/apps/related/')) {
+    const appId = url.split('/').pop();
+    if (appId) {
+      return await staticDataService.fetchRelatedApps(appId);
+    }
+  }
+  
+  // Segundo formato de ruta relacionada que podría estar usando la aplicación
+  if (url === '/api/apps/related' && queryKey.length > 1) {
+    const appId = queryKey[1] as string;
     if (appId) {
       return await staticDataService.fetchRelatedApps(appId);
     }

@@ -220,36 +220,40 @@ export const apps: App[] = [
 ];
 
 // Funciones de utilidad para filtrar aplicaciones
-export const getPopularApps = () => {
+export const getPopularApps = (): App[] => {
   return apps.filter(app => app.rating > 4.0).sort((a, b) => b.rating - a.rating).slice(0, 10);
 };
 
-export const getRecentApps = () => {
-  return apps.sort((a, b) => new Date(b.updated) - new Date(a.updated)).slice(0, 10);
+export const getRecentApps = (): App[] => {
+  return [...apps].sort((a, b) => {
+    const dateA = new Date(b.updated).getTime();
+    const dateB = new Date(a.updated).getTime();
+    return dateA - dateB;
+  }).slice(0, 10);
 };
 
-export const getJustInTimeApps = () => {
-  return apps.filter(app => app.isAffiliate).sort(() => 0.5 - Math.random()).slice(0, 10);
+export const getJustInTimeApps = (): App[] => {
+  return apps.filter(app => app.isAffiliate).sort(() => Math.random() - 0.5).slice(0, 10);
 };
 
-export const getAppById = (id) => {
+export const getAppById = (id: string): App | undefined => {
   return apps.find(app => app.id === id);
 };
 
-export const getAppsByCategory = (categoryId) => {
+export const getAppsByCategory = (categoryId: string): App[] => {
   return apps.filter(app => app.categoryId === categoryId);
 };
 
-export const getRelatedApps = (appId) => {
+export const getRelatedApps = (appId: string): App[] => {
   const app = getAppById(appId);
   if (!app) return [];
   return apps
     .filter(a => a.id !== appId && a.categoryId === app.categoryId)
-    .sort(() => 0.5 - Math.random())
+    .sort(() => Math.random() - 0.5)
     .slice(0, 3);
 };
 
-export const searchApps = (query) => {
+export const searchApps = (query: string): App[] => {
   if (!query) return [];
   const lowerQuery = query.toLowerCase();
   return apps.filter(app => 

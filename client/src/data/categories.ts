@@ -1,4 +1,6 @@
-export const categories = [
+import { Category } from '../services/staticDataService';
+
+export const categories: Category[] = [
   {"id":"sports","name":"Sports"},
   {"id":"entertainment","name":"Entertainment"},
   {"id":"drawing","name":"Drawing"},

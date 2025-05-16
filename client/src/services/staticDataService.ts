@@ -49,58 +49,58 @@ export interface AffiliateLink {
 const simulateDelay = (ms = 300) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Funciones que reemplazan las llamadas a la API
-export const fetchCategories = async () => {
+export const fetchCategories = async (): Promise<Category[]> => {
   await simulateDelay();
   return categories;
 };
 
-export const fetchAllApps = async () => {
+export const fetchAllApps = async (): Promise<App[]> => {
   await simulateDelay();
   return apps;
 };
 
-export const fetchPopularApps = async () => {
+export const fetchPopularApps = async (): Promise<App[]> => {
   await simulateDelay();
   return getPopularApps();
 };
 
-export const fetchRecentApps = async () => {
+export const fetchRecentApps = async (): Promise<App[]> => {
   await simulateDelay();
   return getRecentApps();
 };
 
-export const fetchJustInTimeApps = async () => {
+export const fetchJustInTimeApps = async (): Promise<App[]> => {
   await simulateDelay();
   return getJustInTimeApps();
 };
 
-export const fetchAppById = async (id) => {
+export const fetchAppById = async (id: string): Promise<App | undefined> => {
   await simulateDelay();
   return getAppById(id);
 };
 
-export const fetchAppsByCategory = async (categoryId) => {
+export const fetchAppsByCategory = async (categoryId: string): Promise<App[]> => {
   await simulateDelay();
   return getAppsByCategory(categoryId);
 };
 
-export const fetchRelatedApps = async (appId) => {
+export const fetchRelatedApps = async (appId: string): Promise<App[]> => {
   await simulateDelay();
   return getRelatedApps(appId);
 };
 
-export const fetchSearchResults = async (query) => {
+export const fetchSearchResults = async (query: string): Promise<App[]> => {
   await simulateDelay();
   return searchApps(query);
 };
 
-export const fetchCategoryById = async (id) => {
+export const fetchCategoryById = async (id: string): Promise<Category | undefined> => {
   await simulateDelay();
   return categories.find(category => category.id === id);
 };
 
 // Simulación de enlaces de afiliados - en la versión estática solo devolveremos datos fijos
-export const fetchAffiliateLinks = async (appId) => {
+export const fetchAffiliateLinks = async (appId: string): Promise<AffiliateLink[]> => {
   await simulateDelay();
   
   const app = getAppById(appId);
@@ -121,7 +121,7 @@ export const fetchAffiliateLinks = async (appId) => {
 };
 
 // No hay operaciones de escritura en esta versión estática
-export const incrementLinkClickCount = async (id) => {
+export const incrementLinkClickCount = async (id: number): Promise<{success: boolean, url: string}> => {
   await simulateDelay();
   // En la versión estática, simplemente devolvemos un objeto simulado
   return {
