@@ -14,7 +14,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import Disclaimer from "@/pages/Disclaimer";
 import Contact from "@/pages/Contact";
 import Search from "@/pages/Search";
-import { LanguageProvider } from "./context/LanguageContext";
+import { LanguageProvider } from "./context/StaticLanguageContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { useEffect } from "react";
 
