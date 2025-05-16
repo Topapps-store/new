@@ -11,9 +11,8 @@ const apiRouteToServiceMap: Record<string, Function> = {
 };
 
 // Función para extraer parámetros de la ruta
-const extractParam = (route: string, pattern: string): string | null => {
-  const regex = new RegExp(pattern);
-  const match = route.match(regex);
+const extractParam = (route: string, pattern: RegExp): string | null => {
+  const match = route.match(pattern);
   return match ? match[1] : null;
 };
 
@@ -63,7 +62,7 @@ export const staticQueryFn: QueryFunction = async ({ queryKey }) => {
   }
   
   if (url.startsWith('/api/search') && queryKey.length > 1) {
-    const query = queryKey[1];
+    const query = queryKey[1] as string;
     return await staticDataService.fetchSearchResults(query);
   }
   

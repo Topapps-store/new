@@ -3,6 +3,48 @@ import { apps, getPopularApps, getRecentApps, getJustInTimeApps, getAppById,
   getAppsByCategory, getRelatedApps, searchApps } from '../data/apps';
 import { categories } from '../data/categories';
 
+// Definimos los tipos para esta versión estática
+export interface App {
+  id: string;
+  name: string;
+  category: string;
+  categoryId: string;
+  description: string;
+  iconUrl: string;
+  rating: number;
+  downloads: string;
+  version: string;
+  size: string;
+  updated: string;
+  requires: string;
+  developer: string;
+  installs: string;
+  downloadUrl: string;
+  googlePlayUrl: string;
+  iosAppStoreUrl?: string;
+  originalAppId?: string;
+  screenshots: string[];
+  isAffiliate: boolean;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  icon?: string;
+  color?: string;
+}
+
+export interface AffiliateLink {
+  id: number;
+  appId: string;
+  label: string;
+  url: string;
+  buttonText: string;
+  buttonColor: string;
+  isActive: boolean;
+  displayOrder: number;
+}
+
 // Simulación de tiempo de respuesta para que la UI no se vea brusca
 const simulateDelay = (ms = 300) => new Promise(resolve => setTimeout(resolve, ms));
 

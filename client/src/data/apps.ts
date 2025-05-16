@@ -1,4 +1,6 @@
-export const apps = [
+import { App } from '../services/staticDataService';
+
+export const apps: App[] = [
   {
     "id": "netflix",
     "name": "Netflix",
