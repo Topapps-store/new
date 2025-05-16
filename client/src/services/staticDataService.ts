@@ -1,131 +1,106 @@
-// Servicio para manejar los datos estáticos en lugar de llamadas a la API
-import { apps, getPopularApps, getRecentApps, getJustInTimeApps, getAppById, 
-  getAppsByCategory, getRelatedApps, searchApps } from '../data/apps';
-import { categories } from '../data/categories';
+import appsData from '../data/apps.json';
+import categoriesData from '../data/categories.json';
+import { App, AppLegacy, Category } from '@shared/schema';
 
-// Definimos los tipos para esta versión estática
-export interface App {
-  id: string;
-  name: string;
-  category: string;
-  categoryId: string;
-  description: string;
-  iconUrl: string;
-  rating: number;
-  downloads: string;
-  version: string;
-  size: string;
-  updated: string;
-  requires: string;
-  developer: string;
-  installs: string;
-  downloadUrl: string;
-  googlePlayUrl: string;
-  iosAppStoreUrl?: string;
-  originalAppId?: string;
-  screenshots: string[];
-  isAffiliate: boolean;
-}
+/**
+ * Servicio para acceder a los datos estáticos de la aplicación
+ * Esta versión reemplaza las llamadas a la API con datos locales
+ */
 
-export interface Category {
-  id: string;
-  name: string;
-  icon?: string;
-  color?: string;
-}
+// Convertir datos JSON a tipos App/AppLegacy para compatibilidad
+const apps: AppLegacy[] = appsData.apps.map(app => ({
+  ...app,
+  category: app.category || 'Unknown'
+})) as AppLegacy[];
 
-export interface AffiliateLink {
-  id: number;
-  appId: string;
-  label: string;
-  url: string;
-  buttonText: string;
-  buttonColor: string;
-  isActive: boolean;
-  displayOrder: number;
-}
+// Convertir datos JSON a tipos Category para compatibilidad
+const categories: Category[] = categoriesData.categories.map(category => ({
+  ...category
+})) as Category[];
 
-// Simulación de tiempo de respuesta para que la UI no se vea brusca
-const simulateDelay = (ms = 300) => new Promise(resolve => setTimeout(resolve, ms));
-
-// Funciones que reemplazan las llamadas a la API
-export const fetchCategories = async (): Promise<Category[]> => {
-  await simulateDelay();
-  return categories;
-};
-
-export const fetchAllApps = async (): Promise<App[]> => {
-  await simulateDelay();
+/**
+ * Obtener todas las aplicaciones
+ */
+export const getAllApps = async (): Promise<AppLegacy[]> => {
   return apps;
 };
 
-export const fetchPopularApps = async (): Promise<App[]> => {
-  await simulateDelay();
-  return getPopularApps();
+/**
+ * Obtener aplicaciones populares
+ */
+export const getPopularApps = async (): Promise<AppLegacy[]> => {
+  // Ordenar por calificación descendente y tomar las primeras 8
+  return [...apps].sort((a, b) => b.rating - a.rating).slice(0, 8);
 };
 
-export const fetchRecentApps = async (): Promise<App[]> => {
-  await simulateDelay();
-  return getRecentApps();
+/**
+ * Obtener aplicaciones recientes
+ */
+export const getRecentApps = async (): Promise<AppLegacy[]> => {
+  // Ordenar por fecha de actualización y tomar las primeras 8
+  return [...apps]
+    .sort((a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime())
+    .slice(0, 8);
 };
 
-export const fetchJustInTimeApps = async (): Promise<App[]> => {
-  await simulateDelay();
-  return getJustInTimeApps();
+/**
+ * Obtener aplicaciones "Just In Time"
+ */
+export const getJustInTimeApps = async (): Promise<AppLegacy[]> => {
+  // Simplemente devolver algunas apps mezcladas
+  return [...apps].sort(() => Math.random() - 0.5).slice(0, 4);
 };
 
-export const fetchAppById = async (id: string): Promise<App | undefined> => {
-  await simulateDelay();
-  return getAppById(id);
+/**
+ * Obtener todas las categorías
+ */
+export const getAllCategories = async (): Promise<Category[]> => {
+  return categories;
 };
 
-export const fetchAppsByCategory = async (categoryId: string): Promise<App[]> => {
-  await simulateDelay();
-  return getAppsByCategory(categoryId);
+/**
+ * Obtener una aplicación por su ID
+ */
+export const getAppById = async (id: string): Promise<AppLegacy | undefined> => {
+  return apps.find(app => app.id === id);
 };
 
-export const fetchRelatedApps = async (appId: string): Promise<App[]> => {
-  await simulateDelay();
-  return getRelatedApps(appId);
-};
-
-export const fetchSearchResults = async (query: string): Promise<App[]> => {
-  await simulateDelay();
-  return searchApps(query);
-};
-
-export const fetchCategoryById = async (id: string): Promise<Category | undefined> => {
-  await simulateDelay();
-  return categories.find(category => category.id === id);
-};
-
-// Simulación de enlaces de afiliados - en la versión estática solo devolveremos datos fijos
-export const fetchAffiliateLinks = async (appId: string): Promise<AffiliateLink[]> => {
-  await simulateDelay();
+/**
+ * Obtener aplicaciones relacionadas a una app
+ */
+export const getRelatedApps = async (id: string): Promise<AppLegacy[]> => {
+  const app = apps.find(app => app.id === id);
+  if (!app) return [];
   
-  const app = getAppById(appId);
-  if (!app || !app.isAffiliate) return [];
-  
-  return [
-    {
-      id: 1,
-      appId: app.id,
-      label: "Descarga Oficial",
-      url: app.googlePlayUrl || app.downloadUrl,
-      buttonText: "Descargar Ahora",
-      buttonColor: "#4CAF50",
-      isActive: true,
-      displayOrder: 1
-    }
-  ];
+  // Buscar apps en la misma categoría, excluyendo la app actual
+  return apps
+    .filter(a => a.category === app.category && a.id !== id)
+    .slice(0, 4);
 };
 
-// No hay operaciones de escritura en esta versión estática
-export const incrementLinkClickCount = async (id: number): Promise<{success: boolean, url: string}> => {
-  await simulateDelay();
-  // En la versión estática, simplemente devolvemos un objeto simulado
-  return {
-    success: true,
-    url: "https://play.google.com/store/apps"
-  };
+/**
+ * Buscar aplicaciones por término
+ */
+export const searchApps = async (query: string): Promise<AppLegacy[]> => {
+  const searchTerm = query.toLowerCase();
+  return apps.filter(app => 
+    app.name.toLowerCase().includes(searchTerm) || 
+    app.description.toLowerCase().includes(searchTerm) ||
+    app.category.toLowerCase().includes(searchTerm)
+  );
+};
+
+/**
+ * Obtener apps por categoría
+ */
+export const getAppsByCategory = async (categoryId: string): Promise<AppLegacy[]> => {
+  return apps.filter(app => app.categoryId === categoryId);
+};
+
+/**
+ * Obtener enlaces de afiliados para una app específica
+ * En la versión estática, simplemente devolvemos un array vacío
+ */
+export const getAffiliateLinks = async (appId: string): Promise<any[]> => {
+  return [];
 };

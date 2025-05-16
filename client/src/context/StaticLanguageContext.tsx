@@ -1,205 +1,118 @@
-import { createContext, useState, useContext, ReactNode, useCallback } from 'react';
-import axios from 'axios';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// Import translations
-import enTranslations from '../translations/en.json';
-import esTranslations from '../translations/es.json';
-import frTranslations from '../translations/fr.json';
-
-// Type for supported languages
-export type Language = 'en' | 'es' | 'fr';
-
-// Map client language codes to DeepL API language codes
-const languageCodeMap: Record<Language, string> = {
-  en: 'EN',
-  es: 'ES',
-  fr: 'FR',
+// Traducciones predeterminadas
+const defaultTranslations = {
+  'en': {
+    'nav.home': 'Home',
+    'nav.categories': 'Categories',
+    'nav.search': 'Search',
+    'nav.back': 'Back',
+    'search.placeholder': 'Search apps...',
+    'search.noResults': 'No results found',
+    'home.topApps': 'Top Apps',
+    'home.popularApps': 'Popular Apps',
+    'home.recentApps': 'Recent Apps',
+    'home.justInTime': 'Just In Time',
+    'appDetail.description': 'Description',
+    'appDetail.screenshots': 'Screenshots',
+    'appDetail.information': 'Information',
+    'appDetail.downloads': 'Downloads',
+    'appDetail.developer': 'Developer',
+    'appDetail.version': 'Version',
+    'appDetail.updated': 'Updated',
+    'appDetail.downloadAPK': 'Download',
+    'appDetail.googlePlay': 'Google Play',
+    'appDetail.relatedApps': 'Related Apps',
+    'sponsored.sponsored': 'Sponsored',
+    'category.allApps': 'All Apps',
+    'error.generic': 'An error occurred. Please try again later.',
+    'loading': 'Loading...'
+  },
+  'es': {
+    'nav.home': 'Inicio',
+    'nav.categories': 'Categorías',
+    'nav.search': 'Buscar',
+    'nav.back': 'Volver',
+    'search.placeholder': 'Buscar apps...',
+    'search.noResults': 'No se encontraron resultados',
+    'home.topApps': 'Apps Principales',
+    'home.popularApps': 'Apps Populares',
+    'home.recentApps': 'Apps Recientes',
+    'home.justInTime': 'Recién Llegadas',
+    'appDetail.description': 'Descripción',
+    'appDetail.screenshots': 'Capturas',
+    'appDetail.information': 'Información',
+    'appDetail.downloads': 'Descargas',
+    'appDetail.developer': 'Desarrollador',
+    'appDetail.version': 'Versión',
+    'appDetail.updated': 'Actualizado',
+    'appDetail.downloadAPK': 'Descargar',
+    'appDetail.googlePlay': 'Google Play',
+    'appDetail.relatedApps': 'Apps Relacionadas',
+    'sponsored.sponsored': 'Patrocinado',
+    'category.allApps': 'Todas las Apps',
+    'error.generic': 'Ha ocurrido un error. Por favor, inténtalo de nuevo más tarde.',
+    'loading': 'Cargando...'
+  }
 };
 
-// Type for translation object
-type TranslationObject = Record<string, any>;
-
-// Type for translation cache
-type TranslationCache = Record<string, string>;
-
-// Type for context value
+// Tipo para el contexto de idioma
 interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
-  t: (key: string, params?: Record<string, string>) => string;
+  language: string;
+  setLanguage: (lang: string) => void;
+  t: (key: string) => string;
 }
 
-// Create language context
+// Crear el contexto de idioma
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Translations dictionary
-const translations: Record<Language, TranslationObject> = {
-  en: enTranslations,
-  es: esTranslations,
-  fr: frTranslations,
-};
+// Propiedades para el proveedor de idioma
+interface LanguageProviderProps {
+  children: React.ReactNode;
+}
 
-// Translation cache to avoid unnecessary API calls
-const translationCache: Record<Language, TranslationCache> = {
-  en: {},
-  es: {},
-  fr: {},
-};
+// Componente proveedor de idioma
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+  // Estado para almacenar el idioma actual
+  const [language, setLanguage] = useState<string>('en');
 
-// Function to get browser language
-const getBrowserLanguage = (): Language => {
-  if (typeof window === 'undefined') return 'en';
-  const browserLang = navigator.language.split('-')[0];
-  return (browserLang === 'en' || browserLang === 'es' || browserLang === 'fr') 
-    ? browserLang as Language 
-    : 'en';
-};
-
-// URL for DeepL API
-const DEEPL_API_URL = "https://api-free.deepl.com/v2/translate";
-
-// Provider component
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Use browser language by default (no more language selection)
-  const [language, setLanguage] = useState<Language>(getBrowserLanguage());
-
-  // Function to translate text using DeepL API directly
-  const translateText = useCallback(async (text: string, targetLang: string): Promise<string> => {
-    if (!text || text.trim() === '' || targetLang === 'EN') {
-      return text;
-    }
-
-    const lang = language as Language; // Cast to ensure type safety
-    
-    // Check cache first
-    const cacheKey = text.toLowerCase().trim();
-    if (translationCache[lang][cacheKey]) {
-      return translationCache[lang][cacheKey];
-    }
-
-    try {
-      // Usar DeepL API directamente en lugar de pasar por el servidor
-      const response = await axios.post(DEEPL_API_URL, 
-        {
-          text: [text],
-          target_lang: targetLang,
-          source_lang: "EN"
-        }, 
-        {
-          headers: {
-            "Authorization": `DeepL-Auth-Key ${import.meta.env.VITE_DEEPL_API_KEY}`,
-            "Content-Type": "application/json"
-          }
-        }
-      );
-
-      const translatedText = response.data.translations[0].text;
-      
-      // Update cache
-      translationCache[lang][cacheKey] = translatedText;
-      
-      return translatedText;
-    } catch (error) {
-      console.error('Translation error:', error);
-      return text; // Return original text in case of error
-    }
-  }, [language]);
-
-  // Translation function with support for parameter substitution and automatic translation
-  const t = useCallback((key: string, params?: Record<string, string>): string => {
-    // Split the key by dots to access nested properties
-    const keys = key.split('.');
-    let value: any = translations['en']; // Always start with English as base
-    
-    // Navigate through the nested object
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k];
-      } else {
-        // If key not found, return the key itself
-        return key;
+  // Detectar el idioma del navegador al cargar
+  useEffect(() => {
+    const detectBrowserLanguage = () => {
+      const browserLang = navigator.language.split('-')[0];
+      // Solo establecer si es un idioma que soportamos
+      if (browserLang in defaultTranslations) {
+        setLanguage(browserLang);
       }
-    }
-    
-    // If value is not a string, return the key
-    if (typeof value !== 'string') {
-      return key;
-    }
-    
-    // Replace dynamic values like {year} with actual values
-    let result = value.replace('{year}', new Date().getFullYear().toString());
-    
-    // Replace any provided parameters
-    if (params) {
-      Object.entries(params).forEach(([paramKey, paramValue]) => {
-        result = result.replace(`{${paramKey}}`, paramValue);
-      });
-    }
-    
-    // If language is English, return the result without translation
-    if (language === 'en') {
-      return result;
-    }
-    
-    const lang = language as Language; // Cast to ensure type safety
-    
-    // For non-English languages, check if we have the translation in our static files first
-    let localizedValue: any = translations[lang];
-    for (const k of keys) {
-      if (localizedValue && typeof localizedValue === 'object' && k in localizedValue) {
-        localizedValue = localizedValue[k];
-      } else {
-        localizedValue = null;
-        break;
-      }
-    }
-    
-    // If we have a static translation, use it
-    if (typeof localizedValue === 'string') {
-      let localizedResult = localizedValue.replace('{year}', new Date().getFullYear().toString());
-      
-      // Replace any provided parameters
-      if (params) {
-        Object.entries(params).forEach(([paramKey, paramValue]) => {
-          localizedResult = localizedResult.replace(`{${paramKey}}`, paramValue);
-        });
-      }
-      
-      return localizedResult;
-    }
-    
-    // If no static translation available, request translation for this text
-    // Start a translation request but return the original text for now
-    translateText(result, languageCodeMap[lang])
-      .then(translatedText => {
-        // This will be handled asynchronously
-        // The next time this key is requested, it will be in the cache
-      })
-      .catch(error => {
-        console.error('Translation error:', error);
-      });
-    
-    // Return cached translation if available, otherwise original text
-    const cacheKey = result.toLowerCase().trim();
-    return translationCache[lang][cacheKey] || result;
-  }, [language, translateText]);
+    };
 
+    detectBrowserLanguage();
+  }, []);
+
+  // Función para obtener la traducción de una clave
+  const t = (key: string): string => {
+    // Obtener traducciones para el idioma actual
+    const translations = defaultTranslations[language as keyof typeof defaultTranslations] || defaultTranslations.en;
+    
+    // Devolver la traducción o la clave si no se encuentra
+    return translations[key as keyof typeof translations] || key;
+  };
+
+  // Proporcionar el contexto a los componentes hijos
   return (
-    <LanguageContext.Provider value={{ 
-      language, 
-      setLanguage,
-      t
-    }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
-}
+};
 
-// Custom hook to use the language context
-export function useLanguage() {
+// Hook personalizado para usar el contexto de idioma
+export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext);
+  
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
+  
   return context;
-}
+};

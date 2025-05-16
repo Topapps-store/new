@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "wouter";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../context/StaticLanguageContext";
 
 type LayoutProps = {
   children: React.ReactNode;

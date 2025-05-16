@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useLocation } from "wouter";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../context/StaticLanguageContext";
 
 const SearchBar = ({ className = "" }: { className?: string }) => {
   const [searchTerm, setSearchTerm] = useState("");

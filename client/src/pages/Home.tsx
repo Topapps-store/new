@@ -5,7 +5,7 @@ import CategoryCard from "@/components/CategoryCard";
 import SponsoredBanner from "@/components/SponsoredBanner";
 import { useState } from "react";
 import { App, Category } from "@shared/schema";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../context/StaticLanguageContext";
 
 const Home = () => {
   const [showAllCategories, setShowAllCategories] = useState(false);
@@ -13,18 +13,34 @@ const Home = () => {
 
   const { data: popularApps, isLoading: isLoadingPopular } = useQuery<App[]>({
     queryKey: ["/api/apps/popular"],
+    queryFn: async () => {
+      const { getPopularApps } = await import('../services/staticDataService');
+      return getPopularApps();
+    }
   });
 
   const { data: recentApps, isLoading: isLoadingRecent } = useQuery<App[]>({
     queryKey: ["/api/apps/recent"],
+    queryFn: async () => {
+      const { getRecentApps } = await import('../services/staticDataService');
+      return getRecentApps();
+    }
   });
   
   const { data: justInTimeApps, isLoading: isLoadingJustInTime } = useQuery<App[]>({
     queryKey: ["/api/apps/just-in-time"],
+    queryFn: async () => {
+      const { getJustInTimeApps } = await import('../services/staticDataService');
+      return getJustInTimeApps();
+    }
   });
 
   const { data: categories, isLoading: isLoadingCategories } = useQuery<Category[]>({
     queryKey: ["/api/categories"],
+    queryFn: async () => {
+      const { getAllCategories } = await import('../services/staticDataService');
+      return getAllCategories();
+    }
   });
 
   return (

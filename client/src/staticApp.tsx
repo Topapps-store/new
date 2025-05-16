@@ -1,73 +1,49 @@
-import { Switch, Route, useLocation } from "wouter";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { staticQueryClient as queryClient } from "./lib/staticQueryClient";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
-import Layout from "@/components/Layout";
-import Home from "@/pages/Home";
-import AppDetail from "@/pages/AppDetail";
-import Category from "@/pages/Category";
-import AllApps from "@/pages/AllApps";
-import TermsOfService from "@/pages/TermsOfService";
-import PrivacyPolicy from "@/pages/PrivacyPolicy";
-import Disclaimer from "@/pages/Disclaimer";
-import Contact from "@/pages/Contact";
-import Search from "@/pages/Search";
-import { LanguageProvider } from "./context/StaticLanguageContext";
-import { ThemeProvider } from "./context/ThemeContext";
-import { useEffect } from "react";
+import React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Route, Switch, Router } from 'wouter';
+import Layout from './components/Layout';
+import { LanguageProvider } from './context/StaticLanguageContext';
+import Home from './pages/Home';
+import AppDetail from './pages/AppDetail';
+import CategoryPage from './pages/Category';
+import SearchResults from './pages/Search';
+import { Toaster } from './components/ui/toaster';
+// Vamos a simplificar por ahora y no usar el tema 
 
-function ScrollToTop() {
-  const [location] = useLocation();
-  
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-  
-  return null;
-}
+// Crear cliente de consulta para React Query
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
 
-function Router() {
-  return (
-    <>
-      <ScrollToTop />
-      <Switch>
-        {/* Main site routes with Layout */}
-        <Route path="*">
-          <Layout>
-            <Switch>
-              <Route path="/" component={Home} />
-              <Route path="/apps/all" component={AllApps} />
-              <Route path="/apps/:appId" component={AppDetail} />
-              <Route path="/categories/:categoryId" component={Category} />
-              <Route path="/search" component={Search} />
-              <Route path="/terms" component={TermsOfService} />
-              <Route path="/privacy" component={PrivacyPolicy} />
-              <Route path="/disclaimer" component={Disclaimer} />
-              <Route path="/contact" component={Contact} />
-              <Route component={NotFound} />
-            </Switch>
-          </Layout>
-        </Route>
-      </Switch>
-    </>
-  );
-}
-
-function StaticApp() {
+/**
+ * Aplicación estática principal
+ * Esta versión utiliza datos locales sin conexión a base de datos
+ */
+const StaticApp = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <TooltipProvider>
-          <LanguageProvider>
-            <Toaster />
-            <Router />
-          </LanguageProvider>
-        </TooltipProvider>
-      </ThemeProvider>
+      <LanguageProvider>
+        <Router>
+          <Layout>
+            <main className="flex-grow">
+              <Switch>
+                <Route path="/" component={Home} />
+                <Route path="/apps/:appId" component={AppDetail} />
+                <Route path="/categories/:categoryId" component={CategoryPage} />
+                <Route path="/search" component={SearchResults} />
+              </Switch>
+            </main>
+          </Layout>
+        </Router>
+        <Toaster />
+      </LanguageProvider>
     </QueryClientProvider>
   );
-}
+};
 
 export default StaticApp;
