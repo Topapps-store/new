@@ -1,9 +1,7 @@
 import express, { type Express } from "express";
 import type { Server } from "http";
 import { createServer } from "http";
-import { storage } from "./storage";
-import { getApps, getAppById, getPopularApps, getRecentApps, getRelatedApps, searchApps, getJustInTimeApps } from "./data/apps";
-import { getCategories, getCategoryById, getAppsByCategory } from "./data/categories";
+import { dataService } from "./data-service"; // Nuevo servicio unificado de datos
 import { addAppFromPlayStore } from "./controllers/appController";
 import session from "express-session";
 import multer from "multer";
@@ -102,7 +100,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Public Apps endpoints
   apiRouter.get("/apps", async (req, res) => {
     try {
-      const apps = await storage.getApps();
+      const apps = await dataService.getApps();
       res.json(apps);
     } catch (error) {
       res.status(500).json({ message: "Error fetching apps" });
@@ -111,7 +109,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   apiRouter.get("/apps/popular", async (req, res) => {
     try {
-      const apps = await storage.getPopularApps();
+      const apps = await dataService.getPopularApps();
       res.json(apps);
     } catch (error) {
       res.status(500).json({ message: "Error fetching popular apps" });
@@ -120,7 +118,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   apiRouter.get("/apps/recent", async (req, res) => {
     try {
-      const apps = await storage.getRecentApps();
+      const apps = await dataService.getRecentApps();
       res.json(apps);
     } catch (error) {
       res.status(500).json({ message: "Error fetching recent apps" });
@@ -129,7 +127,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   apiRouter.get("/apps/just-in-time", async (req, res) => {
     try {
-      const apps = await storage.getJustInTimeApps();
+      const apps = await dataService.getJustInTimeApps();
       res.json(apps);
     } catch (error) {
       res.status(500).json({ message: "Error fetching just-in-time apps" });
@@ -138,7 +136,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   apiRouter.get("/apps/related/:id", async (req, res) => {
     try {
-      const apps = await storage.getRelatedApps(req.params.id);
+      const apps = await dataService.getRelatedApps(req.params.id);
       res.json(apps);
     } catch (error) {
       res.status(500).json({ message: "Error fetching related apps" });
@@ -148,7 +146,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // This route must come after the more specific routes
   apiRouter.get("/apps/:id", async (req, res) => {
     try {
-      const app = await storage.getAppById(req.params.id);
+      const app = await dataService.getAppById(req.params.id);
       if (app) {
         res.json(app);
       } else {
@@ -162,7 +160,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Categories endpoints
   apiRouter.get("/categories", async (req, res) => {
     try {
-      const categories = await storage.getCategories();
+      const categories = await dataService.getCategories();
       res.json(categories);
     } catch (error) {
       res.status(500).json({ message: "Error fetching categories" });
@@ -171,7 +169,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   apiRouter.get("/categories/:id", async (req, res) => {
     try {
-      const category = await storage.getCategoryById(req.params.id);
+      const category = await dataService.getCategoryById(req.params.id);
       if (category) {
         res.json(category);
       } else {
@@ -184,7 +182,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   apiRouter.get("/categories/:id/apps", async (req, res) => {
     try {
-      const apps = await storage.getAppsByCategory(req.params.id);
+      const apps = await dataService.getAppsByCategory(req.params.id);
       res.json(apps);
     } catch (error) {
       res.status(500).json({ message: "Error fetching category apps" });
