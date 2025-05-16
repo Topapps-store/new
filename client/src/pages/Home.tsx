@@ -38,8 +38,8 @@ const Home = () => {
   const { data: categories, isLoading: isLoadingCategories } = useQuery<Category[]>({
     queryKey: ["/api/categories"],
     queryFn: async () => {
-      const { getAllCategories } = await import('../services/staticDataService');
-      return getAllCategories();
+      const { getCategories } = await import('../services/staticDataService');
+      return getCategories();
     }
   });
 
@@ -49,7 +49,7 @@ const Home = () => {
       <section>
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">{t('home.top10AppsLastMonth')}</h2>
-          <Link href="/apps/popular">
+          <Link href="/apps/all">
             <span className="text-primary hover:underline cursor-pointer">{t('home.viewAll')}</span>
           </Link>
         </div>
@@ -134,7 +134,7 @@ const Home = () => {
       <section className="mt-10">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">{t('home.top10JustInTimeApps')}</h2>
-          <Link href="/apps/just-in-time">
+          <Link href="/apps/all">
             <span className="text-primary hover:underline cursor-pointer">{t('home.viewAll')}</span>
           </Link>
         </div>
