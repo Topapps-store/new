@@ -30,7 +30,6 @@ import {
 import { InsertAffiliateLink, insertAffiliateLinkSchema } from "@shared/schema";
 import { z } from "zod";
 import { translateText, bulkTranslate } from "./translation-service";
-import { addAppFromPlayStore } from "./controllers/appController";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Configure session middleware
