@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { useToast } from '../hooks/useToast';
+import { useToast } from '../hooks/use-toast';
 import axios from 'axios';
 
 const AddApp: React.FC = () => {

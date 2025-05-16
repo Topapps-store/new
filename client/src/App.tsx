@@ -21,7 +21,7 @@ import AdminDashboard from "@/pages/AdminDashboard";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AdminProvider } from "./context/AdminContext";
 import { ThemeProvider } from "./context/ThemeContext";
-import { ToastProvider } from "./hooks/use-toast";
+
 import { useEffect } from "react";
 
 function ScrollToTop() {
@@ -49,6 +49,7 @@ function Router() {
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/apps/all" component={AllApps} />
+              <Route path="/apps/add" component={AddApp} />
               <Route path="/apps/:appId" component={AppDetail} />
               <Route path="/categories/:categoryId" component={Category} />
               <Route path="/search" component={Search} />
