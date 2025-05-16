@@ -1,26 +1,17 @@
-// Función de entrada principal para Cloudflare Pages
+// Manejador específico para rutas API
 export function onRequest(context) {
   const url = new URL(context.request.url);
   const path = url.pathname;
   
-  // Si es una ruta de API, redirigir a Replit
-  if (path.startsWith('/api/')) {
-    return handleApiRequest(context);
-  }
+  // URL de la API en Replit
+  const apiBaseUrl = 'https://topapps.replit.app';
+  const apiUrl = `${apiBaseUrl}${path}${url.search}`;
   
-  // Para todas las demás rutas, continuar con la siguiente función
-  return context.next();
+  return proxyRequest(context, apiUrl);
 }
 
-async function handleApiRequest(context) {
+async function proxyRequest(context, targetUrl) {
   try {
-    const url = new URL(context.request.url);
-    const path = url.pathname;
-    
-    // URL de la API en Replit
-    const apiBaseUrl = 'https://topapps.replit.app';
-    const apiUrl = `${apiBaseUrl}${path}${url.search}`;
-    
     // Preparar el cuerpo de la solicitud
     let body = null;
     if (!['GET', 'HEAD'].includes(context.request.method)) {
@@ -32,7 +23,7 @@ async function handleApiRequest(context) {
     }
     
     // Hacer la solicitud a la API en Replit
-    const response = await fetch(apiUrl, {
+    const response = await fetch(targetUrl, {
       method: context.request.method,
       headers: context.request.headers,
       body,

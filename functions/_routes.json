@@ -1,19 +1,5 @@
 {
   "version": 1,
   "include": ["/*"],
-  "exclude": [
-    "/assets/*",
-    "/*.jpg",
-    "/*.jpeg",
-    "/*.png",
-    "/*.gif",
-    "/*.svg",
-    "/*.ico",
-    "/*.css",
-    "/*.js",
-    "/*.woff",
-    "/*.woff2",
-    "/*.ttf",
-    "/*.eot"
-  ]
+  "exclude": []
 }
