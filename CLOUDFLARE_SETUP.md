@@ -1,119 +1,80 @@
-# Configuración de Cloudflare Pages + API en Replit
+# Cloudflare Pages Setup for TopApps.store
 
-Este documento explica el proceso completo para desplegar TopApps en Cloudflare Pages mientras mantienes la API funcionando en Replit.
+This document provides detailed instructions for setting up your TopApps.store site on Cloudflare Pages.
 
-## 1. Preparación del Repositorio
+## Required Cloudflare Secrets
 
-Hemos creado los siguientes archivos para facilitar el despliegue:
+When connecting your GitHub repository to Cloudflare Pages, you'll need to set up the following environment variables:
 
-- `_redirects`: Define las reglas de redirección para Cloudflare Pages
-- `_headers`: Define los headers HTTP para habilitar CORS
-- `cloudflare-build.sh`: Script de construcción para Cloudflare Pages
-- `functions/[[path]].js`: Maneja las solicitudes a la API y las redirige a Replit
-- `functions/_middleware.js`: Middleware para manejar CORS y preflight OPTIONS
+### Production Environment Variables
 
-## 2. Flujo de Trabajo para el Despliegue
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `DATABASE_URL` | PostgreSQL connection string | `postgres://username:password@hostname:port/database` |
+| `SESSION_SECRET` | Secret key for session encryption | A random string like `a1b2c3d4e5f6g7h8i9j0` |
+| `NODE_VERSION` | Node.js version to use | `20` |
 
-### A. Repositorio de Git
+## GitHub Secrets
 
-1. Crea un repositorio en GitHub o GitLab
-2. Sube tu código incluyendo todos los archivos de configuración
+For the GitHub Actions workflow deployment, you'll need to set up the following repository secrets:
 
-### B. Configuración en Cloudflare Pages
+| Secret | Description | Where to Find |
+|--------|-------------|--------------|
+| `CLOUDFLARE_API_TOKEN` | API token for Cloudflare | [Cloudflare Dashboard → API Tokens](https://dash.cloudflare.com/profile/api-tokens) |
+| `CLOUDFLARE_ACCOUNT_ID` | Your Cloudflare account ID | Found in the URL when logged into Cloudflare: `https://dash.cloudflare.com/ACCOUNT_ID` |
 
-1. Accede a tu dashboard de Cloudflare
-2. Ve a "Pages" y haz clic en "Create a project"
-3. Selecciona "Connect to Git"
-4. Elige tu repositorio y configura:
-   - **Framework preset**: None
-   - **Build command**: `./cloudflare-build.sh`
-   - **Build output directory**: `dist/public`
-   - **Root directory**: `/` (o la raíz de tu repositorio)
-   - **Environment variables**:
-     - `NODE_VERSION`: `16` (o la versión que uses)
+## Creating a Cloudflare API Token
 
-5. Haz clic en "Save and Deploy"
+1. Log in to your Cloudflare dashboard
+2. Click on your profile icon in the top-right corner
+3. Select "My Profile"
+4. Click the "API Tokens" tab
+5. Click "Create Token"
+6. Select "Edit Cloudflare Workers" as template
+7. Under "Account Resources", select your account and "Cloudflare Pages" with "Edit" permission
+8. Add a token name like "GitHub Actions Deployment"
+9. Click "Continue to summary" then "Create Token"
+10. **Copy the token immediately** - you won't be able to see it again!
 
-## 3. Cómo Funciona
+## Setting Up GitHub Secrets
 
-El sistema funciona en dos niveles:
+1. Go to your GitHub repository
+2. Click on "Settings" → "Secrets and variables" → "Actions"
+3. Click "New repository secret"
+4. Add the following secrets:
+   - Name: `CLOUDFLARE_API_TOKEN` - Value: Your API token
+   - Name: `CLOUDFLARE_ACCOUNT_ID` - Value: Your account ID
 
-### Nivel 1: Redirección Estática (Para el frontend)
+## Connecting to a Database
 
-El archivo `_redirects` proporciona redirecciones estáticas:
-```
-/api/*  https://topapps.replit.app/api/:splat  200
-/*      /index.html                            200
-```
+For the `DATABASE_URL` environment variable, we recommend using a PostgreSQL database service like:
 
-Esto redirige todas las solicitudes API a Replit y envía todas las demás solicitudes al frontend.
+- Neon (https://neon.tech)
+- Supabase (https://supabase.com)
+- Railway (https://railway.app)
 
-### Nivel 2: Función Serverless (Para mejorar la API)
+Make sure your database allows connections from Cloudflare Pages (check their IP ranges).
 
-Si las redirecciones estáticas no son suficientes, usamos Cloudflare Functions:
+## Setting Up Custom Domain
 
-- `functions/[[path]].js`: Captura las solicitudes a `/api/*` y las reenvía a Replit
-- `functions/_middleware.js`: Garantiza que las respuestas tengan los headers CORS correctos
+1. After your initial deployment, go to your Pages project
+2. Click on "Custom domains"
+3. Click "Set up a custom domain"
+4. Enter your domain name (e.g., `topapps.store`)
+5. Follow the verification process
+6. Once verified, Cloudflare will automatically provision an SSL certificate
 
-## 4. Verificación y Solución de Problemas
+## Testing Your Deployment
 
-### Verificar Redirecciones
+After deploying, check that:
 
-Puedes verificar si las redirecciones funcionan visitando estas URLs:
-- `https://tu-proyecto.pages.dev/api/apps/popular`
-- `https://tu-proyecto.pages.dev/api/categories`
+1. The site loads properly
+2. API calls work correctly
+3. Database connections function as expected
+4. Authentication is working
 
-Deberías ver los mismos datos JSON que en tu API de Replit.
+## Troubleshooting
 
-### Problemas Comunes y Soluciones
-
-#### CORS
-
-Si tienes errores de CORS:
-
-1. Verifica que los archivos `_headers` y `functions/_middleware.js` estén correctamente configurados
-2. Añade una regla Transform en el dashboard de Cloudflare:
-   - Nombre: "CORS Headers"
-   - Cuando: "URL Path" contiene "api"
-   - Acción: Add response headers
-     - Access-Control-Allow-Origin: *
-     - Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
-     - Access-Control-Allow-Headers: Content-Type, Authorization
-
-#### API no responde
-
-Si la API no responde:
-
-1. Verifica que tu aplicación en Replit esté funcionando
-2. Revisa los logs de Cloudflare Pages para buscar errores
-3. Intenta acceder directamente a tu API de Replit: `https://topapps.replit.app/api/apps/popular`
-
-## 5. Próximos Pasos
-
-Este enfoque es una solución intermedia hasta que migres completamente a Cloudflare Pages + Workers. Para una solución definitiva, considera:
-
-1. Migrar la API a Cloudflare Workers
-2. Configurar Cloudflare D1 para la base de datos
-3. Unificar todo en un solo despliegue de Cloudflare
-
-Con estos pasos, tendrás una arquitectura más sólida y sin dependencias de Replit.
-
-## 6. Comandos Útiles
-
-Aquí hay algunos comandos útiles para depurar y mantener el despliegue:
-
-```bash
-# Probar la redirección de API localmente
-curl -H "Origin: http://localhost:5000" \
-  -H "Access-Control-Request-Method: GET" \
-  -H "Access-Control-Request-Headers: X-Requested-With" \
-  -X OPTIONS --verbose \
-  https://tu-proyecto.pages.dev/api/apps/popular
-
-# Verificar los headers de respuesta de la API
-curl -I https://tu-proyecto.pages.dev/api/apps/popular
-```
-
----
-
-Con esta configuración, tu aplicación TopApps estará desplegada en Cloudflare Pages mientras mantiene la funcionalidad de la API alojada en Replit.
+- Check Functions logs in the Cloudflare dashboard
+- Verify that all environment variables are set correctly
+- Ensure your database is accessible from Cloudflare's network

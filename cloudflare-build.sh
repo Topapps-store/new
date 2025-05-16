@@ -14,23 +14,11 @@ npm install
 echo "🏗️ Construyendo el frontend..."
 npm run build
 
-# Copiar archivos de configuración para Cloudflare Pages
-echo "📋 Configurando redirecciones y headers..."
-cp _redirects dist/public/
-cp _headers dist/public/
-
-# También crear los archivos directamente por si acaso
+# Copiar _redirects para SPA routing
+echo "📋 Configurando redirecciones SPA..."
 cat > dist/public/_redirects << EOL
-/api/*  https://topapps.replit.app/api/:splat  200!
+/api/*  https://topapps.replit.app/api/:splat  200
 /*      /index.html                            200
-EOL
-
-cat > dist/public/_headers << EOL
-/*
-  Access-Control-Allow-Origin: *
-  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
-  Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With
-  Access-Control-Max-Age: 86400
 EOL
 
 # Crear un archivo nojekyll para evitar problemas con GitHub Pages
