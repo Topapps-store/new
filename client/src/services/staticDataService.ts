@@ -37,10 +37,20 @@ export const getPopularApps = async (): Promise<AppLegacy[]> => {
  * Obtener aplicaciones recientes
  */
 export const getRecentApps = async (): Promise<AppLegacy[]> => {
-  // Ordenar por fecha de actualización y tomar las primeras 8
-  return [...apps]
+  // Obtener apps únicas (evitar duplicados como Uber)
+  const seen = new Set();
+  const uniqueApps = apps.filter(app => {
+    if (seen.has(app.id)) {
+      return false;
+    }
+    seen.add(app.id);
+    return true;
+  });
+  
+  // Ordenar por fecha de actualización y tomar las primeras 6
+  return uniqueApps
     .sort((a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime())
-    .slice(0, 8);
+    .slice(0, 6);
 };
 
 /**

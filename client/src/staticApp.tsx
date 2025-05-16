@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import AppDetail from './pages/AppDetail';
 import CategoryPage from './pages/Category';
 import SearchResults from './pages/Search';
+import AllApps from './pages/AllApps';
 import { Toaster } from './components/ui/toaster';
 // Vamos a simplificar por ahora y no usar el tema 
 
@@ -36,6 +37,7 @@ const StaticApp = () => {
                 <Route path="/apps/:appId" component={AppDetail} />
                 <Route path="/categories/:categoryId" component={CategoryPage} />
                 <Route path="/search" component={SearchResults} />
+                <Route path="/apps/all" component={AllApps} />
               </Switch>
             </main>
           </Layout>
