@@ -1,7 +1,13 @@
+/**
+ * Script para recuperar todas las apps a partir de las URLs procesadas
+ * Este script lee las URLs procesadas de pending-apps.json y las vuelve a añadir
+ * al catálogo de aplicaciones en apps.json
+ */
+
 import fs from 'fs';
 import path from 'path';
+import * as gplay from 'google-play-scraper';
 import { fileURLToPath } from 'url';
-import gplay from 'google-play-scraper';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,13 +35,12 @@ async function getAppInfo(googlePlayId) {
       rating: appInfo.score,
       downloads: formatDownloads(appInfo.installs),
       version: appInfo.version,
-      size: appInfo.size,
       updated: formatDate(appInfo.updated),
       requires: `Android ${appInfo.androidVersion}+`,
       developer: appInfo.developer,
       installs: appInfo.installs,
-      downloadUrl: appInfo.url, // Este es el link que podrás reemplazar con tu enlace de afiliado
-      googlePlayUrl: appInfo.url,
+      downloadUrl: appInfo.url, // URL para descargar
+      googlePlayUrl: appInfo.url, // URL de Google Play
       screenshots: appInfo.screenshots,
       isAffiliate: false
     };
@@ -43,7 +48,7 @@ async function getAppInfo(googlePlayId) {
     return appData;
   } catch (error) {
     console.error(`Error al obtener información para ${googlePlayId}:`, error);
-    throw error;
+    return null;
   }
 }
 
@@ -53,34 +58,10 @@ async function getAppInfo(googlePlayId) {
  * @returns {string} - ID de la categoría
  */
 function convertCategoryToId(category) {
-  if (!category) return 'uncategorized';
-  
-  // Mapeo de categorías comunes
-  const categoryMap = {
-    'Entertainment': 'entertainment',
-    'Communication': 'communication',
-    'Shopping': 'shopping',
-    'Social': 'social',
-    'Finance': 'finance',
-    'Food & Drink': 'food',
-    'Music & Audio': 'music-and-audio',
-    'Maps & Navigation': 'maps-and-navigation',
-    'Travel & Local': 'travel',
-    'Productivity': 'productivity',
-    'Tools': 'utilities',
-    'Utilities': 'utilities'
-  };
-  
-  // Si existe en el mapeo, usar ese ID
-  if (categoryMap[category]) {
-    return categoryMap[category];
-  }
-  
-  // Sino, convertir el nombre de la categoría a un ID URL-friendly
   return category
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-');
+    .replace(/[^a-z0-9 ]/g, '')
+    .replace(/ +/g, '-');
 }
 
 /**
@@ -89,14 +70,10 @@ function convertCategoryToId(category) {
  * @returns {string} - ID amigable para URLs
  */
 function createAppId(appName) {
-  if (!appName) return 'unknown-app';
-  
   return appName
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .trim();
+    .replace(/[^a-z0-9 ]/g, '')
+    .replace(/ +/g, '-');
 }
 
 /**
@@ -105,9 +82,8 @@ function createAppId(appName) {
  * @returns {string} - Formato abreviado (ej. "1B+")
  */
 function formatDownloads(installs) {
-  if (!installs) return '0+';
-  
-  const num = parseInt(installs.replace(/[^0-9]/g, ''));
+  const numStr = installs.replace(/[^0-9]/g, '');
+  const num = parseInt(numStr, 10);
   
   if (num >= 1000000000) {
     return `${Math.floor(num / 1000000000)}B+`;
@@ -115,9 +91,9 @@ function formatDownloads(installs) {
     return `${Math.floor(num / 1000000)}M+`;
   } else if (num >= 1000) {
     return `${Math.floor(num / 1000)}K+`;
-  } else {
-    return `${num}+`;
   }
+  
+  return `${num}+`;
 }
 
 /**
@@ -126,10 +102,33 @@ function formatDownloads(installs) {
  * @returns {string} - Fecha formateada (ej. "May 10, 2023")
  */
 function formatDate(date) {
-  if (!date) return '';
-  
   const options = { month: 'short', day: 'numeric', year: 'numeric' };
-  return new Date(date).toLocaleDateString('en-US', options);
+  return date.toLocaleDateString('en-US', options);
+}
+
+/**
+ * Procesa una URL de Google Play para extraer el ID de la app
+ * @param {string} url - URL de Google Play
+ * @returns {string} - ID de la app
+ */
+function extractAppIdFromUrl(url) {
+  try {
+    const idMatch = url.match(/id=([^&]+)/);
+    if (idMatch && idMatch[1]) {
+      return idMatch[1];
+    }
+    
+    // Si no hay un parámetro id=, intentamos extraer la última parte de la URL
+    const pathMatch = url.match(/details\/([^?]+)/);
+    if (pathMatch && pathMatch[1]) {
+      return pathMatch[1];
+    }
+    
+    throw new Error('No se pudo extraer el ID de la app desde la URL');
+  } catch (error) {
+    console.error('Error al extraer el ID desde la URL:', error);
+    return null;
+  }
 }
 
 /**
@@ -157,7 +156,7 @@ async function updateAppsJson(newApps) {
     
     if (uniqueNewApps.length === 0) {
       console.log('No hay nuevas apps para añadir.');
-      return [];
+      return;
     }
     
     // Añadir las nuevas apps
@@ -171,7 +170,6 @@ async function updateAppsJson(newApps) {
     );
     
     console.log(`Se añadieron ${uniqueNewApps.length} nuevas apps al archivo apps.json`);
-    return uniqueNewApps;
   } catch (error) {
     console.error('Error al actualizar el archivo apps.json:', error);
     throw error;
@@ -179,113 +177,60 @@ async function updateAppsJson(newApps) {
 }
 
 /**
- * Procesa una URL de Google Play para extraer el ID de la app
- * @param {string} url - URL de Google Play
- * @returns {string} - ID de la app
+ * Función principal para recuperar todas las apps
  */
-function extractAppIdFromUrl(url) {
+async function recoverAllApps() {
   try {
-    const idMatch = url.match(/id=([^&]+)/);
-    if (idMatch && idMatch[1]) {
-      return idMatch[1];
-    }
-    
-    // Si no hay un parámetro id=, intentamos extraer la última parte de la URL
-    const pathMatch = url.match(/details\/([^?]+)/);
-    if (pathMatch && pathMatch[1]) {
-      return pathMatch[1];
-    }
-    
-    throw new Error('No se pudo extraer el ID de la app desde la URL');
-  } catch (error) {
-    console.error('Error al extraer el ID desde la URL:', error);
-    throw error;
-  }
-}
-
-/**
- * Lee y procesa las URLs pendientes del archivo pending-apps.json
- */
-async function processPendingApps() {
-  try {
-    // Ruta al archivo de URLs pendientes
+    // Ruta al archivo de URLs procesadas
     const pendingAppsPath = path.join(__dirname, '../client/src/data/pending-apps.json');
     
-    // Leer el archivo actual
+    // Leer el archivo pendingApps.json
     const pendingAppsContent = fs.readFileSync(pendingAppsPath, 'utf8');
     const pendingAppsData = JSON.parse(pendingAppsContent);
     
-    const { pendingUrls, processedUrls } = pendingAppsData;
+    const { processedUrls } = pendingAppsData;
     
-    if (pendingUrls.length === 0) {
-      console.log('No hay URLs pendientes para procesar.');
+    if (processedUrls.length === 0) {
+      console.log('No hay URLs procesadas para recuperar.');
       return;
     }
     
-    console.log(`Procesando ${pendingUrls.length} URLs pendientes...`);
+    console.log(`Recuperando ${processedUrls.length} apps desde URLs procesadas...`);
     
     const newApps = [];
-    const newProcessedUrls = [...processedUrls];
-    const failedUrls = [];
     
-    // Procesar cada URL pendiente
-    for (const url of pendingUrls) {
+    // Procesar cada URL que ya fue procesada previamente
+    for (const url of processedUrls) {
       try {
         const appId = extractAppIdFromUrl(url);
+        if (!appId) {
+          console.error(`No se pudo extraer el ID de la app desde la URL: ${url}`);
+          continue;
+        }
+        
         const appData = await getAppInfo(appId);
-        newApps.push(appData);
-        newProcessedUrls.push(url);
-        console.log(`✓ Procesada app: ${appData.name}`);
+        if (appData) {
+          newApps.push(appData);
+          console.log(`✓ Recuperada app: ${appData.name}`);
+        }
       } catch (error) {
-        console.error(`Error procesando URL ${url}:`, error);
-        failedUrls.push(url);
+        console.error(`Error recuperando la app desde URL ${url}:`, error);
       }
     }
     
-    // Actualizar apps.json con las nuevas apps
-    const addedApps = await updateAppsJson(newApps);
-    
-    // Actualizar pending-apps.json para mover las URLs procesadas
-    const updatedPendingApps = {
-      pendingUrls: failedUrls, // Las URLs que fallaron permanecen pendientes
-      processedUrls: newProcessedUrls
-    };
-    
-    fs.writeFileSync(
-      pendingAppsPath,
-      JSON.stringify(updatedPendingApps, null, 2),
-      'utf8'
-    );
-    
-    if (addedApps.length > 0) {
-      console.log(`Proceso completado. Se añadieron ${addedApps.length} nuevas apps al catálogo.`);
-      console.log('Apps añadidas:');
-      addedApps.forEach(app => console.log(` - ${app.name}`));
+    if (newApps.length > 0) {
+      // Actualizar apps.json con las apps recuperadas
+      await updateAppsJson(newApps);
+      console.log(`Recuperación completada. Se añadieron ${newApps.length} apps al catálogo.`);
     } else {
-      console.log('No se añadieron nuevas apps al catálogo.');
-    }
-    
-    if (failedUrls.length > 0) {
-      console.log(`ATENCIÓN: ${failedUrls.length} URLs no pudieron ser procesadas y permanecen pendientes.`);
+      console.log('No se pudo recuperar ninguna app correctamente.');
     }
   } catch (error) {
-    console.error('Error procesando URLs pendientes:', error);
+    console.error('Error en la recuperación de apps:', error);
   }
 }
 
-// Ejecutar el script cuando se importa directamente
-processPendingApps()
-  .then(() => {
-    console.log('Proceso de sincronización finalizado.');
-    process.exit(0);
-  })
-  .catch(error => {
-    console.error('Error en el proceso de sincronización:', error);
-    process.exit(1);
-  });
-
-export {
-  processPendingApps,
-  getAppInfo,
-  extractAppIdFromUrl
-};
+// Ejecutar la función principal
+recoverAllApps().catch(error => {
+  console.error('Error al ejecutar la recuperación de apps:', error);
+});
