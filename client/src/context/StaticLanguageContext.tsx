@@ -13,6 +13,9 @@ const defaultTranslations = {
     'home.popularApps': 'Popular Apps',
     'home.recentApps': 'Recent Apps',
     'home.justInTime': 'Just In Time',
+    'home.top10AppsLastMonth': 'Top 10 Apps Last Month',
+    'home.top10JustInTimeApps': 'Top Must-Have Apps',
+    'home.viewAll': 'View All',
     'appDetail.description': 'Description',
     'appDetail.screenshots': 'Screenshots',
     'appDetail.information': 'Information',
@@ -26,7 +29,11 @@ const defaultTranslations = {
     'sponsored.sponsored': 'Sponsored',
     'category.allApps': 'All Apps',
     'error.generic': 'An error occurred. Please try again later.',
-    'loading': 'Loading...'
+    'loading': 'Loading...',
+    'footer.termsOfService': 'Terms of Service',
+    'footer.privacyPolicy': 'Privacy Policy',
+    'footer.contact': 'Contact Us',
+    'footer.disclaimer': 'Disclaimer'
   },
   'es': {
     'nav.home': 'Inicio',
@@ -39,6 +46,9 @@ const defaultTranslations = {
     'home.popularApps': 'Apps Populares',
     'home.recentApps': 'Apps Recientes',
     'home.justInTime': 'Recién Llegadas',
+    'home.top10AppsLastMonth': 'Top 10 Apps del Mes',
+    'home.top10JustInTimeApps': 'Apps Imprescindibles',
+    'home.viewAll': 'Ver Todo',
     'appDetail.description': 'Descripción',
     'appDetail.screenshots': 'Capturas',
     'appDetail.information': 'Información',
@@ -52,7 +62,11 @@ const defaultTranslations = {
     'sponsored.sponsored': 'Patrocinado',
     'category.allApps': 'Todas las Apps',
     'error.generic': 'Ha ocurrido un error. Por favor, inténtalo de nuevo más tarde.',
-    'loading': 'Cargando...'
+    'loading': 'Cargando...',
+    'footer.termsOfService': 'Términos de Servicio',
+    'footer.privacyPolicy': 'Política de Privacidad',
+    'footer.contact': 'Contáctanos',
+    'footer.disclaimer': 'Aviso Legal'
   }
 };
 
