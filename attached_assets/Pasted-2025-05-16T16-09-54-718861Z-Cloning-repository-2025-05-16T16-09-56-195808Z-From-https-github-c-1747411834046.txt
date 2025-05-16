@@ -1,0 +1,143 @@
+2025-05-16T16:09:54.718861Z	Cloning repository...
+2025-05-16T16:09:56.195808Z	From https://github.com/Topapps-store/new
+2025-05-16T16:09:56.196343Z	 * branch            c44f1c3faf77e68134c6ec90255f6b13e0eec0e6 -> FETCH_HEAD
+2025-05-16T16:09:56.196452Z	
+2025-05-16T16:09:56.270649Z	HEAD is now at c44f1c3 Enable the application to run properly on Cloudflare and Replit platforms
+2025-05-16T16:09:56.271133Z	
+2025-05-16T16:09:56.351173Z	
+2025-05-16T16:09:56.351906Z	Using v2 root directory strategy
+2025-05-16T16:09:56.375646Z	Success: Finished cloning repository files
+2025-05-16T16:09:58.325562Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-05-16T16:09:58.326628Z	
+2025-05-16T16:09:58.327453Z	Found wrangler.toml file. Reading build configuration...
+2025-05-16T16:09:58.417943Z	[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mParseError: Can't redefine existing key[0m
+2025-05-16T16:09:58.418201Z	
+2025-05-16T16:09:58.418336Z	      at parseTOML (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:129392:11)
+2025-05-16T16:09:58.418454Z	      at experimental_readRawConfig (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:134162:17)
+2025-05-16T16:09:58.418585Z	      at readPagesConfig (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:134111:50)
+2025-05-16T16:09:58.418696Z	      at Object.Handler [as handler] (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:167118:14)
+2025-05-16T16:09:58.418801Z	      at /opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145791:46
+2025-05-16T16:09:58.418949Z	      at maybeAsyncResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145590:83)
+2025-05-16T16:09:58.419047Z	      at CommandInstance.handleValidationAndGetResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145790:19)
+2025-05-16T16:09:58.419153Z	      at CommandInstance.applyMiddlewareAndGetResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145821:243)
+2025-05-16T16:09:58.419309Z	      at CommandInstance.runCommand (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145728:212)
+2025-05-16T16:09:58.419423Z	      at YargsInstance.[runYargsParserAndExecuteCommands] (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:148544:92) {
+2025-05-16T16:09:58.419528Z	    text: "Can't redefine existing key",
+2025-05-16T16:09:58.419633Z	    notes: [],
+2025-05-16T16:09:58.419732Z	    location: {
+2025-05-16T16:09:58.419821Z	      lineText: '[build]',
+2025-05-16T16:09:58.419912Z	      line: 25,
+2025-05-16T16:09:58.420008Z	      column: 5,
+2025-05-16T16:09:58.420113Z	      file: '/opt/buildhome/repo/wrangler.toml',
+2025-05-16T16:09:58.420195Z	      fileText: 'name = "topapps-api"\n' +
+2025-05-16T16:09:58.42027Z	        'main = "functions/api.js"\n' +
+2025-05-16T16:09:58.420338Z	        'compatibility_date = "2023-05-18"\n' +
+2025-05-16T16:09:58.42042Z	        'compatibility_flags = ["nodejs_compat"]\n' +
+2025-05-16T16:09:58.420553Z	        'node_compat = true\n' +
+2025-05-16T16:09:58.420679Z	        '\n' +
+2025-05-16T16:09:58.420782Z	        '# Add your custom domain here (once set up in Cloudflare)\n' +
+2025-05-16T16:09:58.42088Z	        'routes = [\n' +
+2025-05-16T16:09:58.420983Z	        '  { pattern = "topapps.store/*", zone_name = "topapps.store" }\n' +
+2025-05-16T16:09:58.421058Z	        ']\n' +
+2025-05-16T16:09:58.421156Z	        '\n' +
+2025-05-16T16:09:58.421249Z	        '[env.production]\n' +
+2025-05-16T16:09:58.421329Z	        'name = "topapps-api-prod"\n' +
+2025-05-16T16:09:58.421417Z	        'route = { pattern = "topapps.store/*", zone_name = "topapps.store" }\n' +
+2025-05-16T16:09:58.421539Z	        '\n' +
+2025-05-16T16:09:58.421647Z	        '[site]\n' +
+2025-05-16T16:09:58.421727Z	        'bucket = "client/dist"\n' +
+2025-05-16T16:09:58.421851Z	        '\n' +
+2025-05-16T16:09:58.421952Z	        '[build]\n' +
+2025-05-16T16:09:58.422047Z	        'command = "./build.sh"\n' +
+2025-05-16T16:09:58.422142Z	        'upload.format = "service-worker"\n' +
+2025-05-16T16:09:58.422242Z	        '\n' +
+2025-05-16T16:09:58.422344Z	        'pages_build_output_dir = "dist/public"\n' +
+2025-05-16T16:09:58.422437Z	        '\n' +
+2025-05-16T16:09:58.422539Z	        '[build]\n' +
+2025-05-16T16:09:58.422636Z	        'command = "./build.sh"\n' +
+2025-05-16T16:09:58.422753Z	        '\n' +
+2025-05-16T16:09:58.422863Z	        '# Add KV Namespace or D1 Database if needed\n' +
+2025-05-16T16:09:58.422946Z	        '# [[kv_namespaces]]\n' +
+2025-05-16T16:09:58.423055Z	        '# binding = "MY_KV"\n' +
+2025-05-16T16:09:58.423176Z	        '# id = "your-kv-id"\n' +
+2025-05-16T16:09:58.423285Z	        '\n' +
+2025-05-16T16:09:58.423392Z	        '[env.production]\n' +
+2025-05-16T16:09:58.423499Z	        '# Production-specific settings\n' +
+2025-05-16T16:09:58.423602Z	        'workers_dev = false\n' +
+2025-05-16T16:09:58.423704Z	        '\n'
+2025-05-16T16:09:58.4238Z	    },
+2025-05-16T16:09:58.423897Z	    kind: 'error'
+2025-05-16T16:09:58.423994Z	  }
+2025-05-16T16:09:58.424095Z	
+2025-05-16T16:09:58.424195Z	
+2025-05-16T16:09:59.518929Z	🪵  Logs were written to "/root/.config/.wrangler/logs/wrangler-2025-05-16_16-09-58_084.log"
+2025-05-16T16:09:59.533925Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-05-16T16:09:59.611863Z	Detected the following tools from environment: nodejs@20.19.0, npm@9.6.7
+2025-05-16T16:09:59.612634Z	Installing nodejs 20.19.0
+2025-05-16T16:09:59.684586Z	nodejs 20.19.0 is already installed
+2025-05-16T16:10:00.149379Z	Installing project dependencies: npm clean-install --progress=false
+2025-05-16T16:10:03.815423Z	npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-05-16T16:10:04.203355Z	npm warn deprecated npmlog@5.0.1: This package is no longer supported.
+2025-05-16T16:10:04.495328Z	npm warn deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+2025-05-16T16:10:04.632188Z	npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-05-16T16:10:04.767032Z	npm warn deprecated har-validator@5.1.5: this library is no longer supported
+2025-05-16T16:10:05.108102Z	npm warn deprecated gauge@3.0.2: This package is no longer supported.
+2025-05-16T16:10:05.152063Z	npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+2025-05-16T16:10:05.447761Z	npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+2025-05-16T16:10:05.720647Z	npm warn deprecated @types/long@5.0.0: This is a stub types definition. long provides its own type definitions, so you do not need this installed.
+2025-05-16T16:10:06.291747Z	npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+2025-05-16T16:10:06.308001Z	npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+2025-05-16T16:10:06.492236Z	npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-05-16T16:10:06.671354Z	npm warn deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+2025-05-16T16:10:12.437049Z	
+2025-05-16T16:10:12.437354Z	added 767 packages, and audited 768 packages in 12s
+2025-05-16T16:10:12.437523Z	
+2025-05-16T16:10:12.437646Z	104 packages are looking for funding
+2025-05-16T16:10:12.437767Z	  run `npm fund` for details
+2025-05-16T16:10:12.470168Z	
+2025-05-16T16:10:12.470578Z	10 moderate severity vulnerabilities
+2025-05-16T16:10:12.470707Z	
+2025-05-16T16:10:12.470822Z	To address issues that do not require attention, run:
+2025-05-16T16:10:12.470924Z	  npm audit fix
+2025-05-16T16:10:12.47109Z	
+2025-05-16T16:10:12.471171Z	To address all issues (including breaking changes), run:
+2025-05-16T16:10:12.471263Z	  npm audit fix --force
+2025-05-16T16:10:12.471364Z	
+2025-05-16T16:10:12.471511Z	Run `npm audit` for details.
+2025-05-16T16:10:12.489475Z	Executing user command: bash cloudflare-build.sh
+2025-05-16T16:10:12.49699Z	🚀 Iniciando construcción para Cloudflare Pages...
+2025-05-16T16:10:12.497281Z	📦 Instalando dependencias...
+2025-05-16T16:10:14.821441Z	
+2025-05-16T16:10:14.827557Z	up to date, audited 694 packages in 2s
+2025-05-16T16:10:14.831099Z	
+2025-05-16T16:10:14.833136Z	96 packages are looking for funding
+2025-05-16T16:10:14.833981Z	  run `npm fund` for details
+2025-05-16T16:10:14.841818Z	
+2025-05-16T16:10:14.847584Z	5 moderate severity vulnerabilities
+2025-05-16T16:10:14.852964Z	
+2025-05-16T16:10:14.858418Z	To address issues that do not require attention, run:
+2025-05-16T16:10:14.864004Z	  npm audit fix
+2025-05-16T16:10:14.868895Z	
+2025-05-16T16:10:14.87389Z	To address all issues (including breaking changes), run:
+2025-05-16T16:10:14.879372Z	  npm audit fix --force
+2025-05-16T16:10:14.8853Z	
+2025-05-16T16:10:14.890329Z	Run `npm audit` for details.
+2025-05-16T16:10:14.896309Z	🏗️ Construyendo el frontend...
+2025-05-16T16:10:15.325413Z	
+2025-05-16T16:10:15.336244Z	> rest-express@1.0.0 build
+2025-05-16T16:10:15.336908Z	> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+2025-05-16T16:10:15.338729Z	
+2025-05-16T16:10:15.571506Z	[31mfailed to load config from /opt/buildhome/repo/vite.config.ts[39m
+2025-05-16T16:10:15.577152Z	[31merror during build:
+2025-05-16T16:10:15.582646Z	Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@vitejs/plugin-react' imported from /opt/buildhome/repo/vite.config.ts.timestamp-1747411815561-72dbbb2a16c4f.mjs
+2025-05-16T16:10:15.588144Z	    at packageResolve (node:internal/modules/esm/resolve:873:9)
+2025-05-16T16:10:15.593083Z	    at moduleResolve (node:internal/modules/esm/resolve:946:18)
+2025-05-16T16:10:15.598015Z	    at defaultResolve (node:internal/modules/esm/resolve:1188:11)
+2025-05-16T16:10:15.602979Z	    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:642:12)
+2025-05-16T16:10:15.607821Z	    at #cachedDefaultResolve (node:internal/modules/esm/loader:591:25)
+2025-05-16T16:10:15.612011Z	    at ModuleLoader.resolve (node:internal/modules/esm/loader:574:38)
+2025-05-16T16:10:15.614705Z	    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:236:38)
+2025-05-16T16:10:15.616648Z	    at ModuleJob._link (node:internal/modules/esm/module_job:130:49)[39m
+2025-05-16T16:10:15.618079Z	Failed: Error while executing user command. Exited with error code: 1
+2025-05-16T16:10:15.629051Z	Failed: build command exited with code: 1
+2025-05-16T16:10:16.95034Z	Failed: error occurred while running build command
