@@ -34,10 +34,10 @@ const StaticApp = () => {
             <main className="flex-grow">
               <Switch>
                 <Route path="/" component={Home} />
+                <Route path="/apps/all" component={AllApps} />
                 <Route path="/apps/:appId" component={AppDetail} />
                 <Route path="/categories/:categoryId" component={CategoryPage} />
                 <Route path="/search" component={SearchResults} />
-                <Route path="/apps/all" component={AllApps} />
               </Switch>
             </main>
           </Layout>
