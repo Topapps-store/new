@@ -1,0 +1,126 @@
+2025-05-16T15:19:28.571694504Z	Cloning repository...
+2025-05-16T15:19:29.688977806Z	From https://github.com/Topapps-store/new
+2025-05-16T15:19:29.689338387Z	 * branch            ad282262e53e391a1452cdea046f76cf9e6c9d2e -> FETCH_HEAD
+2025-05-16T15:19:29.689595449Z	
+2025-05-16T15:19:29.763756858Z	HEAD is now at ad28226 Fix: write _headers to dist/public as defined in vite.config.ts
+2025-05-16T15:19:29.764348504Z	
+2025-05-16T15:19:29.845647075Z	
+2025-05-16T15:19:29.84608064Z	Using v2 root directory strategy
+2025-05-16T15:19:29.870548411Z	Success: Finished cloning repository files
+2025-05-16T15:19:31.619498676Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-05-16T15:19:31.620072368Z	
+2025-05-16T15:19:31.621622228Z	Found wrangler.toml file. Reading build configuration...
+2025-05-16T15:19:32.752228763Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-05-16T15:19:32.830071317Z	Detected the following tools from environment: nodejs@20.19.0, npm@9.6.7
+2025-05-16T15:19:32.830488834Z	Installing nodejs 20.19.0
+2025-05-16T15:19:32.900627988Z	nodejs 20.19.0 is already installed
+2025-05-16T15:19:33.389487012Z	Installing project dependencies: npm clean-install --progress=false
+2025-05-16T15:19:37.149774338Z	npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-05-16T15:19:37.75663524Z	npm warn deprecated npmlog@5.0.1: This package is no longer supported.
+2025-05-16T15:19:38.137865311Z	npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-05-16T15:19:38.265605574Z	npm warn deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+2025-05-16T15:19:38.305819237Z	npm warn deprecated har-validator@5.1.5: this library is no longer supported
+2025-05-16T15:19:38.66739514Z	npm warn deprecated gauge@3.0.2: This package is no longer supported.
+2025-05-16T15:19:38.750089616Z	npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+2025-05-16T15:19:38.983063226Z	npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+2025-05-16T15:19:39.213672788Z	npm warn deprecated @types/long@5.0.0: This is a stub types definition. long provides its own type definitions, so you do not need this installed.
+2025-05-16T15:19:39.847856638Z	npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+2025-05-16T15:19:39.870554177Z	npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+2025-05-16T15:19:40.119222878Z	npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-05-16T15:19:40.27919379Z	npm warn deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+2025-05-16T15:19:46.104876577Z	
+2025-05-16T15:19:46.105300943Z	added 767 packages, and audited 768 packages in 12s
+2025-05-16T15:19:46.105470264Z	
+2025-05-16T15:19:46.105548897Z	104 packages are looking for funding
+2025-05-16T15:19:46.105802084Z	  run `npm fund` for details
+2025-05-16T15:19:46.138135511Z	
+2025-05-16T15:19:46.138297496Z	10 moderate severity vulnerabilities
+2025-05-16T15:19:46.138669465Z	
+2025-05-16T15:19:46.138758052Z	To address issues that do not require attention, run:
+2025-05-16T15:19:46.139057099Z	  npm audit fix
+2025-05-16T15:19:46.139136212Z	
+2025-05-16T15:19:46.139267795Z	To address all issues (including breaking changes), run:
+2025-05-16T15:19:46.139491167Z	  npm audit fix --force
+2025-05-16T15:19:46.139506489Z	
+2025-05-16T15:19:46.139663576Z	Run `npm audit` for details.
+2025-05-16T15:19:46.156536691Z	Executing user command: bash build.sh
+2025-05-16T15:19:46.163690098Z	Starting build process for TopApps.store...
+2025-05-16T15:19:46.163850453Z	NODE_ENV: 
+2025-05-16T15:19:46.164172319Z	Database configuration detected.
+2025-05-16T15:19:46.164189334Z	Installing dependencies...
+2025-05-16T15:19:47.907956782Z	
+2025-05-16T15:19:47.908237509Z	up to date, audited 768 packages in 1s
+2025-05-16T15:19:47.908604394Z	
+2025-05-16T15:19:47.908828633Z	104 packages are looking for funding
+2025-05-16T15:19:47.908940717Z	  run `npm fund` for details
+2025-05-16T15:19:47.947261517Z	
+2025-05-16T15:19:47.947507588Z	10 moderate severity vulnerabilities
+2025-05-16T15:19:47.947698236Z	
+2025-05-16T15:19:47.94790977Z	To address issues that do not require attention, run:
+2025-05-16T15:19:47.948052116Z	  npm audit fix
+2025-05-16T15:19:47.948157542Z	
+2025-05-16T15:19:47.948342379Z	To address all issues (including breaking changes), run:
+2025-05-16T15:19:47.948423093Z	  npm audit fix --force
+2025-05-16T15:19:47.948652218Z	
+2025-05-16T15:19:47.948830218Z	Run `npm audit` for details.
+2025-05-16T15:19:47.958165745Z	Building frontend app...
+2025-05-16T15:19:48.352832701Z	
+2025-05-16T15:19:48.353108947Z	> rest-express@1.0.0 build
+2025-05-16T15:19:48.353133564Z	> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+2025-05-16T15:19:48.353205041Z	
+2025-05-16T15:19:48.657233578Z	[36mvite v5.4.14 [32mbuilding for production...[36m[39m
+2025-05-16T15:19:48.711246031Z	transforming...
+2025-05-16T15:19:48.97998669Z	Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+2025-05-16T15:19:48.980334784Z	  npx update-browserslist-db@latest
+2025-05-16T15:19:48.980601784Z	  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+2025-05-16T15:19:52.690324712Z	[32m✓[39m 1804 modules transformed.
+2025-05-16T15:19:53.015986575Z	rendering chunks...
+2025-05-16T15:19:53.026279304Z	computing gzip size...
+2025-05-16T15:19:53.044466882Z	[2m../dist/public/[22m[32mindex.html                 [39m[1m[2m  1.08 kB[22m[1m[22m[2m │ gzip:   0.66 kB[22m
+2025-05-16T15:19:53.044855499Z	[2m../dist/public/[22m[2massets/[22m[35mindex-D167iD5B.css  [39m[1m[2m 85.72 kB[22m[1m[22m[2m │ gzip:  14.24 kB[22m
+2025-05-16T15:19:53.044873925Z	[2m../dist/public/[22m[2massets/[22m[36mindex-DAG2x_xH.js   [39m[1m[33m589.93 kB[39m[22m[2m │ gzip: 179.02 kB[22m
+2025-05-16T15:19:53.045064465Z	[33m
+2025-05-16T15:19:53.045343997Z	(!) Some chunks are larger than 500 kB after minification. Consider:
+2025-05-16T15:19:53.045358095Z	[32m✓ built in 4.36s[39m
+2025-05-16T15:19:53.045522743Z	- Using dynamic import() to code-split the application
+2025-05-16T15:19:53.045557472Z	- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+2025-05-16T15:19:53.045743977Z	- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+2025-05-16T15:19:53.10669494Z	
+2025-05-16T15:19:53.107171554Z	  dist/index.js  55.5kb
+2025-05-16T15:19:53.107321668Z	
+2025-05-16T15:19:53.107850557Z	⚡ Done in 12ms
+2025-05-16T15:19:53.116950344Z	Creating API function for Cloudflare...
+2025-05-16T15:19:53.805396215Z	
+2025-05-16T15:19:53.805646263Z	  functions/api.js  55.5kb
+2025-05-16T15:19:53.80588771Z	
+2025-05-16T15:19:53.805903928Z	⚡ Done in 12ms
+2025-05-16T15:19:53.81662723Z	Creating security headers file...
+2025-05-16T15:19:53.82181717Z	Build completed successfully!
+2025-05-16T15:19:53.835709653Z	Finished
+2025-05-16T15:19:54.785062805Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-05-16T15:19:54.785466043Z	
+2025-05-16T15:19:54.786128454Z	Found wrangler.toml file. Reading build configuration...
+2025-05-16T15:19:55.915129966Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-05-16T15:19:55.915780649Z	Found Functions directory at /functions. Uploading.
+2025-05-16T15:19:55.922722497Z	 ⛅️ wrangler 3.101.0
+2025-05-16T15:19:55.92312648Z	-------------------
+2025-05-16T15:19:56.79289212Z	▲ [WARNING] Suspicious assignment to defined constant "process.env.NODE_ENV" [assign-to-define]
+2025-05-16T15:19:56.793564689Z	
+2025-05-16T15:19:56.793614996Z	    ../../../buildhome/repo/functions/api.js:1502:10:
+2025-05-16T15:19:56.793658374Z	      1502 │           process.env.NODE_ENV = "production";
+2025-05-16T15:19:56.793981092Z	           ╵           ~~~~~~~~~~~~~~~~~~~~
+2025-05-16T15:19:56.794242278Z	
+2025-05-16T15:19:56.794252375Z	  The expression "process.env.NODE_ENV" has been configured to be replaced with a constant using the "define" feature. If this expression is supposed to be a compile-time constant, then it doesn't make sense to assign to it here. Or if this expression is supposed to change at run-time, this "define" substitution should be removed.
+2025-05-16T15:19:56.794370992Z	
+2025-05-16T15:19:56.807051816Z	
+2025-05-16T15:19:56.910097425Z	[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNo routes found when building Functions directory: /opt/buildhome/repo/functions[0m
+2025-05-16T15:19:56.910310314Z	
+2025-05-16T15:19:56.910433424Z	
+2025-05-16T15:19:56.985321654Z	🪵  Logs were written to "/root/.config/.wrangler/logs/wrangler-2025-05-16_15-19-56_548.log"
+2025-05-16T15:19:56.996939774Z	Warning: Wrangler did not find routes when building functions. Skipping.
+2025-05-16T15:19:56.997436915Z	Validating asset output directory
+2025-05-16T15:19:59.678786996Z	Deploying your site to Cloudflare's global network...
+2025-05-16T15:20:01.918089836Z	Uploading... (5/5)
+2025-05-16T15:20:01.918769391Z	✨ Success! Uploaded 0 files (5 already uploaded) (0.46 sec)
+2025-05-16T15:20:01.918962057Z	
+2025-05-16T15:20:02.305203254Z	✨ Upload complete!
