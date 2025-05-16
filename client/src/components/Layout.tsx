@@ -49,85 +49,38 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       <footer className="bg-dark text-white mt-12">
         <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="flex flex-col space-y-6">
             <div>
               <h3 className="text-lg font-bold mb-4">TopApps.store</h3>
-              <p className="text-gray-400 text-sm">
-                {t('footer.description')}
+              <p className="text-gray-400 text-sm max-w-xl">
+                Discover and download the best mobile applications all in one place. We aim to provide a simple way for you to find quality apps for your device.
               </p>
             </div>
 
-            <div>
-              <h3 className="text-lg font-bold mb-4">{t('footer.quickLinks')}</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('nav.home')}</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/apps/all">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('nav.apps')}</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/categories/games">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('nav.games')}</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/categories">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('nav.categories')}</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-4">{t('footer.legal')}</h3>
-              <ul className="space-y-2">
-                <li>
+            <div className="border-t border-gray-700 pt-6">
+              <div className="flex flex-col md:flex-row md:justify-between">
+                <div className="space-x-4 mb-4 md:mb-0">
                   <Link href="/terms">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('footer.termsOfService')}</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer text-sm">Terms of Service</span>
                   </Link>
-                </li>
-                <li>
                   <Link href="/privacy">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('footer.privacyPolicy')}</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer text-sm">Privacy Policy</span>
                   </Link>
-                </li>
-                <li>
-                  <Link href="/disclaimer">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('footer.disclaimer')}</span>
-                  </Link>
-                </li>
-                <li>
                   <Link href="/contact">
-                    <span className="text-gray-400 hover:text-white cursor-pointer">{t('footer.contactUs')}</span>
+                    <span className="text-gray-400 hover:text-white cursor-pointer text-sm">Contact Us</span>
                   </Link>
-                </li>
-              </ul>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm">© 2023 TopApps.store. All rights reserved.</p>
+                </div>
+              </div>
             </div>
 
-            <div>
-              <h3 className="text-lg font-bold mb-4">{t('footer.connectWithUs')}</h3>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-facebook-f"></i></a>
-                <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-twitter"></i></a>
-                <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-instagram"></i></a>
-                <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-youtube"></i></a>
-              </div>
-              <p className="text-gray-400 text-sm mt-4">
-                {t('footer.stayUpdated')}
+            <div className="border-t border-gray-700 pt-6">
+              <p className="text-gray-400 text-xs max-w-3xl mx-auto text-center">
+                <strong>Affiliate Disclosure:</strong> TopApps.store is supported by our users. Some links on our site are affiliate links, which means we may earn a commission if you click on them and make a purchase. This helps us maintain and improve our service. All recommendations are based on genuine app quality and user experience.
               </p>
             </div>
-          </div>
-
-          <div className="border-t border-gray-700 mt-8 pt-6 text-sm text-gray-400">
-            <p>{t('footer.copyright')}</p>
-            <p className="mt-2">
-              {t('footer.trademark')}
-            </p>
           </div>
         </div>
       </footer>

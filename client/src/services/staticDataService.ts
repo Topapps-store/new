@@ -67,15 +67,15 @@ export const getAppById = async (id: string): Promise<AppLegacy | undefined> => 
 
 /**
  * Obtener aplicaciones relacionadas a una app
+ * Devuelve todas las apps de la misma categoría
  */
 export const getRelatedApps = async (id: string): Promise<AppLegacy[]> => {
   const app = apps.find(app => app.id === id);
   if (!app) return [];
   
-  // Buscar apps en la misma categoría, excluyendo la app actual
+  // Buscar todas las apps en la misma categoría, excluyendo la app actual
   return apps
-    .filter(a => a.category === app.category && a.id !== id)
-    .slice(0, 4);
+    .filter(a => a.categoryId === app.categoryId && a.id !== id);
 };
 
 /**
