@@ -21,7 +21,7 @@ cp _headers dist/public/
 
 # También crear los archivos directamente por si acaso
 cat > dist/public/_redirects << EOL
-/api/*  https://topapps.replit.app/api/:splat  200
+/api/*  https://topapps.replit.app/api/:splat  200!
 /*      /index.html                            200
 EOL
 
@@ -29,7 +29,8 @@ cat > dist/public/_headers << EOL
 /*
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
-  Access-Control-Allow-Headers: Content-Type, Authorization
+  Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With
+  Access-Control-Max-Age: 86400
 EOL
 
 # Crear un archivo nojekyll para evitar problemas con GitHub Pages
