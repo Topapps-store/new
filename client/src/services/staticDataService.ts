@@ -84,8 +84,17 @@ export const getRelatedApps = async (id: string): Promise<AppLegacy[]> => {
   if (!app) return [];
   
   // Buscar todas las apps en la misma categoría, excluyendo la app actual
-  return apps
+  // Si hay varias categorías posibles, primero probamos con categoryId, luego con category
+  let relatedApps = apps
     .filter(a => a.categoryId === app.categoryId && a.id !== id);
+  
+  // Si no hay apps relacionadas por categoryId, intentamos buscar por category
+  if (relatedApps.length === 0 && app.category) {
+    relatedApps = apps
+      .filter(a => a.category === app.category && a.id !== id);
+  }
+  
+  return relatedApps;
 };
 
 /**

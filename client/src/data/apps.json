@@ -239,6 +239,102 @@
         "https://play-lh.googleusercontent.com/gLfIOqkhzOXJPkPU-FpyVRRAfTn6QZbdFat3EyAe-OU4wtdpl9rjduLHuZXVB3NPjZY"
       ],
       "isAffiliate": false
+    },
+    {
+      "id": "nordvpn",
+      "name": "NordVPN",
+      "category": "Utilities",
+      "categoryId": "utilities",
+      "description": "Secure your internet connection and protect your privacy with NordVPN. This high-speed VPN service encrypts your online activity and hides your IP address, ensuring your data remains private. Access your favorite sites and streaming services securely, even on public Wi-Fi networks. NordVPN has a strict no-logs policy, ensuring your online activities stay private.",
+      "iconUrl": "https://play-lh.googleusercontent.com/AbQMuT4ncBkCz4v9vPmh05D5gUCR9xwQSnAYOL_r-39BaUNy6oeuRWTckmDVXXb4Tg",
+      "rating": 4.3,
+      "downloads": "10M+",
+      "version": "6.47.5",
+      "size": "30 MB",
+      "updated": "May 5, 2023",
+      "requires": "Android 6.0+",
+      "developer": "NordVPN",
+      "installs": "10,000,000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.nordvpn.android",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.nordvpn.android",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/VZFtUHlkid2jRHg3rd1NTXceuKKs-UBDRuUuHhPyl_x1hcYa9YUXRYqt8q9COsQBTl4",
+        "https://play-lh.googleusercontent.com/aLbOVrxtA7P-W2j1UpJG9V-r1UNeEkNJaC5-J4SfBRzLhw_r6L0b4qf9qvIDfKZx1mI",
+        "https://play-lh.googleusercontent.com/A-7a42xeHQi6WHnx9teOL0RHMfVmwKr5LH6KgKJy3xmYnRiC-h5Wa25QzG5zp6NnIh8"
+      ],
+      "isAffiliate": true
+    },
+    {
+      "id": "spothero",
+      "name": "SpotHero Parking",
+      "category": "Travel & Transportation",
+      "categoryId": "travel",
+      "description": "SpotHero makes parking easier by helping you find and reserve parking spaces in advance. Search for available spots near your destination, compare rates, and pay securely through the app. Save up to 50% on parking costs with SpotHero's exclusive deals. Perfect for daily commutes, events, or travel when you need guaranteed parking.",
+      "iconUrl": "https://play-lh.googleusercontent.com/JKKukZW8qvwtR_Wg3gZTRnBPfZRmqHvnlgSF7oL7zl5G-YMLwVNZYU-IpVVL476d6Q",
+      "rating": 4.8,
+      "downloads": "1M+",
+      "version": "4.23.2",
+      "size": "33 MB",
+      "updated": "May 2, 2023",
+      "requires": "Android 7.0+",
+      "developer": "SpotHero, Inc.",
+      "installs": "1,000,000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.spothero.spothero",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.spothero.spothero",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/_QqTKIeL8fHp0ycuiWiFTiHOCjZrF8_-wvZbB5UW9WpXAUQDDWxnASEo_FYWT-qPCCU",
+        "https://play-lh.googleusercontent.com/qSrA1Z2f9Q8Kk1lvlMgGRnHAa0NHCSduvn1m1UTDEhR2TYVCVwfhxG1yIW9CF4X2sTQ",
+        "https://play-lh.googleusercontent.com/Zfaj13OGLU-VN3V5axbRLHDKvgT58Ci5Zdw3LZPBXKMwQJPGPCiuZdZPWpLOZXQMRVQ"
+      ],
+      "isAffiliate": true
+    },
+    {
+      "id": "revolut",
+      "name": "Revolut - Mobile Banking",
+      "category": "Finance",
+      "categoryId": "finance",
+      "description": "Revolut is a financial super-app that lets you manage your money globally. Send and receive money instantly, exchange currencies at great rates, and manage your spending with real-time notifications. Get a physical or virtual debit card, create savings vaults, and access cryptocurrency trading—all from one app. Revolut also offers premium plans with additional benefits like travel insurance and exclusive rewards.",
+      "iconUrl": "https://play-lh.googleusercontent.com/twS9NlsK-D7zLMo81v54fADmTJhUeYJSTY1ZMo1Jj_TL2HXNXQqAHxH-rnQuWDEn_eL7",
+      "rating": 4.6,
+      "downloads": "50M+",
+      "version": "8.57",
+      "size": "87.8 MB",
+      "updated": "May 8, 2023",
+      "requires": "Android 7.0+",
+      "developer": "Revolut Ltd",
+      "installs": "50,000,000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.revolut.revolut",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.revolut.revolut",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/V0n3JPqCPZXcXLzZZwR-zE4Qe_9YMt1QNBmz9uJU1f_-KVgDu-ZHMcGtsQ_nhFQqWZY",
+        "https://play-lh.googleusercontent.com/DK3q9ioQZdKOGOS9EBZ5TlUKxKJZLzG1S-EC4byZB0y7-C9ZrEe58oIm3bpBPpZ3pQ",
+        "https://play-lh.googleusercontent.com/oZRsoCOJsJVvWuOXMJQW87kKj4h3xQOQ9RYvX2-ZJbza6R9hk0MHaEPlRKHnRZMm-Sg"
+      ],
+      "isAffiliate": true
+    },
+    {
+      "id": "whatsappbusiness",
+      "name": "WhatsApp Business",
+      "category": "Business",
+      "categoryId": "business",
+      "description": "WhatsApp Business is a free app designed specifically for small business owners. Create a business profile with important information like your address, business description, and contact information. Connect with your customers easily with tools to automate, sort, and quickly respond to messages. WhatsApp Business helps you provide customer support and share important updates with your customers on a platform they're already familiar with.",
+      "iconUrl": "https://play-lh.googleusercontent.com/xIeLO9FPnCP6ignrFZIk-ZUJUcnuwpb_S9m-uZcjyC9T3Uv3_k0cQCwHJ4WN5gZCPQ",
+      "rating": 4.2,
+      "downloads": "500M+",
+      "version": "2.23.9.76",
+      "size": "49 MB",
+      "updated": "May 11, 2023",
+      "requires": "Android 4.1+",
+      "developer": "WhatsApp LLC",
+      "installs": "500,000,000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.whatsapp.w4b",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.whatsapp.w4b",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/WL9oSrJxfO6XDXCXUKYqY5z7MOtXhgzzf5jxyJQwxGSJYGw_0CmzTloGAYnUzBbJCw",
+        "https://play-lh.googleusercontent.com/zOZA6-6PTMmPHOkpkrDXX7qU9kW_K6-WiTfCi5o7RNY58KplcOKlB2XHkxJbxJlTYDcD",
+        "https://play-lh.googleusercontent.com/hVfSpqIizXPTYdRKJIZU2IqzZdpzt4A7zUVJTXSLKrDG6lbSF7JiR17m9aZCvshutQ"
+      ],
+      "isAffiliate": true
     }
   ]
 }
