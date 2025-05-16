@@ -1,5 +1,24 @@
 {
-  "pendingUrls": [],
+  "pendingUrls": [
+    "https://play.google.com/store/apps/details?id=com.amazon.mShop.android.shopping",
+    "https://play.google.com/store/apps/details?id=com.ebay.mobile",
+    "https://play.google.com/store/apps/details?id=com.wish.solitaire",
+    "https://play.google.com/store/apps/details?id=com.duolingo",
+    "https://play.google.com/store/apps/details?id=com.grubhub.android",
+    "https://play.google.com/store/apps/details?id=com.citymapper.app.release",
+    "https://play.google.com/store/apps/details?id=com.aloha.browser.lite",
+    "https://play.google.com/store/apps/details?id=com.onecompiler.app",
+    "https://play.google.com/store/apps/details?id=com.Slice",
+    "https://play.google.com/store/apps/details?id=com.paytm.paytmplay",
+    "https://play.google.com/store/apps/details?id=com.chegg.study",
+    "https://play.google.com/store/apps/details?id=com.wattpad.tap",
+    "https://play.google.com/store/apps/details?id=com.reddit.frontpage",
+    "https://play.google.com/store/apps/details?id=com.spotify.music",
+    "https://play.google.com/store/apps/details?id=deezer.android.app",
+    "https://play.google.com/store/apps/details?id=com.mixcloud.player",
+    "https://play.google.com/store/apps/details?id=com.tik.tok.app",
+    "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically"
+  ],
   "processedUrls": [
     "https://play.google.com/store/apps/details?id=com.pdf.editor.viewer.pdfreader.pdfviewer&hl=ca",
     "https://play.google.com/store/apps/details?id=com.ubercab.eats",
@@ -30,6 +49,8 @@
     "https://play.google.com/store/apps/details?id=com.openai.chatgpt",
     "https://play.google.com/store/apps/details?id=com.alibaba.aliexpresshd",
     "https://play.google.com/store/apps/details?id=com.whatsapp.w4b",
-    "https://play.google.com/store/apps/details?id=com.revolut.revolut"
+    "https://play.google.com/store/apps/details?id=com.revolut.revolut",
+    "https://play.google.com/store/apps/details?id=com.ubercab",
+    "https://play.google.com/store/apps/details?id=com.waze"
   ]
 }
