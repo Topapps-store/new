@@ -5,25 +5,21 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  root: './client', // Establecer la raíz del proyecto en la carpeta client
   plugins: [react()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./client/src/components', import.meta.url)),
-      '@lib': fileURLToPath(new URL('./client/src/lib', import.meta.url)),
-      '@shared': fileURLToPath(new URL('./shared', import.meta.url)),
-      '@hooks': fileURLToPath(new URL('./client/src/hooks', import.meta.url)),
-      '@pages': fileURLToPath(new URL('./client/src/pages', import.meta.url)),
-      '@assets': fileURLToPath(new URL('./client/src/assets', import.meta.url)),
+      '@': fileURLToPath(new URL('./src/components', import.meta.url)),
+      '@lib': fileURLToPath(new URL('./src/lib', import.meta.url)),
+      '@shared': fileURLToPath(new URL('../shared', import.meta.url)),
+      '@hooks': fileURLToPath(new URL('./src/hooks', import.meta.url)),
+      '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
+      '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
     }
   },
   build: {
-    outDir: './dist',
+    outDir: '../dist', // La carpeta de salida relativa a la raíz (client)
     emptyOutDir: true,
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'client/index.html'),
-      },
-    },
     minify: true,
     sourcemap: false,
   }
