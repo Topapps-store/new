@@ -1,340 +1,46 @@
 {
-  "apps": [
+  "apps": [],
+  "categories": [
     {
-      "id": "netflix",
-      "name": "Netflix",
-      "category": "Entertainment",
-      "categoryId": "entertainment",
-      "description": "Looking for the most talked about TV shows and movies from around the world? They're all on Netflix.\n\nWe've got award-winning series, movies, documentaries, and stand-up specials. And with the mobile app, you get Netflix while you travel, commute, or just take a break.\n\nWhat you'll love about Netflix:\n\n• We add TV shows and movies all the time. Browse new titles or search for your favorites, and stream videos right on your device.\n• The more you watch, the better Netflix gets at recommending TV shows and movies you'll love.\n• Create up to five profiles for an account. Profiles give different members of your household their own personalized Netflix.\n• Enjoy a safe watching experience just for kids with family-friendly entertainment.\n• Preview quick videos of our series and movies and get notifications for new episodes and releases.\n• Save your data. Download titles to your mobile device and watch offline, wherever you are.",
-      "iconUrl": "https://play-lh.googleusercontent.com/TBRwjS_qfJCSj1m7zZB93FnpJM5fSpMA_wUlFDLxWAb45T9RmwBvQd5cWR5viJJOhkI",
-      "rating": 4.4,
-      "downloads": "1B+",
-      "version": "8.77.0",
-      "size": "39 MB",
-      "updated": "May 10, 2023",
-      "requires": "Android 5.0+",
-      "developer": "Netflix, Inc.",
-      "installs": "1,000,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.netflix.mediaclient&hl=en&gl=us",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/NTFOnXELvK9lY2sHPNxNOzCzXNNdgRVq8qbBtTUOGtRgVCHi-LXMTl4cuv24ZMUOpgg",
-        "https://play-lh.googleusercontent.com/tJ5qZZ9pmTpN0jz8qFjERFJI3Dr8ojpjXMsRZozGh52thbTqLihO0OWTs5pTLymKg8g",
-        "https://play-lh.googleusercontent.com/SVt4kgvnZsmOjnCFwFwDKBlo-dPgFHxUXGRBqewzCrK5I_f_lzv3G68sbYjszirnuSc"
-      ],
-      "isAffiliate": false
+      "id": "communication",
+      "name": "Comunicación"
     },
     {
-      "id": "whatsapp",
-      "name": "WhatsApp Messenger",
-      "category": "Communication",
-      "categoryId": "communication",
-      "description": "WhatsApp from Meta is a FREE messaging and video calling app. It's used by over 2B people in more than 180 countries. It's simple, reliable, and private, so you can easily keep in touch with your friends and family. WhatsApp works across mobile and desktop even on slow connections.\n\nPrivacy and security is in our DNA, which is why we built end-to-end encryption into our app. When end-to-end encrypted, your messages, photos, videos, voice messages, documents, status updates and calls are secured from falling into the wrong hands.",
-      "iconUrl": "https://play-lh.googleusercontent.com/bYtqbOcTYOlgc6gqZ2rwb8lptHuwlNE75zYJu6Bn076-hTmvd96HH-6v7S0YUAAJXoJN",
-      "rating": 4.2,
-      "downloads": "5B+",
-      "version": "2.23.9.77",
-      "size": "50 MB",
-      "updated": "May 12, 2023",
-      "requires": "Android 4.1+",
-      "developer": "WhatsApp LLC",
-      "installs": "5,000,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.whatsapp",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.whatsapp",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/j1RfwGIwDc6k1p7sAiG15IK97X1VXc0XE2ksmyAcqM73yJmf2TmIFGxExPCcwsIFgA",
-        "https://play-lh.googleusercontent.com/pDl2VNUFkfprN5BnzCpR5JS41QrWNqXtb5Z8xTBYCzLZFV8_lwH0IHgSkjV-5wIW-Q",
-        "https://play-lh.googleusercontent.com/Iz0UUOuSR8wqLJgJ-LF_M-l3p6L4mqge-1CUu0q_LTwh3E9jLtJkWHQOwQFjl1MJSA"
-      ],
-      "isAffiliate": false
+      "id": "social",
+      "name": "Redes Sociales"
     },
     {
-      "id": "amazon-shopping",
-      "name": "Amazon Shopping",
-      "category": "Shopping",
-      "categoryId": "shopping",
-      "description": "Browse, search, and buy with the Amazon Shopping app. Shop deals, enjoy personalized recommendations, and more. Get fast, free shipping on eligible orders. Enjoy access to Amazon Prime, Gold Box Deals, Alexa, secure ordering, and more. The Amazon app helps you find products, shop deals, make orders, track shipments, watch video products, manage your Amazon account, and much more.",
-      "iconUrl": "https://play-lh.googleusercontent.com/vR319uJLcT8_lidS72GFvj0EuEveEOALHXpNJ9-sra_5NdvEJQWOK3CKATZnGhmN5A",
-      "rating": 4.2,
-      "downloads": "1B+",
-      "version": "24.9.0.100",
-      "size": "54 MB",
-      "updated": "May 4, 2023",
-      "requires": "Android 8.0+",
-      "developer": "Amazon Mobile LLC",
-      "installs": "1,000,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.amazon.mShop.android.shopping",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.amazon.mShop.android.shopping",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/PZeZNERN7MjNrhBOJbg_oPRjW4VV-vfXZbzJCG1n_32ZzP-x0hIiQxyP-Bh-6XAZ7A",
-        "https://play-lh.googleusercontent.com/YnWyPZ97jX7Z5f8zBCtrIFI3wEnuHLrwvg1y786IHhTLvz_wfY8JWgcRPfqwjUUC84M",
-        "https://play-lh.googleusercontent.com/wE-z86Fxm4S6RYn3ZRbZqZJt1gnQa0WqGOkU8fMwzH7HjHN1tJGCm_Okz5Vw9GZIZ-Q"
-      ],
-      "isAffiliate": true
+      "id": "entertainment",
+      "name": "Entretenimiento"
     },
     {
-      "id": "tiktok",
-      "name": "TikTok",
-      "category": "Entertainment",
-      "categoryId": "entertainment",
-      "description": "TikTok is THE destination for mobile videos. On TikTok, short-form videos are exciting, spontaneous, and genuine. Whether you're a sports fanatic, a pet enthusiast, or just looking for a laugh, there's something for everyone on TikTok. All you have to do is watch, engage with what you like, skip what you don't, and you'll find an endless stream of short videos that feel personalized just for you. From your morning coffee to your afternoon errands, TikTok has the videos that are guaranteed to make your day.",
-      "iconUrl": "https://play-lh.googleusercontent.com/BmUViDVOKNJe-AAXEjQNwTVBRnMeglNMVz3n7GMT8__G7gio4dYXYVgwsrFF-utvB9Fe",
-      "rating": 4.4,
-      "downloads": "1B+",
-      "version": "30.1.4",
-      "size": "87 MB",
-      "updated": "May 8, 2023",
-      "requires": "Android 5.0+",
-      "developer": "TikTok Pte. Ltd.",
-      "installs": "1,000,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/cFk-fy5r8y3YeWn_GzaLQN-WvhIhEJHJOQs8TUOxA0hpMh3yb7y8AaJxXz7cIY2K2nG4",
-        "https://play-lh.googleusercontent.com/FJUIrUBGcf8D8pXLpeqQH7Zhzjz5qYHwIbzOeWEgvzYgy-CXzZo9LV9V6BKMl6Es-ok",
-        "https://play-lh.googleusercontent.com/IYYzA8bgN-KHPJb_J_aRJnJvZD0oGKz5K9D0n1YKgCLzFy8uJ6Bh9L9SnCVxZbYJMJQ"
-      ],
-      "isAffiliate": false
+      "id": "shopping",
+      "name": "Compras"
     },
     {
-      "id": "instagram",
-      "name": "Instagram",
-      "category": "Social",
-      "categoryId": "social",
-      "description": "Bring your friends closer with Instagram. Share photos and videos, send messages, get to know brands, creators and more. Express yourself and connect with friends.\n\n* Add photos and videos to your Instagram Story that disappear after 24 hours, and bring them to life with fun creative tools.\n* Message your friends with Messenger. Share and connect over what you see on Feed and Stories.\n* Create and discover short, entertaining videos on Instagram with Reels.\n* Post photos and videos to your feed that you want to show on your profile.",
-      "iconUrl": "https://play-lh.googleusercontent.com/c2DcVsBUhJb3UlAGABHwafpuhstHwORpVwWZ0RvRRgdPVMZlIiEicBsDbrTbwc_e5A",
-      "rating": 4.1,
-      "downloads": "1B+",
-      "version": "285.0.0.24.111",
-      "size": "52 MB",
-      "updated": "May 11, 2023",
-      "requires": "Android 5.0+",
-      "developer": "Instagram",
-      "installs": "1,000,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.instagram.android",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.instagram.android",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr",
-        "https://play-lh.googleusercontent.com/rjX4YzcZlAwwvAEcVYaDw4CgQTXCiTVl-3WISGH1hgRK95zdU8rr9B0s-LjIzwQ9Dw",
-        "https://play-lh.googleusercontent.com/_Xs_kxULSEXV2G_FLf2bhRCVv-e3U7GU5YLTycXPReb68A2ziYuQX7yvk28zxyk19dQ"
-      ],
-      "isAffiliate": false
+      "id": "finance",
+      "name": "Finanzas"
     },
     {
-      "id": "cashapp",
-      "name": "Cash App",
-      "category": "Finance",
-      "categoryId": "finance",
-      "description": "Cash App is the easy way to send, spend, bank, and invest. Sending and receiving money is free and fast, and most payments can be deposited directly to a bank account in just a few seconds. You can use Cash App to pay for goods and services or to split a bill with friends. In some areas, you can also use Cash App to invest in stocks with as little as $1 or buy and sell bitcoin. With Cash App, you receive a free Visa debit card — the Cash Card — that can be used to withdraw money for free at ATMs or to make purchases anywhere Visa is accepted.",
-      "iconUrl": "https://play-lh.googleusercontent.com/6RcPDQwPihY591Axu7e6mHhMZ22Q-dqeI5z9GkJiu4Hc-Xha77E6uoeplstYuv5RcnE",
-      "rating": 4.6,
-      "downloads": "100M+",
-      "version": "4.13.0",
-      "size": "47 MB",
-      "updated": "May 15, 2023",
-      "requires": "Android 8.0+",
-      "developer": "Cash App, Inc.",
-      "installs": "100,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.squareup.cash",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.squareup.cash",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/iySclHjbcgILpw5_46MDDXjfrpzKvFvZ9IP1kEAtVXNaZsrvrBas2eeNYnTstX8ACB0",
-        "https://play-lh.googleusercontent.com/vDCGMZBCc-L_qmPuQ_BPUvw2PqTjgZQCaYHLW8AATzlWITWdMJiT6fqVzyNkohYiQY0",
-        "https://play-lh.googleusercontent.com/OyjvmtkIAJjfSGWOl1D2bF452ssXDo6G51IH4CPIBSUHjafwzfEbhTwwo9MIRsHsQ7cJ"
-      ],
-      "isAffiliate": true
+      "id": "food",
+      "name": "Comida y Bebida"
     },
     {
-      "id": "doordash",
-      "name": "DoorDash - Food Delivery",
-      "category": "Food & Delivery",
-      "categoryId": "food",
-      "description": "DoorDash is an all-in-one food delivery app connecting you to the best of your neighborhood. Order from your local favorites, get your groceries delivered, or pick up dinner to go. Get what you want, when you want it, delivered to your door. DoorDash offers the greatest selection of your favorite local and national restaurants, convenience stores, and grocery stores—more than 300,000 partners in the US, Canada, Australia, Japan, and Germany. Spend more time living and less time waiting for food with our on-demand delivery app.",
-      "iconUrl": "https://play-lh.googleusercontent.com/4SipkFqi06bW-gj-GVOhnNjAUBL2Wtm-M9E_rbNiZ_dHQKTt6bX09H39dpYXpEiNmA",
-      "rating": 4.7,
-      "downloads": "50M+",
-      "version": "15.74.4",
-      "size": "59 MB",
-      "updated": "May 9, 2023",
-      "requires": "Android 7.0+",
-      "developer": "DoorDash, Inc.",
-      "installs": "50,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.dd.doordash",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.dd.doordash",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/iLn8P42-rQxV5l0CBXJQm-YXUHYxfwrptLzGCFvX9z1Dg8QgyFUMgqn-UQV8qiVrx6s",
-        "https://play-lh.googleusercontent.com/1yv7L5EIe0UYUNQ_oGhfA0h7YrNqZu3-KsEyU8Qd7zucqQiYe2-zyMQXEYfgKnzntg",
-        "https://play-lh.googleusercontent.com/pnmjvLwdHWW9jQRGWGgWkjsHIGAMzLgAWdIkMOAIzEi2Z4-aLw0uWxGQw60mysyKxr4"
-      ],
-      "isAffiliate": true
+      "id": "travel",
+      "name": "Viajes"
     },
     {
-      "id": "spotify",
-      "name": "Spotify: Music & Podcasts",
-      "category": "Music & Audio",
-      "categoryId": "music-and-audio",
-      "description": "With Spotify, you can play millions of songs and podcasts for free. Listen to the songs and podcasts you love and find music from all around the world.\n\nDiscover new music, podcasts, and more based on what you already love or what's trending around the world right now.\n\nCreate and share your playlists or just sit back and be introduced to new music. Search for your favorite song, artist, or podcast; or browse through categories like:\n- Trending and chart-topping new releases\n- Podcasts in every genre, including true crime, comedy, lifestyle, education, sci-fi, and fantasy\n- Workout, Sleep, Party, Focus, and Relax",
-      "iconUrl": "https://play-lh.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM",
-      "rating": 4.3,
-      "downloads": "1B+",
-      "version": "8.8.22.510",
-      "size": "62 MB",
-      "updated": "May 10, 2023",
-      "requires": "Android 5.0+",
-      "developer": "Spotify AB",
-      "installs": "1,000,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.spotify.music",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.spotify.music",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/DFtK_BUq3uhoijZ0jfnUHgMChp8ng5PahmgOPDlLFQnhaW2bkj-BJzD1PfVYFGLOvg",
-        "https://play-lh.googleusercontent.com/w9-fgvwqNoV5s-xgbOxQC5LnvAt_-LSiIp30WUwXVsYoKryyDG0iEZiw1cPuAKNW4PU",
-        "https://play-lh.googleusercontent.com/i2B1NpUkj1YKQR7T8UbdLCJ0NRoJeh05QsGc6PdAEIf1FkFWwj9hi_3G1GGIljmrnA"
-      ],
-      "isAffiliate": false
+      "id": "utilities",
+      "name": "Utilidades"
     },
     {
-      "id": "uber",
-      "name": "Uber - Request a ride",
-      "category": "Maps & Navigation",
-      "categoryId": "maps-and-navigation",
-      "description": "Request a ride to wherever you need to go. The Uber app is the easiest way to get around. Just open the app and enter your destination, and a nearby driver will help you get there reliably. Compare prices on every ride option, from economy to premium. And on uberX, uberXL, and Comfort, you can add multiple destinations to your trip. Plus, know your driver in advance with the driver profile and track your trip in real-time from pickup to dropoff.",
-      "iconUrl": "https://play-lh.googleusercontent.com/0GmzD-9GGPZIzgh0SmtK_ixZeVLJQjoW3oJQIc8KK_yPZEbs4_WyTtQFrABC388WPQ",
-      "rating": 4.2,
-      "downloads": "500M+",
-      "version": "4.484.10001",
-      "size": "51 MB",
-      "updated": "May 12, 2023",
-      "requires": "Android 7.0+",
-      "developer": "Uber Technologies, Inc.",
-      "installs": "500,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.ubercab",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.ubercab",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/GZjOLjhAS-U_gXOW6SHMgDSEgC75iBB03gBOsKEYy1_x__82-5q_ZvN5OHVM7wsi2Q",
-        "https://play-lh.googleusercontent.com/VmNBj_baDX0CvJnfOz2vGjijyNdcmZ87o6NaSHZtXOBbwiFr3QHnnNUXzFirSOyhyA",
-        "https://play-lh.googleusercontent.com/UUXUF2LI3J21YKlA62-hjPwW-j0yAP4B3FWdGKiuhLzf4Tj_R5YHR1MfSoLp-Iu47Q"
-      ],
-      "isAffiliate": true
+      "id": "productivity",
+      "name": "Productividad"
     },
     {
-      "id": "telegram",
-      "name": "Telegram",
-      "category": "Communication",
-      "categoryId": "communication",
-      "description": "Telegram is a cloud-based mobile and desktop messaging app with a focus on security and speed. Telegram is free and open source, allowing anyone to verify its encryption and API. It lets you create group chats with up to 200,000 members, share large videos, documents, and make voice and video calls. Its 'Secret Chats' feature offers end-to-end encryption, leaving no trace on servers. The app also allows you to access your messages from multiple devices and provides extensive customization.",
-      "iconUrl": "https://play-lh.googleusercontent.com/ZU9cSsyIJZo6Oy7HTHiEPwZg0m2Crep-d5ZrfajqtsH-qgUXSqKpNA2FpPDTn-7qA5Q",
-      "rating": 4.3,
-      "downloads": "1B+",
-      "version": "9.6.7",
-      "size": "47 MB",
-      "updated": "May 11, 2023",
-      "requires": "Android 4.1+",
-      "developer": "Telegram FZ-LLC",
-      "installs": "1,000,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=org.telegram.messenger",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=org.telegram.messenger",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/1HGNjGFvIxNMcRQXvR2MNwQkM-MFnUiB1FIevYD6K3j9-YNTYNouR1X08Qm3Y4tCR0I",
-        "https://play-lh.googleusercontent.com/Ipn6KX_OFMytmMIGmZAfkaQb-R9r6_mONYfvQOx1eLlI9lWauITv0WrmQ7lVRGmAIbs",
-        "https://play-lh.googleusercontent.com/gLfIOqkhzOXJPkPU-FpyVRRAfTn6QZbdFat3EyAe-OU4wtdpl9rjduLHuZXVB3NPjZY"
-      ],
-      "isAffiliate": false
-    },
-    {
-      "id": "nordvpn",
-      "name": "NordVPN",
-      "category": "Utilities",
-      "categoryId": "utilities",
-      "description": "Secure your internet connection and protect your privacy with NordVPN. This high-speed VPN service encrypts your online activity and hides your IP address, ensuring your data remains private. Access your favorite sites and streaming services securely, even on public Wi-Fi networks. NordVPN has a strict no-logs policy, ensuring your online activities stay private.",
-      "iconUrl": "https://play-lh.googleusercontent.com/AbQMuT4ncBkCz4v9vPmh05D5gUCR9xwQSnAYOL_r-39BaUNy6oeuRWTckmDVXXb4Tg",
-      "rating": 4.3,
-      "downloads": "10M+",
-      "version": "6.47.5",
-      "size": "30 MB",
-      "updated": "May 5, 2023",
-      "requires": "Android 6.0+",
-      "developer": "NordVPN",
-      "installs": "10,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.nordvpn.android",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.nordvpn.android",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/VZFtUHlkid2jRHg3rd1NTXceuKKs-UBDRuUuHhPyl_x1hcYa9YUXRYqt8q9COsQBTl4",
-        "https://play-lh.googleusercontent.com/aLbOVrxtA7P-W2j1UpJG9V-r1UNeEkNJaC5-J4SfBRzLhw_r6L0b4qf9qvIDfKZx1mI",
-        "https://play-lh.googleusercontent.com/A-7a42xeHQi6WHnx9teOL0RHMfVmwKr5LH6KgKJy3xmYnRiC-h5Wa25QzG5zp6NnIh8"
-      ],
-      "isAffiliate": true
-    },
-    {
-      "id": "spothero",
-      "name": "SpotHero Parking",
-      "category": "Travel & Transportation",
-      "categoryId": "travel",
-      "description": "SpotHero makes parking easier by helping you find and reserve parking spaces in advance. Search for available spots near your destination, compare rates, and pay securely through the app. Save up to 50% on parking costs with SpotHero's exclusive deals. Perfect for daily commutes, events, or travel when you need guaranteed parking.",
-      "iconUrl": "https://play-lh.googleusercontent.com/JKKukZW8qvwtR_Wg3gZTRnBPfZRmqHvnlgSF7oL7zl5G-YMLwVNZYU-IpVVL476d6Q",
-      "rating": 4.8,
-      "downloads": "1M+",
-      "version": "4.23.2",
-      "size": "33 MB",
-      "updated": "May 2, 2023",
-      "requires": "Android 7.0+",
-      "developer": "SpotHero, Inc.",
-      "installs": "1,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.spothero.spothero",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.spothero.spothero",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/_QqTKIeL8fHp0ycuiWiFTiHOCjZrF8_-wvZbB5UW9WpXAUQDDWxnASEo_FYWT-qPCCU",
-        "https://play-lh.googleusercontent.com/qSrA1Z2f9Q8Kk1lvlMgGRnHAa0NHCSduvn1m1UTDEhR2TYVCVwfhxG1yIW9CF4X2sTQ",
-        "https://play-lh.googleusercontent.com/Zfaj13OGLU-VN3V5axbRLHDKvgT58Ci5Zdw3LZPBXKMwQJPGPCiuZdZPWpLOZXQMRVQ"
-      ],
-      "isAffiliate": true
-    },
-    {
-      "id": "revolut",
-      "name": "Revolut - Mobile Banking",
-      "category": "Finance",
-      "categoryId": "finance",
-      "description": "Revolut is a financial super-app that lets you manage your money globally. Send and receive money instantly, exchange currencies at great rates, and manage your spending with real-time notifications. Get a physical or virtual debit card, create savings vaults, and access cryptocurrency trading—all from one app. Revolut also offers premium plans with additional benefits like travel insurance and exclusive rewards.",
-      "iconUrl": "https://play-lh.googleusercontent.com/twS9NlsK-D7zLMo81v54fADmTJhUeYJSTY1ZMo1Jj_TL2HXNXQqAHxH-rnQuWDEn_eL7",
-      "rating": 4.6,
-      "downloads": "50M+",
-      "version": "8.57",
-      "size": "87.8 MB",
-      "updated": "May 8, 2023",
-      "requires": "Android 7.0+",
-      "developer": "Revolut Ltd",
-      "installs": "50,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.revolut.revolut",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.revolut.revolut",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/V0n3JPqCPZXcXLzZZwR-zE4Qe_9YMt1QNBmz9uJU1f_-KVgDu-ZHMcGtsQ_nhFQqWZY",
-        "https://play-lh.googleusercontent.com/DK3q9ioQZdKOGOS9EBZ5TlUKxKJZLzG1S-EC4byZB0y7-C9ZrEe58oIm3bpBPpZ3pQ",
-        "https://play-lh.googleusercontent.com/oZRsoCOJsJVvWuOXMJQW87kKj4h3xQOQ9RYvX2-ZJbza6R9hk0MHaEPlRKHnRZMm-Sg"
-      ],
-      "isAffiliate": true
-    },
-    {
-      "id": "whatsappbusiness",
-      "name": "WhatsApp Business",
-      "category": "Business",
-      "categoryId": "business",
-      "description": "WhatsApp Business is a free app designed specifically for small business owners. Create a business profile with important information like your address, business description, and contact information. Connect with your customers easily with tools to automate, sort, and quickly respond to messages. WhatsApp Business helps you provide customer support and share important updates with your customers on a platform they're already familiar with.",
-      "iconUrl": "https://play-lh.googleusercontent.com/xIeLO9FPnCP6ignrFZIk-ZUJUcnuwpb_S9m-uZcjyC9T3Uv3_k0cQCwHJ4WN5gZCPQ",
-      "rating": 4.2,
-      "downloads": "500M+",
-      "version": "2.23.9.76",
-      "size": "49 MB",
-      "updated": "May 11, 2023",
-      "requires": "Android 4.1+",
-      "developer": "WhatsApp LLC",
-      "installs": "500,000,000+",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.whatsapp.w4b",
-      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.whatsapp.w4b",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/WL9oSrJxfO6XDXCXUKYqY5z7MOtXhgzzf5jxyJQwxGSJYGw_0CmzTloGAYnUzBbJCw",
-        "https://play-lh.googleusercontent.com/zOZA6-6PTMmPHOkpkrDXX7qU9kW_K6-WiTfCi5o7RNY58KplcOKlB2XHkxJbxJlTYDcD",
-        "https://play-lh.googleusercontent.com/hVfSpqIizXPTYdRKJIZU2IqzZdpzt4A7zUVJTXSLKrDG6lbSF7JiR17m9aZCvshutQ"
-      ],
-      "isAffiliate": true
+      "id": "maps-and-navigation",
+      "name": "Mapas y Navegación"
     }
-  ]
+  ],
+  "lastUpdated": "2025-05-16T16:35:00Z"
 }

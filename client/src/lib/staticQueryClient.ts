@@ -1,135 +1,94 @@
-import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import { 
+  QueryClient, 
+  QueryFunction,
+  DefaultOptions 
+} from '@tanstack/react-query';
 import * as staticDataService from '../services/staticDataService';
 
-// Mapa de rutas de API a funciones de servicio estático
-const apiRouteToServiceMap: Record<string, Function> = {
-  '/api/categories': staticDataService.fetchCategories,
-  '/api/apps': staticDataService.fetchAllApps,
-  '/api/apps/popular': staticDataService.fetchPopularApps,
-  '/api/apps/recent': staticDataService.fetchRecentApps,
-  '/api/apps/just-in-time': staticDataService.fetchJustInTimeApps,
+// Funciones para obtener datos estáticos
+const staticDataQueries = {
+  // Usamos los mismos nombres que se esperan en la interfaz pero 
+  // internamente llamamos a los métodos correctos del servicio estático
+  fetchCategories: () => staticDataService.getCategories(),
+  fetchAllApps: () => staticDataService.getAllApps(),
+  fetchPopularApps: () => staticDataService.getPopularApps(),
+  fetchRecentApps: () => staticDataService.getRecentApps(),
+  fetchJustInTimeApps: () => staticDataService.getJustInTimeApps(),
+  fetchSearchResults: (query: string) => staticDataService.searchApps(query),
+  fetchAppById: (id: string) => staticDataService.getAppById(id),
+  fetchCategoryById: (id: string) => staticDataService.getCategoryById(id),
+  fetchAppsByCategory: (categoryId: string) => staticDataService.getAppsByCategory(categoryId),
+  fetchAffiliateLinks: (appId: string) => staticDataService.getAffiliateLinks(appId),
+  fetchRelatedApps: (appId: string) => staticDataService.getRelatedApps(appId)
 };
 
-// Función para extraer parámetros de la ruta
-const extractParam = (route: string, pattern: RegExp): string | null => {
-  const match = route.match(pattern);
-  return match ? match[1] : null;
+// Cliente de consultas predeterminado
+const defaultQueryFn: QueryFunction = async ({ queryKey }) => {
+  // Extraer la ruta de la clave de consulta
+  const [path, ...params] = queryKey as [string, ...any[]];
+  
+  // Mapeo de rutas de API a consultas estáticas
+  if (path === '/api/apps') {
+    return staticDataQueries.fetchAppById(params[0]);
+  } else if (path === '/api/categories') {
+    return staticDataQueries.fetchCategoryById(params[0]);
+  } else if (path === '/api/categories/{categoryId}/apps') {
+    return staticDataQueries.fetchAppsByCategory(params[0]);
+  } else if (path === '/api/apps/{appId}/affiliate-links') {
+    return staticDataQueries.fetchAffiliateLinks(params[0]);
+  } else if (path === '/api/apps/{appId}/related') {
+    return staticDataQueries.fetchRelatedApps(params[0]);
+  } else if (path === '/api/search') {
+    return staticDataQueries.fetchSearchResults(params[0]);
+  } else if (path === '/api/apps/popular') {
+    return staticDataQueries.fetchPopularApps();
+  } else if (path === '/api/apps/recent') {
+    return staticDataQueries.fetchRecentApps();
+  } else if (path === '/api/apps/jit') {
+    return staticDataQueries.fetchJustInTimeApps();
+  } else if (path === '/api/apps/all') {
+    return staticDataQueries.fetchAllApps();
+  } else if (path === '/api/categories/all') {
+    return staticDataQueries.fetchCategories();
+  }
+  
+  // Si no hay una consulta estática correspondiente, devolver un error
+  throw new Error(`No static data available for query key: ${path}`);
 };
 
-// Función de consulta para datos estáticos
-export const staticQueryFn: QueryFunction = async ({ queryKey }) => {
-  const url = queryKey[0] as string;
-  
-  // Manejo de rutas exactas
-  if (apiRouteToServiceMap[url]) {
-    return await apiRouteToServiceMap[url]();
-  }
-  
-  // Manejar rutas con parámetros
-  if (url.match(/^\/api\/apps\/[^/]+$/)) {
-    const appId = extractParam(url, /^\/api\/apps\/([^/]+)$/);
-    if (appId) {
-      return await staticDataService.fetchAppById(appId);
-    }
-  }
-  
-  if (url.match(/^\/api\/categories\/[^/]+$/)) {
-    const categoryId = extractParam(url, /^\/api\/categories\/([^/]+)$/);
-    if (categoryId) {
-      return await staticDataService.fetchCategoryById(categoryId);
-    }
-  }
-  
-  if (url.match(/^\/api\/categories\/[^/]+\/apps$/)) {
-    const categoryId = extractParam(url, /^\/api\/categories\/([^/]+)\/apps$/);
-    if (categoryId) {
-      return await staticDataService.fetchAppsByCategory(categoryId);
-    }
-  }
-  
-  if (url.match(/^\/api\/apps\/[^/]+\/affiliate-links$/)) {
-    const appId = extractParam(url, /^\/api\/apps\/([^/]+)\/affiliate-links$/);
-    if (appId) {
-      return await staticDataService.fetchAffiliateLinks(appId);
-    }
-  }
-  
-  // Manejar ruta de aplicaciones relacionadas - dos formatos posibles
-  if (url.startsWith('/api/apps/related/')) {
-    const appId = url.split('/').pop();
-    if (appId) {
-      return await staticDataService.fetchRelatedApps(appId);
-    }
-  }
-  
-  // Segundo formato de ruta relacionada que podría estar usando la aplicación
-  if (url === '/api/apps/related' && queryKey.length > 1) {
-    const appId = queryKey[1] as string;
-    if (appId) {
-      return await staticDataService.fetchRelatedApps(appId);
-    }
-  }
-  
-  if (url.startsWith('/api/search') && queryKey.length > 1) {
-    const query = queryKey[1] as string;
-    return await staticDataService.fetchSearchResults(query);
-  }
-  
-  // Ruta no manejada
-  console.warn(`Ruta no manejada en staticQueryFn: ${url}`);
-  return [];
+// Función para realizar solicitudes a la API (actualizaciones)
+// En la versión estática, esta función lanza un error ya que no hay actualizaciones
+export const apiRequest = async () => {
+  throw new Error('Las actualizaciones no están disponibles en la versión estática');
 };
 
-// Cliente de consulta estático
-export const staticQueryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      queryFn: staticQueryFn,
-      refetchInterval: false,
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
-      retry: false,
-    },
-    mutations: {
-      retry: false,
-    },
+// Opciones predeterminadas para el cliente de consultas
+const defaultOptions: DefaultOptions = {
+  queries: {
+    queryFn: defaultQueryFn,
+    staleTime: 1000 * 60 * 5, // 5 minutos
+    refetchOnWindowFocus: false,
   },
+};
+
+// Cliente de consultas para la aplicación
+export const queryClient = new QueryClient({
+  defaultOptions,
 });
 
-// Simulación de apiRequest para mantener compatibilidad
-export async function staticApiRequest<T = any>(
-  urlOrMethod: string,
-  urlOrOptions?: string | any,
-  data?: any
-): Promise<T> {
-  // Si es la forma apiRequest(method, url, data)
-  if (typeof urlOrOptions === 'string') {
-    const method = urlOrMethod;
-    const url = urlOrOptions;
-    
-    if (method === 'GET') {
-      // Extraer el query de la URL
-      const query = url.match(/\?q=([^&]+)/)?.[1];
-      
-      // Rutas exactas
-      if (url.startsWith('/api/apps')) return staticDataService.fetchAllApps() as unknown as T;
-      if (url.startsWith('/api/categories')) return staticDataService.fetchCategories() as unknown as T;
-      if (url.startsWith('/api/search') && query) return staticDataService.fetchSearchResults(decodeURIComponent(query)) as unknown as T;
-      
-      // Extracción de parámetros para rutas específicas
-      const appIdMatch = url.match(/\/api\/apps\/([^/]+)$/);
-      if (appIdMatch) return staticDataService.fetchAppById(appIdMatch[1]) as unknown as T;
-      
-      const categoryIdMatch = url.match(/\/api\/categories\/([^/]+)$/);
-      if (categoryIdMatch) return staticDataService.fetchCategoryById(categoryIdMatch[1]) as unknown as T;
-    }
-    
-    if (method === 'POST' && url.includes('/affiliate-links')) {
-      // Simulación de incremento de contador de clics
-      return { success: true, url: data?.url || 'https://example.com' } as unknown as T;
-    }
-  }
-  
-  console.warn('Operación no soportada en modo estático:', { urlOrMethod, urlOrOptions, data });
-  return {} as T;
-}
+// Función para precargar los datos comunes
+export const prefetchCommonData = async () => {
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: ['/api/apps/all'],
+      queryFn: staticDataQueries.fetchAllApps
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ['/api/categories/all'],
+      queryFn: staticDataQueries.fetchCategories
+    }),
+  ]);
+};
+
+// Exportar todas las consultas estáticas para usarlas directamente
+export const staticQueries = staticDataQueries;
