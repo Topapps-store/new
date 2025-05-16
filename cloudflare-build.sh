@@ -1,37 +1,34 @@
 #!/bin/bash
+set -e
 
-# Script de compilación para Cloudflare Pages
-# Este script prepara el proyecto para despliegue en Cloudflare Pages
+echo "🚀 Iniciando construcción para Cloudflare Pages..."
 
-# Mostrar versión de Node.js
-echo "🔍 Versión de Node.js: $(node -v)"
-echo "🔍 Versión de npm: $(npm -v)"
-
-# Establecer variables de entorno
-export IS_STATIC=true
-export CF_PAGES=true
+# Configurar entorno
+export NODE_ENV=production
 
 # Instalar dependencias
 echo "📦 Instalando dependencias..."
 npm install
 
-# Ejecutar proceso de compilación
-echo "🏗️ Compilando proyecto..."
+# Construir el frontend
+echo "🏗️ Construyendo el frontend..."
 npm run build
 
-# Asegurar que las funciones de Cloudflare están en el lugar correcto
-echo "🔄 Configurando funciones de Cloudflare..."
-if [ ! -d "dist/functions" ]; then
-  mkdir -p dist/functions
-fi
+# Copiar _redirects para SPA routing
+echo "📋 Configurando redirecciones SPA..."
+cat > dist/public/_redirects << EOL
+/api/*  https://topapps.replit.app/api/:splat  200
+/*      /index.html                            200
+EOL
 
-# Copiar archivos de funciones si no están presentes en dist/
-cp -r functions/* dist/functions/
+# Crear un archivo nojekyll para evitar problemas con GitHub Pages
+touch dist/public/.nojekyll
 
-# Asegurar que existe el archivo _redirects
-if [ ! -f "dist/_redirects" ]; then
-  echo "/* /index.html 200" > dist/_redirects
-  echo "✅ Creado archivo de redirecciones para SPA"
-fi
-
-echo "✅ Compilación completada. Proyecto listo para despliegue en Cloudflare Pages."
+echo "✅ Construcción completada para Cloudflare Pages!"
+echo "   Directorio de salida: dist/public"
+echo ""
+echo "Configuración recomendada para Cloudflare Pages:"
+echo "- Build command: ./cloudflare-build.sh"
+echo "- Build output directory: dist/public"
+echo ""
+echo "NOTA: Esta configuración redirigirá todas las solicitudes API a tu instancia de Replit."
