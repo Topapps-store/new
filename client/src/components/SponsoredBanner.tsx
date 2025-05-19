@@ -24,7 +24,7 @@ const SponsoredBanner: React.FC<SponsoredBannerProps> = ({
   return (
     <div className="my-8 p-4 bg-gradient-to-r from-primary to-secondary rounded-lg text-white relative overflow-hidden">
       <div className="absolute top-0 right-0 p-1 bg-accent text-xs font-bold">
-        SPONSORED
+        ADVERTISEMENT
       </div>
       <div className="flex flex-col md:flex-row items-center">
         <div className="md:w-2/3 mb-4 md:mb-0 md:pr-6">
