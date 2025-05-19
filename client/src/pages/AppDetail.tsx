@@ -255,9 +255,9 @@ const AppDetail = () => {
               
               {activeTab === "description" && (
                 <div className="mb-3">
-                  <p className="text-gray-700 whitespace-pre-line text-sm">
+                  <div className="text-gray-700 whitespace-pre-line text-sm">
                     <TranslatedAppDescription text={app.description} />
-                  </p>
+                  </div>
                   
                   {/* Google Play download link */}
                   <div className="mt-4">
