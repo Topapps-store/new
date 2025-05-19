@@ -1,9 +1,6 @@
 {
   "pendingUrls": [
-    "https://play.google.com/store/apps/details?id=com.ubercab&hl=es"
-    
-  ],
-  "processedUrls": [
+    "https://play.google.com/store/apps/details?id=com.ubercab&hl=es",
     "https://play.google.com/store/apps/details?id=com.pdf.editor.viewer.pdfreader.pdfviewer&hl=ca",
     "https://play.google.com/store/apps/details?id=com.ubercab.eats",
     "https://play.google.com/store/apps/details?id=com.instacart.shopper",
@@ -82,5 +79,6 @@
     "https://play.google.com/store/apps/details?id=com.google.android.apps.translate",
     "https://play.google.com/store/apps/details?id=digifit.android.virtuagym.pro.trainingtime",
     "https://play.google.com/store/apps/details?id=com.tinder"
-  ]
+  ],
+  "processedUrls": []
 }
