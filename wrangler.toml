@@ -12,6 +12,8 @@ routes = [
 [env.production]
 name = "topapps-api-prod"
 route = { pattern = "topapps.store/*", zone_name = "topapps.store" }
+# Production-specific settings
+workers_dev = false
 
 [site]
 bucket = "client/dist"
@@ -19,18 +21,10 @@ bucket = "client/dist"
 [build]
 command = "./build.sh"
 upload.format = "service-worker"
-
 pages_build_output_dir = "dist/public"
-
-[build]
-command = "./build.sh"
 
 # Add KV Namespace or D1 Database if needed
 # [[kv_namespaces]]
 # binding = "MY_KV"
 # id = "your-kv-id"
-
-[env.production]
-# Production-specific settings
-workers_dev = false
 
