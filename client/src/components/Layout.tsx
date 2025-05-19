@@ -76,29 +76,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <li><TranslatedText text="Transfer the materials to another person or 'mirror' the materials on any other server" /></li>
               </ul>
               
-              <h2>3. Disclaimer</h2>
-              <p>
-                The materials on TopApps.store are provided on an 'as is' basis. TopApps.store makes no warranties, 
-                expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, 
-                implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement 
-                of intellectual property or other violation of rights.
-              </p>
+              <h2><TranslatedText text="3. Disclaimer" /></h2>
+              <TranslatedParagraph
+                text="The materials on TopApps.store are provided on an 'as is' basis. TopApps.store makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights."
+              />
               
-              <h2>4. Limitations</h2>
-              <p>
-                In no event shall TopApps.store or its suppliers be liable for any damages (including, without limitation, 
-                damages for loss of data or profit, or due to business interruption) arising out of the use or inability to 
-                use the materials on TopApps.store, even if TopApps.store or a TopApps.store authorized representative has 
-                been notified orally or in writing of the possibility of such damage.
-              </p>
+              <h2><TranslatedText text="4. Limitations" /></h2>
+              <TranslatedParagraph
+                text="In no event shall TopApps.store or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on TopApps.store, even if TopApps.store or a TopApps.store authorized representative has been notified orally or in writing of the possibility of such damage."
+              />
               
-              <h2>5. Accuracy of Materials</h2>
-              <p>
-                The materials appearing on TopApps.store could include technical, typographical, or photographic errors. 
-                TopApps.store does not warrant that any of the materials on its website are accurate, complete or current. 
-                TopApps.store may make changes to the materials contained on its website at any time without notice. However 
-                TopApps.store does not make any commitment to update the materials.
-              </p>
+              <h2><TranslatedText text="5. Accuracy of Materials" /></h2>
+              <TranslatedParagraph
+                text="The materials appearing on TopApps.store could include technical, typographical, or photographic errors. TopApps.store does not warrant that any of the materials on its website are accurate, complete or current. TopApps.store may make changes to the materials contained on its website at any time without notice. However TopApps.store does not make any commitment to update the materials."
+              />
               
               <h2>6. Links and Third-Party Services</h2>
               <p>
