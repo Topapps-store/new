@@ -1,80 +1,58 @@
-# Cloudflare Pages Setup for TopApps.store
+# Cloudflare Pages Deployment Setup Guide
 
-This document provides detailed instructions for setting up your TopApps.store site on Cloudflare Pages.
+This guide walks you through setting up your TopApps project for Cloudflare Pages deployment.
 
-## Required Cloudflare Secrets
+## Prerequisites
 
-When connecting your GitHub repository to Cloudflare Pages, you'll need to set up the following environment variables:
+1. A Cloudflare account
+2. Your repository connected to Cloudflare Pages
 
-### Production Environment Variables
+## Setup Steps
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `DATABASE_URL` | PostgreSQL connection string | `postgres://username:password@hostname:port/database` |
-| `SESSION_SECRET` | Secret key for session encryption | A random string like `a1b2c3d4e5f6g7h8i9j0` |
-| `NODE_VERSION` | Node.js version to use | `20` |
+### 1. Fix Environment Variables
 
-## GitHub Secrets
+In your Cloudflare Pages project settings, add these environment variables:
 
-For the GitHub Actions workflow deployment, you'll need to set up the following repository secrets:
+- `NODE_VERSION`: `20`
+- `VITE_API_BASE_URL`: `https://topapps-store.replit.app/api` (replace with your actual Replit API URL)
 
-| Secret | Description | Where to Find |
-|--------|-------------|--------------|
-| `CLOUDFLARE_API_TOKEN` | API token for Cloudflare | [Cloudflare Dashboard → API Tokens](https://dash.cloudflare.com/profile/api-tokens) |
-| `CLOUDFLARE_ACCOUNT_ID` | Your Cloudflare account ID | Found in the URL when logged into Cloudflare: `https://dash.cloudflare.com/ACCOUNT_ID` |
+### 2. Deployment Settings
 
-## Creating a Cloudflare API Token
+Set the following in your Cloudflare Pages project settings:
 
-1. Log in to your Cloudflare dashboard
-2. Click on your profile icon in the top-right corner
-3. Select "My Profile"
-4. Click the "API Tokens" tab
-5. Click "Create Token"
-6. Select "Edit Cloudflare Workers" as template
-7. Under "Account Resources", select your account and "Cloudflare Pages" with "Edit" permission
-8. Add a token name like "GitHub Actions Deployment"
-9. Click "Continue to summary" then "Create Token"
-10. **Copy the token immediately** - you won't be able to see it again!
+- **Build command**: `bash build-static.sh`
+- **Build output directory**: `dist`
+- **Root directory**: `/` (leave as default)
 
-## Setting Up GitHub Secrets
+### 3. Fix for 404 Errors
 
-1. Go to your GitHub repository
-2. Click on "Settings" → "Secrets and variables" → "Actions"
-3. Click "New repository secret"
-4. Add the following secrets:
-   - Name: `CLOUDFLARE_API_TOKEN` - Value: Your API token
-   - Name: `CLOUDFLARE_ACCOUNT_ID` - Value: Your account ID
+The 404 error you're seeing is because Cloudflare Pages needs to be configured to properly handle client-side routing.
 
-## Connecting to a Database
+Create a file named `_redirects` in your `public` folder with this content:
 
-For the `DATABASE_URL` environment variable, we recommend using a PostgreSQL database service like:
+```
+/* /index.html 200
+```
 
-- Neon (https://neon.tech)
-- Supabase (https://supabase.com)
-- Railway (https://railway.app)
+This tells Cloudflare to serve the index.html file for all routes, allowing your React router to handle the routes client-side.
 
-Make sure your database allows connections from Cloudflare Pages (check their IP ranges).
+### 4. Verify Deployment
 
-## Setting Up Custom Domain
+After setting up these configurations and pushing your changes:
 
-1. After your initial deployment, go to your Pages project
-2. Click on "Custom domains"
-3. Click "Set up a custom domain"
-4. Enter your domain name (e.g., `topapps.store`)
-5. Follow the verification process
-6. Once verified, Cloudflare will automatically provision an SSL certificate
-
-## Testing Your Deployment
-
-After deploying, check that:
-
-1. The site loads properly
-2. API calls work correctly
-3. Database connections function as expected
-4. Authentication is working
+1. Wait for the Cloudflare Pages build to complete
+2. Check the build logs for any errors
+3. Visit your Cloudflare Pages URL to verify the deployment works
 
 ## Troubleshooting
 
-- Check Functions logs in the Cloudflare dashboard
-- Verify that all environment variables are set correctly
-- Ensure your database is accessible from Cloudflare's network
+If you continue to see 404 errors:
+
+1. Make sure the `_redirects` file is in the `public` folder and is being copied to the build output
+2. Verify your environment variables are set correctly
+3. Check the build logs for any path resolution errors
+
+If the build fails due to path resolution errors:
+
+1. Use the updated `vite.cloudflare.config.ts` and `build-static.sh` files
+2. Make sure all imports in your components use relative paths instead of alias paths

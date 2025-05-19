@@ -1,29 +1,15 @@
-name = "topapps-api"
-main = "functions/api.js"
-compatibility_date = "2023-05-18"
-compatibility_flags = ["nodejs_compat"]
-node_compat = true
+name = "topapps-store"
+compatibility_date = "2023-12-01"
 
-# Add your custom domain here (once set up in Cloudflare)
-routes = [
-  { pattern = "topapps.store/*", zone_name = "topapps.store" }
-]
-
-[env.production]
-name = "topapps-api-prod"
-route = { pattern = "topapps.store/*", zone_name = "topapps.store" }
-# Production-specific settings
-workers_dev = false
-
+# Configuration for Cloudflare Pages
 [site]
 bucket = "dist"
 
 [build]
-command = "./build-static.sh"
+command = "bash build-static.sh"
 output_dir = "dist"
 
-# Add KV Namespace or D1 Database if needed
-# [[kv_namespaces]]
-# binding = "MY_KV"
-# id = "your-kv-id"
+# Environment variables (provide these in the Cloudflare dashboard)
+# - NODE_VERSION: 20
+# - VITE_API_BASE_URL: https://topapps-store.replit.app/api
 
