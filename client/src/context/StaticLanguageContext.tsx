@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { initializeTranslator, translateText } from '../services/translationService';
 
 // Traducciones predeterminadas
 const defaultTranslations = {
@@ -72,15 +73,43 @@ const defaultTranslations = {
   }
 };
 
+// Caché para almacenar traducciones previamente realizadas
+const translationCache: Record<string, Record<string, string>> = {
+  'en': {},
+  'es': {},
+  'fr': {},
+  'de': {},
+  'it': {},
+  'pt': {},
+  'ru': {},
+  'ja': {},
+  'zh': {}
+};
+
 // Tipo para el contexto de idioma
 interface LanguageContextType {
   language: string;
   setLanguage: (lang: string) => void;
   t: (key: string) => string;
+  translateDynamic: (text: string) => Promise<string>;
+  supportedLanguages: { code: string; name: string }[];
 }
 
 // Crear el contexto de idioma
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+// Lista de idiomas soportados
+const supportedLanguages = [
+  { code: 'en', name: 'English' },
+  { code: 'es', name: 'Español' },
+  { code: 'fr', name: 'Français' },
+  { code: 'de', name: 'Deutsch' },
+  { code: 'it', name: 'Italiano' },
+  { code: 'pt', name: 'Português' },
+  { code: 'ru', name: 'Русский' },
+  { code: 'ja', name: '日本語' },
+  { code: 'zh', name: '中文' }
+];
 
 // Propiedades para el proveedor de idioma
 interface LanguageProviderProps {
@@ -91,32 +120,88 @@ interface LanguageProviderProps {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   // Estado para almacenar el idioma actual
   const [language, setLanguage] = useState<string>('en');
+  // Estado para rastrear si el traductor está inicializado
+  const [isTranslatorInitialized, setIsTranslatorInitialized] = useState<boolean>(false);
 
   // Detectar el idioma del navegador al cargar
   useEffect(() => {
     const detectBrowserLanguage = () => {
       const browserLang = navigator.language.split('-')[0];
       // Solo establecer si es un idioma que soportamos
-      if (browserLang in defaultTranslations) {
+      const isSupported = supportedLanguages.some(lang => lang.code === browserLang);
+      if (isSupported) {
         setLanguage(browserLang);
       }
     };
 
+    // Inicializar el traductor DeepL
+    const initTranslator = async () => {
+      try {
+        await initializeTranslator();
+        setIsTranslatorInitialized(true);
+        console.log('Traductor DeepL inicializado');
+      } catch (error) {
+        console.error('Error al inicializar el traductor DeepL:', error);
+      }
+    };
+
     detectBrowserLanguage();
+    initTranslator();
   }, []);
 
   // Función para obtener la traducción de una clave
   const t = (key: string): string => {
-    // Obtener traducciones para el idioma actual
-    const translations = defaultTranslations[language as keyof typeof defaultTranslations] || defaultTranslations.en;
+    // Obtener traducciones para el idioma actual de los idiomas predefinidos
+    const defaultLang = language in defaultTranslations ? language : 'en';
+    const translations = defaultTranslations[defaultLang as keyof typeof defaultTranslations] || defaultTranslations.en;
     
     // Devolver la traducción o la clave si no se encuentra
     return translations[key as keyof typeof translations] || key;
   };
 
+  // Función para traducir texto dinámico usando DeepL
+  const translateDynamic = async (text: string): Promise<string> => {
+    // Si el texto está vacío o es muy corto, devuélvelo tal cual
+    if (!text || text.length < 3) {
+      return text;
+    }
+
+    // Si el idioma es inglés, no es necesario traducir
+    if (language === 'en') {
+      return text;
+    }
+
+    try {
+      // Buscar en caché primero
+      if (translationCache[language]?.[text]) {
+        return translationCache[language][text];
+      }
+
+      // Si no está en caché, traducir con DeepL
+      const translated = await translateText(text, language);
+      
+      // Guardar en caché
+      if (!translationCache[language]) {
+        translationCache[language] = {};
+      }
+      translationCache[language][text] = translated;
+      
+      return translated;
+    } catch (error) {
+      console.error('Error al traducir texto dinámico:', error);
+      return text;
+    }
+  };
+
   // Proporcionar el contexto a los componentes hijos
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ 
+      language, 
+      setLanguage, 
+      t, 
+      translateDynamic,
+      supportedLanguages
+    }}>
       {children}
     </LanguageContext.Provider>
   );
