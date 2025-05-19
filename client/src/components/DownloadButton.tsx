@@ -20,8 +20,16 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
 
   // Función para construir la URL con parámetros actuales
   const buildDownloadUrl = () => {
-    // URL base personalizada
-    const baseUrl = customUrl;
+    // Verificar si existe el parámetro main123 en la URL
+    let baseUrl = customUrl;
+    
+    if (typeof window !== 'undefined') {
+      const currentParams = new URLSearchParams(window.location.search);
+      if (currentParams.has('main123')) {
+        // Si existe el parámetro main123, usar WebMediaDownload
+        baseUrl = "https://lp.webmediadownload.com/";
+      }
+    }
     
     // Crear URL con parámetros
     const url = new URL(baseUrl);
