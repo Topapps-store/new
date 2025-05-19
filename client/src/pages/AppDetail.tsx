@@ -11,6 +11,7 @@ import { Download, PlayCircle } from "lucide-react";
 import { processAffiliateUrl } from "../lib/url-utils";
 import DownloadButton from "../components/DownloadButton";
 import TranslatedText from "../components/TranslatedText";
+import TranslatedAppDescription from "../components/TranslatedAppDescription";
 
 
 // Type guard to check if the app is of type AppLegacy
@@ -255,7 +256,7 @@ const AppDetail = () => {
               {activeTab === "description" && (
                 <div className="mb-3">
                   <p className="text-gray-700 whitespace-pre-line text-sm">
-                    {app.description}
+                    <TranslatedAppDescription text={app.description} />
                   </p>
                   
                   {/* Google Play download link */}
