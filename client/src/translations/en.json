@@ -31,6 +31,12 @@
     "top10AppsLastMonth": "Top 10 Apps Last Month",
     "top10JustInTimeApps": "Top 10 Just-In-Time Apps"
   },
+  "apps": {
+    "allApps": "All Applications",
+    "discoverAllApps": "Discover and download our complete collection of apps",
+    "noAppsFound": "No Applications Found",
+    "tryDifferentSearch": "Try a different search or browse by category"
+  },
   "appDetail": {
     "description": "Description",
     "screenshots": "Screenshots",
