@@ -1,0 +1,268 @@
+2025-05-19T06:20:15.990543Z	Cloning repository...
+2025-05-19T06:20:16.766015Z	From https://github.com/Topapps-store/new
+2025-05-19T06:20:16.76648Z	 * branch            e515bec6d4eb0ee5085a8cf467c67c0f25988f03 -> FETCH_HEAD
+2025-05-19T06:20:16.7666Z	
+2025-05-19T06:20:16.842148Z	HEAD is now at e515bec Add Google Maps app to the list of available applications on the platform
+2025-05-19T06:20:16.842838Z	
+2025-05-19T06:20:16.921512Z	
+2025-05-19T06:20:16.922172Z	Using v2 root directory strategy
+2025-05-19T06:20:16.942418Z	Success: Finished cloning repository files
+2025-05-19T06:20:18.529625Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-05-19T06:20:18.530102Z	
+2025-05-19T06:20:18.531908Z	Found wrangler.toml file. Reading build configuration...
+2025-05-19T06:20:18.615436Z	[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mParseError: Can't redefine existing key[0m
+2025-05-19T06:20:18.615712Z	
+2025-05-19T06:20:18.615876Z	      at parseTOML (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:129392:11)
+2025-05-19T06:20:18.615987Z	      at experimental_readRawConfig (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:134162:17)
+2025-05-19T06:20:18.616097Z	      at readPagesConfig (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:134111:50)
+2025-05-19T06:20:18.616195Z	      at Object.Handler [as handler] (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:167118:14)
+2025-05-19T06:20:18.616298Z	      at /opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145791:46
+2025-05-19T06:20:18.616394Z	      at maybeAsyncResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145590:83)
+2025-05-19T06:20:18.616488Z	      at CommandInstance.handleValidationAndGetResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145790:19)
+2025-05-19T06:20:18.61659Z	      at CommandInstance.applyMiddlewareAndGetResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145821:243)
+2025-05-19T06:20:18.616695Z	      at CommandInstance.runCommand (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145728:212)
+2025-05-19T06:20:18.616812Z	      at YargsInstance.[runYargsParserAndExecuteCommands] (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:148544:92) {
+2025-05-19T06:20:18.616909Z	    text: "Can't redefine existing key",
+2025-05-19T06:20:18.617023Z	    notes: [],
+2025-05-19T06:20:18.617166Z	    location: {
+2025-05-19T06:20:18.617277Z	      lineText: '[build]',
+2025-05-19T06:20:18.617384Z	      line: 25,
+2025-05-19T06:20:18.617489Z	      column: 5,
+2025-05-19T06:20:18.617607Z	      file: '/opt/buildhome/repo/wrangler.toml',
+2025-05-19T06:20:18.617754Z	      fileText: 'name = "topapps-api"\n' +
+2025-05-19T06:20:18.617877Z	        'main = "functions/api.js"\n' +
+2025-05-19T06:20:18.617984Z	        'compatibility_date = "2023-05-18"\n' +
+2025-05-19T06:20:18.61809Z	        'compatibility_flags = ["nodejs_compat"]\n' +
+2025-05-19T06:20:18.618207Z	        'node_compat = true\n' +
+2025-05-19T06:20:18.618332Z	        '\n' +
+2025-05-19T06:20:18.618433Z	        '# Add your custom domain here (once set up in Cloudflare)\n' +
+2025-05-19T06:20:18.61853Z	        'routes = [\n' +
+2025-05-19T06:20:18.618675Z	        '  { pattern = "topapps.store/*", zone_name = "topapps.store" }\n' +
+2025-05-19T06:20:18.618829Z	        ']\n' +
+2025-05-19T06:20:18.618948Z	        '\n' +
+2025-05-19T06:20:18.619087Z	        '[env.production]\n' +
+2025-05-19T06:20:18.619206Z	        'name = "topapps-api-prod"\n' +
+2025-05-19T06:20:18.619316Z	        'route = { pattern = "topapps.store/*", zone_name = "topapps.store" }\n' +
+2025-05-19T06:20:18.619431Z	        '\n' +
+2025-05-19T06:20:18.619547Z	        '[site]\n' +
+2025-05-19T06:20:18.619672Z	        'bucket = "client/dist"\n' +
+2025-05-19T06:20:18.619813Z	        '\n' +
+2025-05-19T06:20:18.619941Z	        '[build]\n' +
+2025-05-19T06:20:18.620062Z	        'command = "./build.sh"\n' +
+2025-05-19T06:20:18.620179Z	        'upload.format = "service-worker"\n' +
+2025-05-19T06:20:18.620288Z	        '\n' +
+2025-05-19T06:20:18.620406Z	        'pages_build_output_dir = "dist/public"\n' +
+2025-05-19T06:20:18.620527Z	        '\n' +
+2025-05-19T06:20:18.620724Z	        '[build]\n' +
+2025-05-19T06:20:18.620858Z	        'command = "./build.sh"\n' +
+2025-05-19T06:20:18.620985Z	        '\n' +
+2025-05-19T06:20:18.621095Z	        '# Add KV Namespace or D1 Database if needed\n' +
+2025-05-19T06:20:18.621224Z	        '# [[kv_namespaces]]\n' +
+2025-05-19T06:20:18.62133Z	        '# binding = "MY_KV"\n' +
+2025-05-19T06:20:18.621479Z	        '# id = "your-kv-id"\n' +
+2025-05-19T06:20:18.621602Z	        '\n' +
+2025-05-19T06:20:18.62173Z	        '[env.production]\n' +
+2025-05-19T06:20:18.621864Z	        '# Production-specific settings\n' +
+2025-05-19T06:20:18.621989Z	        'workers_dev = false\n' +
+2025-05-19T06:20:18.622111Z	        '\n'
+2025-05-19T06:20:18.62224Z	    },
+2025-05-19T06:20:18.622359Z	    kind: 'error'
+2025-05-19T06:20:18.622477Z	  }
+2025-05-19T06:20:18.622596Z	
+2025-05-19T06:20:18.62272Z	
+2025-05-19T06:20:19.709746Z	🪵  Logs were written to "/root/.config/.wrangler/logs/wrangler-2025-05-19_06-20-18_291.log"
+2025-05-19T06:20:19.727234Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-05-19T06:20:19.792581Z	Detected the following tools from environment: npm@9.6.7, nodejs@18.17.1
+2025-05-19T06:20:19.793051Z	Installing project dependencies: npm clean-install --progress=false
+2025-05-19T06:20:21.232821Z	npm WARN EBADENGINE Unsupported engine {
+2025-05-19T06:20:21.233124Z	npm WARN EBADENGINE   package: 'connect-pg-simple@10.0.0',
+2025-05-19T06:20:21.233253Z	npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=22.0.0' },
+2025-05-19T06:20:21.233374Z	npm WARN EBADENGINE   current: { node: 'v18.17.1', npm: '9.6.7' }
+2025-05-19T06:20:21.233482Z	npm WARN EBADENGINE }
+2025-05-19T06:20:23.331863Z	npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-05-19T06:20:23.929914Z	npm WARN deprecated npmlog@5.0.1: This package is no longer supported.
+2025-05-19T06:20:24.213007Z	npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-05-19T06:20:24.360889Z	npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+2025-05-19T06:20:24.418725Z	npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+2025-05-19T06:20:24.840247Z	npm WARN deprecated gauge@3.0.2: This package is no longer supported.
+2025-05-19T06:20:24.901817Z	npm WARN deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+2025-05-19T06:20:25.135541Z	npm WARN deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+2025-05-19T06:20:25.272003Z	npm WARN deprecated @types/long@5.0.0: This is a stub types definition. long provides its own type definitions, so you do not need this installed.
+2025-05-19T06:20:25.941352Z	npm WARN deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+2025-05-19T06:20:26.027232Z	npm WARN deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+2025-05-19T06:20:26.238762Z	npm WARN deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-05-19T06:20:26.379605Z	npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+2025-05-19T06:20:32.617398Z	
+2025-05-19T06:20:32.617734Z	added 767 packages, and audited 768 packages in 12s
+2025-05-19T06:20:32.61792Z	
+2025-05-19T06:20:32.618008Z	104 packages are looking for funding
+2025-05-19T06:20:32.618097Z	  run `npm fund` for details
+2025-05-19T06:20:32.649521Z	
+2025-05-19T06:20:32.649753Z	10 moderate severity vulnerabilities
+2025-05-19T06:20:32.650209Z	
+2025-05-19T06:20:32.650282Z	To address issues that do not require attention, run:
+2025-05-19T06:20:32.650786Z	  npm audit fix
+2025-05-19T06:20:32.650924Z	
+2025-05-19T06:20:32.651106Z	To address all issues (including breaking changes), run:
+2025-05-19T06:20:32.65119Z	  npm audit fix --force
+2025-05-19T06:20:32.651452Z	
+2025-05-19T06:20:32.651546Z	Run `npm audit` for details.
+2025-05-19T06:20:32.669414Z	Executing user command: bash build-static.sh
+2025-05-19T06:20:32.677284Z	Iniciando compilación de versión estática para Cloudflare Pages...
+2025-05-19T06:20:32.681659Z	Preparando archivos para compilación...
+2025-05-19T06:20:32.692144Z	Ejecutando compilación con Vite...
+2025-05-19T06:20:33.618483Z	[36mvite v5.4.14 [32mbuilding for production...[36m[39m
+2025-05-19T06:20:33.672485Z	transforming...
+2025-05-19T06:20:33.961523Z	Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+2025-05-19T06:20:33.96202Z	  npx update-browserslist-db@latest
+2025-05-19T06:20:33.962232Z	  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+2025-05-19T06:20:35.287476Z	[32m✓[39m 54 modules transformed.
+2025-05-19T06:20:35.289316Z	[31mx[39m Build failed in 1.64s
+2025-05-19T06:20:35.289551Z	[31merror during build:
+2025-05-19T06:20:35.289734Z	[31m[vite:load-fallback] Could not load /opt/buildhome/repo/src/components/components/AppCard (imported by client/src/pages/Home.tsx): ENOENT: no such file or directory, open '/opt/buildhome/repo/src/components/components/AppCard'[31m
+2025-05-19T06:20:35.289869Z	Error: Could not load /opt/buildhome/repo/src/components/components/AppCard (imported by client/src/pages/Home.tsx): ENOENT: no such file or directory, open '/opt/buildhome/repo/src/components/components/AppCard'[39m
+2025-05-19T06:20:35.327852Z	Copiando archivos adicionales...
+2025-05-19T06:20:35.334033Z	Compilación completada. Los archivos se encuentran en la carpeta dist/
+2025-05-19T06:20:35.344913Z	Finished
+2025-05-19T06:20:36.258291Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-05-19T06:20:36.258848Z	
+2025-05-19T06:20:36.259499Z	Found wrangler.toml file. Reading build configuration...
+2025-05-19T06:20:36.342152Z	[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mParseError: Can't redefine existing key[0m
+2025-05-19T06:20:36.342336Z	
+2025-05-19T06:20:36.342577Z	      at parseTOML (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:129392:11)
+2025-05-19T06:20:36.342681Z	      at experimental_readRawConfig (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:134162:17)
+2025-05-19T06:20:36.342767Z	      at readPagesConfig (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:134111:50)
+2025-05-19T06:20:36.342893Z	      at Object.Handler [as handler] (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:167118:14)
+2025-05-19T06:20:36.342986Z	      at /opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145791:46
+2025-05-19T06:20:36.343084Z	      at maybeAsyncResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145590:83)
+2025-05-19T06:20:36.343189Z	      at CommandInstance.handleValidationAndGetResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145790:19)
+2025-05-19T06:20:36.343297Z	      at CommandInstance.applyMiddlewareAndGetResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145821:243)
+2025-05-19T06:20:36.343403Z	      at CommandInstance.runCommand (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145728:212)
+2025-05-19T06:20:36.343502Z	      at YargsInstance.[runYargsParserAndExecuteCommands] (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:148544:92) {
+2025-05-19T06:20:36.343676Z	    text: "Can't redefine existing key",
+2025-05-19T06:20:36.343794Z	    notes: [],
+2025-05-19T06:20:36.343858Z	    location: {
+2025-05-19T06:20:36.343925Z	      lineText: '[build]',
+2025-05-19T06:20:36.343998Z	      line: 25,
+2025-05-19T06:20:36.344057Z	      column: 5,
+2025-05-19T06:20:36.344119Z	      file: '/opt/buildhome/repo/wrangler.toml',
+2025-05-19T06:20:36.344182Z	      fileText: 'name = "topapps-api"\n' +
+2025-05-19T06:20:36.344254Z	        'main = "functions/api.js"\n' +
+2025-05-19T06:20:36.344311Z	        'compatibility_date = "2023-05-18"\n' +
+2025-05-19T06:20:36.344369Z	        'compatibility_flags = ["nodejs_compat"]\n' +
+2025-05-19T06:20:36.344424Z	        'node_compat = true\n' +
+2025-05-19T06:20:36.344487Z	        '\n' +
+2025-05-19T06:20:36.344566Z	        '# Add your custom domain here (once set up in Cloudflare)\n' +
+2025-05-19T06:20:36.344628Z	        'routes = [\n' +
+2025-05-19T06:20:36.344732Z	        '  { pattern = "topapps.store/*", zone_name = "topapps.store" }\n' +
+2025-05-19T06:20:36.344802Z	        ']\n' +
+2025-05-19T06:20:36.344865Z	        '\n' +
+2025-05-19T06:20:36.344922Z	        '[env.production]\n' +
+2025-05-19T06:20:36.344978Z	        'name = "topapps-api-prod"\n' +
+2025-05-19T06:20:36.345033Z	        'route = { pattern = "topapps.store/*", zone_name = "topapps.store" }\n' +
+2025-05-19T06:20:36.345089Z	        '\n' +
+2025-05-19T06:20:36.345147Z	        '[site]\n' +
+2025-05-19T06:20:36.345211Z	        'bucket = "client/dist"\n' +
+2025-05-19T06:20:36.345272Z	        '\n' +
+2025-05-19T06:20:36.345335Z	        '[build]\n' +
+2025-05-19T06:20:36.345439Z	        'command = "./build.sh"\n' +
+2025-05-19T06:20:36.345518Z	        'upload.format = "service-worker"\n' +
+2025-05-19T06:20:36.345586Z	        '\n' +
+2025-05-19T06:20:36.345642Z	        'pages_build_output_dir = "dist/public"\n' +
+2025-05-19T06:20:36.346492Z	        '\n' +
+2025-05-19T06:20:36.346627Z	        '[build]\n' +
+2025-05-19T06:20:36.346782Z	        'command = "./build.sh"\n' +
+2025-05-19T06:20:36.346878Z	        '\n' +
+2025-05-19T06:20:36.346945Z	        '# Add KV Namespace or D1 Database if needed\n' +
+2025-05-19T06:20:36.347094Z	        '# [[kv_namespaces]]\n' +
+2025-05-19T06:20:36.347205Z	        '# binding = "MY_KV"\n' +
+2025-05-19T06:20:36.347298Z	        '# id = "your-kv-id"\n' +
+2025-05-19T06:20:36.347449Z	        '\n' +
+2025-05-19T06:20:36.347538Z	        '[env.production]\n' +
+2025-05-19T06:20:36.347621Z	        '# Production-specific settings\n' +
+2025-05-19T06:20:36.347765Z	        'workers_dev = false\n' +
+2025-05-19T06:20:36.347837Z	        '\n'
+2025-05-19T06:20:36.347895Z	    },
+2025-05-19T06:20:36.348022Z	    kind: 'error'
+2025-05-19T06:20:36.348111Z	  }
+2025-05-19T06:20:36.348212Z	
+2025-05-19T06:20:36.348336Z	
+2025-05-19T06:20:37.44267Z	🪵  Logs were written to "/root/.config/.wrangler/logs/wrangler-2025-05-19_06-20-36_049.log"
+2025-05-19T06:20:37.458275Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-05-19T06:20:37.459015Z	Found Functions directory at /functions. Uploading.
+2025-05-19T06:20:37.465052Z	 ⛅️ wrangler 3.101.0
+2025-05-19T06:20:37.465483Z	-------------------
+2025-05-19T06:20:38.358092Z	[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mParseError: Can't redefine existing key[0m
+2025-05-19T06:20:38.358652Z	
+2025-05-19T06:20:38.35885Z	      at parseTOML (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:129392:11)
+2025-05-19T06:20:38.35899Z	      at experimental_readRawConfig (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:134162:17)
+2025-05-19T06:20:38.359102Z	      at readPagesConfig (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:134111:50)
+2025-05-19T06:20:38.359369Z	      at maybeReadPagesConfig (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:166949:20)
+2025-05-19T06:20:38.359499Z	      at validateArgs (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:166968:24)
+2025-05-19T06:20:38.359614Z	      at Object.Handler [as handler] (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:166783:31)
+2025-05-19T06:20:38.359828Z	      at /opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145791:46
+2025-05-19T06:20:38.359954Z	      at maybeAsyncResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145590:83)
+2025-05-19T06:20:38.360086Z	      at CommandInstance.handleValidationAndGetResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145790:19)
+2025-05-19T06:20:38.360217Z	      at CommandInstance.applyMiddlewareAndGetResult (/opt/pages/build_tool/js/node_modules/wrangler/wrangler-dist/cli.js:145821:243) {
+2025-05-19T06:20:38.36034Z	    text: "Can't redefine existing key",
+2025-05-19T06:20:38.360454Z	    notes: [],
+2025-05-19T06:20:38.360573Z	    location: {
+2025-05-19T06:20:38.360688Z	      lineText: '[build]',
+2025-05-19T06:20:38.360836Z	      line: 25,
+2025-05-19T06:20:38.360949Z	      column: 5,
+2025-05-19T06:20:38.361051Z	      file: '/opt/buildhome/repo/wrangler.toml',
+2025-05-19T06:20:38.361157Z	      fileText: 'name = "topapps-api"\n' +
+2025-05-19T06:20:38.361266Z	        'main = "functions/api.js"\n' +
+2025-05-19T06:20:38.361367Z	        'compatibility_date = "2023-05-18"\n' +
+2025-05-19T06:20:38.361469Z	        'compatibility_flags = ["nodejs_compat"]\n' +
+2025-05-19T06:20:38.361566Z	        'node_compat = true\n' +
+2025-05-19T06:20:38.361678Z	        '\n' +
+2025-05-19T06:20:38.361862Z	        '# Add your custom domain here (once set up in Cloudflare)\n' +
+2025-05-19T06:20:38.361994Z	        'routes = [\n' +
+2025-05-19T06:20:38.362111Z	        '  { pattern = "topapps.store/*", zone_name = "topapps.store" }\n' +
+2025-05-19T06:20:38.362232Z	        ']\n' +
+2025-05-19T06:20:38.362354Z	        '\n' +
+2025-05-19T06:20:38.36246Z	        '[env.production]\n' +
+2025-05-19T06:20:38.362591Z	        'name = "topapps-api-prod"\n' +
+2025-05-19T06:20:38.362726Z	        'route = { pattern = "topapps.store/*", zone_name = "topapps.store" }\n' +
+2025-05-19T06:20:38.36285Z	        '\n' +
+2025-05-19T06:20:38.362955Z	        '[site]\n' +
+2025-05-19T06:20:38.363084Z	        'bucket = "client/dist"\n' +
+2025-05-19T06:20:38.363238Z	        '\n' +
+2025-05-19T06:20:38.363355Z	        '[build]\n' +
+2025-05-19T06:20:38.36348Z	        'command = "./build.sh"\n' +
+2025-05-19T06:20:38.363599Z	        'upload.format = "service-worker"\n' +
+2025-05-19T06:20:38.36376Z	        '\n' +
+2025-05-19T06:20:38.363887Z	        'pages_build_output_dir = "dist/public"\n' +
+2025-05-19T06:20:38.363993Z	        '\n' +
+2025-05-19T06:20:38.364108Z	        '[build]\n' +
+2025-05-19T06:20:38.364248Z	        'command = "./build.sh"\n' +
+2025-05-19T06:20:38.36437Z	        '\n' +
+2025-05-19T06:20:38.364511Z	        '# Add KV Namespace or D1 Database if needed\n' +
+2025-05-19T06:20:38.364643Z	        '# [[kv_namespaces]]\n' +
+2025-05-19T06:20:38.364802Z	        '# binding = "MY_KV"\n' +
+2025-05-19T06:20:38.364929Z	        '# id = "your-kv-id"\n' +
+2025-05-19T06:20:38.365056Z	        '\n' +
+2025-05-19T06:20:38.36518Z	        '[env.production]\n' +
+2025-05-19T06:20:38.365307Z	        '# Production-specific settings\n' +
+2025-05-19T06:20:38.365437Z	        'workers_dev = false\n' +
+2025-05-19T06:20:38.365561Z	        '\n'
+2025-05-19T06:20:38.365714Z	    },
+2025-05-19T06:20:38.36584Z	    kind: 'error'
+2025-05-19T06:20:38.365956Z	  }
+2025-05-19T06:20:38.366059Z	
+2025-05-19T06:20:38.366165Z	
+2025-05-19T06:20:38.481983Z	✨ Compiled Worker successfully
+2025-05-19T06:20:39.544309Z	🪵  Logs were written to "/root/.config/.wrangler/logs/wrangler-2025-05-19_06-20-38_079.log"
+2025-05-19T06:20:39.562589Z	Validating asset output directory
+2025-05-19T06:20:42.153301Z	Deploying your site to Cloudflare's global network...
+2025-05-19T06:20:44.009901Z	Parsed 0 valid redirect rules.
+2025-05-19T06:20:44.010435Z	Found invalid redirect lines:
+2025-05-19T06:20:44.010554Z	  - #1: /* /index.html 200
+2025-05-19T06:20:44.010655Z	    Infinite loop detected in this rule and has been ignored. This will cause a redirect to strip `.html` or `/index` and end up triggering this rule again. Please fix or remove this rule to silence this warning.
+2025-05-19T06:20:45.702136Z	Uploading... (0/0)
+2025-05-19T06:20:45.702854Z	✨ Success! Uploaded 0 files (0.83 sec)
+2025-05-19T06:20:45.703007Z	
+2025-05-19T06:20:46.203237Z	✨ Upload complete!
+2025-05-19T06:20:49.200754Z	Success: Assets published!
+2025-05-19T06:20:50.691942Z	Success: Your site was deployed!
