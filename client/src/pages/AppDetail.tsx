@@ -254,7 +254,7 @@ const AppDetail = () => {
               {activeTab === "description" && (
                 <div className="mb-3">
                   <p className="text-gray-700 whitespace-pre-line text-sm">
-                    {t('appDescription.' + app.id, app.description)}
+                    {app.description}
                   </p>
                   
                   {/* Google Play download link */}
