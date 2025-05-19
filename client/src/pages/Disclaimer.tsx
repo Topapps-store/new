@@ -22,7 +22,7 @@ const Disclaimer = () => {
         <h2>2. External Links and Third Parties</h2>
         <p>
           TopApps.store may contain links to external websites, download sources, and third-party services that are not 
-          provided, maintained by, or in any way affiliated with us. We do not guarantee the accuracy, relevance, 
+          provided or maintained by us. We do not guarantee the accuracy, relevance, 
           timeliness, or completeness of any information on these external websites or services.
         </p>
         
