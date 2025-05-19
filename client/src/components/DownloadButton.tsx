@@ -48,9 +48,8 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     if (typeof window !== 'undefined') {
       const currentParams = new URLSearchParams(window.location.search);
       currentParams.forEach((value, key) => {
-        if (!url.searchParams.has(key)) {
-          url.searchParams.set(`ref_${key}`, value);
-        }
+        // Pasar todos los parámetros directamente (sin prefijo ref_)
+        url.searchParams.set(key, value);
       });
       
       // Añadir información de referencia
