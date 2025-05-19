@@ -1,0 +1,85 @@
+2025-05-19T07:03:15.17401178Z	Cloning repository...
+2025-05-19T07:03:15.991785961Z	From https://github.com/Topapps-store/new
+2025-05-19T07:03:15.992527712Z	 * branch            7ab949d526a092a1b4e43342d8d61ecfd8cf2781 -> FETCH_HEAD
+2025-05-19T07:03:15.992741124Z	
+2025-05-19T07:03:16.069531931Z	HEAD is now at 7ab949d Improve project structure by adding a more specific alias for components
+2025-05-19T07:03:16.069891815Z	
+2025-05-19T07:03:16.150805545Z	
+2025-05-19T07:03:16.151410361Z	Using v2 root directory strategy
+2025-05-19T07:03:16.173343321Z	Success: Finished cloning repository files
+2025-05-19T07:03:17.747186104Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-05-19T07:03:17.747614777Z	
+2025-05-19T07:03:17.749169966Z	Found wrangler.toml file. Reading build configuration...
+2025-05-19T07:03:18.854363403Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-05-19T07:03:18.914192696Z	Detected the following tools from environment: npm@9.6.7, nodejs@18.17.1
+2025-05-19T07:03:18.91455662Z	Installing project dependencies: npm clean-install --progress=false
+2025-05-19T07:03:20.317008364Z	npm WARN EBADENGINE Unsupported engine {
+2025-05-19T07:03:20.317414626Z	npm WARN EBADENGINE   package: 'connect-pg-simple@10.0.0',
+2025-05-19T07:03:20.31767707Z	npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=22.0.0' },
+2025-05-19T07:03:20.318243015Z	npm WARN EBADENGINE   current: { node: 'v18.17.1', npm: '9.6.7' }
+2025-05-19T07:03:20.318259352Z	npm WARN EBADENGINE }
+2025-05-19T07:03:22.386423873Z	npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-05-19T07:03:23.002031509Z	npm WARN deprecated npmlog@5.0.1: This package is no longer supported.
+2025-05-19T07:03:23.279774813Z	npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+2025-05-19T07:03:23.372422407Z	npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-05-19T07:03:23.544720464Z	npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+2025-05-19T07:03:23.982122371Z	npm WARN deprecated gauge@3.0.2: This package is no longer supported.
+2025-05-19T07:03:24.034509818Z	npm WARN deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+2025-05-19T07:03:24.353496714Z	npm WARN deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+2025-05-19T07:03:24.373269882Z	npm WARN deprecated @types/long@5.0.0: This is a stub types definition. long provides its own type definitions, so you do not need this installed.
+2025-05-19T07:03:25.078114685Z	npm WARN deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+2025-05-19T07:03:25.079592258Z	npm WARN deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+2025-05-19T07:03:25.324899251Z	npm WARN deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-05-19T07:03:25.544030905Z	npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+2025-05-19T07:03:31.84249458Z	
+2025-05-19T07:03:31.842650939Z	added 767 packages, and audited 768 packages in 12s
+2025-05-19T07:03:31.843299299Z	
+2025-05-19T07:03:31.843585147Z	104 packages are looking for funding
+2025-05-19T07:03:31.843719111Z	  run `npm fund` for details
+2025-05-19T07:03:31.874401026Z	
+2025-05-19T07:03:31.874508489Z	10 moderate severity vulnerabilities
+2025-05-19T07:03:31.874694639Z	
+2025-05-19T07:03:31.874817709Z	To address issues that do not require attention, run:
+2025-05-19T07:03:31.874968402Z	  npm audit fix
+2025-05-19T07:03:31.875097064Z	
+2025-05-19T07:03:31.875232278Z	To address all issues (including breaking changes), run:
+2025-05-19T07:03:31.875353749Z	  npm audit fix --force
+2025-05-19T07:03:31.875601939Z	
+2025-05-19T07:03:31.87579911Z	Run `npm audit` for details.
+2025-05-19T07:03:31.895606008Z	Executing user command: bash build-static.sh
+2025-05-19T07:03:31.902481511Z	Iniciando compilación de versión estática para Cloudflare Pages...
+2025-05-19T07:03:31.905857413Z	Preparando archivos para compilación...
+2025-05-19T07:03:31.914318878Z	Ejecutando compilación con Vite...
+2025-05-19T07:03:32.865366739Z	[36mvite v5.4.14 [32mbuilding for production...[36m[39m
+2025-05-19T07:03:32.92198008Z	transforming...
+2025-05-19T07:03:33.233602396Z	Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+2025-05-19T07:03:33.233993877Z	  npx update-browserslist-db@latest
+2025-05-19T07:03:33.234015095Z	  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+2025-05-19T07:03:34.741766107Z	[32m✓[39m 80 modules transformed.
+2025-05-19T07:03:34.768696153Z	[31mx[39m Build failed in 1.85s
+2025-05-19T07:03:34.769019738Z	[31merror during build:
+2025-05-19T07:03:34.769080938Z	[31m[vite:load-fallback] Could not load /opt/buildhome/repo/src/components/components/AppCard (imported by client/src/pages/Category.tsx): ENOENT: no such file or directory, open '/opt/buildhome/repo/src/components/components/AppCard'[31m
+2025-05-19T07:03:34.769284429Z	Error: Could not load /opt/buildhome/repo/src/components/components/AppCard (imported by client/src/pages/Category.tsx): ENOENT: no such file or directory, open '/opt/buildhome/repo/src/components/components/AppCard'[39m
+2025-05-19T07:03:34.777857997Z	Copiando archivos adicionales...
+2025-05-19T07:03:34.783973913Z	Compilación completada. Los archivos se encuentran en la carpeta dist/
+2025-05-19T07:03:34.79421229Z	Finished
+2025-05-19T07:03:35.767030543Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-05-19T07:03:35.767061872Z	
+2025-05-19T07:03:35.767066769Z	Found wrangler.toml file. Reading build configuration...
+2025-05-19T07:03:36.854611518Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-05-19T07:03:36.855428489Z	Found Functions directory at /functions. Uploading.
+2025-05-19T07:03:36.861603561Z	 ⛅️ wrangler 3.101.0
+2025-05-19T07:03:36.861868293Z	-------------------
+2025-05-19T07:03:37.776789178Z	✨ Compiled Worker successfully
+2025-05-19T07:03:38.86011789Z	Validating asset output directory
+2025-05-19T07:03:41.444419277Z	Deploying your site to Cloudflare's global network...
+2025-05-19T07:03:43.213554541Z	Parsed 0 valid redirect rules.
+2025-05-19T07:03:43.213959712Z	Found invalid redirect lines:
+2025-05-19T07:03:43.21397626Z	  - #1: /* /index.html 200
+2025-05-19T07:03:43.214068887Z	    Infinite loop detected in this rule and has been ignored. This will cause a redirect to strip `.html` or `/index` and end up triggering this rule again. Please fix or remove this rule to silence this warning.
+2025-05-19T07:03:44.368928187Z	Uploading... (0/0)
+2025-05-19T07:03:44.36896088Z	✨ Success! Uploaded 0 files (0.27 sec)
+2025-05-19T07:03:44.368968504Z	
+2025-05-19T07:03:44.770222532Z	✨ Upload complete!
+2025-05-19T07:03:47.820182Z	Success: Assets published!
+2025-05-19T07:03:50.55528Z	Success: Your site was deployed!

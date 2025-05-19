@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import AppCard from "@/components/AppCard";
-import CategoryCard from "@/components/CategoryCard";
-import SponsoredBanner from "@/components/SponsoredBanner";
+import AppCard from "../components/AppCard";
+import CategoryCard from "../components/CategoryCard";
+import SponsoredBanner from "../components/SponsoredBanner";
 import { useState } from "react";
 import { App, Category } from "@shared/schema";
 import { useLanguage } from "../context/StaticLanguageContext";
@@ -11,7 +11,7 @@ const Home = () => {
   const [showAllCategories, setShowAllCategories] = useState(false);
   const { t } = useLanguage();
 
-  const { data: popularApps, isLoading: isLoadingPopular } = useQuery<App[]>({
+  const { data: popularApps, isLoading: isLoadingPopular } = useQuery<App[] | AppLegacy[]>({
     queryKey: ["/api/apps/popular"],
     queryFn: async () => {
       const { getPopularApps } = await import('../services/staticDataService');
@@ -19,7 +19,7 @@ const Home = () => {
     }
   });
 
-  const { data: recentApps, isLoading: isLoadingRecent } = useQuery<App[]>({
+  const { data: recentApps, isLoading: isLoadingRecent } = useQuery<App[] | AppLegacy[]>({
     queryKey: ["/api/apps/recent"],
     queryFn: async () => {
       const { getRecentApps } = await import('../services/staticDataService');
@@ -27,7 +27,7 @@ const Home = () => {
     }
   });
   
-  const { data: justInTimeApps, isLoading: isLoadingJustInTime } = useQuery<App[]>({
+  const { data: justInTimeApps, isLoading: isLoadingJustInTime } = useQuery<App[] | AppLegacy[]>({
     queryKey: ["/api/apps/just-in-time"],
     queryFn: async () => {
       const { getJustInTimeApps } = await import('../services/staticDataService');
@@ -35,7 +35,7 @@ const Home = () => {
     }
   });
 
-  const { data: categories, isLoading: isLoadingCategories } = useQuery<Category[]>({
+  const { data: categories, isLoading: isLoadingCategories } = useQuery<Category[] | CategoryLegacy[]>({
     queryKey: ["/api/categories"],
     queryFn: async () => {
       const { getCategories } = await import('../services/staticDataService');

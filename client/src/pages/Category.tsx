@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "wouter";
-import AppCard from "@/components/AppCard";
+import AppCard from "../components/AppCard";
 import { App, Category } from "@shared/schema";
 
 const CategoryPage = () => {

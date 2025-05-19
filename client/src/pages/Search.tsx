@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import AppCard from "@/components/AppCard";
+import AppCard from "../components/AppCard";
 import { App } from "@shared/schema";
 import { useEffect, useState } from "react";
 
