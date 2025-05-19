@@ -1,12 +1,16 @@
 import React from 'react';
+import { Link } from "wouter";
+import { useLanguage } from "../context/StaticLanguageContext";
 
 const PrivacyPolicy = () => {
+  const { t } = useLanguage();
+  
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8">
+    <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 my-8">
       <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
       
       <div className="prose max-w-none">
-        <p>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        <p>Last updated: May 19, 2025</p>
         
         <p>
           At TopApps.store, we value your privacy and are committed to protecting your personal data. 
@@ -18,10 +22,6 @@ const PrivacyPolicy = () => {
         <p>We may collect several types of information from and about users of our website, including:</p>
         <ul>
           <li>
-            <strong>Personal Information:</strong> This includes information such as your name, email address, 
-            and other identifiable information that you provide when subscribing to our newsletter or contacting us.
-          </li>
-          <li>
             <strong>Usage Data:</strong> Information about how you access and use our website, including your IP 
             address, browser type, device information, pages visited, time spent on those pages, and referral sources.
           </li>
@@ -29,18 +29,20 @@ const PrivacyPolicy = () => {
             <strong>Cookies and Tracking Data:</strong> We use cookies and similar tracking technologies to track 
             activity on our website and hold certain information to improve your browsing experience.
           </li>
+          <li>
+            <strong>App Usage Data:</strong> Information about which apps you view, download, or interact with on our platform.
+          </li>
         </ul>
         
         <h2>2. How We Use Your Information</h2>
         <p>We may use the information we collect about you for various purposes, including:</p>
         <ul>
           <li>To provide and maintain our website</li>
-          <li>To notify you about changes to our website or services</li>
-          <li>To allow you to participate in interactive features when you choose to do so</li>
           <li>To improve our website and user experience</li>
           <li>To monitor the usage of our website</li>
           <li>To detect, prevent, and address technical issues</li>
-          <li>To send you newsletters, promotions, and other information about apps that may be of interest to you</li>
+          <li>To analyze trends and better understand user preferences</li>
+          <li>To deliver relevant app recommendations and advertisements</li>
         </ul>
         
         <h2>3. Cookie Policy</h2>
@@ -54,21 +56,28 @@ const PrivacyPolicy = () => {
           on your device until you delete them or they expire).
         </p>
         
-        <h2>4. Third-Party Services and Links</h2>
+        <h2>4. Third-Party Services, Links and Charges</h2>
         <p>
-          Our website may contain links to third-party websites, applications, or services that are not owned or controlled 
+          Our website contains links to third-party websites, applications, and services that are not owned or controlled 
           by TopApps.store. We have no control over and assume no responsibility for the content, privacy policies, 
           data collection practices, or conduct of any third-party websites, applications, or services.
         </p>
         <p>
-          <strong>Important notice regarding third parties:</strong> When you leave our website by clicking on any external link 
-          (including app download links, affiliate links, and advertiser links), you are subject to the privacy policies and 
-          terms of service of those third parties. We strongly encourage you to review the privacy policies of any third-party 
-          site or service before providing any personal information or downloading any content.
+          <strong>IMPORTANT DISCLAIMER REGARDING THIRD-PARTY CHARGES:</strong> TopApps.store is NOT responsible for any fees, 
+          charges, subscriptions, or payments that you may incur when using third-party applications, websites, or services 
+          accessed through our platform. This includes but is not limited to:
         </p>
+        <ul>
+          <li>App purchase costs</li>
+          <li>In-app purchases</li>
+          <li>Subscription fees</li>
+          <li>Premium features</li>
+          <li>Any other monetary transactions</li>
+        </ul>
         <p>
-          TopApps.store is not liable for any privacy practices, data breaches, or other actions of third parties that you 
-          access through our website. Your interactions with these third parties are solely between you and them.
+          We strongly encourage you to carefully review the terms of service, privacy policies, and payment terms of any 
+          third-party application or service before downloading, installing, or providing payment information. You are solely 
+          responsible for understanding and agreeing to any charges that may apply.
         </p>
         <p>
           We may use third-party services such as Google Analytics to monitor and analyze the use of our website. These 
@@ -76,17 +85,26 @@ const PrivacyPolicy = () => {
           or other identifiers.
         </p>
         
-        <h2>5. Affiliate Marketing</h2>
+        <h2>5. Sponsored Content and Affiliate Marketing</h2>
         <p>
-          TopApps.store participates in affiliate marketing programs, which means we may receive commissions on purchases 
-          made through our links to retailer sites. This does not affect the price you pay for products or services. To 
-          provide this service, we may share certain non-personal information with affiliate networks to track the effectiveness 
-          of our marketing efforts.
+          TopApps.store contains sponsored content and participates in affiliate marketing programs, which means we may receive 
+          commissions on actions taken through our links (such as app downloads, purchases, or sign-ups). This helps us maintain 
+          our website and provide you with free access to app information.
+        </p>
+        <p>
+          <strong>Disclosure of Sponsored Content:</strong> We clearly label sponsored content with "AD" or "SPONSORED" tags. 
+          While we strive to work with reputable partners, TopApps.store is not responsible for the content, offers, products, 
+          or services provided by our sponsors or advertisers.
+        </p>
+        <p>
+          <strong>Disclaimer of Responsibility:</strong> We do not endorse, guarantee, or assume responsibility for any product, 
+          service, information, or recommendation provided by sponsors, affiliates, or advertisers. Your interactions with these 
+          entities are solely between you and them.
         </p>
         
         <h2>6. Data Security</h2>
         <p>
-          We implement appropriate security measures to protect your personal information. However, please note that no 
+          We implement appropriate security measures to protect your information. However, please note that no 
           method of transmission over the Internet or method of electronic storage is 100% secure, and we cannot guarantee 
           its absolute security.
         </p>
@@ -112,8 +130,16 @@ const PrivacyPolicy = () => {
         
         <h2>10. Contact Us</h2>
         <p>
-          If you have any questions about this Privacy Policy, please contact us at privacy@topapps.store.
+          If you have any questions about this Privacy Policy, please contact us using our Contact page.
         </p>
+        
+        <div className="mt-8 border-t pt-4">
+          <p>For more information, please see our:</p>
+          <ul className="flex flex-col space-y-2 text-blue-600">
+            <li><Link href="/terms-of-service">Terms of Service</Link></li>
+            <li><Link href="/disclaimer">Disclaimer</Link></li>
+          </ul>
+        </div>
       </div>
     </div>
   );
