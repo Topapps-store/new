@@ -1,0 +1,95 @@
+2025-05-19T08:43:03.506549Z	Cloning repository...
+2025-05-19T08:43:04.281416Z	From https://github.com/Topapps-store/new
+2025-05-19T08:43:04.281884Z	 * branch            56c30370bc48b5c22ed5a2c21de7663c2f0a529d -> FETCH_HEAD
+2025-05-19T08:43:04.282025Z	
+2025-05-19T08:43:04.360908Z	HEAD is now at 56c3037 Improve setup guide and fix deployment issues on Cloudflare Pages
+2025-05-19T08:43:04.361354Z	
+2025-05-19T08:43:04.435948Z	
+2025-05-19T08:43:04.436365Z	Using v2 root directory strategy
+2025-05-19T08:43:04.465987Z	Success: Finished cloning repository files
+2025-05-19T08:43:06.078695Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-05-19T08:43:06.079276Z	
+2025-05-19T08:43:06.080841Z	Found wrangler.toml file. Reading build configuration...
+2025-05-19T08:43:07.182836Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-05-19T08:43:07.258271Z	Detected the following tools from environment: nodejs@20.19.0, npm@9.6.7
+2025-05-19T08:43:07.258889Z	Installing nodejs 20.19.0
+2025-05-19T08:43:07.32549Z	nodejs 20.19.0 is already installed
+2025-05-19T08:43:07.793364Z	Installing project dependencies: npm clean-install --progress=false
+2025-05-19T08:43:11.113337Z	npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-05-19T08:43:11.651506Z	npm warn deprecated npmlog@5.0.1: This package is no longer supported.
+2025-05-19T08:43:12.022957Z	npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-05-19T08:43:12.130612Z	npm warn deprecated har-validator@5.1.5: this library is no longer supported
+2025-05-19T08:43:12.249327Z	npm warn deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+2025-05-19T08:43:12.51267Z	npm warn deprecated gauge@3.0.2: This package is no longer supported.
+2025-05-19T08:43:12.584568Z	npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+2025-05-19T08:43:12.753459Z	npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+2025-05-19T08:43:12.881259Z	npm warn deprecated @types/long@5.0.0: This is a stub types definition. long provides its own type definitions, so you do not need this installed.
+2025-05-19T08:43:13.520536Z	npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+2025-05-19T08:43:13.600904Z	npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+2025-05-19T08:43:13.835364Z	npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-05-19T08:43:13.950932Z	npm warn deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+2025-05-19T08:43:19.467529Z	
+2025-05-19T08:43:19.467864Z	added 767 packages, and audited 768 packages in 11s
+2025-05-19T08:43:19.467986Z	
+2025-05-19T08:43:19.468117Z	104 packages are looking for funding
+2025-05-19T08:43:19.468251Z	  run `npm fund` for details
+2025-05-19T08:43:19.502482Z	
+2025-05-19T08:43:19.502694Z	10 moderate severity vulnerabilities
+2025-05-19T08:43:19.503134Z	
+2025-05-19T08:43:19.503508Z	To address issues that do not require attention, run:
+2025-05-19T08:43:19.503633Z	  npm audit fix
+2025-05-19T08:43:19.503807Z	
+2025-05-19T08:43:19.503925Z	To address all issues (including breaking changes), run:
+2025-05-19T08:43:19.504355Z	  npm audit fix --force
+2025-05-19T08:43:19.504502Z	
+2025-05-19T08:43:19.504632Z	Run `npm audit` for details.
+2025-05-19T08:43:19.521639Z	Executing user command: bash build-static.sh
+2025-05-19T08:43:19.52751Z	Starting static build for Cloudflare Pages...
+2025-05-19T08:43:19.531745Z	Preparing files for build...
+2025-05-19T08:43:19.540246Z	Fixing component path issues...
+2025-05-19T08:43:19.540448Z	Running Vite build...
+2025-05-19T08:43:20.398235Z	[36mvite v5.4.14 [32mbuilding for production...[36m[39m
+2025-05-19T08:43:20.448562Z	transforming...
+2025-05-19T08:43:20.728085Z	Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+2025-05-19T08:43:20.728299Z	  npx update-browserslist-db@latest
+2025-05-19T08:43:20.728528Z	  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+2025-05-19T08:43:23.608759Z	[32m✓[39m 1666 modules transformed.
+2025-05-19T08:43:23.7978Z	rendering chunks...
+2025-05-19T08:43:23.798149Z	[1m[33m[plugin:vite:reporter][39m[22m [33m[plugin vite:reporter] 
+2025-05-19T08:43:23.798334Z	(!) /opt/buildhome/repo/client/src/services/staticDataService.ts is dynamically imported by /opt/buildhome/repo/client/src/pages/AppDetail.tsx, /opt/buildhome/repo/client/src/pages/AppDetail.tsx, /opt/buildhome/repo/client/src/pages/AppDetail.tsx, /opt/buildhome/repo/client/src/pages/Home.tsx, /opt/buildhome/repo/client/src/pages/Home.tsx, /opt/buildhome/repo/client/src/pages/Home.tsx, /opt/buildhome/repo/client/src/pages/Home.tsx but also statically imported by /opt/buildhome/repo/client/src/pages/AllApps.tsx, dynamic import will not move module into another chunk.
+2025-05-19T08:43:23.798485Z	[39m
+2025-05-19T08:43:23.812449Z	computing gzip size...
+2025-05-19T08:43:23.829731Z	[2m../dist/[22m[32mindex.html                 [39m[1m[2m  1.08 kB[22m[1m[22m[2m │ gzip:   0.66 kB[22m
+2025-05-19T08:43:23.829884Z	[2m../dist/[22m[2massets/[22m[35mindex-CVd69rHW.css  [39m[1m[2m 86.62 kB[22m[1m[22m[2m │ gzip:  14.40 kB[22m
+2025-05-19T08:43:23.830042Z	[2m../dist/[22m[2massets/[22m[36mindex-CjnimNnd.js   [39m[1m[33m513.01 kB[39m[22m[2m │ gzip: 189.87 kB[22m
+2025-05-19T08:43:23.830301Z	[33m
+2025-05-19T08:43:23.830439Z	(!) Some chunks are larger than 500 kB after minification. Consider:
+2025-05-19T08:43:23.830519Z	- Using dynamic import() to code-split the application
+2025-05-19T08:43:23.830636Z	- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+2025-05-19T08:43:23.830795Z	- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+2025-05-19T08:43:23.830973Z	[32m✓ built in 3.41s[39m
+2025-05-19T08:43:23.873788Z	Copying additional files...
+2025-05-19T08:43:23.879347Z	Build completed. Files can be found in the dist/ folder
+2025-05-19T08:43:23.879544Z	For Cloudflare Pages deployment, set the build command to: bash build-static.sh
+2025-05-19T08:43:23.87992Z	And set NODE_VERSION=20 in your environment variables
+2025-05-19T08:43:23.89229Z	Finished
+2025-05-19T08:43:24.772681Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-05-19T08:43:24.773302Z	
+2025-05-19T08:43:24.774101Z	Found wrangler.toml file. Reading build configuration...
+2025-05-19T08:43:25.87249Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-05-19T08:43:25.873167Z	Found Functions directory at /functions. Uploading.
+2025-05-19T08:43:25.878971Z	 ⛅️ wrangler 3.101.0
+2025-05-19T08:43:25.87916Z	-------------------
+2025-05-19T08:43:26.793541Z	✨ Compiled Worker successfully
+2025-05-19T08:43:27.869114Z	Validating asset output directory
+2025-05-19T08:43:30.507496Z	Deploying your site to Cloudflare's global network...
+2025-05-19T08:43:32.300622Z	Parsed 0 valid redirect rules.
+2025-05-19T08:43:32.301261Z	Found invalid redirect lines:
+2025-05-19T08:43:32.301372Z	  - #1: /* /index.html 200
+2025-05-19T08:43:32.301468Z	    Infinite loop detected in this rule and has been ignored. This will cause a redirect to strip `.html` or `/index` and end up triggering this rule again. Please fix or remove this rule to silence this warning.
+2025-05-19T08:43:33.365535Z	Uploading... (3/3)
+2025-05-19T08:43:33.366467Z	✨ Success! Uploaded 0 files (3 already uploaded) (0.20 sec)
+2025-05-19T08:43:33.36668Z	
+2025-05-19T08:43:33.786306Z	✨ Upload complete!
+2025-05-19T08:43:36.787242Z	Success: Assets published!
+2025-05-19T08:43:38.543384Z	Success: Your site was deployed!
