@@ -1,97 +1,93 @@
-# Guía de Despliegue en Cloudflare Pages
+# TopApps Cloudflare Deployment Guide
 
-Esta guía te ayudará a desplegar TopApps en Cloudflare Pages utilizando GitHub. Con la nueva estrategia, **el frontend se alojará en Cloudflare Pages pero la API seguirá funcionando desde Replit**.
+This guide explains how to deploy the TopApps application to Cloudflare Pages.
 
-## Estrategia de Despliegue
+## Architecture
 
-- **Frontend**: Alojado en Cloudflare Pages
-- **API**: Alojada en Replit (https://topapps.replit.app/api)
-- **Base de datos**: Neon PostgreSQL
+The TopApps application uses a "static-first" architecture:
 
-Esta arquitectura tiene varias ventajas:
-1. El frontend se beneficia de la red global CDN de Cloudflare
-2. La API sigue usando la conexión estable a la base de datos en Replit
-3. Separación clara de responsabilidades
+* **Frontend**: Static site deployed on Cloudflare Pages
+* **API**: Running on Replit
+* **Database**: Neon PostgreSQL
 
-## Requisitos Previos
+This architecture leverages Cloudflare's global CDN for the frontend while maintaining stable database connections on Replit.
 
-1. Una cuenta en GitHub con el repositorio de TopApps
-2. Una cuenta en Cloudflare
-3. La instancia de Replit debe estar funcionando y accesible (https://topapps.replit.app)
+## Preparation Steps
 
-## Paso 1: Preparar el Repositorio en GitHub
+Before deploying to Cloudflare Pages, ensure the following:
 
-1. Crea un repositorio en GitHub (si aún no lo has hecho)
-2. Conecta tu repositorio local a GitHub:
+1. All `@/` alias imports have been converted to relative imports
+   - Run `node fix-imports.cjs` to automatically fix imports
+
+2. Environment variables are set up
+   - Create `.env.production` with:
+     ```
+     IS_STATIC=true
+     CF_PAGES=true
+     NODE_VERSION=20
+     ```
+
+3. The `wrangler.toml` file is correctly configured:
+   ```toml
+   [site]
+   bucket = "dist"
+
+   [build]
+   command = "./build-static.sh"
+   output_dir = "dist"
+   ```
+
+4. The static app components are properly set up:
+   - `client/src/staticApp.tsx` 
+   - `client/src/context/StaticLanguageContext.tsx`
+   - `client/src/data/apps.json`
+
+## Build Process
+
+To build the application for Cloudflare Pages:
 
 ```bash
-git init
-git add .
-git commit -m "Versión inicial de TopApps"
-git branch -M main
-git remote add origin https://github.com/tu-usuario/topapps.git
-git push -u origin main
+bash build-static.sh
 ```
 
-## Paso 2: Configurar el Proyecto en Cloudflare Pages
+This script:
+1. Creates the necessary `static-index.html` entry point
+2. Runs the Vite build process with the Cloudflare-specific configuration
+3. Outputs the build to the `dist` directory
 
-1. Inicia sesión en tu cuenta de Cloudflare
-2. Ve a "Pages" en el panel lateral
-3. Haz clic en "Create a project"
-4. Selecciona "Connect to Git"
-5. Elige tu repositorio de GitHub
-6. Configura el proyecto:
-   - Nombre del proyecto: `topapps`
-   - Rama de producción: `main`
-   - Framework preset: `None`
-   - Build command: `./build.sh` 
+## Deployment
+
+### Option 1: Direct Upload to Cloudflare Pages
+
+1. Log in to the Cloudflare Dashboard
+2. Navigate to Pages
+3. Select your project or create a new one
+4. Upload the contents of the `dist` directory
+
+### Option 2: GitHub Integration
+
+1. Push your code to GitHub
+2. In Cloudflare Dashboard, connect to your GitHub repository
+3. Configure build settings:
+   - Build command: `bash build-static.sh`
    - Build output directory: `dist`
-   - Root directory: `/` (dejar en blanco)
+   - Root directory: `/` (or where your project is located)
+   - Environment variables: Set `NODE_VERSION=20`
 
-7. En la sección "Environment variables", agrega la siguiente variable:
-   - `NODE_VERSION`: `20`
+## Troubleshooting
 
-8. Haz clic en "Save and Deploy"
+If you encounter issues with the deployment:
 
-## Paso 3: Configurar el Dominio Personalizado
+1. **Build failures**: Check the build logs for specific errors
+2. **Import errors**: Run `node fix-imports.cjs` again to ensure all imports are using relative paths
+3. **Static data issues**: Verify that `client/src/data/apps.json` contains valid data
+4. **Environment variables**: Make sure `IS_STATIC=true` and `CF_PAGES=true` are set
 
-1. Una vez que el despliegue se haya completado, ve a la pestaña "Custom domains"
-2. Haz clic en "Set up a custom domain"
-3. Ingresa `topapps.store` y sigue las instrucciones para verificar la propiedad del dominio
-4. Configura los registros DNS según las instrucciones
+## Post-Deployment
 
-## Paso 4: Verificar el Despliegue
+After successful deployment:
 
-1. Una vez completado el despliegue, visita tu sitio en el dominio Cloudflare Pages asignado (o tu dominio personalizado)
-2. Verifica que:
-   - El frontend carga correctamente
-   - Las solicitudes a la API se redirigen correctamente a Replit
-   - Los datos se muestran correctamente en la aplicación
-
-## Cómo Funciona
-
-1. Cuando un usuario visita tu sitio en Cloudflare Pages, se carga el frontend (React)
-2. Cuando la aplicación hace solicitudes a `/api/...`, estas son interceptadas por la función `[[path]].js` en Cloudflare
-3. La función reenvía estas solicitudes a la API alojada en Replit (https://topapps.replit.app/api/...)
-4. Los datos se devuelven al frontend y se muestran al usuario
-
-## Mantenimiento y Actualizaciones
-
-### Actualizaciones del Frontend:
-
-1. Realiza tus cambios en el código del frontend
-2. Haz commit y push a GitHub
-3. Cloudflare Pages desplegará automáticamente las actualizaciones
-
-### Actualizaciones de la API:
-
-1. Realiza tus cambios en el código de la API en Replit
-2. La API se actualizará instantáneamente en Replit
-3. No es necesario volver a desplegar Cloudflare Pages
-
-## Notas Adicionales
-
-- Esta arquitectura reduce la complejidad del despliegue en Cloudflare
-- La instancia de Replit debe mantenerse en funcionamiento
-- Si Replit cambia su URL, deberás actualizar la URL en `functions/[[path]].js`
-- Se ha configurado CORS para permitir solicitudes entre dominios
+1. Set up a custom domain if needed
+2. Configure Cloudflare SSL/TLS settings
+3. Test the application thoroughly to ensure static data is loading correctly
+4. Verify that API endpoints point to your Replit instance
