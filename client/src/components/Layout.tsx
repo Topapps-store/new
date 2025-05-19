@@ -157,30 +157,26 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           </div>
         ) : location === "/privacy-policy" ? (
           <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 my-8">
-            <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
+            <h1 className="text-3xl font-bold mb-6"><TranslatedText text="Privacy Policy" /></h1>
             
             <div className="prose max-w-none">
-              <p>Last updated: May 19, 2025</p>
+              <p><TranslatedText text="Last updated: May 19, 2025" /></p>
               
-              <p>
-                At TopApps.store, we value your privacy and are committed to protecting your personal data. 
-                This Privacy Policy explains how we collect, use, and safeguard your information when you 
-                visit our website.
-              </p>
+              <TranslatedParagraph
+                text="At TopApps.store, we value your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website."
+              />
               
-              <h2>1. Information We Collect</h2>
-              <p>We may collect several types of information from and about users of our website, including:</p>
+              <h2><TranslatedText text="1. Information We Collect" /></h2>
+              <TranslatedParagraph text="We may collect several types of information from and about users of our website, including:" />
               <ul>
                 <li>
-                  <strong>Usage Data:</strong> Information about how you access and use our website, including your IP 
-                  address, browser type, device information, pages visited, time spent on those pages, and referral sources.
+                  <strong><TranslatedText text="Usage Data:" /></strong> <TranslatedText text="Information about how you access and use our website, including your IP address, browser type, device information, pages visited, time spent on those pages, and referral sources." />
                 </li>
                 <li>
-                  <strong>Cookies and Tracking Data:</strong> We use cookies and similar tracking technologies to track 
-                  activity on our website and hold certain information to improve your browsing experience.
+                  <strong><TranslatedText text="Cookies and Tracking Data:" /></strong> <TranslatedText text="We use cookies and similar tracking technologies to track activity on our website and hold certain information to improve your browsing experience." />
                 </li>
                 <li>
-                  <strong>App Usage Data:</strong> Information about which apps you view, download, or interact with on our platform.
+                  <strong><TranslatedText text="App Usage Data:" /></strong> <TranslatedText text="Information about which apps you view, download, or interact with on our platform." />
                 </li>
               </ul>
               
