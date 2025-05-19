@@ -1,172 +1,198 @@
 import axios from 'axios';
-import { log } from './vite';
-
-// DeepL API endpoint
-const DEEPL_API_ENDPOINT = 'https://api-free.deepl.com/v2/translate';
-const DEEPL_API_KEY = process.env.DEEPL_API_KEY;
-
-// Supported languages for translation
-type SupportedLanguage = 'EN' | 'ES' | 'FR' | 'DE' | 'IT' | 'PT' | 'RU' | 'JA' | 'ZH';
-
-// Cache for storing translated text to reduce API calls
-interface TranslationCache {
-  [key: string]: {
-    [targetLang: string]: string;
-  };
-}
-
-const translationCache: TranslationCache = {};
 
 /**
- * Translate text to the target language using DeepL API
- * @param text Text to translate
- * @param targetLang Target language code (e.g., 'ES' for Spanish)
- * @param sourceLang Optional source language code
- * @returns Translated text
+ * Servicio para traducir textos utilizando la API de DeepL
  */
-export async function translateText(
-  text: string,
-  targetLang: SupportedLanguage,
-  sourceLang?: SupportedLanguage
-): Promise<string> {
+export async function translateText(text: string, targetLang: string, sourceLang?: string): Promise<string> {
   try {
-    // Skip translation if text is empty or just whitespace
     if (!text || text.trim() === '') {
       return text;
     }
-
-    // Skip translation if target language is English (our default language)
-    if (targetLang === 'EN') {
+    
+    // Evitar traducir texto demasiado corto o que parece ser un identificador
+    if (text.length < 5 || !containsRealText(text)) {
       return text;
     }
-
-    // Check cache first
-    const cacheKey = text.toLowerCase().trim();
-    if (translationCache[cacheKey] && translationCache[cacheKey][targetLang]) {
-      return translationCache[cacheKey][targetLang];
-    }
-
-    // If no API key, return original text
-    if (!DEEPL_API_KEY) {
-      log('Missing DeepL API key', 'warning');
+    
+    // Obtener la clave API de DeepL desde las variables de entorno
+    const apiKey = process.env.DEEPL_API_KEY;
+    
+    if (!apiKey) {
+      console.error('API key de DeepL no encontrada en las variables de entorno');
       return text;
     }
-
-    // Call DeepL API
+    
+    // Convertir el código de idioma al formato que espera DeepL
+    const deeplLang = convertToDeeplLanguage(targetLang);
+    
+    // Llamar a la API de DeepL
     const response = await axios.post(
-      DEEPL_API_ENDPOINT,
+      'https://api-free.deepl.com/v2/translate',
       {
         text: [text],
-        target_lang: targetLang,
-        ...(sourceLang && { source_lang: sourceLang }),
-        preserve_formatting: true,
+        target_lang: deeplLang
       },
       {
         headers: {
-          'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
+          'Authorization': `DeepL-Auth-Key ${apiKey}`,
+          'Content-Type': 'application/json'
+        }
       }
     );
-
-    // Get translated text
-    const translatedText = response.data.translations[0].text;
-
-    // Update cache
-    if (!translationCache[cacheKey]) {
-      translationCache[cacheKey] = {};
+    
+    if (response.data && response.data.translations && response.data.translations.length > 0) {
+      return response.data.translations[0].text;
     }
-    translationCache[cacheKey][targetLang] = translatedText;
-
-    return translatedText;
+    
+    return text;
   } catch (error) {
-    log(`Translation error: ${error}`, 'error');
-    return text; // Return original text in case of error
+    console.error('Error al traducir texto:', error);
+    return text;
   }
 }
 
 /**
- * Translate all app descriptions in bulk
- * @param texts Array of texts to translate
- * @param targetLang Target language code
- * @returns Array of translated texts
+ * Convierte los códigos de idioma al formato que espera DeepL
  */
-export async function bulkTranslate(
-  texts: string[],
-  targetLang: SupportedLanguage
-): Promise<string[]> {
-  // Skip if target language is English or no texts
-  if (targetLang === 'EN' || texts.length === 0) {
-    return texts;
+function convertToDeeplLanguage(lang: string): string {
+  // Normalizar el código de idioma (convertir a mayúsculas y eliminar guiones/regiones)
+  const normalizedLang = lang.toUpperCase().split('-')[0];
+  
+  // Mapa de códigos de idioma a códigos DeepL
+  const languageMap: { [key: string]: string } = {
+    'ES': 'ES',
+    'EN': 'EN-US',
+    'FR': 'FR',
+    'DE': 'DE',
+    'IT': 'IT',
+    'PT': 'PT-BR',
+    'RU': 'RU',
+    'JA': 'JA',
+    'ZH': 'ZH',
+  };
+  
+  return languageMap[normalizedLang] || 'EN-US';
+}
+
+/**
+ * Determina si el texto contiene contenido real para traducir
+ * (evita traducir códigos, identificadores, etc.)
+ */
+function containsRealText(text: string): boolean {
+  // Evitar traducir textos que parecen identificadores o rutas
+  if (/^[a-zA-Z0-9_/.]+$/.test(text)) {
+    return false;
   }
-
-  // If no API key, return original texts
-  if (!DEEPL_API_KEY) {
-    log('Missing DeepL API key', 'warning');
-    return texts;
+  
+  // Evitar traducir URLs
+  if (text.startsWith('http') || text.startsWith('www.')) {
+    return false;
   }
+  
+  return true;
+}
 
-  try {
-    // Filter out texts that are already in cache
-    const textsToTranslate: string[] = [];
-    const indexMap: number[] = [];
-    const results: string[] = [...texts];
-
-    texts.forEach((text, index) => {
-      const cacheKey = text.toLowerCase().trim();
-      if (
-        text && 
-        text.trim() !== '' && 
-        !(translationCache[cacheKey] && translationCache[cacheKey][targetLang])
-      ) {
-        textsToTranslate.push(text);
-        indexMap.push(index);
-      } else if (translationCache[cacheKey] && translationCache[cacheKey][targetLang]) {
-        // If in cache, use cached translation
-        results[index] = translationCache[cacheKey][targetLang];
+/**
+ * Traduce un objeto completo al idioma especificado
+ */
+export async function translateObject<T extends Record<string, any>>(
+  obj: T,
+  targetLang: string
+): Promise<T> {
+  if (!obj || typeof obj !== 'object') {
+    return obj;
+  }
+  
+  const result = { ...obj } as T;
+  
+  for (const key in result) {
+    if (Object.prototype.hasOwnProperty.call(result, key)) {
+      const value = result[key];
+      
+      if (typeof value === 'string') {
+        // Solo traducir campos que probablemente contengan contenido a traducir
+        const fieldsToTranslate = ['name', 'description', 'title', 'content', 'text', 'summary'];
+        if (fieldsToTranslate.includes(key) || key.includes('text') || key.includes('description')) {
+          // Usamos type assertion para asegurar que TypeScript entienda que estamos manteniendo el tipo
+          result[key] = await translateText(value, targetLang) as any;
+        }
+      } else if (typeof value === 'object' && value !== null) {
+        // Usamos type assertion para asegurar que TypeScript entienda que estamos manteniendo el tipo
+        result[key] = await translateObject(value, targetLang) as any;
       }
-    });
-
-    // If all texts are in cache, return cached results
-    if (textsToTranslate.length === 0) {
-      return results;
     }
+  }
+  
+  return result;
+}
 
-    // Call DeepL API with batch
+/**
+ * Traduce múltiples textos en un solo lote
+ * @param texts Array de textos a traducir
+ * @param targetLang Idioma destino para la traducción
+ * @returns Array de textos traducidos en el mismo orden
+ */
+export async function bulkTranslate(texts: string[], targetLang: string): Promise<string[]> {
+  try {
+    if (!texts || texts.length === 0) {
+      return [];
+    }
+    
+    // Filtrar textos vacíos o demasiado cortos
+    const validTexts = texts.filter(text => 
+      text && text.trim() !== '' && text.length >= 5 && containsRealText(text)
+    );
+    
+    if (validTexts.length === 0) {
+      return texts;
+    }
+    
+    // Obtener la clave API de DeepL desde las variables de entorno
+    const apiKey = process.env.DEEPL_API_KEY;
+    
+    if (!apiKey) {
+      console.error('API key de DeepL no encontrada en las variables de entorno');
+      return texts;
+    }
+    
+    // Convertir el código de idioma al formato que espera DeepL
+    const deeplLang = convertToDeeplLanguage(targetLang);
+    
+    // Llamar a la API de DeepL con un lote de textos
     const response = await axios.post(
-      DEEPL_API_ENDPOINT,
+      'https://api-free.deepl.com/v2/translate',
       {
-        text: textsToTranslate,
-        target_lang: targetLang,
-        preserve_formatting: true,
+        text: validTexts,
+        target_lang: deeplLang
       },
       {
         headers: {
-          'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
+          'Authorization': `DeepL-Auth-Key ${apiKey}`,
+          'Content-Type': 'application/json'
+        }
       }
     );
-
-    // Update results and cache
-    response.data.translations.forEach((translation: { text: string }, i: number) => {
-      const originalIndex = indexMap[i];
-      const originalText = texts[originalIndex];
-      const translatedText = translation.text;
+    
+    // Si la respuesta es válida, reemplazar los textos originales con las traducciones
+    if (response.data && response.data.translations && response.data.translations.length === validTexts.length) {
+      const result = [...texts]; // Clonar el array original
+      let translationIndex = 0;
       
-      results[originalIndex] = translatedText;
-      
-      // Update cache
-      const cacheKey = originalText.toLowerCase().trim();
-      if (!translationCache[cacheKey]) {
-        translationCache[cacheKey] = {};
+      for (let i = 0; i < texts.length; i++) {
+        const text = texts[i];
+        // Solo reemplazar el texto si era válido para traducción
+        if (text && text.trim() !== '' && text.length >= 5 && containsRealText(text)) {
+          result[i] = response.data.translations[translationIndex].text;
+          translationIndex++;
+        }
       }
-      translationCache[cacheKey][targetLang] = translatedText;
-    });
-
-    return results;
+      
+      return result;
+    }
+    
+    return texts;
   } catch (error) {
-    log(`Bulk translation error: ${error}`, 'error');
-    return texts; // Return original texts in case of error
+    console.error('Error en traducción por lotes:', error);
+    return texts;
   }
 }

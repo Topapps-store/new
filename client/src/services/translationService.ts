@@ -8,12 +8,6 @@ const translationCache: Record<string, Record<string, string>> = {};
  */
 export const initializeTranslator = async (): Promise<void> => {
   try {
-    const apiKey = import.meta.env.VITE_DEEPL_API_KEY;
-    if (!apiKey) {
-      console.error('No se ha proporcionado la clave API de DeepL');
-      return;
-    }
-    
     console.log('Servicio de traducción inicializado correctamente');
   } catch (error) {
     console.error('Error al inicializar el servicio de traducción:', error);
@@ -21,7 +15,7 @@ export const initializeTranslator = async (): Promise<void> => {
 };
 
 /**
- * Traduce un texto al idioma especificado usando la API REST de DeepL
+ * Traduce un texto al idioma especificado usando el API del servidor
  * @param text Texto a traducir
  * @param targetLang Código del idioma de destino (ej. 'ES', 'EN', 'FR')
  * @returns Texto traducido o el texto original si hay un error
@@ -47,33 +41,14 @@ export const translateText = async (text: string, targetLang: string): Promise<s
   }
   
   try {
-    // Convertir el código de idioma al formato que espera DeepL
-    const deeplLang = convertToDeeplLanguage(targetLang);
+    // Usar la API del servidor para traducir el texto
+    const response = await axios.post('/api/translate', {
+      text,
+      targetLang
+    });
     
-    // Obtener la clave API
-    const apiKey = import.meta.env.VITE_DEEPL_API_KEY;
-    if (!apiKey) {
-      console.error('No se ha proporcionado la clave API de DeepL');
-      return text;
-    }
-    
-    // Hacer la petición a la API de DeepL
-    const response = await axios.post(
-      'https://api-free.deepl.com/v2/translate',
-      {
-        text: [text],
-        target_lang: deeplLang
-      },
-      {
-        headers: {
-          'Authorization': `DeepL-Auth-Key ${apiKey}`,
-          'Content-Type': 'application/json'
-        }
-      }
-    );
-    
-    if (response.data && response.data.translations && response.data.translations.length > 0) {
-      const translatedText = response.data.translations[0].text;
+    if (response.data && response.data.translatedText) {
+      const translatedText = response.data.translatedText;
       
       // Guardar en caché
       if (!translationCache[targetLang]) {
@@ -89,29 +64,6 @@ export const translateText = async (text: string, targetLang: string): Promise<s
     console.error('Error al traducir texto:', error);
     return text;
   }
-};
-
-/**
- * Convierte los códigos de idioma al formato que espera DeepL
- */
-const convertToDeeplLanguage = (lang: string): string => {
-  // Normalizar el código de idioma (convertir a mayúsculas y eliminar guiones/regiones)
-  const normalizedLang = lang.toUpperCase().split('-')[0];
-  
-  // Mapa de códigos de idioma a códigos DeepL
-  const languageMap: { [key: string]: string } = {
-    'ES': 'ES',
-    'EN': 'EN-US',
-    'FR': 'FR',
-    'DE': 'DE',
-    'IT': 'IT',
-    'PT': 'PT-BR',
-    'RU': 'RU',
-    'JA': 'JA',
-    'ZH': 'ZH',
-  };
-  
-  return languageMap[normalizedLang] || 'EN-US';
 };
 
 /**
@@ -145,6 +97,35 @@ const isEnglish = (text: string): boolean => {
   
   // Si más del 15% de las palabras son comunes en inglés, asumimos que el texto ya está en inglés
   return englishWordCount > 0 && (englishWordCount / words.length) > 0.15;
+};
+
+/**
+ * Traduce un conjunto de textos en un lote
+ * @param texts Array de textos a traducir
+ * @param targetLang Código del idioma de destino
+ * @returns Array con los textos traducidos
+ */
+export const translateBulk = async (texts: string[], targetLang: string): Promise<string[]> => {
+  if (!texts || texts.length === 0) {
+    return [];
+  }
+  
+  try {
+    // Usar la API del servidor para traducir los textos en lote
+    const response = await axios.post('/api/translate/bulk', {
+      texts,
+      targetLang
+    });
+    
+    if (response.data && response.data.translatedTexts) {
+      return response.data.translatedTexts;
+    }
+    
+    return texts;
+  } catch (error) {
+    console.error('Error al traducir textos en lote:', error);
+    return texts;
+  }
 };
 
 /**
