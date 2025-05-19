@@ -180,63 +180,50 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </li>
               </ul>
               
-              <h2>2. How We Use Your Information</h2>
-              <p>We may use the information we collect about you for various purposes, including:</p>
+              <h2><TranslatedText text="2. How We Use Your Information" /></h2>
+              <TranslatedParagraph text="We may use the information we collect about you for various purposes, including:" />
               <ul>
-                <li>To provide and maintain our website</li>
-                <li>To improve our website and user experience</li>
-                <li>To monitor the usage of our website</li>
-                <li>To detect, prevent, and address technical issues</li>
-                <li>To analyze trends and better understand user preferences</li>
-                <li>To deliver relevant app recommendations and advertisements</li>
+                <li><TranslatedText text="To provide and maintain our website" /></li>
+                <li><TranslatedText text="To improve our website and user experience" /></li>
+                <li><TranslatedText text="To monitor the usage of our website" /></li>
+                <li><TranslatedText text="To detect, prevent, and address technical issues" /></li>
+                <li><TranslatedText text="To analyze trends and better understand user preferences" /></li>
+                <li><TranslatedText text="To deliver relevant app recommendations and advertisements" /></li>
               </ul>
               
-              <h2>3. Cookie Policy</h2>
-              <p>
-                Cookies are small text files that are placed on your device when you visit our website. We use cookies to 
-                enhance your browsing experience, analyze site traffic, and personalize content. You can set your browser 
-                to refuse all or some browser cookies, but this may affect the functionality of our website.
-              </p>
-              <p>
-                We use both session cookies (which expire when you close your browser) and persistent cookies (which remain 
-                on your device until you delete them or they expire).
-              </p>
+              <h2><TranslatedText text="3. Cookie Policy" /></h2>
+              <TranslatedParagraph
+                text="Cookies are small text files that are placed on your device when you visit our website. We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. You can set your browser to refuse all or some browser cookies, but this may affect the functionality of our website."
+              />
+              <TranslatedParagraph
+                text="We use both session cookies (which expire when you close your browser) and persistent cookies (which remain on your device until you delete them or they expire)."
+              />
               
-              <h2>4. Third-Party Services, Links and Charges</h2>
+              <h2><TranslatedText text="4. Third-Party Services, Links and Charges" /></h2>
+              <TranslatedParagraph
+                text="Our website contains links to third-party websites, applications, and services that are not owned or controlled by TopApps.store. We have no control over and assume no responsibility for the content, privacy policies, data collection practices, or conduct of any third-party websites, applications, or services."
+              />
               <p>
-                Our website contains links to third-party websites, applications, and services that are not owned or controlled 
-                by TopApps.store. We have no control over and assume no responsibility for the content, privacy policies, 
-                data collection practices, or conduct of any third-party websites, applications, or services.
-              </p>
-              <p>
-                <strong>IMPORTANT DISCLAIMER REGARDING THIRD-PARTY CHARGES:</strong> TopApps.store is NOT responsible for any fees, 
-                charges, subscriptions, or payments that you may incur when using third-party applications, websites, or services 
-                accessed through our platform. This includes but is not limited to:
+                <strong><TranslatedText text="IMPORTANT DISCLAIMER REGARDING THIRD-PARTY CHARGES:" /></strong> <TranslatedText text="TopApps.store is NOT responsible for any fees, charges, subscriptions, or payments that you may incur when using third-party applications, websites, or services accessed through our platform. This includes but is not limited to:" />
               </p>
               <ul>
-                <li>App purchase costs</li>
-                <li>In-app purchases</li>
-                <li>Subscription fees</li>
-                <li>Premium features</li>
-                <li>Any other monetary transactions</li>
+                <li><TranslatedText text="App purchase costs" /></li>
+                <li><TranslatedText text="In-app purchases" /></li>
+                <li><TranslatedText text="Subscription fees" /></li>
+                <li><TranslatedText text="Premium features" /></li>
+                <li><TranslatedText text="Any other monetary transactions" /></li>
               </ul>
-              <p>
-                We strongly encourage you to carefully review the terms of service, privacy policies, and payment terms of any 
-                third-party application or service before downloading, installing, or providing payment information. You are solely 
-                responsible for understanding and agreeing to any charges that may apply.
-              </p>
-              <p>
-                We may use third-party services such as Google Analytics to monitor and analyze the use of our website. These 
-                services may collect information sent by your browser as part of a web page request, including your IP address 
-                or other identifiers.
-              </p>
+              <TranslatedParagraph
+                text="We strongly encourage you to carefully review the terms of service, privacy policies, and payment terms of any third-party application or service before downloading, installing, or providing payment information. You are solely responsible for understanding and agreeing to any charges that may apply."
+              />
+              <TranslatedParagraph
+                text="We may use third-party services such as Google Analytics to monitor and analyze the use of our website. These services may collect information sent by your browser as part of a web page request, including your IP address or other identifiers."
+              />
               
-              <h2>5. Sponsored Content and Affiliate Marketing</h2>
-              <p>
-                TopApps.store contains sponsored content and participates in affiliate marketing programs, which means we may receive 
-                commissions on actions taken through our links (such as app downloads, purchases, or sign-ups). This helps us maintain 
-                our website and provide you with free access to app information.
-              </p>
+              <h2><TranslatedText text="5. Sponsored Content and Affiliate Marketing" /></h2>
+              <TranslatedParagraph
+                text="TopApps.store contains sponsored content and participates in affiliate marketing programs, which means we may receive commissions on actions taken through our links (such as app downloads, purchases, or sign-ups). This helps us maintain our website and provide you with free access to app information."
+              />
               <p>
                 <strong>Disclosure of Sponsored Content:</strong> We clearly label sponsored content with "AD" or "SPONSORED" tags. 
                 While we strive to work with reputable partners, TopApps.store is not responsible for the content, offers, products, 
