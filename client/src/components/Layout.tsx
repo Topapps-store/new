@@ -387,33 +387,30 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 text="In no event shall TopApps.store, its owners, directors, employees, or agents be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:"
               />
               <ul>
-                <li>Your access to or use of or inability to access or use the service</li>
-                <li>Any conduct or content of any third party on the service</li>
-                <li>Any content obtained from the service</li>
-                <li>Unauthorized access, use or alteration of your transmissions or content</li>
-                <li>The download or use of any application featured on our website</li>
-                <li>Any charges, fees, or subscriptions incurred through third-party services</li>
-                <li>Any products or services purchased or obtained through links on our site</li>
+                <li><TranslatedText text="Your access to or use of or inability to access or use the service" /></li>
+                <li><TranslatedText text="Any conduct or content of any third party on the service" /></li>
+                <li><TranslatedText text="Any content obtained from the service" /></li>
+                <li><TranslatedText text="Unauthorized access, use or alteration of your transmissions or content" /></li>
+                <li><TranslatedText text="The download or use of any application featured on our website" /></li>
+                <li><TranslatedText text="Any charges, fees, or subscriptions incurred through third-party services" /></li>
+                <li><TranslatedText text="Any products or services purchased or obtained through links on our site" /></li>
               </ul>
               
-              <h2>7. Rights Reserved</h2>
-              <p>
-                All trademarks, logos, and service marks displayed on TopApps.store are the property of their respective owners. 
-                References to any products, services, processes, or other information by trade name, trademark, manufacturer, supplier, 
-                or otherwise does not constitute or imply endorsement, sponsorship, or recommendation by us.
-              </p>
+              <h2><TranslatedText text="7. Rights Reserved" /></h2>
+              <TranslatedParagraph
+                text="All trademarks, logos, and service marks displayed on TopApps.store are the property of their respective owners. References to any products, services, processes, or other information by trade name, trademark, manufacturer, supplier, or otherwise does not constitute or imply endorsement, sponsorship, or recommendation by us."
+              />
               
-              <h2>8. Changes to This Disclaimer</h2>
-              <p>
-                We may update this Disclaimer from time to time. We will notify you of any changes by posting the new Disclaimer on 
-                this page and updating the "Last updated" date.
-              </p>
+              <h2><TranslatedText text="8. Changes to This Disclaimer" /></h2>
+              <TranslatedParagraph
+                text="We may update this Disclaimer from time to time. We will notify you of any changes by posting the new Disclaimer on this page and updating the 'Last updated' date."
+              />
               
               <div className="mt-8 border-t pt-4">
-                <p>For more information, please see our:</p>
+                <TranslatedParagraph text="For more information, please see our:" />
                 <ul className="flex flex-col space-y-2 text-blue-600">
-                  <li><a href="/terms-of-service" className="hover:underline">Terms of Service</a></li>
-                  <li><a href="/privacy-policy" className="hover:underline">Privacy Policy</a></li>
+                  <li><a href="/terms-of-service" className="hover:underline"><TranslatedText text="Terms of Service" /></a></li>
+                  <li><a href="/privacy-policy" className="hover:underline"><TranslatedText text="Privacy Policy" /></a></li>
                 </ul>
               </div>
             </div>
