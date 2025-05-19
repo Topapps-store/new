@@ -53,8 +53,8 @@ function Router() {
               <Route path="/apps/:appId" component={AppDetail} />
               <Route path="/categories/:categoryId" component={Category} />
               <Route path="/search" component={Search} />
-              <Route path="/terms" component={TermsOfService} />
-              <Route path="/privacy" component={PrivacyPolicy} />
+              <Route path="/terms-of-service" component={TermsOfService} />
+              <Route path="/privacy-policy" component={PrivacyPolicy} />
               <Route path="/disclaimer" component={Disclaimer} />
               <Route path="/contact" component={Contact} />
               <Route component={NotFound} />
