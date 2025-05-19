@@ -10,6 +10,7 @@ import { apiRequest } from "../lib/queryClient";
 import { Download, PlayCircle } from "lucide-react";
 import { processAffiliateUrl } from "../lib/url-utils";
 import DownloadButton from "../components/DownloadButton";
+import TranslatedText from "../components/TranslatedText";
 
 
 // Type guard to check if the app is of type AppLegacy
@@ -176,7 +177,7 @@ const AppDetail = () => {
                   alt={app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
-                <h1 className="text-xl font-bold text-center">{app.name}</h1>
+                <h1 className="text-xl font-bold text-center"><TranslatedText text={app.name} /></h1>
                 
                 <div className="flex items-center mt-1 mb-3">
                   <StarRating rating={app.rating} showScore={true} />
@@ -254,7 +255,7 @@ const AppDetail = () => {
               {activeTab === "description" && (
                 <div className="mb-3">
                   <p className="text-gray-700 whitespace-pre-line text-sm">
-                    {app.description}
+                    <TranslatedText text={app.description} />
                   </p>
                   
                   {/* Google Play download link */}
