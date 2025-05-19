@@ -448,17 +448,19 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <div className="flex flex-col md:flex-row md:justify-between">
                 <div className="space-x-4 mb-4 md:mb-0">
                   <a href="/terms-of-service" className="text-gray-400 hover:text-white cursor-pointer text-sm">
-                    Terms of Service
+                    <TranslatedText text="Terms of Service" />
                   </a>
                   <a href="/privacy-policy" className="text-gray-400 hover:text-white cursor-pointer text-sm">
-                    Privacy Policy
+                    <TranslatedText text="Privacy Policy" />
                   </a>
                   <a href="/disclaimer" className="text-gray-400 hover:text-white cursor-pointer text-sm">
-                    Disclaimer
+                    <TranslatedText text="Disclaimer" />
                   </a>
                 </div>
                 <div>
-                  <p className="text-gray-400 text-sm">© 2023 TopApps.store. All rights reserved.</p>
+                  <p className="text-gray-400 text-sm">
+                    <TranslatedText text="© 2023 TopApps.store. All rights reserved." />
+                  </p>
                 </div>
               </div>
             </div>
