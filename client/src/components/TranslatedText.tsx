@@ -1,71 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { useLanguage } from '../context/StaticLanguageContext';
+import React from 'react';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface TranslatedTextProps {
   text: string;
-  as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
   className?: string;
-  children?: React.ReactNode;
-  [key: string]: any;
 }
 
 /**
- * Componente para mostrar texto traducido con DeepL
- * Usa el hook useLanguage para traducir dinámicamente el texto
+ * Componente para mostrar un texto traducido
  */
-const TranslatedText: React.FC<TranslatedTextProps> = ({ 
-  text, 
-  as: Component = 'span',
-  className = '',
-  children,
-  ...props 
-}) => {
-  const { translateDynamic, language } = useLanguage();
-  const [translatedText, setTranslatedText] = useState<string>(text);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+const TranslatedText: React.FC<TranslatedTextProps> = ({ text, className }) => {
+  const { translatedText, isLoading } = useTranslation(text);
 
-  useEffect(() => {
-    let isMounted = true;
+  if (isLoading) {
+    return (
+      <span className={`animate-pulse inline-block ${className || ''}`}>
+        <span className="h-4 bg-gray-200 rounded w-full inline-block"></span>
+      </span>
+    );
+  }
 
-    const translateText = async () => {
-      setIsLoading(true);
-      try {
-        const result = await translateDynamic(text);
-        if (isMounted) {
-          setTranslatedText(result);
-        }
-      } catch (error) {
-        console.error('Error al traducir texto:', error);
-        if (isMounted) {
-          setTranslatedText(text); // Fallback al texto original en caso de error
-        }
-      } finally {
-        if (isMounted) {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    // Solo traducir si el texto ha cambiado o el idioma ha cambiado
-    if (text) {
-      translateText();
-    } else {
-      setTranslatedText('');
-    }
-
-    return () => {
-      isMounted = false;
-    };
-  }, [text, language, translateDynamic]);
-
-  // Si hay children, usarlos como contenido (para soporte JSX)
-  const content = children || translatedText || text;
-
-  return (
-    <Component className={`${className} ${isLoading ? 'opacity-70' : ''}`} {...props}>
-      {content}
-    </Component>
-  );
+  return <span className={className || ''}>{translatedText}</span>;
 };
 
 export default TranslatedText;
