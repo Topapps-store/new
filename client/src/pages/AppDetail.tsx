@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "wouter";
-import StarRating from "@/components/StarRating";
+import StarRating from "../components/StarRating";
 import { useState } from "react";
 import { App, AppLegacy, AffiliateLink } from "@shared/schema";
-import AppCard from "@/components/AppCard";
-import { Badge } from "@/components/ui/badge";
+import AppCard from "../components/AppCard";
+import { Badge } from "../components/ui/badge";
 import { useLanguage } from "../context/StaticLanguageContext";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest } from "../lib/queryClient";
 import { Download, PlayCircle } from "lucide-react";
-import { processAffiliateUrl } from "@/lib/url-utils";
-import DownloadButton from "@/components/DownloadButton";
+import { processAffiliateUrl } from "../lib/url-utils";
+import DownloadButton from "../components/DownloadButton";
 
 
 // Type guard to check if the app is of type AppLegacy

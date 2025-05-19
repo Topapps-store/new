@@ -4,7 +4,7 @@ import AppCard from "../components/AppCard";
 import CategoryCard from "../components/CategoryCard";
 import SponsoredBanner from "../components/SponsoredBanner";
 import { useState } from "react";
-import { App, Category } from "@shared/schema";
+import { App, Category, AppLegacy, CategoryLegacy } from "@shared/schema";
 import { useLanguage } from "../context/StaticLanguageContext";
 
 const Home = () => {
