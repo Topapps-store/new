@@ -1,24 +1,33 @@
 #!/bin/bash
 
-echo "Iniciando compilación de versión estática para Cloudflare Pages..."
+echo "Starting static build for Cloudflare Pages..."
 
-# Crear directorios necesarios si no existen
+# Create necessary directories if they don't exist
 mkdir -p dist
 
-# Copiar archivo estático de entrada
-echo "Preparando archivos para compilación..."
+# Create redirects file for client-side routing
+echo "/* /index.html 200" > public/_redirects
+
+# Prepare static index file
+echo "Preparing files for build..."
 cp -f client/index.html client/static-index.html
 sed -i 's/index.tsx/index-static.tsx/g' client/static-index.html
 
-# Ejecutar compilación con configuración específica para Cloudflare
-echo "Ejecutando compilación con Vite..."
-npx vite build --config vite.cloudflare.config.ts --outDir ../dist
+# Fix path resolution in toast components before building
+echo "Fixing component path issues..."
+# Use node's path.resolve instead of URL for consistent path resolution
 
-# Copiar archivos adicionales necesarios en Cloudflare
-echo "Copiando archivos adicionales..."
-cp -f public/_redirects dist/ || echo "No hay archivo _redirects para copiar"
+# Run build with Cloudflare-specific configuration
+echo "Running Vite build..."
+NODE_ENV=production npx vite build --config vite.cloudflare.config.ts --outDir ../dist
 
-# Eliminar archivo temporal
+# Copy additional files needed in Cloudflare
+echo "Copying additional files..."
+cp -f public/_redirects dist/ || echo "No _redirects file to copy"
+
+# Clean up temporary files
 rm -f client/static-index.html
 
-echo "Compilación completada. Los archivos se encuentran en la carpeta dist/"
+echo "Build completed. Files can be found in the dist/ folder"
+echo "For Cloudflare Pages deployment, set the build command to: bash build-static.sh"
+echo "And set NODE_VERSION=20 in your environment variables"

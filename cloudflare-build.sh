@@ -1,34 +1,29 @@
 #!/bin/bash
-set -e
 
-echo "🚀 Iniciando construcción para Cloudflare Pages..."
+# This script fixes path resolution issues for Cloudflare Pages deployment
 
-# Configurar entorno
-export NODE_ENV=production
+echo "Starting Cloudflare-specific build process..."
 
-# Instalar dependencias
-echo "📦 Instalando dependencias..."
-npm install
+# Step 1: Ensure dist directory exists
+echo "Preparing build directory..."
+mkdir -p dist
 
-# Construir el frontend
-echo "🏗️ Construyendo el frontend..."
-npm run build
+# Step 2: Create a copy of the index.html with modified paths
+echo "Creating static index file..."
+cp -f client/index.html client/static-cloudflare.html
+sed -i 's/index.tsx/index-static.tsx/g' client/static-cloudflare.html
 
-# Copiar _redirects para SPA routing
-echo "📋 Configurando redirecciones SPA..."
-cat > dist/public/_redirects << EOL
-/api/*  https://topapps.replit.app/api/:splat  200
-/*      /index.html                            200
-EOL
+# Step 3: Run the build with direct relative paths
+echo "Starting build process with explicit paths..."
+npx vite build --config vite.cloudflare.config.ts --outDir ../dist
 
-# Crear un archivo nojekyll para evitar problemas con GitHub Pages
-touch dist/public/.nojekyll
+# Step 4: Add necessary Cloudflare files
+echo "Adding Cloudflare configuration files..."
+echo "/* /index.html 200" > dist/_redirects
 
-echo "✅ Construcción completada para Cloudflare Pages!"
-echo "   Directorio de salida: dist/public"
-echo ""
-echo "Configuración recomendada para Cloudflare Pages:"
-echo "- Build command: ./cloudflare-build.sh"
-echo "- Build output directory: dist/public"
-echo ""
-echo "NOTA: Esta configuración redirigirá todas las solicitudes API a tu instancia de Replit."
+# Step 5: Clean up temporary files
+echo "Cleaning up..."
+rm -f client/static-cloudflare.html
+
+echo "Build completed. Files are in the 'dist' directory."
+echo "Deploy these files to Cloudflare Pages for a successful deployment."

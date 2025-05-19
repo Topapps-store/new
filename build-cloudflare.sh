@@ -1,119 +1,35 @@
 #!/bin/bash
-set -e
 
-# Configurar para producción
-echo "🔧 Configurando para despliegue en Cloudflare..."
-export NODE_ENV=production
+# Script to build the static version for Cloudflare Pages deployment
+echo "Starting Cloudflare Pages build process..."
 
-# Instalar dependencias
-echo "📦 Instalando dependencias..."
-npm install
+# Create environment variable file for Cloudflare
+echo "Creating .env file for Cloudflare..."
+echo "VITE_API_BASE_URL=https://topapps-store.replit.app/api" > .env.production
 
-# Construir el frontend
-echo "🏗️ Construyendo aplicación frontend..."
-npm run build
+# Update wrangler.toml with proper configuration
+echo "Configuring wrangler.toml for Pages deployment..."
+cat > wrangler.toml << EOF
+# Cloudflare Pages configuration
+name = "topapps-store"
+compatibility_date = "2023-12-01"
 
-# Crear directorio para funciones
-echo "🔧 Preparando funciones de Cloudflare..."
-mkdir -p functions
+[build]
+command = "bash build-static.sh"
+output_dir = "dist"
 
-# Crear una función simple para verificar que Cloudflare Functions funciona
-echo "✨ Creando función de prueba..."
-cat > functions/hello.js << EOL
-// Función de prueba para verificar que Cloudflare Functions está funcionando
-export function onRequest(context) {
-  return new Response(JSON.stringify({
-    message: "Hello from Cloudflare Functions!",
-    timestamp: new Date().toISOString()
-  }), {
-    headers: { "Content-Type": "application/json" }
-  });
-}
-EOL
+[site]
+bucket = "./dist"
+EOF
 
-# Crear una función para redirigir solicitudes API
-echo "🔄 Creando función de redirección API..."
-cat > functions/api/[[route]].js << EOL
-// Función para redirigir solicitudes API a la instancia de Replit
-export async function onRequest(context) {
-  const url = new URL(context.request.url);
-  const path = url.pathname;
-  
-  // URL de la API en Replit
-  const apiBaseUrl = "https://topapps.replit.app";
-  const apiUrl = \`\${apiBaseUrl}\${path}\${url.search}\`;
-  
-  try {
-    // Preparar opciones para la solicitud
-    const options = {
-      method: context.request.method,
-      headers: new Headers(context.request.headers),
-      redirect: "follow"
-    };
-    
-    // Agregar cuerpo para métodos que lo requieren
-    if (!["GET", "HEAD"].includes(context.request.method)) {
-      options.body = await context.request.arrayBuffer();
-    }
-    
-    // Hacer la solicitud a Replit
-    const response = await fetch(apiUrl, options);
-    
-    // Preparar la respuesta
-    const responseHeaders = new Headers(response.headers);
-    responseHeaders.set("Access-Control-Allow-Origin", "*");
-    
-    return new Response(await response.arrayBuffer(), {
-      status: response.status,
-      headers: responseHeaders
-    });
-  } catch (error) {
-    return new Response(JSON.stringify({
-      error: "Error al conectar con la API",
-      details: error.message
-    }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    });
-  }
-}
-EOL
+# Fix path issues in _redirects file
+echo "Creating _redirects file..."
+mkdir -p public
+echo "/* /index.html 200" > public/_redirects
 
-# Crear un archivo de rutas mínimo
-echo "🗺️ Creando configuración de rutas..."
-cat > functions/_routes.json << EOL
-{
-  "version": 1,
-  "include": ["/*"],
-  "exclude": []
-}
-EOL
+# Run the static build with our fixed configuration
+echo "Building static version..."
+npm run build:static
 
-# Crear archivo para manejo CORS
-echo "🔒 Configurando CORS..."
-cat > functions/_middleware.js << EOL
-export async function onRequest(context) {
-  if (context.request.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        "Access-Control-Max-Age": "86400"
-      }
-    });
-  }
-  
-  return context.next();
-}
-EOL
-
-# Crear archivo _redirects para manejo SPA
-echo "⚙️ Configurando redirecciones SPA..."
-mkdir -p dist
-cat > dist/_redirects << EOL
-/*    /index.html   200
-EOL
-
-echo "✅ Build para Cloudflare completado con éxito!"
+echo "Build completed successfully. Files are in the 'dist' directory."
+echo "Upload these files to Cloudflare Pages for deployment."

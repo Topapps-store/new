@@ -1,25 +1,28 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { fileURLToPath, URL } from 'url'
-import { resolve } from 'path'
+import { fileURLToPath } from 'url'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  root: './client', // Establecer la raíz del proyecto en la carpeta client
+  root: './client', // Set the project root in the client folder
   plugins: [react()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src/components', import.meta.url)),
-      '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
-      '@lib': fileURLToPath(new URL('./src/lib', import.meta.url)),
-      '@shared': fileURLToPath(new URL('../shared', import.meta.url)),
-      '@hooks': fileURLToPath(new URL('./src/hooks', import.meta.url)),
-      '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
-      '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
+      // Using path.resolve for more consistent path resolution in Cloudflare environment
+      '@': path.resolve(__dirname, 'client/src/components'),
+      '@components': path.resolve(__dirname, 'client/src/components'),
+      '@lib': path.resolve(__dirname, 'client/src/lib'),
+      '@shared': path.resolve(__dirname, 'shared'),
+      '@hooks': path.resolve(__dirname, 'client/src/hooks'),
+      '@pages': path.resolve(__dirname, 'client/src/pages'),
+      '@assets': path.resolve(__dirname, 'client/src/assets'),
+      // Add explicit path resolution for UI components to avoid the duplicated path error
+      'components': path.resolve(__dirname, 'client/src/components')
     }
   },
   build: {
-    outDir: '../dist', // La carpeta de salida relativa a la raíz (client)
+    outDir: '../dist', // Output folder relative to root (client)
     emptyOutDir: true,
     minify: true,
     sourcemap: false,
