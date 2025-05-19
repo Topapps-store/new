@@ -1,8 +1,5 @@
 {
-  "pendingUrls": [
-    "https://play.google.com/store/search?q=paybyphone&c=apps",
-    "https://play.google.com/store/search?q=vinted&c=apps"
-  ],
+  "pendingUrls": [],
   "processedUrls": [
     "https://play.google.com/store/apps/details?id=com.ubercab&hl=es",
     "https://play.google.com/store/apps/details?id=com.pdf.editor.viewer.pdfreader.pdfviewer&hl=ca",
@@ -82,6 +79,8 @@
     "https://play.google.com/store/apps/details?id=com.google.android.apps.translate",
     "https://play.google.com/store/apps/details?id=digifit.android.virtuagym.pro.trainingtime",
     "https://play.google.com/store/apps/details?id=com.tinder",
+    "https://play.google.com/store/apps/details?id=com.paybyphone",
+    "https://play.google.com/store/apps/details?id=fr.vinted",
     "https://play.google.com/store/apps/details?id=com.enel.mobile.recharge2",
     "https://play.google.com/store/apps/details?id=com.enredats.electromaps",
     "https://play.google.com/store/apps/details?id=com.charge.and.parking",
