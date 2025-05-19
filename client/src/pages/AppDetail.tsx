@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "wouter";
 import StarRating from "../components/StarRating";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { App, AppLegacy, AffiliateLink } from "@shared/schema";
 import AppCard from "../components/AppCard";
 import { Badge } from "../components/ui/badge";
@@ -29,6 +29,11 @@ const AppDetail = () => {
   const { appId } = useParams();
   const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info">("description");
   const { t } = useLanguage();
+  
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
     queryKey: [`/api/apps/${appId}`],
