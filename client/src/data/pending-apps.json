@@ -1,5 +1,8 @@
 {
   "pendingUrls": [
+    "https://play.google.com/store/apps/details?id=com.skype.raider"
+  ],
+  "processedUrls": [
     "https://play.google.com/store/apps/details?id=com.ubercab&hl=es",
     "https://play.google.com/store/apps/details?id=com.pdf.editor.viewer.pdfreader.pdfviewer&hl=ca",
     "https://play.google.com/store/apps/details?id=com.ubercab.eats",
@@ -68,7 +71,6 @@
     "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe",
     "https://play.google.com/store/apps/details?id=com.amazon.kindle",
     "https://play.google.com/store/apps/details?id=com.discord",
-    "https://play.google.com/store/apps/details?id=com.skype.raider",
     "https://play.google.com/store/apps/details?id=org.telegram.messenger",
     "https://play.google.com/store/apps/details?id=com.microsoft.office.outlook",
     "https://play.google.com/store/apps/details?id=com.google.android.apps.photos",
@@ -79,6 +81,5 @@
     "https://play.google.com/store/apps/details?id=com.google.android.apps.translate",
     "https://play.google.com/store/apps/details?id=digifit.android.virtuagym.pro.trainingtime",
     "https://play.google.com/store/apps/details?id=com.tinder"
-  ],
-  "processedUrls": []
+  ]
 }
