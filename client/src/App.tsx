@@ -15,6 +15,7 @@ import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Disclaimer from "./pages/Disclaimer";
 import Contact from "./pages/Contact";
+import TestPage from "./pages/TestPage";
 import Search from "./pages/Search";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -57,6 +58,7 @@ function Router() {
               <Route path="/privacy-policy" component={PrivacyPolicy} />
               <Route path="/disclaimer" component={Disclaimer} />
               <Route path="/contact" component={Contact} />
+              <Route path="/test" component={TestPage} />
               <Route component={NotFound} />
             </Switch>
           </Layout>

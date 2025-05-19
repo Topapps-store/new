@@ -66,15 +66,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="border-t border-gray-700 pt-6">
               <div className="flex flex-col md:flex-row md:justify-between">
                 <div className="space-x-4 mb-4 md:mb-0">
-                  <Link href="/terms-of-service">
-                    <span className="text-gray-400 hover:text-white cursor-pointer text-sm">Terms of Service</span>
-                  </Link>
-                  <Link href="/privacy-policy">
-                    <span className="text-gray-400 hover:text-white cursor-pointer text-sm">Privacy Policy</span>
-                  </Link>
-                  <Link href="/disclaimer">
-                    <span className="text-gray-400 hover:text-white cursor-pointer text-sm">Disclaimer</span>
-                  </Link>
+                  <a href="/terms-of-service" className="text-gray-400 hover:text-white cursor-pointer text-sm">
+                    Terms of Service
+                  </a>
+                  <a href="/privacy-policy" className="text-gray-400 hover:text-white cursor-pointer text-sm">
+                    Privacy Policy
+                  </a>
+                  <a href="/disclaimer" className="text-gray-400 hover:text-white cursor-pointer text-sm">
+                    Disclaimer
+                  </a>
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">© 2023 TopApps.store. All rights reserved.</p>
