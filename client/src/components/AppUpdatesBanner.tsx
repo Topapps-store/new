@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import type { AppLegacy, AppVersionHistory } from '@shared/schema';
 
-import { Button } from '@/components/ui/button';
+import { Button } from './ui/button';
 import { X, Bell, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 
 type AppUpdate = {
   app: AppLegacy;

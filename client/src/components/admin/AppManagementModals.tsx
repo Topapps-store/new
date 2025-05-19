@@ -1,14 +1,14 @@
 import React, { useState, useRef } from 'react';
-import { useLanguage } from '@/context/LanguageContext';
-import { useToast } from '@/hooks/use-toast';
-import { queryClient } from '@/lib/queryClient';
+import { useLanguage } from '../../context/LanguageContext';
+import { useToast } from '../../hooks/use-toast';
+import { queryClient } from '../../lib/queryClient';
 import { useQuery } from '@tanstack/react-query';
 import { AppLegacy } from '@shared/schema';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+import { Textarea } from '../ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import {
   Dialog,
   DialogContent,
@@ -16,7 +16,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
+} from '../ui/dialog';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -26,7 +26,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
+} from '../ui/alert-dialog';
 
 interface Category {
   id: string;

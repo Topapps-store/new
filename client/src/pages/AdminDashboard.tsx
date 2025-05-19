@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { useAdmin, AdminGuard } from '@/context/AdminContext';
-import { useTheme } from '@/context/ThemeContext';
+import { useAdmin, AdminGuard } from '../context/AdminContext';
+import { useTheme } from '../context/ThemeContext';
 import { useQuery } from '@tanstack/react-query';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useToast } from '@/hooks/use-toast';
-import { useLanguage } from '@/context/LanguageContext';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { useToast } from '../hooks/use-toast';
+import { useLanguage } from '../context/LanguageContext';
 import { Loader2, LogOut, BarChart3, AppWindow, Link as LinkIcon, Settings, RefreshCw } from 'lucide-react';
 import type { AppLegacy, AffiliateLink } from '@shared/schema';
-import { AppUpdatesTab } from '@/components/admin/AppUpdatesTab';
+import { AppUpdatesTab } from '../components/admin/AppUpdatesTab';
 import { 
   AddAppModal, 
   EditAppModal, 
   LogoUploadModal, 
   DeleteAppDialog 
-} from '@/components/admin/AppManagementModals';
-import { SimpleThemeToggle } from '@/components/admin/ThemeToggle';
+} from '../components/admin/AppManagementModals';
+import { SimpleThemeToggle } from '../components/admin/ThemeToggle';
 
 type AdminTab = 'dashboard' | 'apps' | 'affiliate-links' | 'app-updates' | 'settings';
 

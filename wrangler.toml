@@ -16,12 +16,11 @@ route = { pattern = "topapps.store/*", zone_name = "topapps.store" }
 workers_dev = false
 
 [site]
-bucket = "client/dist"
+bucket = "dist"
 
 [build]
-command = "./build.sh"
-upload.format = "service-worker"
-pages_build_output_dir = "dist/public"
+command = "./build-static.sh"
+output_dir = "dist"
 
 # Add KV Namespace or D1 Database if needed
 # [[kv_namespaces]]

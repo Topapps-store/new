@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useLocation } from 'wouter';
-import { useToast } from '@/hooks/use-toast';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { useLanguage } from '@/context/LanguageContext';
-import { useTheme } from '@/context/ThemeContext';
-import { useAdmin } from '@/context/AdminContext';
-import { SimpleThemeToggle } from '@/components/admin/ThemeToggle';
+import { useToast } from '../hooks/use-toast';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
+import { Alert, AlertDescription } from '../components/ui/alert';
+import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
+import { useAdmin } from '../context/AdminContext';
+import { SimpleThemeToggle } from '../components/admin/ThemeToggle';
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('');
