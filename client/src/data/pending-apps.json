@@ -1,6 +1,7 @@
 {
   "pendingUrls": [
-    "https://play.google.com/store/apps/details?id=com.skype.raider"
+    "https://play.google.com/store/search?q=paybyphone&c=apps",
+    "https://play.google.com/store/search?q=vinted&c=apps"
   ],
   "processedUrls": [
     "https://play.google.com/store/apps/details?id=com.ubercab&hl=es",
@@ -80,6 +81,24 @@
     "https://play.google.com/store/apps/details?id=com.google.android.keep",
     "https://play.google.com/store/apps/details?id=com.google.android.apps.translate",
     "https://play.google.com/store/apps/details?id=digifit.android.virtuagym.pro.trainingtime",
-    "https://play.google.com/store/apps/details?id=com.tinder"
+    "https://play.google.com/store/apps/details?id=com.tinder",
+    "https://play.google.com/store/apps/details?id=com.enel.mobile.recharge2",
+    "https://play.google.com/store/apps/details?id=com.enredats.electromaps",
+    "https://play.google.com/store/apps/details?id=com.charge.and.parking",
+    "https://play.google.com/store/apps/details?id=com.myklarnamobile",
+    "https://play.google.com/store/apps/details?id=com.xitaso.plugsurfing",
+    "https://play.google.com/store/apps/details?id=com.addenergie.circuitelectrique",
+    "https://play.google.com/store/apps/details?id=me.lyft.android",
+    "https://play.google.com/store/apps/details?id=com.addenergie.reseauver",
+    "https://play.google.com/store/apps/details?id=com.etecnic.evchargenew",
+    "https://play.google.com/store/apps/details?id=com.charge.and.parking",
+    "https://play.google.com/store/apps/details?id=com.thenewmotion.thenewmotion",
+    "https://play.google.com/store/apps/details?id=com.smartmio",
+    "https://play.google.com/store/apps/details?id=com.mo2o.vueling",
+    "https://play.google.com/store/apps/details?id=es.easycharger.app",
+    "https://play.google.com/store/apps/details?id=es.wenea.app.client",
+    "https://play.google.com/store/apps/details?id=com.app.bart",
+    "https://play.google.com/store/apps/details?id=com.cabify.rider",
+    "https://play.google.com/store/apps/details?id=com.rucksack.barcodescannerforwalmart"
   ]
 }
