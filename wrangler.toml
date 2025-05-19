@@ -1,15 +1,10 @@
+# Cloudflare Pages configuration
 name = "topapps-store"
 compatibility_date = "2023-12-01"
-
-# Configuration for Cloudflare Pages
-[site]
-bucket = "dist"
 
 [build]
 command = "bash build-static.sh"
 output_dir = "dist"
 
-# Environment variables (provide these in the Cloudflare dashboard)
-# - NODE_VERSION: 20
-# - VITE_API_BASE_URL: https://topapps-store.replit.app/api
-
+[site]
+bucket = "./dist"
