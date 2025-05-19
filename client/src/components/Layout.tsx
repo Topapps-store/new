@@ -91,17 +91,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 text="The materials appearing on TopApps.store could include technical, typographical, or photographic errors. TopApps.store does not warrant that any of the materials on its website are accurate, complete or current. TopApps.store may make changes to the materials contained on its website at any time without notice. However TopApps.store does not make any commitment to update the materials."
               />
               
-              <h2>6. Links and Third-Party Services</h2>
+              <h2><TranslatedText text="6. Links and Third-Party Services" /></h2>
               <p>
                 TopApps.store has not reviewed all of the sites linked to its website and is not responsible for the contents 
                 of any such linked site. The inclusion of any link does not imply endorsement by TopApps.store of the site. 
                 Use of any such linked website is at the user's own risk.
               </p>
               <p>
-                <strong>Third-Party Liability and Charges:</strong> By using TopApps.store, you expressly release us from any and all liability 
-                arising from your use of any third-party website, application, or service accessed through links on our site. We 
-                have no control over third parties and assume no responsibility for any actions, policies, or practices of any 
-                third parties you may encounter through our site.
+                <strong><TranslatedText text="Third-Party Liability and Charges:" /></strong> <TranslatedText text="By using TopApps.store, you expressly release us from any and all liability arising from your use of any third-party website, application, or service accessed through links on our site. We have no control over third parties and assume no responsibility for any actions, policies, or practices of any third parties you may encounter through our site." />
               </p>
               <p>
                 <strong>IMPORTANT:</strong> TopApps.store is NOT responsible for any charges, subscriptions, or payments that you may incur 
