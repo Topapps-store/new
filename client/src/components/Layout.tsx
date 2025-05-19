@@ -425,9 +425,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex flex-col space-y-6">
             <div>
               <h3 className="text-lg font-bold mb-4">TopApps.store</h3>
-              <p className="text-gray-400 text-sm max-w-xl">
-                Discover and download the best mobile applications all in one place. We aim to provide a simple way for you to find quality apps for your device.
-              </p>
+              <TranslatedParagraph
+                text="Discover and download the best mobile applications all in one place. We aim to provide a simple way for you to find quality apps for your device."
+                className="text-gray-400 text-sm max-w-xl"
+              />
             </div>
 
             <div className="border-t border-gray-700 pt-6">
@@ -453,7 +454,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
             <div className="border-t border-gray-700 pt-6">
               <p className="text-gray-400 text-xs max-w-3xl mx-auto text-center">
-                <strong>Affiliate Disclosure:</strong> TopApps.store is supported by our users. Some links on our site are affiliate links, which means we may earn a commission if you click on them and make a purchase. This helps us maintain and improve our service. All recommendations are based on genuine app quality and user experience.
+                <strong><TranslatedText text="Affiliate Disclosure:" /></strong> <TranslatedText text="TopApps.store is supported by our users. Some links on our site are affiliate links, which means we may earn a commission if you click on them and make a purchase. This helps us maintain and improve our service. All recommendations are based on genuine app quality and user experience." />
               </p>
             </div>
           </div>
