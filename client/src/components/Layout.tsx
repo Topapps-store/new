@@ -78,6 +78,80 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </ul>
             </div>
           </div>
+        ) : location === "/privacy-policy" ? (
+          <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 my-8">
+            <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
+            
+            <div className="prose max-w-none">
+              <p>Last updated: May 19, 2025</p>
+              
+              <p>
+                At TopApps.store, we value your privacy and are committed to protecting your personal data. 
+                This Privacy Policy explains how we collect, use, and safeguard your information when you 
+                visit our website.
+              </p>
+              
+              <h2>1. Information We Collect</h2>
+              <p>We may collect several types of information from and about users of our website, including:</p>
+              <ul>
+                <li>
+                  <strong>Usage Data:</strong> Information about how you access and use our website, including your IP 
+                  address, browser type, device information, pages visited, time spent on those pages, and referral sources.
+                </li>
+                <li>
+                  <strong>Cookies and Tracking Data:</strong> We use cookies and similar tracking technologies to track 
+                  activity on our website and hold certain information to improve your browsing experience.
+                </li>
+                <li>
+                  <strong>App Usage Data:</strong> Information about which apps you view, download, or interact with on our platform.
+                </li>
+              </ul>
+              
+              <h2>2. How We Use Your Information</h2>
+              <p>We may use the information we collect about you for various purposes, including to:</p>
+              <ul>
+                <li>Provide, maintain, and improve our website and services</li>
+                <li>Personalize your experience and deliver content relevant to your interests</li>
+                <li>Analyze how users interact with our website to improve functionality and user experience</li>
+                <li>Communicate with you about updates, promotions, or other information related to our services</li>
+                <li>Detect, prevent, and address technical issues or security breaches</li>
+              </ul>
+            </div>
+          </div>
+        ) : location === "/disclaimer" ? (
+          <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 my-8">
+            <h1 className="text-3xl font-bold mb-6">Disclaimer</h1>
+            
+            <div className="prose max-w-none">
+              <p>Last updated: May 19, 2025</p>
+              
+              <h2>1. Website Content</h2>
+              <p>
+                The information provided on TopApps.store is for general informational purposes only. All information on the site 
+                is provided in good faith, however, we make no representation or warranty of any kind, express or implied, regarding 
+                the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the site.
+              </p>
+              
+              <h2>2. External Links and Third Parties</h2>
+              <p>
+                TopApps.store may contain links to external websites, download sources, and third-party services that are not 
+                provided, maintained by, or in any way affiliated with us. We do not guarantee the accuracy, relevance, 
+                timeliness, or completeness of any information on these external websites or services.
+              </p>
+              
+              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4">
+                <p className="font-bold text-xl mb-2">IMPORTANT DISCLAIMER</p>
+                <p className="mb-2">
+                  TopApps.store is <span className="font-bold uppercase">NOT</span> responsible for the actions, content, privacy practices, or 
+                  terms of service of any third-party applications, websites, or services linked from or featured on our website.
+                </p>
+                <p>
+                  <span className="font-bold">We do not endorse, control, or assume responsibility for any app, service, or content hosted by third parties.</span> 
+                  Users download and use third-party applications at their own risk and discretion.
+                </p>
+              </div>
+            </div>
+          </div>
         ) : (
           children
         )}
