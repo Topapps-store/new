@@ -16,6 +16,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Disclaimer from "./pages/Disclaimer";
 import Contact from "./pages/Contact";
 import TestPage from "./pages/TestPage";
+import HardcodedTerms from "./pages/HardcodedTerms";
 import Search from "./pages/Search";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -54,7 +55,7 @@ function Router() {
               <Route path="/apps/:appId" component={AppDetail} />
               <Route path="/categories/:categoryId" component={Category} />
               <Route path="/search" component={Search} />
-              <Route path="/terms-of-service" component={TermsOfService} />
+              <Route path="/terms-of-service" component={HardcodedTerms} />
               <Route path="/privacy-policy" component={PrivacyPolicy} />
               <Route path="/disclaimer" component={Disclaimer} />
               <Route path="/contact" component={Contact} />
