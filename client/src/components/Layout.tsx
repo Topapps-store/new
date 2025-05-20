@@ -24,28 +24,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
             <SearchBar />
           </div>
-
-          <nav className="flex items-center space-x-4">
-            <Link href="/apps/all">
-              <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/apps/all" ? "text-primary" : ""}`}>
-                <i className="fas fa-mobile-alt mr-1"></i>
-                <span className="hidden md:inline">{t('nav.apps')}</span>
-              </div>
-            </Link>
-            <Link href="/categories/games">
-              <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/categories/games" ? "text-primary" : ""}`}>
-                <i className="fas fa-gamepad mr-1"></i>
-                <span className="hidden md:inline">{t('nav.games')}</span>
-              </div>
-            </Link>
-            <Link href="/apps/add">
-              <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/apps/add" ? "text-primary" : ""}`}>
-                <i className="fas fa-plus-circle mr-1"></i>
-                <span className="hidden md:inline">{t('nav.addApp')}</span>
-              </div>
-            </Link>
-
-          </nav>
         </div>
 
         <div className="md:hidden px-4 pb-3">
@@ -56,42 +34,42 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className="container mx-auto px-4 py-6 flex-grow">
         {location === "/terms-of-service" ? (
           <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 my-8">
-            <h1 className="text-3xl font-bold mb-6"><TranslatedText text="Terms of Service" /></h1>
+            <h1 className="text-3xl font-bold mb-6">Terms of Service</h1>
             
             <div className="prose max-w-none">
-              <p><TranslatedText text="Last updated: May 19, 2025" /></p>
+              <p>Last updated: May 19, 2025</p>
               
-              <h2><TranslatedText text="1. Agreement to Terms" /></h2>
-              <TranslatedParagraph
-                text="By accessing our website TopApps.store, you agree to be bound by these Terms and Conditions and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site."
-              />
+              <h2>1. Agreement to Terms</h2>
+              <p>
+                By accessing our website TopApps.store, you agree to be bound by these Terms and Conditions and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
+              </p>
               
-              <h2><TranslatedText text="2. Use License" /></h2>
-              <TranslatedParagraph
-                text="Permission is granted to temporarily download one copy of the materials on TopApps.store for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:"
-              />
+              <h2>2. Use License</h2>
+              <p>
+                Permission is granted to temporarily download one copy of the materials on TopApps.store for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+              </p>
               <ul>
-                <li><TranslatedText text="Modify or copy the materials" /></li>
-                <li><TranslatedText text="Use the materials for any commercial purpose" /></li>
-                <li><TranslatedText text="Attempt to decompile or reverse engineer any software contained on TopApps.store" /></li>
-                <li><TranslatedText text="Remove any copyright or other proprietary notations from the materials" /></li>
-                <li><TranslatedText text="Transfer the materials to another person or 'mirror' the materials on any other server" /></li>
+                <li>Modify or copy the materials</li>
+                <li>Use the materials for any commercial purpose</li>
+                <li>Attempt to decompile or reverse engineer any software contained on TopApps.store</li>
+                <li>Remove any copyright or other proprietary notations from the materials</li>
+                <li>Transfer the materials to another person or 'mirror' the materials on any other server</li>
               </ul>
               
-              <h2><TranslatedText text="3. Disclaimer" /></h2>
-              <TranslatedParagraph
-                text="The materials on TopApps.store are provided on an 'as is' basis. TopApps.store makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights."
-              />
+              <h2>3. Disclaimer</h2>
+              <p>
+                The materials on TopApps.store are provided on an 'as is' basis. TopApps.store makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+              </p>
               
-              <h2><TranslatedText text="4. Limitations" /></h2>
-              <TranslatedParagraph
-                text="In no event shall TopApps.store or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on TopApps.store, even if TopApps.store or a TopApps.store authorized representative has been notified orally or in writing of the possibility of such damage."
-              />
+              <h2>4. Limitations</h2>
+              <p>
+                In no event shall TopApps.store or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on TopApps.store, even if TopApps.store or a TopApps.store authorized representative has been notified orally or in writing of the possibility of such damage.
+              </p>
               
-              <h2><TranslatedText text="5. Accuracy of Materials" /></h2>
-              <TranslatedParagraph
-                text="The materials appearing on TopApps.store could include technical, typographical, or photographic errors. TopApps.store does not warrant that any of the materials on its website are accurate, complete or current. TopApps.store may make changes to the materials contained on its website at any time without notice. However TopApps.store does not make any commitment to update the materials."
-              />
+              <h2>5. Accuracy of Materials</h2>
+              <p>
+                The materials appearing on TopApps.store could include technical, typographical, or photographic errors. TopApps.store does not warrant that any of the materials on its website are accurate, complete or current. TopApps.store may make changes to the materials contained on its website at any time without notice. However TopApps.store does not make any commitment to update the materials.
+              </p>
               
               <h2><TranslatedText text="6. Links and Third-Party Services" /></h2>
               <p>
