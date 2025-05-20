@@ -24,26 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <SearchBar />
           </div>
 
-          <nav className="flex items-center space-x-4">
-            <Link href="/apps/all">
-              <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/apps/all" ? "text-primary" : ""}`}>
-                <i className="fas fa-mobile-alt mr-1"></i>
-                <span className="hidden md:inline">{t('nav.apps')}</span>
-              </div>
-            </Link>
-            <Link href="/categories/games">
-              <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/categories/games" ? "text-primary" : ""}`}>
-                <i className="fas fa-gamepad mr-1"></i>
-                <span className="hidden md:inline">{t('nav.games')}</span>
-              </div>
-            </Link>
-            <Link href="/apps/add">
-              <div className={`text-gray-600 hover:text-primary flex items-center cursor-pointer ${location === "/apps/add" ? "text-primary" : ""}`}>
-                <i className="fas fa-plus-circle mr-1"></i>
-                <span className="hidden md:inline">{t('nav.addApp')}</span>
-              </div>
-            </Link>
-          </nav>
+
         </div>
 
         <div className="md:hidden px-4 pb-3">
@@ -54,51 +35,51 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className="container mx-auto px-4 py-6 flex-grow">
         {location === "/terms-of-service" ? (
           <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 my-8">
-            <h1 className="text-3xl font-bold mb-6"><TranslatedText text="Terms of Service" /></h1>
+            <h1 className="text-3xl font-bold mb-6">Terms of Service</h1>
             
             <div className="prose max-w-none">
-              <p><TranslatedText text="Last updated: May 19, 2025" /></p>
+              <p>Last updated: May 19, 2025</p>
               
-              <h2><TranslatedText text="1. Agreement to Terms" /></h2>
-              <TranslatedParagraph
-                text="By accessing our website TopApps.store, you agree to be bound by these Terms and Conditions and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site."
-              />
+              <h2>1. Agreement to Terms</h2>
+              <p>
+                By accessing our website TopApps.store, you agree to be bound by these Terms and Conditions and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
+              </p>
               
-              <h2><TranslatedText text="2. Use License" /></h2>
-              <TranslatedParagraph
-                text="Permission is granted to temporarily download one copy of the materials on TopApps.store for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:"
-              />
+              <h2>2. Use License</h2>
+              <p>
+                Permission is granted to temporarily download one copy of the materials on TopApps.store for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+              </p>
               <ul>
-                <li><TranslatedText text="Modify or copy the materials" /></li>
-                <li><TranslatedText text="Use the materials for any commercial purpose" /></li>
-                <li><TranslatedText text="Attempt to decompile or reverse engineer any software contained on TopApps.store" /></li>
-                <li><TranslatedText text="Remove any copyright or other proprietary notations from the materials" /></li>
-                <li><TranslatedText text="Transfer the materials to another person or 'mirror' the materials on any other server" /></li>
+                <li>Modify or copy the materials</li>
+                <li>Use the materials for any commercial purpose</li>
+                <li>Attempt to decompile or reverse engineer any software contained on TopApps.store</li>
+                <li>Remove any copyright or other proprietary notations from the materials</li>
+                <li>Transfer the materials to another person or 'mirror' the materials on any other server</li>
               </ul>
               
-              <h2><TranslatedText text="3. Disclaimer" /></h2>
-              <TranslatedParagraph
-                text="The materials on TopApps.store are provided on an 'as is' basis. TopApps.store makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights."
-              />
+              <h2>3. Disclaimer</h2>
+              <p>
+                The materials on TopApps.store are provided on an 'as is' basis. TopApps.store makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+              </p>
               
-              <h2><TranslatedText text="4. Limitations" /></h2>
-              <TranslatedParagraph
-                text="In no event shall TopApps.store or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on TopApps.store, even if TopApps.store or a TopApps.store authorized representative has been notified orally or in writing of the possibility of such damage."
-              />
+              <h2>4. Limitations</h2>
+              <p>
+                In no event shall TopApps.store or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on TopApps.store, even if TopApps.store or a TopApps.store authorized representative has been notified orally or in writing of the possibility of such damage.
+              </p>
               
-              <h2><TranslatedText text="5. Accuracy of Materials" /></h2>
-              <TranslatedParagraph
-                text="The materials appearing on TopApps.store could include technical, typographical, or photographic errors. TopApps.store does not warrant that any of the materials on its website are accurate, complete or current. TopApps.store may make changes to the materials contained on its website at any time without notice. However TopApps.store does not make any commitment to update the materials."
-              />
+              <h2>5. Accuracy of Materials</h2>
+              <p>
+                The materials appearing on TopApps.store could include technical, typographical, or photographic errors. TopApps.store does not warrant that any of the materials on its website are accurate, complete or current. TopApps.store may make changes to the materials contained on its website at any time without notice. However TopApps.store does not make any commitment to update the materials.
+              </p>
               
-              <h2><TranslatedText text="6. Links and Third-Party Services" /></h2>
+              <h2>6. Links and Third-Party Services</h2>
               <p>
                 TopApps.store has not reviewed all of the sites linked to its website and is not responsible for the contents 
                 of any such linked site. The inclusion of any link does not imply endorsement by TopApps.store of the site. 
                 Use of any such linked website is at the user's own risk.
               </p>
               <p>
-                <strong><TranslatedText text="Third-Party Liability and Charges:" /></strong> <TranslatedText text="By using TopApps.store, you expressly release us from any and all liability arising from your use of any third-party website, application, or service accessed through links on our site. We have no control over third parties and assume no responsibility for any actions, policies, or practices of any third parties you may encounter through our site." />
+                <strong>Third-Party Liability and Charges:</strong> By using TopApps.store, you expressly release us from any and all liability arising from your use of any third-party website, application, or service accessed through links on our site. We have no control over third parties and assume no responsibility for any actions, policies, or practices of any third parties you may encounter through our site.
               </p>
               <p>
                 <strong>IMPORTANT:</strong> TopApps.store is NOT responsible for any charges, subscriptions, or payments that you may incur 
@@ -157,73 +138,73 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           </div>
         ) : location === "/privacy-policy" ? (
           <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 my-8">
-            <h1 className="text-3xl font-bold mb-6"><TranslatedText text="Privacy Policy" /></h1>
+            <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
             
             <div className="prose max-w-none">
-              <p><TranslatedText text="Last updated: May 19, 2025" /></p>
+              <p>Last updated: May 19, 2025</p>
               
-              <TranslatedParagraph
-                text="At TopApps.store, we value your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website."
-              />
-              
-              <h2><TranslatedText text="1. Information We Collect" /></h2>
-              <TranslatedParagraph text="We may collect several types of information from and about users of our website, including:" />
-              <ul>
-                <li>
-                  <strong><TranslatedText text="Usage Data:" /></strong> <TranslatedText text="Information about how you access and use our website, including your IP address, browser type, device information, pages visited, time spent on those pages, and referral sources." />
-                </li>
-                <li>
-                  <strong><TranslatedText text="Cookies and Tracking Data:" /></strong> <TranslatedText text="We use cookies and similar tracking technologies to track activity on our website and hold certain information to improve your browsing experience." />
-                </li>
-                <li>
-                  <strong><TranslatedText text="App Usage Data:" /></strong> <TranslatedText text="Information about which apps you view, download, or interact with on our platform." />
-                </li>
-              </ul>
-              
-              <h2><TranslatedText text="2. How We Use Your Information" /></h2>
-              <TranslatedParagraph text="We may use the information we collect about you for various purposes, including:" />
-              <ul>
-                <li><TranslatedText text="To provide and maintain our website" /></li>
-                <li><TranslatedText text="To improve our website and user experience" /></li>
-                <li><TranslatedText text="To monitor the usage of our website" /></li>
-                <li><TranslatedText text="To detect, prevent, and address technical issues" /></li>
-                <li><TranslatedText text="To analyze trends and better understand user preferences" /></li>
-                <li><TranslatedText text="To deliver relevant app recommendations and advertisements" /></li>
-              </ul>
-              
-              <h2><TranslatedText text="3. Cookie Policy" /></h2>
-              <TranslatedParagraph
-                text="Cookies are small text files that are placed on your device when you visit our website. We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. You can set your browser to refuse all or some browser cookies, but this may affect the functionality of our website."
-              />
-              <TranslatedParagraph
-                text="We use both session cookies (which expire when you close your browser) and persistent cookies (which remain on your device until you delete them or they expire)."
-              />
-              
-              <h2><TranslatedText text="4. Third-Party Services, Links and Charges" /></h2>
-              <TranslatedParagraph
-                text="Our website contains links to third-party websites, applications, and services that are not owned or controlled by TopApps.store. We have no control over and assume no responsibility for the content, privacy policies, data collection practices, or conduct of any third-party websites, applications, or services."
-              />
               <p>
-                <strong><TranslatedText text="IMPORTANT DISCLAIMER REGARDING THIRD-PARTY CHARGES:" /></strong> <TranslatedText text="TopApps.store is NOT responsible for any fees, charges, subscriptions, or payments that you may incur when using third-party applications, websites, or services accessed through our platform. This includes but is not limited to:" />
+                At TopApps.store, we value your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website.
+              </p>
+              
+              <h2>1. Information We Collect</h2>
+              <p>We may collect several types of information from and about users of our website, including:</p>
+              <ul>
+                <li>
+                  <strong>Usage Data:</strong> Information about how you access and use our website, including your IP address, browser type, device information, pages visited, time spent on those pages, and referral sources.
+                </li>
+                <li>
+                  <strong>Cookies and Tracking Data:</strong> We use cookies and similar tracking technologies to track activity on our website and hold certain information to improve your browsing experience.
+                </li>
+                <li>
+                  <strong>App Usage Data:</strong> Information about which apps you view, download, or interact with on our platform.
+                </li>
+              </ul>
+              
+              <h2>2. How We Use Your Information</h2>
+              <p>We may use the information we collect about you for various purposes, including:</p>
+              <ul>
+                <li>To provide and maintain our website</li>
+                <li>To improve our website and user experience</li>
+                <li>To monitor the usage of our website</li>
+                <li>To detect, prevent, and address technical issues</li>
+                <li>To analyze trends and better understand user preferences</li>
+                <li>To deliver relevant app recommendations and advertisements</li>
+              </ul>
+              
+              <h2>3. Cookie Policy</h2>
+              <p>
+                Cookies are small text files that are placed on your device when you visit our website. We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. You can set your browser to refuse all or some browser cookies, but this may affect the functionality of our website.
+              </p>
+              <p>
+                We use both session cookies (which expire when you close your browser) and persistent cookies (which remain on your device until you delete them or they expire).
+              </p>
+              
+              <h2>4. Third-Party Services, Links and Charges</h2>
+              <p>
+                Our website contains links to third-party websites, applications, and services that are not owned or controlled by TopApps.store. We have no control over and assume no responsibility for the content, privacy policies, data collection practices, or conduct of any third-party websites, applications, or services.
+              </p>
+              <p>
+                <strong>IMPORTANT DISCLAIMER REGARDING THIRD-PARTY CHARGES:</strong> TopApps.store is NOT responsible for any fees, charges, subscriptions, or payments that you may incur when using third-party applications, websites, or services accessed through our platform. This includes but is not limited to:
               </p>
               <ul>
-                <li><TranslatedText text="App purchase costs" /></li>
-                <li><TranslatedText text="In-app purchases" /></li>
-                <li><TranslatedText text="Subscription fees" /></li>
-                <li><TranslatedText text="Premium features" /></li>
-                <li><TranslatedText text="Any other monetary transactions" /></li>
+                <li>App purchase costs</li>
+                <li>In-app purchases</li>
+                <li>Subscription fees</li>
+                <li>Premium features</li>
+                <li>Any other monetary transactions</li>
               </ul>
-              <TranslatedParagraph
-                text="We strongly encourage you to carefully review the terms of service, privacy policies, and payment terms of any third-party application or service before downloading, installing, or providing payment information. You are solely responsible for understanding and agreeing to any charges that may apply."
-              />
-              <TranslatedParagraph
-                text="We may use third-party services such as Google Analytics to monitor and analyze the use of our website. These services may collect information sent by your browser as part of a web page request, including your IP address or other identifiers."
-              />
+              <p>
+                We strongly encourage you to carefully review the terms of service, privacy policies, and payment terms of any third-party application or service before downloading, installing, or providing payment information. You are solely responsible for understanding and agreeing to any charges that may apply.
+              </p>
+              <p>
+                We may use third-party services such as Google Analytics to monitor and analyze the use of our website. These services may collect information sent by your browser as part of a web page request, including your IP address or other identifiers.
+              </p>
               
-              <h2><TranslatedText text="5. Sponsored Content and Affiliate Marketing" /></h2>
-              <TranslatedParagraph
-                text="TopApps.store contains sponsored content and participates in affiliate marketing programs, which means we may receive commissions on actions taken through our links (such as app downloads, purchases, or sign-ups). This helps us maintain our website and provide you with free access to app information."
-              />
+              <h2>5. Sponsored Content and Affiliate Marketing</h2>
+              <p>
+                TopApps.store contains sponsored content and participates in affiliate marketing programs, which means we may receive commissions on actions taken through our links (such as app downloads, purchases, or sign-ups). This helps us maintain our website and provide you with free access to app information.
+              </p>
               <p>
                 <strong>Disclosure of Sponsored Content:</strong> We clearly label sponsored content with "AD" or "SPONSORED" tags. 
                 While we strive to work with reputable partners, TopApps.store is not responsible for the content, offers, products, 
