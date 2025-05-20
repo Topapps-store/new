@@ -34,90 +34,12 @@ function normalizeLanguageCode(lang: string): string {
 }
 
 /**
- * Traduce un texto utilizando la API de LibreTranslate con mejor manejo de errores
+ * Retorna el texto original sin traducir (sistema de traducción desactivado)
  */
 export async function translateText(text: string, targetLang: string, sourceLang: string = 'en'): Promise<string> {
-  try {
-    if (!text || text.trim() === '') {
-      return text;
-    }
-    
-    // Evitar traducir texto demasiado corto o que parece ser un identificador
-    if (text.length < 5 || !containsRealText(text)) {
-      return text;
-    }
-    
-    // Si el idioma de origen y destino son el mismo, no es necesario traducir
-    const normalizedTarget = normalizeLanguageCode(targetLang);
-    const normalizedSource = normalizeLanguageCode(sourceLang);
-    
-    if (normalizedSource === normalizedTarget) {
-      return text;
-    }
-    
-    // Lista de endpoints alternativos de LibreTranslate en caso de que uno falle
-    const endpoints = [
-      'https://libretranslate.de/translate',
-      'https://translate.argosopentech.com/translate'
-    ];
-    
-    // Datos para la solicitud
-    const requestData = {
-      q: text,
-      source: normalizedSource,
-      target: normalizedTarget,
-      format: 'text'
-    };
-    
-    // Configuración de tiempo de espera (5 segundos)
-    const axiosConfig = {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      timeout: 5000 // 5 segundos de timeout
-    };
-    
-    // Intentar con cada endpoint hasta que uno funcione
-    let lastError = null;
-    
-    for (const endpoint of endpoints) {
-      try {
-        const response = await axios.post(endpoint, requestData, axiosConfig);
-        
-        if (response.data && response.data.translatedText) {
-          return response.data.translatedText;
-        }
-      } catch (error: any) {
-        lastError = error;
-        console.warn(`Error con el endpoint ${endpoint}:`, error.message || 'Error desconocido');
-        // Continuar con el siguiente endpoint
-        continue;
-      }
-    }
-    
-    // Si llegamos aquí, todos los endpoints fallaron
-    if (lastError) {
-      throw lastError;
-    }
-    
-    return text;
-  } catch (error) {
-    console.error('Error al traducir texto:', error);
-    
-    // Verificar si hay errores específicos
-    if (axios.isAxiosError(error)) {
-      if (error.code === 'ECONNABORTED') {
-        console.error('Tiempo de espera agotado al conectar con el servicio de traducción');
-      } else if (error.response) {
-        console.error(`Error de la API de traducción: ${error.response.status} - ${JSON.stringify(error.response.data)}`);
-      } else if (error.request) {
-        console.error('No se recibió respuesta del servicio de traducción');
-      }
-    }
-    
-    // En caso de error, devolver el texto original
-    return text;
-  }
+  // Simplemente devolvemos el texto original sin intentar traducirlo
+  console.log('Sistema de traducción desactivado, devolviendo texto original');
+  return text;
 }
 
 /**
@@ -156,96 +78,12 @@ export async function translateObject<T extends Record<string, any>>(
 }
 
 /**
- * Traduce múltiples textos en un solo lote con mejor manejo de errores
- * @param texts Array de textos a traducir
- * @param targetLang Idioma destino para la traducción
- * @param sourceLang Idioma origen para la traducción (por defecto 'en')
- * @returns Array de textos traducidos en el mismo orden
+ * Retorna los textos originales sin traducir (sistema de traducción desactivado)
+ * @param texts Array de textos (sin traducción)
+ * @returns El mismo array de textos sin cambios
  */
 export async function bulkTranslate(texts: string[], targetLang: string, sourceLang: string = 'en'): Promise<string[]> {
-  try {
-    if (!texts || texts.length === 0) {
-      return [];
-    }
-    
-    // Filtrar textos vacíos o demasiado cortos
-    const validTexts = texts.filter(text => 
-      text && text.trim() !== '' && text.length >= 5 && containsRealText(text)
-    );
-    
-    if (validTexts.length === 0) {
-      return texts;
-    }
-    
-    // Normalizar códigos de idioma
-    const normalizedTarget = normalizeLanguageCode(targetLang);
-    const normalizedSource = normalizeLanguageCode(sourceLang);
-    
-    // Si los idiomas son iguales, no es necesario traducir
-    if (normalizedSource === normalizedTarget) {
-      return texts;
-    }
-    
-    // Traducir textos en lotes pequeños para no sobrecargar la API
-    // y con reintentos en caso de error
-    const batchSize = 5; // Traducir 5 textos a la vez
-    const translatedTexts: string[] = [];
-    
-    for (let i = 0; i < validTexts.length; i += batchSize) {
-      const batch = validTexts.slice(i, i + batchSize);
-      
-      // Traducir cada lote con 3 intentos máximo
-      let attempts = 0;
-      let batchTranslated = false;
-      let batchResults: string[] = [];
-      
-      while (!batchTranslated && attempts < 3) {
-        try {
-          // Usamos Promise.all pero con un pequeño delay entre solicitudes
-          batchResults = await Promise.all(
-            batch.map(async (text, index) => {
-              // Pequeño delay para no saturar la API
-              if (index > 0) {
-                await new Promise(resolve => setTimeout(resolve, 200));
-              }
-              return await translateText(text, normalizedTarget, normalizedSource);
-            })
-          );
-          batchTranslated = true;
-        } catch (error: any) {
-          attempts++;
-          console.warn(`Error en lote ${i}-${i+batch.length}, intento ${attempts}/3:`, error.message || 'Error desconocido');
-          // Esperar un poco más antes del siguiente intento
-          await new Promise(resolve => setTimeout(resolve, 1000 * attempts));
-        }
-      }
-      
-      // Si después de 3 intentos sigue fallando, usar los textos originales
-      if (!batchTranslated) {
-        console.error(`No se pudo traducir el lote ${i}-${i+batch.length} después de 3 intentos.`);
-        batchResults = batch;
-      }
-      
-      // Añadir los resultados del lote
-      translatedTexts.push(...batchResults);
-    }
-    
-    // Reemplazar los textos originales con las traducciones
-    const result = [...texts]; // Clonar el array original
-    let translationIndex = 0;
-    
-    for (let i = 0; i < texts.length; i++) {
-      const text = texts[i];
-      // Solo reemplazar el texto si era válido para traducción
-      if (text && text.trim() !== '' && text.length >= 5 && containsRealText(text)) {
-        result[i] = translatedTexts[translationIndex];
-        translationIndex++;
-      }
-    }
-    
-    return result;
-  } catch (error: any) {
-    console.error('Error en traducción por lotes:', error?.message || error);
-    return texts;
-  }
+  // Simplemente devolvemos los textos originales sin traducir
+  console.log('Sistema de traducción masiva desactivado, devolviendo textos originales');
+  return texts;
 }
