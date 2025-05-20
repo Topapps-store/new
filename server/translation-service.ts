@@ -1,90 +1,6 @@
 import axios from 'axios';
 
 /**
- * Servicio para traducir textos utilizando la API de DeepL
- */
-export async function translateText(text: string, targetLang: string, sourceLang?: string): Promise<string> {
-  try {
-    if (!text || text.trim() === '') {
-      return text;
-    }
-    
-    // Evitar traducir texto demasiado corto o que parece ser un identificador
-    if (text.length < 5 || !containsRealText(text)) {
-      return text;
-    }
-    
-    // Obtener la clave API de DeepL desde las variables de entorno
-    const apiKey = process.env.DEEPL_API_KEY;
-    
-    if (!apiKey) {
-      console.error('API key de DeepL no encontrada en las variables de entorno');
-      return text;
-    }
-    
-    // Convertir el código de idioma al formato que espera DeepL
-    const deeplLang = convertToDeeplLanguage(targetLang);
-    
-    // Llamar a la API de DeepL
-    const response = await axios.post(
-      'https://api-free.deepl.com/v2/translate',
-      {
-        text: [text],
-        target_lang: deeplLang
-      },
-      {
-        headers: {
-          'Authorization': `DeepL-Auth-Key ${apiKey}`,
-          'Content-Type': 'application/json'
-        }
-      }
-    );
-    
-    if (response.data && response.data.translations && response.data.translations.length > 0) {
-      return response.data.translations[0].text;
-    }
-    
-    return text;
-  } catch (error) {
-    console.error('Error al traducir texto:', error);
-    
-    // Verificar si el error es por límite de API
-    if (axios.isAxiosError(error) && error.response) {
-      if (error.response.status === 429) {
-        console.error('Límite de API DeepL alcanzado. Por favor, espere o actualice a un plan con mayor capacidad.');
-      } else if (error.response.status === 403) {
-        console.error('Error de autenticación con la API DeepL. Verifique la clave API.');
-      }
-    }
-    
-    return text;
-  }
-}
-
-/**
- * Convierte los códigos de idioma al formato que espera DeepL
- */
-function convertToDeeplLanguage(lang: string): string {
-  // Normalizar el código de idioma (convertir a mayúsculas y eliminar guiones/regiones)
-  const normalizedLang = lang.toUpperCase().split('-')[0];
-  
-  // Mapa de códigos de idioma a códigos DeepL
-  const languageMap: { [key: string]: string } = {
-    'ES': 'ES',
-    'EN': 'EN-US',
-    'FR': 'FR',
-    'DE': 'DE',
-    'IT': 'IT',
-    'PT': 'PT-BR',
-    'RU': 'RU',
-    'JA': 'JA',
-    'ZH': 'ZH',
-  };
-  
-  return languageMap[normalizedLang] || 'EN-US';
-}
-
-/**
  * Determina si el texto contiene contenido real para traducir
  * (evita traducir códigos, identificadores, etc.)
  */
@@ -103,11 +19,82 @@ function containsRealText(text: string): boolean {
 }
 
 /**
+ * Convierte los códigos de idioma al formato estándar ISO
+ */
+function normalizeLanguageCode(lang: string): string {
+  // Normalizar el código de idioma (convertir a minúsculas y tomar sólo la parte principal)
+  const normalizedLang = lang.toLowerCase().split('-')[0];
+  
+  // Mapa de códigos de idioma soportados por LibreTranslate
+  const supportedLanguages = [
+    'en', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ar', 'nl'
+  ];
+  
+  return supportedLanguages.includes(normalizedLang) ? normalizedLang : 'en';
+}
+
+/**
+ * Traduce un texto utilizando la API de LibreTranslate
+ */
+export async function translateText(text: string, targetLang: string, sourceLang: string = 'en'): Promise<string> {
+  try {
+    if (!text || text.trim() === '') {
+      return text;
+    }
+    
+    // Evitar traducir texto demasiado corto o que parece ser un identificador
+    if (text.length < 5 || !containsRealText(text)) {
+      return text;
+    }
+    
+    // Si el idioma de origen y destino son el mismo, no es necesario traducir
+    const normalizedTarget = normalizeLanguageCode(targetLang);
+    const normalizedSource = normalizeLanguageCode(sourceLang);
+    
+    if (normalizedSource === normalizedTarget) {
+      return text;
+    }
+    
+    // Llamar a la API de LibreTranslate
+    const response = await axios.post(
+      'https://libretranslate.de/translate',
+      {
+        q: text,
+        source: normalizedSource,
+        target: normalizedTarget,
+        format: 'text'
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    
+    if (response.data && response.data.translatedText) {
+      return response.data.translatedText;
+    }
+    
+    return text;
+  } catch (error) {
+    console.error('Error al traducir texto:', error);
+    
+    // Verificar si hay errores específicos
+    if (axios.isAxiosError(error) && error.response) {
+      console.error(`Error de la API LibreTranslate: ${error.response.status} - ${JSON.stringify(error.response.data)}`);
+    }
+    
+    return text;
+  }
+}
+
+/**
  * Traduce un objeto completo al idioma especificado
  */
 export async function translateObject<T extends Record<string, any>>(
   obj: T,
-  targetLang: string
+  targetLang: string,
+  sourceLang: string = 'en'
 ): Promise<T> {
   if (!obj || typeof obj !== 'object') {
     return obj;
@@ -124,11 +111,11 @@ export async function translateObject<T extends Record<string, any>>(
         const fieldsToTranslate = ['name', 'description', 'title', 'content', 'text', 'summary'];
         if (fieldsToTranslate.includes(key) || key.includes('text') || key.includes('description')) {
           // Usamos type assertion para asegurar que TypeScript entienda que estamos manteniendo el tipo
-          result[key] = await translateText(value, targetLang) as any;
+          result[key] = await translateText(value, targetLang, sourceLang) as any;
         }
       } else if (typeof value === 'object' && value !== null) {
         // Usamos type assertion para asegurar que TypeScript entienda que estamos manteniendo el tipo
-        result[key] = await translateObject(value, targetLang) as any;
+        result[key] = await translateObject(value, targetLang, sourceLang) as any;
       }
     }
   }
@@ -140,9 +127,10 @@ export async function translateObject<T extends Record<string, any>>(
  * Traduce múltiples textos en un solo lote
  * @param texts Array de textos a traducir
  * @param targetLang Idioma destino para la traducción
+ * @param sourceLang Idioma origen para la traducción (por defecto 'en')
  * @returns Array de textos traducidos en el mismo orden
  */
-export async function bulkTranslate(texts: string[], targetLang: string): Promise<string[]> {
+export async function bulkTranslate(texts: string[], targetLang: string, sourceLang: string = 'en'): Promise<string[]> {
   try {
     if (!texts || texts.length === 0) {
       return [];
@@ -157,62 +145,36 @@ export async function bulkTranslate(texts: string[], targetLang: string): Promis
       return texts;
     }
     
-    // Obtener la clave API de DeepL desde las variables de entorno
-    const apiKey = process.env.DEEPL_API_KEY;
+    // Normalizar códigos de idioma
+    const normalizedTarget = normalizeLanguageCode(targetLang);
+    const normalizedSource = normalizeLanguageCode(sourceLang);
     
-    if (!apiKey) {
-      console.error('API key de DeepL no encontrada en las variables de entorno');
+    // Si los idiomas son iguales, no es necesario traducir
+    if (normalizedSource === normalizedTarget) {
       return texts;
     }
     
-    // Convertir el código de idioma al formato que espera DeepL
-    const deeplLang = convertToDeeplLanguage(targetLang);
-    
-    // Llamar a la API de DeepL con un lote de textos
-    const response = await axios.post(
-      'https://api-free.deepl.com/v2/translate',
-      {
-        text: validTexts,
-        target_lang: deeplLang
-      },
-      {
-        headers: {
-          'Authorization': `DeepL-Auth-Key ${apiKey}`,
-          'Content-Type': 'application/json'
-        }
-      }
+    // LibreTranslate no tiene una API de lote, así que traducimos uno por uno
+    const translatedTexts = await Promise.all(
+      validTexts.map(text => translateText(text, targetLang, sourceLang))
     );
     
-    // Si la respuesta es válida, reemplazar los textos originales con las traducciones
-    if (response.data && response.data.translations && response.data.translations.length === validTexts.length) {
-      const result = [...texts]; // Clonar el array original
-      let translationIndex = 0;
-      
-      for (let i = 0; i < texts.length; i++) {
-        const text = texts[i];
-        // Solo reemplazar el texto si era válido para traducción
-        if (text && text.trim() !== '' && text.length >= 5 && containsRealText(text)) {
-          result[i] = response.data.translations[translationIndex].text;
-          translationIndex++;
-        }
+    // Reemplazar los textos originales con las traducciones
+    const result = [...texts]; // Clonar el array original
+    let translationIndex = 0;
+    
+    for (let i = 0; i < texts.length; i++) {
+      const text = texts[i];
+      // Solo reemplazar el texto si era válido para traducción
+      if (text && text.trim() !== '' && text.length >= 5 && containsRealText(text)) {
+        result[i] = translatedTexts[translationIndex];
+        translationIndex++;
       }
-      
-      return result;
     }
     
-    return texts;
+    return result;
   } catch (error) {
     console.error('Error en traducción por lotes:', error);
-    
-    // Verificar si el error es por límite de API
-    if (axios.isAxiosError(error) && error.response) {
-      if (error.response.status === 429) {
-        console.error('Límite de API DeepL alcanzado en traducción por lotes. Por favor, espere o actualice a un plan con mayor capacidad.');
-      } else if (error.response.status === 403) {
-        console.error('Error de autenticación con la API DeepL en traducción por lotes. Verifique la clave API.');
-      }
-    }
-    
     return texts;
   }
 }
