@@ -261,105 +261,105 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <h1 className="text-3xl font-bold mb-6">Disclaimer</h1>
             
             <div className="prose max-w-none">
-              <TranslatedParagraph text="Last updated: May 19, 2025" />
+              <p>Last updated: May 19, 2025</p>
               
-              <h2><TranslatedText text="1. Website Content" /></h2>
-              <TranslatedParagraph
-                text="The information provided on TopApps.store is for general informational purposes only. All information on the site is provided in good faith, however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the site."
-              />
+              <h2>1. Website Content</h2>
+              <p>
+                The information provided on TopApps.store is for general informational purposes only. All information on the site is provided in good faith, however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the site.
+              </p>
               
-              <h2><TranslatedText text="2. External Links and Third Parties" /></h2>
-              <TranslatedParagraph
-                text="TopApps.store may contain links to external websites, download sources, and third-party services that are not provided or maintained by us. We do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites or services."
-              />
+              <h2>2. External Links and Third Parties</h2>
+              <p>
+                TopApps.store may contain links to external websites, download sources, and third-party services that are not provided or maintained by us. We do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites or services.
+              </p>
               
               <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4">
                 <p className="font-bold text-xl mb-2">
-                  <TranslatedText text="IMPORTANT DISCLAIMER" />
+                  IMPORTANT DISCLAIMER
                 </p>
                 <div className="mb-2">
-                  <TranslatedParagraph
-                    text="TopApps.store is NOT responsible for the actions, content, privacy practices, or conduct of any third parties that users may access through links provided on our website. When you click on a link to a third-party website or service, you are subject to the terms and policies of that third party, not those of TopApps.store."
-                  />
+                  <p>
+                    TopApps.store is NOT responsible for the actions, content, privacy practices, or conduct of any third parties that users may access through links provided on our website. When you click on a link to a third-party website or service, you are subject to the terms and policies of that third party, not those of TopApps.store.
+                  </p>
                 </div>
                 <div className="mb-2">
-                  <TranslatedParagraph
-                    text="WE ARE NOT RESPONSIBLE FOR ANY CHARGES, SUBSCRIPTIONS, OR FEES that you may incur when using third-party applications, websites, or services accessed through our platform. This includes any app purchase costs, in-app purchases, subscription services, premium features, or any other monetary transactions on third-party platforms."
-                  />
+                  <p>
+                    WE ARE NOT RESPONSIBLE FOR ANY CHARGES, SUBSCRIPTIONS, OR FEES that you may incur when using third-party applications, websites, or services accessed through our platform. This includes any app purchase costs, in-app purchases, subscription services, premium features, or any other monetary transactions on third-party platforms.
+                  </p>
                 </div>
                 <div>
-                  <TranslatedParagraph
-                    text="You are solely responsible for reviewing and understanding the terms and conditions of any third-party service before making any purchases or entering into any agreements. By using our site, you acknowledge this disclaimer and release us from any liability related to third-party charges."
-                  />
+                  <p>
+                    You are solely responsible for reviewing and understanding the terms and conditions of any third-party service before making any purchases or entering into any agreements. By using our site, you acknowledge this disclaimer and release us from any liability related to third-party charges.
+                  </p>
                 </div>
               </div>
               
-              <h2><TranslatedText text="3. App Downloads and Sponsored Content" /></h2>
-              <TranslatedParagraph
-                text="TopApps.store provides information and links to download Android applications. We are not the developers of these applications and we do not host them on our servers. All app downloads are directed to the original source, official app stores, or sponsored download partners."
-              />
+              <h2>3. App Downloads and Sponsored Content</h2>
+              <p>
+                TopApps.store provides information and links to download Android applications. We are not the developers of these applications and we do not host them on our servers. All app downloads are directed to the original source, official app stores, or sponsored download partners.
+              </p>
               <div>
-                <TranslatedParagraph
-                  text="Sponsored Download Links: Some download links on our site are sponsored and may redirect you to third-party websites or alternative download sources. These sponsored links are clearly labeled with 'AD' or 'SPONSORED' tags. We do not endorse, control, or take responsibility for the content, services, or products offered by these sponsors."
-                />
+                <p>
+                  Sponsored Download Links: Some download links on our site are sponsored and may redirect you to third-party websites or alternative download sources. These sponsored links are clearly labeled with 'AD' or 'SPONSORED' tags. We do not endorse, control, or take responsibility for the content, services, or products offered by these sponsors.
+                </p>
               </div>
-              <TranslatedParagraph
-                text="We do not guarantee the functionality, safety, or suitability of any app featured on our site. We strongly recommend that users verify the source of any application before downloading and read the app's privacy policy and terms of service."
-              />
+              <p>
+                We do not guarantee the functionality, safety, or suitability of any app featured on our site. We strongly recommend that users verify the source of any application before downloading and read the app's privacy policy and terms of service.
+              </p>
               
-              <h2><TranslatedText text="4. Affiliate Marketing and Monetization" /></h2>
-              <TranslatedParagraph
-                text="TopApps.store contains affiliate links, sponsored content, and advertisements. This means that if you click on certain links and take actions (such as making a purchase, downloading an app, or signing up for a service), we may receive a commission or other compensation."
-              />
-              <TranslatedParagraph
-                text="While we strive to work with reputable partners, TopApps.store is not responsible for the content, offers, products, services, or information provided by our sponsors or advertisers. We explicitly disclaim all responsibility for:"
-              />
+              <h2>4. Affiliate Marketing and Monetization</h2>
+              <p>
+                TopApps.store contains affiliate links, sponsored content, and advertisements. This means that if you click on certain links and take actions (such as making a purchase, downloading an app, or signing up for a service), we may receive a commission or other compensation.
+              </p>
+              <p>
+                While we strive to work with reputable partners, TopApps.store is not responsible for the content, offers, products, services, or information provided by our sponsors or advertisers. We explicitly disclaim all responsibility for:
+              </p>
               <ul>
-                <li><TranslatedText text="The quality or performance of any product or service obtained through sponsored links" /></li>
-                <li><TranslatedText text="Any representation made by sponsors or advertisers" /></li>
-                <li><TranslatedText text="Any transaction between you and any third-party" /></li>
-                <li><TranslatedText text="Any financial obligations, subscriptions, or recurring charges that may result from your interactions with sponsored content" /></li>
+                <li>The quality or performance of any product or service obtained through sponsored links</li>
+                <li>Any representation made by sponsors or advertisers</li>
+                <li>Any transaction between you and any third-party</li>
+                <li>Any financial obligations, subscriptions, or recurring charges that may result from your interactions with sponsored content</li>
               </ul>
               
-              <h2><TranslatedText text="5. User Responsibility" /></h2>
-              <TranslatedParagraph
-                text="Users are responsible for ensuring that any app they download from links provided on TopApps.store is compatible with their device and appropriate for their needs. We recommend reading app reviews and checking system requirements before downloading any application."
-              />
+              <h2>5. User Responsibility</h2>
+              <p>
+                Users are responsible for ensuring that any app they download from links provided on TopApps.store is compatible with their device and appropriate for their needs. We recommend reading app reviews and checking system requirements before downloading any application.
+              </p>
               <div>
-                <TranslatedParagraph
-                  text="Financial Responsibility: Users are solely responsible for any financial decisions, purchases, or subscriptions made through links on our website. You should carefully review all terms, conditions, and payment obligations before entering into any transaction with a third party."
-                />
+                <p>
+                  Financial Responsibility: Users are solely responsible for any financial decisions, purchases, or subscriptions made through links on our website. You should carefully review all terms, conditions, and payment obligations before entering into any transaction with a third party.
+                </p>
               </div>
               
-              <h2><TranslatedText text="6. Limitation of Liability" /></h2>
-              <TranslatedParagraph
-                text="In no event shall TopApps.store, its owners, directors, employees, or agents be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:"
-              />
+              <h2>6. Limitation of Liability</h2>
+              <p>
+                In no event shall TopApps.store, its owners, directors, employees, or agents be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
+              </p>
               <ul>
-                <li><TranslatedText text="Your access to or use of or inability to access or use the service" /></li>
-                <li><TranslatedText text="Any conduct or content of any third party on the service" /></li>
-                <li><TranslatedText text="Any content obtained from the service" /></li>
-                <li><TranslatedText text="Unauthorized access, use or alteration of your transmissions or content" /></li>
-                <li><TranslatedText text="The download or use of any application featured on our website" /></li>
-                <li><TranslatedText text="Any charges, fees, or subscriptions incurred through third-party services" /></li>
-                <li><TranslatedText text="Any products or services purchased or obtained through links on our site" /></li>
+                <li>Your access to or use of or inability to access or use the service</li>
+                <li>Any conduct or content of any third party on the service</li>
+                <li>Any content obtained from the service</li>
+                <li>Unauthorized access, use or alteration of your transmissions or content</li>
+                <li>The download or use of any application featured on our website</li>
+                <li>Any charges, fees, or subscriptions incurred through third-party services</li>
+                <li>Any products or services purchased or obtained through links on our site</li>
               </ul>
               
-              <h2><TranslatedText text="7. Rights Reserved" /></h2>
-              <TranslatedParagraph
-                text="All trademarks, logos, and service marks displayed on TopApps.store are the property of their respective owners. References to any products, services, processes, or other information by trade name, trademark, manufacturer, supplier, or otherwise does not constitute or imply endorsement, sponsorship, or recommendation by us."
-              />
+              <h2>7. Rights Reserved</h2>
+              <p>
+                All trademarks, logos, and service marks displayed on TopApps.store are the property of their respective owners. References to any products, services, processes, or other information by trade name, trademark, manufacturer, supplier, or otherwise does not constitute or imply endorsement, sponsorship, or recommendation by us.
+              </p>
               
-              <h2><TranslatedText text="8. Changes to This Disclaimer" /></h2>
-              <TranslatedParagraph
-                text="We may update this Disclaimer from time to time. We will notify you of any changes by posting the new Disclaimer on this page and updating the 'Last updated' date."
-              />
+              <h2>8. Changes to This Disclaimer</h2>
+              <p>
+                We may update this Disclaimer from time to time. We will notify you of any changes by posting the new Disclaimer on this page and updating the 'Last updated' date.
+              </p>
               
               <div className="mt-8 border-t pt-4">
-                <TranslatedParagraph text="For more information, please see our:" />
+                <p>For more information, please see our:</p>
                 <ul className="flex flex-col space-y-2 text-blue-600">
-                  <li><a href="/terms-of-service" className="hover:underline"><TranslatedText text="Terms of Service" /></a></li>
-                  <li><a href="/privacy-policy" className="hover:underline"><TranslatedText text="Privacy Policy" /></a></li>
+                  <li><a href="/terms-of-service" className="hover:underline">Terms of Service</a></li>
+                  <li><a href="/privacy-policy" className="hover:underline">Privacy Policy</a></li>
                 </ul>
               </div>
             </div>
@@ -374,28 +374,27 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex flex-col space-y-6">
             <div>
               <h3 className="text-lg font-bold mb-4">TopApps.store</h3>
-              <TranslatedParagraph
-                text="Discover and download the best mobile applications all in one place. We aim to provide a simple way for you to find quality apps for your device."
-                className="text-gray-400 text-sm max-w-xl"
-              />
+              <p className="text-gray-400 text-sm max-w-xl">
+                Discover and download the best mobile applications all in one place. We aim to provide a simple way for you to find quality apps for your device.
+              </p>
             </div>
 
             <div className="border-t border-gray-700 pt-6">
               <div className="flex flex-col md:flex-row md:justify-between">
                 <div className="space-x-4 mb-4 md:mb-0">
                   <a href="/terms-of-service" className="text-gray-400 hover:text-white cursor-pointer text-sm">
-                    <TranslatedText text="Terms of Service" />
+                    Terms of Service
                   </a>
                   <a href="/privacy-policy" className="text-gray-400 hover:text-white cursor-pointer text-sm">
-                    <TranslatedText text="Privacy Policy" />
+                    Privacy Policy
                   </a>
                   <a href="/disclaimer" className="text-gray-400 hover:text-white cursor-pointer text-sm">
-                    <TranslatedText text="Disclaimer" />
+                    Disclaimer
                   </a>
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">
-                    <TranslatedText text="© 2023 TopApps.store. All rights reserved." />
+                    © 2023 TopApps.store. All rights reserved.
                   </p>
                 </div>
               </div>
@@ -403,7 +402,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
             <div className="border-t border-gray-700 pt-6">
               <p className="text-gray-400 text-xs max-w-3xl mx-auto text-center">
-                <strong><TranslatedText text="Affiliate Disclosure:" /></strong> <TranslatedText text="TopApps.store is supported by our users. Some links on our site are affiliate links, which means we may earn a commission if you click on them and make a purchase. This helps us maintain and improve our service. All recommendations are based on genuine app quality and user experience." />
+                <strong>Affiliate Disclosure:</strong> TopApps.store is supported by our users. Some links on our site are affiliate links, which means we may earn a commission if you click on them and make a purchase. This helps us maintain and improve our service. All recommendations are based on genuine app quality and user experience.
               </p>
             </div>
           </div>
