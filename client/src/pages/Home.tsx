@@ -48,9 +48,9 @@ const Home = () => {
       {/* Top 10 Apps Last Month Section */}
       <section>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">{t('home.top10AppsLastMonth')}</h2>
+          <h2 className="text-2xl font-bold">Top 10 Apps Last Month</h2>
           <Link href="/apps/all">
-            <span className="text-primary hover:underline cursor-pointer">{t('home.viewAll')}</span>
+            <span className="text-primary hover:underline cursor-pointer">View All</span>
           </Link>
         </div>
         
@@ -133,9 +133,9 @@ const Home = () => {
       {/* Top 10 Just-In-Time Apps Section */}
       <section className="mt-10">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">{t('home.top10JustInTimeApps')}</h2>
+          <h2 className="text-2xl font-bold">Top Must-Have Apps</h2>
           <Link href="/apps/all">
-            <span className="text-primary hover:underline cursor-pointer">{t('home.viewAll')}</span>
+            <span className="text-primary hover:underline cursor-pointer">View All</span>
           </Link>
         </div>
         
@@ -168,9 +168,9 @@ const Home = () => {
       {/* Recent Apps Section */}
       <section className="mt-10">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">{t('home.recentApps')}</h2>
+          <h2 className="text-2xl font-bold">Recent Apps</h2>
           <Link href="/apps/all">
-            <span className="text-primary hover:underline cursor-pointer">{t('home.viewAll')}</span>
+            <span className="text-primary hover:underline cursor-pointer">View All</span>
           </Link>
         </div>
         

@@ -163,7 +163,7 @@ const AppDetail = () => {
         <Link href="/">
           <div className="flex items-center text-gray-600 hover:text-primary cursor-pointer">
             <i className="fas fa-arrow-left mr-2"></i>
-            <span>{t('nav.back')}</span>
+            <span>Back</span>
           </div>
         </Link>
       </div>
@@ -187,7 +187,7 @@ const AppDetail = () => {
                 {/* Advertisement buttons with affiliate links - moved up, below rating */}
                 <div className="w-full mb-3 flex flex-col items-center">
                   <div className="text-[10px] text-gray-500 mb-3 self-start">
-                    {t('sponsored.sponsored')}
+                    Sponsored
                   </div>
                   
                   {/* Solo mostramos el botón de descarga verde */}
@@ -202,7 +202,7 @@ const AppDetail = () => {
                   <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
                     <i className="fas fa-download text-green-500 w-6 text-lg"></i>
                     <div>
-                      <p className="text-xs text-gray-500">{t('appDetail.downloads')}</p>
+                      <p className="text-xs text-gray-500">Downloads</p>
                       <p className="font-medium text-sm">{app.downloads || '10M+'}</p>
                     </div>
                   </div>
@@ -210,7 +210,7 @@ const AppDetail = () => {
                   <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
                     <i className="fas fa-code-branch text-blue-500 w-6 text-lg"></i>
                     <div>
-                      <p className="text-xs text-gray-500">{t('appDetail.developer')}</p>
+                      <p className="text-xs text-gray-500">Developer</p>
                       <p className="font-medium text-sm">{app.developer}</p>
                     </div>
                   </div>
