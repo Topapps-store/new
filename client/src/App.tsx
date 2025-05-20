@@ -20,7 +20,7 @@ import HardcodedTerms from "./pages/HardcodedTerms";
 import Search from "./pages/Search";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
-import { LanguageProvider } from "./context/StaticLanguageContext";
+import { EnglishProvider } from "./context/EnglishContext";
 import { AdminProvider } from "./context/AdminContext";
 import { ThemeProvider } from "./context/ThemeContext";
 
@@ -74,12 +74,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <TooltipProvider>
-          <LanguageProvider>
+          <EnglishProvider>
             <AdminProvider>
               <Toaster />
               <Router />
             </AdminProvider>
-          </LanguageProvider>
+          </EnglishProvider>
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>

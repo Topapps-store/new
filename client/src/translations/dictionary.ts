@@ -1,9 +1,8 @@
 /**
- * Diccionario de traducciones para términos comunes
- * Esto proporciona traducciones rápidas sin necesidad de llamar a la API
+ * Diccionario de traducciones para términos comunes (solo inglés)
  */
 
-export type SupportedLanguage = 'en' | 'es' | 'fr' | 'de' | 'it' | 'pt' | 'ru' | 'zh' | 'ja';
+export type SupportedLanguage = 'en';
 
 type TranslationDictionary = {
   [key in SupportedLanguage]: {

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "wouter";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
-import { useLanguage } from "../context/StaticLanguageContext";
+import { useText } from "../context/EnglishContext";
 import TranslatedText from "./TranslatedText";
 import TranslatedParagraph from "./TranslatedParagraph";
 
