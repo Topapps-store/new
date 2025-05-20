@@ -28,45 +28,7 @@
     <div id="google_translate_element" style="display: none;"></div>
 
     <script>
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-          {
-            pageLanguage: 'en',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-          },
-          'google_translate_element'
-        );
-
-        autoTranslateIfNeeded();
-      }
-
-      function autoTranslateIfNeeded() {
-        const lang = (navigator.language || 'en').split('-')[0].toLowerCase();
-        if (lang === 'en') return;
-
-        const maxAttempts = 10;
-        let attempts = 0;
-
-        const tryTranslate = () => {
-          const select = document.querySelector('.goog-te-combo');
-          if (select) {
-            select.value = lang;
-            select.dispatchEvent(new Event('change'));
-            return true;
-          }
-          return false;
-        };
-
-        const interval = setInterval(() => {
-          if (tryTranslate() || ++attempts >= maxAttempts) {
-            clearInterval(interval);
-          }
-        }, 500);
-      }
-    </script>
-
-    <script>
-      window.googleTranslateElementInit = function() {
+      window.googleTranslateElementInit = function () {
         new google.translate.TranslateElement({
           pageLanguage: 'en',
           layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
@@ -74,9 +36,41 @@
         }, 'google_translate_element');
       };
     </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer>
-      
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
+
+    <script>
+      // Intenta forzar la traducción si Google carga correctamente
+      const tryTranslate = () => {
+        const combo = document.querySelector('.goog-te-combo');
+        const lang = (navigator.language || 'en').split('-')[0];
+        if (combo && lang !== 'en') {
+          combo.value = lang;
+          combo.dispatchEvent(new Event('change'));
+        } else {
+          setTimeout(tryTranslate, 500);
+        }
+      };
+
+      window.addEventListener('load', () => {
+        setTimeout(tryTranslate, 1000);
+      });
     </script>
+
+    <style>
+      .goog-te-banner-frame,
+      .goog-te-gadget,
+      .goog-logo-link,
+      .skiptranslate,
+      #google_translate_element {
+        display: none !important;
+      }
+
+      body {
+        top: 0 !important;
+      }
+    </style>
+
 
   </body>
 </html>
