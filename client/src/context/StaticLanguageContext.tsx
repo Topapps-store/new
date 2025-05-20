@@ -1,51 +1,23 @@
 import React, { createContext, useContext } from 'react';
-
-// Traducciones predeterminadas (solo inglés)
-const defaultTranslations = {
-  'en': {
-    'nav.home': 'Home',
-    'nav.categories': 'Categories',
-    'nav.search': 'Search',
-    'nav.back': 'Back',
-    'search.placeholder': 'Search apps...',
-    'search.noResults': 'No results found',
-    'home.topApps': 'Top Apps',
-    'home.popularApps': 'Popular Apps',
-    'home.recentApps': 'Recent Apps',
-    'home.justInTime': 'Just In Time',
-    'home.top10AppsLastMonth': 'Top 10 Apps Last Month',
-    'home.top10JustInTimeApps': 'Top Must-Have Apps',
-    'home.viewAll': 'View All',
-    'appDetail.description': 'Description',
-    'appDetail.screenshots': 'Screenshots',
-    'appDetail.information': 'Information',
-    'appDetail.downloads': 'Downloads',
-    'appDetail.developer': 'Developer',
-    'appDetail.version': 'Version',
-    'appDetail.updated': 'Updated',
-    'appDetail.downloadAPK': 'Download',
-    'appDetail.googlePlay': 'Google Play',
-    'appDetail.alternativeDownloads': 'Alternative Downloads',
-    'appDetail.relatedApps': 'Related Apps',
-    'sponsored.sponsored': 'Sponsored',
-    'category.allApps': 'All Apps',
-    'error.generic': 'An error occurred. Please try again later.',
-    'loading': 'Loading...',
-    'footer.termsOfService': 'Terms of Service',
-    'footer.privacyPolicy': 'Privacy Policy',
-    'footer.contact': 'Contact Us',
-    'footer.disclaimer': 'Disclaimer'
-  }
-};
+import { dictionary } from '../translations/english';
 
 // Tipo para el contexto de idioma
 interface LanguageContextType {
   language: string;
   t: (key: string) => string;
+  // Mantener la estructura antigua para compatibilidad
+  setLanguage: (lang: string) => void;
+  translateDynamic: (text: string) => Promise<string>;
+  supportedLanguages: { code: string; name: string }[];
 }
 
 // Crear el contexto de idioma
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+// Solamente idioma inglés
+const supportedLanguages = [
+  { code: 'en', name: 'English' }
+];
 
 // Propiedades para el proveedor de idioma
 interface LanguageProviderProps {
@@ -56,18 +28,28 @@ interface LanguageProviderProps {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   // Función para obtener la traducción de una clave
   const t = (key: string): string => {
-    // Obtener traducciones de inglés (único idioma)
-    const translations = defaultTranslations.en;
-    
-    // Devolver la traducción o la clave si no se encuentra
-    return translations[key as keyof typeof translations] || key;
+    // Buscar en el diccionario
+    return dictionary[key as keyof typeof dictionary] || key;
+  };
+
+  // Función sin operación para compatibilidad
+  const setLanguage = (lang: string): void => {
+    console.log('Múltiples idiomas ya no están soportados, usando inglés por defecto');
+  };
+
+  // Función stub para compatibilidad que devuelve el texto original sin traducir
+  const translateDynamic = async (text: string): Promise<string> => {
+    return text;
   };
 
   // Proporcionar el contexto a los componentes hijos
   return (
     <LanguageContext.Provider value={{ 
       language: 'en', 
-      t
+      t,
+      setLanguage,
+      translateDynamic,
+      supportedLanguages
     }}>
       {children}
     </LanguageContext.Provider>
