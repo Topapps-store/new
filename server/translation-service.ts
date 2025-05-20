@@ -47,6 +47,16 @@ export async function translateText(text: string, targetLang: string, sourceLang
     return text;
   } catch (error) {
     console.error('Error al traducir texto:', error);
+    
+    // Verificar si el error es por límite de API
+    if (axios.isAxiosError(error) && error.response) {
+      if (error.response.status === 429) {
+        console.error('Límite de API DeepL alcanzado. Por favor, espere o actualice a un plan con mayor capacidad.');
+      } else if (error.response.status === 403) {
+        console.error('Error de autenticación con la API DeepL. Verifique la clave API.');
+      }
+    }
+    
     return text;
   }
 }
@@ -193,6 +203,16 @@ export async function bulkTranslate(texts: string[], targetLang: string): Promis
     return texts;
   } catch (error) {
     console.error('Error en traducción por lotes:', error);
+    
+    // Verificar si el error es por límite de API
+    if (axios.isAxiosError(error) && error.response) {
+      if (error.response.status === 429) {
+        console.error('Límite de API DeepL alcanzado en traducción por lotes. Por favor, espere o actualice a un plan con mayor capacidad.');
+      } else if (error.response.status === 403) {
+        console.error('Error de autenticación con la API DeepL en traducción por lotes. Verifique la clave API.');
+      }
+    }
+    
     return texts;
   }
 }
