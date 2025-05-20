@@ -163,32 +163,41 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     return translations[key as keyof typeof translations] || key;
   };
 
-  // Función para traducir texto dinámico usando DeepL
+  // Función para traducir texto dinámico usando LibreTranslate
   const translateDynamic = async (text: string): Promise<string> => {
     // Si el texto está vacío o es muy corto, devuélvelo tal cual
     if (!text || text.length < 3) {
       return text;
     }
 
-    // Si el idioma es inglés, no es necesario traducir
-    if (language === 'en') {
+    // Normalizar el idioma
+    const normalizedLang = language.toLowerCase().split('-')[0];
+    
+    // Definir el idioma de origen (asumimos que es inglés)
+    const sourceLang = 'en';
+    
+    // Si los idiomas son iguales, no es necesario traducir
+    if (normalizedLang === sourceLang) {
       return text;
     }
 
     try {
+      // Clave para la caché
+      const cacheKey = `${sourceLang}_${normalizedLang}`;
+      
       // Buscar en caché primero
-      if (translationCache[language]?.[text]) {
-        return translationCache[language][text];
+      if (translationCache[normalizedLang]?.[text]) {
+        return translationCache[normalizedLang][text];
       }
 
-      // Si no está en caché, traducir con DeepL
-      const translated = await translateText(text, language);
+      // Si no está en caché, traducir con LibreTranslate
+      const translated = await translateText(text, normalizedLang, sourceLang);
       
       // Guardar en caché
-      if (!translationCache[language]) {
-        translationCache[language] = {};
+      if (!translationCache[normalizedLang]) {
+        translationCache[normalizedLang] = {};
       }
-      translationCache[language][text] = translated;
+      translationCache[normalizedLang][text] = translated;
       
       return translated;
     } catch (error) {
