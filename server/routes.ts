@@ -290,13 +290,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   apiRouter.post("/translate/bulk", async (req, res) => {
     try {
-      const { texts, targetLang } = req.body;
+      const { texts, targetLang, sourceLang = 'en' } = req.body;
       
       if (!Array.isArray(texts) || !targetLang) {
         return res.status(400).json({ error: 'Missing required parameters' });
       }
       
-      const translatedTexts = await bulkTranslate(texts, targetLang);
+      const translatedTexts = await bulkTranslate(texts, targetLang, sourceLang);
       return res.json({ translatedTexts });
     } catch (error) {
       console.error('Bulk translation error:', error);

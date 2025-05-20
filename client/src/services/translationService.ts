@@ -15,12 +15,35 @@ export const initializeTranslator = async (): Promise<void> => {
 };
 
 /**
+ * Detecta el idioma del navegador
+ * @returns El código de idioma del navegador (ej. 'es', 'en', 'fr')
+ */
+export const detectBrowserLanguage = (): string => {
+  // Intentar obtener el idioma del navegador
+  if (typeof navigator !== 'undefined') {
+    // Primero intentamos con navigator.language
+    if (navigator.language) {
+      return navigator.language.split('-')[0].toLowerCase();
+    }
+    
+    // Si eso falla, intentamos con navigator.languages
+    if (navigator.languages && navigator.languages.length > 0) {
+      return navigator.languages[0].split('-')[0].toLowerCase();
+    }
+  }
+  
+  // Si no se puede detectar, devolver inglés por defecto
+  return 'en';
+};
+
+/**
  * Traduce un texto al idioma especificado usando el API del servidor
  * @param text Texto a traducir
- * @param targetLang Código del idioma de destino (ej. 'ES', 'EN', 'FR')
+ * @param targetLang Código del idioma de destino (ej. 'es', 'en', 'fr')
+ * @param sourceLang Código del idioma de origen (por defecto 'en')
  * @returns Texto traducido o el texto original si hay un error
  */
-export const translateText = async (text: string, targetLang: string): Promise<string> => {
+export const translateText = async (text: string, targetLang: string, sourceLang: string = 'en'): Promise<string> => {
   if (!text || text.trim() === '') {
     return text;
   }
@@ -30,31 +53,36 @@ export const translateText = async (text: string, targetLang: string): Promise<s
     return text;
   }
   
-  // Si ya está en inglés y el destino es inglés, no necesitamos traducir
-  if (targetLang.toLowerCase() === 'en' && isEnglish(text)) {
+  // Normalizar códigos de idioma
+  const normalizedTarget = targetLang.toLowerCase().split('-')[0];
+  const normalizedSource = sourceLang.toLowerCase().split('-')[0];
+  
+  // Si el idioma de origen y destino son el mismo, no es necesario traducir
+  if (normalizedSource === normalizedTarget) {
     return text;
   }
   
   // Verificar si ya tenemos esta traducción en caché
-  if (translationCache[targetLang]?.[text]) {
-    return translationCache[targetLang][text];
+  if (translationCache[normalizedTarget]?.[text]) {
+    return translationCache[normalizedTarget][text];
   }
   
   try {
     // Usar la API del servidor para traducir el texto
     const response = await axios.post('/api/translate', {
       text,
-      targetLang
+      targetLang: normalizedTarget,
+      sourceLang: normalizedSource
     });
     
     if (response.data && response.data.translatedText) {
       const translatedText = response.data.translatedText;
       
       // Guardar en caché
-      if (!translationCache[targetLang]) {
-        translationCache[targetLang] = {};
+      if (!translationCache[normalizedTarget]) {
+        translationCache[normalizedTarget] = {};
       }
-      translationCache[targetLang][text] = translatedText;
+      translationCache[normalizedTarget][text] = translatedText;
       
       return translatedText;
     }
@@ -85,36 +113,32 @@ const containsRealText = (text: string): boolean => {
 };
 
 /**
- * Intenta determinar si un texto ya está en inglés para evitar traducciones innecesarias
- */
-const isEnglish = (text: string): boolean => {
-  // Lista de palabras comunes en inglés para hacer una detección simple
-  const commonEnglishWords = ['the', 'and', 'is', 'in', 'it', 'you', 'that', 'this', 'with', 'for', 'on', 'at', 'to', 'from', 'by'];
-  
-  // Contar cuántas palabras comunes en inglés contiene el texto
-  const words = text.toLowerCase().split(/\s+/);
-  const englishWordCount = words.filter(word => commonEnglishWords.includes(word)).length;
-  
-  // Si más del 15% de las palabras son comunes en inglés, asumimos que el texto ya está en inglés
-  return englishWordCount > 0 && (englishWordCount / words.length) > 0.15;
-};
-
-/**
  * Traduce un conjunto de textos en un lote
  * @param texts Array de textos a traducir
  * @param targetLang Código del idioma de destino
+ * @param sourceLang Código del idioma de origen (por defecto 'en')
  * @returns Array con los textos traducidos
  */
-export const translateBulk = async (texts: string[], targetLang: string): Promise<string[]> => {
+export const translateBulk = async (texts: string[], targetLang: string, sourceLang: string = 'en'): Promise<string[]> => {
   if (!texts || texts.length === 0) {
     return [];
+  }
+  
+  // Normalizar códigos de idioma
+  const normalizedTarget = targetLang.toLowerCase().split('-')[0];
+  const normalizedSource = sourceLang.toLowerCase().split('-')[0];
+  
+  // Si los idiomas son iguales, no es necesario traducir
+  if (normalizedSource === normalizedTarget) {
+    return texts;
   }
   
   try {
     // Usar la API del servidor para traducir los textos en lote
     const response = await axios.post('/api/translate/bulk', {
       texts,
-      targetLang
+      targetLang: normalizedTarget,
+      sourceLang: normalizedSource
     });
     
     if (response.data && response.data.translatedTexts) {
@@ -132,13 +156,24 @@ export const translateBulk = async (texts: string[], targetLang: string): Promis
  * Traduce un objeto completo al idioma especificado
  * @param obj Objeto a traducir
  * @param targetLang Código del idioma de destino
+ * @param sourceLang Código del idioma de origen (por defecto 'en')
  * @returns Objeto con textos traducidos
  */
 export const translateObject = async <T extends Record<string, any>>(
   obj: T, 
-  targetLang: string
+  targetLang: string,
+  sourceLang: string = 'en'
 ): Promise<T> => {
   if (!obj || typeof obj !== 'object') {
+    return obj;
+  }
+  
+  // Normalizar códigos de idioma
+  const normalizedTarget = targetLang.toLowerCase().split('-')[0];
+  const normalizedSource = sourceLang.toLowerCase().split('-')[0];
+  
+  // Si los idiomas son iguales, no es necesario traducir
+  if (normalizedSource === normalizedTarget) {
     return obj;
   }
   
@@ -153,11 +188,11 @@ export const translateObject = async <T extends Record<string, any>>(
         const fieldsToTranslate = ['name', 'description', 'title', 'content', 'text', 'summary'];
         if (fieldsToTranslate.includes(key) || key.includes('text') || key.includes('description')) {
           // Usamos type assertion para asegurar que TypeScript entienda que estamos manteniendo el tipo
-          result[key] = await translateText(value, targetLang) as any;
+          result[key] = await translateText(value, normalizedTarget, normalizedSource) as any;
         }
       } else if (typeof value === 'object' && value !== null) {
         // Usamos type assertion para asegurar que TypeScript entienda que estamos manteniendo el tipo
-        result[key] = await translateObject(value, targetLang) as any;
+        result[key] = await translateObject(value, normalizedTarget, normalizedSource) as any;
       }
     }
   }

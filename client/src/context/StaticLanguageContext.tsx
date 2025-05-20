@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { initializeTranslator, translateText } from '../services/translationService';
+import { 
+  initializeTranslator, 
+  translateText, 
+  detectBrowserLanguage 
+} from '../services/translationService';
 
 // Traducciones predeterminadas
 const defaultTranslations = {
@@ -125,8 +129,8 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   // Detectar el idioma del navegador al cargar
   useEffect(() => {
-    const detectBrowserLanguage = () => {
-      const browserLang = navigator.language.split('-')[0];
+    const initLanguage = () => {
+      const browserLang = detectBrowserLanguage();
       // Solo establecer si es un idioma que soportamos
       const isSupported = supportedLanguages.some(lang => lang.code === browserLang);
       if (isSupported) {
@@ -134,18 +138,18 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       }
     };
 
-    // Inicializar el traductor DeepL
+    // Inicializar el traductor
     const initTranslator = async () => {
       try {
         await initializeTranslator();
         setIsTranslatorInitialized(true);
-        console.log('Traductor DeepL inicializado');
+        console.log('Servicio de traducción inicializado');
       } catch (error) {
-        console.error('Error al inicializar el traductor DeepL:', error);
+        console.error('Error al inicializar el servicio de traducción:', error);
       }
     };
 
-    detectBrowserLanguage();
+    initLanguage();
     initTranslator();
   }, []);
 
