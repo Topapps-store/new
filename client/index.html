@@ -31,73 +31,107 @@
     <!-- Google Translate Widget -->
     <div id="google_translate_element" style="display: none;"></div>
     <script type="text/javascript">
+      // Inicializar el traductor
       function googleTranslateElementInit() {
         new google.translate.TranslateElement({
           pageLanguage: 'en',
-          autoDisplay: false,
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          includedLanguages: 'af,sq,ar,hy,az,eu,be,bn,bs,bg,ca,zh-CN,zh-TW,hr,cs,da,nl,en,et,tl,fi,fr,gl,ka,de,el,gu,ht,iw,hi,hu,is,id,ga,it,ja,kn,ko,lv,lt,mk,ms,mt,no,fa,pl,pt,ro,ru,sr,sk,sl,es,sw,sv,ta,te,th,tr,uk,ur,vi,cy,yi',
+          layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
         }, 'google_translate_element');
+        
+        // Asegurarnos de iniciar la traducción una vez que el elemento está listo
+        setTimeout(translatePage, 1000);
       }
-
-      window.addEventListener("DOMContentLoaded", () => {
-        // Detectar el idioma del navegador
-        const userLang = navigator.language || navigator.userLanguage;
-        const langCode = userLang.split('-')[0];
-
-        // Solo activar traducción automática si el idioma no es inglés
-        if (langCode !== 'en') {
-          console.log("Activando traducción automática para: " + langCode);
+      
+      // Función para traducir la página al idioma del navegador
+      function translatePage() {
+        try {
+          // Obtener el idioma del navegador
+          const userLang = navigator.language || navigator.userLanguage;
+          const langCode = userLang.split('-')[0].toLowerCase();
           
-          // Esperar a que se cargue el widget de Google Translate
-          const interval = setInterval(() => {
-            // Verificar si el iframe del banner está presente
-            const frame = document.querySelector('iframe.goog-te-banner-frame');
+          console.log('Idioma detectado:', langCode);
+          
+          // Solo traducir si no es inglés
+          if (langCode !== 'en') {
+            console.log('Iniciando traducción a:', langCode);
             
-            // Verificar si el selector de idiomas está disponible
-            const select = document.querySelector('.goog-te-combo');
+            // Crear un elemento <select> temporal para manipular la traducción
+            const translateCombo = document.querySelector('.goog-te-combo');
             
-            if (select) {
-              // Intentar establecer el idioma detectado
-              try {
-                select.value = langCode;
-                select.dispatchEvent(new Event('change'));
-                console.log("Traducción automática activada");
+            if (translateCombo) {
+              // Encontrar la opción correcta que coincida con el idioma del navegador
+              let found = false;
+              for (let i = 0; i < translateCombo.options.length; i++) {
+                const option = translateCombo.options[i];
+                const optionLang = option.value.toLowerCase();
                 
-                // Aplicar estilos adicionales para ocultar elementos
-                const gTransScript = document.createElement('style');
-                gTransScript.innerHTML = `
-                  .goog-te-banner-frame.skiptranslate {
-                    display: none !important;
-                  }
-                  .goog-tooltip {
-                    display: none !important;
-                  }
-                  .goog-tooltip:hover {
-                    display: none !important;
-                  }
-                  .goog-text-highlight {
-                    background-color: transparent !important;
-                    border: none !important;
-                    box-shadow: none !important;
-                  }
-                `;
-                document.body.appendChild(gTransScript);
-                
-                // Limpiar el intervalo una vez que se haya aplicado la traducción
-                clearInterval(interval);
-              } catch (e) {
-                console.log("Error al activar traducción: " + e.message);
+                // Revisar si el idioma coincide
+                if (optionLang === langCode || optionLang.startsWith(langCode + '-')) {
+                  console.log('Opción encontrada:', option.value);
+                  translateCombo.selectedIndex = i;
+                  translateCombo.dispatchEvent(new Event('change'));
+                  found = true;
+                  break;
+                }
               }
+              
+              if (!found) {
+                console.log('Idioma no encontrado en las opciones, intentando con otro método');
+                // Intentar usar directamente la API de Google Translate
+                if (typeof google !== 'undefined' && google.translate) {
+                  google.translate.TranslateElement.getInstance().showBanner(langCode);
+                }
+              }
+              
+              // Ocultar elementos visuales de Google Translate
+              document.body.classList.add('notranslate');
+              
+              const style = document.createElement('style');
+              style.textContent = `
+                body {
+                  top: 0 !important;
+                }
+                .goog-te-banner-frame { 
+                  display: none !important;
+                }
+                .goog-te-menu-value:hover {
+                  text-decoration: none !important;
+                }
+                .goog-text-highlight {
+                  background-color: transparent !important;
+                  box-shadow: none !important;
+                }
+                .goog-te-gadget {
+                  height: 0px !important;
+                  overflow: hidden !important;
+                }
+                .VIpgJd-ZVi9od-l4eHX-hSRGPd,
+                .VIpgJd-ZVi9od-ORHb-OEVmcd {
+                  display: none !important;
+                }
+              `;
+              document.head.appendChild(style);
+            } else {
+              console.log('Elemento .goog-te-combo no encontrado, reintentando en 1 segundo');
+              setTimeout(translatePage, 1000); // Reintentar después de un segundo
             }
-          }, 300);
-          
-          // Establecer un límite de tiempo para intentar traducir (10 segundos)
-          setTimeout(() => {
-            clearInterval(interval);
-          }, 10000);
+          }
+        } catch (e) {
+          console.error('Error durante traducción:', e);
         }
+      }
+      
+      // Cuando la página esté completamente cargada
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          // Intentar traducir varias veces para asegurar que funcione
+          translatePage();
+          setTimeout(translatePage, 1500);
+          setTimeout(translatePage, 3000);
+        }, 500);
       });
     </script>
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </body>
 </html>
