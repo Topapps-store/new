@@ -15,24 +15,61 @@ export const initializeTranslator = async (): Promise<void> => {
 };
 
 /**
- * Detecta el idioma del navegador
+ * Detecta el idioma del navegador con un enfoque más completo
  * @returns El código de idioma del navegador (ej. 'es', 'en', 'fr')
  */
 export const detectBrowserLanguage = (): string => {
+  const supportedLanguages = ['en', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ar', 'nl'];
+  
   // Intentar obtener el idioma del navegador
   if (typeof navigator !== 'undefined') {
-    // Primero intentamos con navigator.language
-    if (navigator.language) {
-      return navigator.language.split('-')[0].toLowerCase();
-    }
-    
-    // Si eso falla, intentamos con navigator.languages
-    if (navigator.languages && navigator.languages.length > 0) {
-      return navigator.languages[0].split('-')[0].toLowerCase();
+    try {
+      // 1. Intentar con localStorage si está disponible (para recordar la preferencia del usuario)
+      if (typeof localStorage !== 'undefined') {
+        const storedLanguage = localStorage.getItem('preferredLanguage');
+        if (storedLanguage) {
+          const normalized = storedLanguage.toLowerCase().split('-')[0];
+          if (supportedLanguages.includes(normalized)) {
+            return normalized;
+          }
+        }
+      }
+      
+      // 2. Comprobar navegadores que utilizan propiedades específicas
+      // Algunos navegadores tienen userLanguage o browserLanguage
+      const anyNavigator = navigator as any;
+      if (anyNavigator.userLanguage) {
+        const normalized = anyNavigator.userLanguage.toLowerCase().split('-')[0];
+        if (supportedLanguages.includes(normalized)) {
+          return normalized;
+        }
+      }
+      
+      // 3. Usar navigator.language (estándar)
+      if (navigator.language) {
+        const normalized = navigator.language.toLowerCase().split('-')[0];
+        if (supportedLanguages.includes(normalized)) {
+          return normalized;
+        }
+      }
+      
+      // 4. Probar navigator.languages (array de idiomas preferidos)
+      if (navigator.languages && navigator.languages.length > 0) {
+        // Iterar por la lista de idiomas preferidos
+        for (const lang of navigator.languages) {
+          const normalized = lang.toLowerCase().split('-')[0];
+          if (supportedLanguages.includes(normalized)) {
+            return normalized;
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error al detectar idioma del navegador:', error);
     }
   }
   
-  // Si no se puede detectar, devolver inglés por defecto
+  // Si ninguno de los métodos anteriores funciona o el idioma no está soportado,
+  // devolver inglés por defecto
   return 'en';
 };
 

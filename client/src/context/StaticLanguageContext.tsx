@@ -126,15 +126,36 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   const [language, setLanguage] = useState<string>('en');
   // Estado para rastrear si el traductor está inicializado
   const [isTranslatorInitialized, setIsTranslatorInitialized] = useState<boolean>(false);
+  
+  // Función para cambiar el idioma y guardar la preferencia
+  const changeLanguage = (newLanguage: string) => {
+    setLanguage(newLanguage);
+    
+    // Guardar la preferencia en localStorage
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('preferredLanguage', newLanguage);
+      }
+    } catch (error) {
+      console.error('Error al guardar preferencia de idioma:', error);
+    }
+  };
 
-  // Detectar el idioma del navegador al cargar
+  // Detectar el idioma del navegador al cargar y configurar todo
   useEffect(() => {
     const initLanguage = () => {
       const browserLang = detectBrowserLanguage();
-      // Solo establecer si es un idioma que soportamos
-      const isSupported = supportedLanguages.some(lang => lang.code === browserLang);
-      if (isSupported) {
-        setLanguage(browserLang);
+      
+      // Actualizar el idioma en el estado
+      setLanguage(browserLang);
+      
+      // Guardar la preferencia en localStorage para futuras visitas
+      try {
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('preferredLanguage', browserLang);
+        }
+      } catch (error) {
+        console.error('Error al guardar preferencia de idioma:', error);
       }
     };
 
@@ -210,7 +231,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   return (
     <LanguageContext.Provider value={{ 
       language, 
-      setLanguage, 
+      setLanguage: changeLanguage, 
       t, 
       translateDynamic,
       supportedLanguages

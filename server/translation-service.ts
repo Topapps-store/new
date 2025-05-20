@@ -34,7 +34,7 @@ function normalizeLanguageCode(lang: string): string {
 }
 
 /**
- * Traduce un texto utilizando la API de LibreTranslate
+ * Traduce un texto utilizando la API de LibreTranslate con mejor manejo de errores
  */
 export async function translateText(text: string, targetLang: string, sourceLang: string = 'en'): Promise<string> {
   try {
@@ -55,24 +55,49 @@ export async function translateText(text: string, targetLang: string, sourceLang
       return text;
     }
     
-    // Llamar a la API de LibreTranslate
-    const response = await axios.post(
+    // Lista de endpoints alternativos de LibreTranslate en caso de que uno falle
+    const endpoints = [
       'https://libretranslate.de/translate',
-      {
-        q: text,
-        source: normalizedSource,
-        target: normalizedTarget,
-        format: 'text'
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    );
+      'https://translate.argosopentech.com/translate'
+    ];
     
-    if (response.data && response.data.translatedText) {
-      return response.data.translatedText;
+    // Datos para la solicitud
+    const requestData = {
+      q: text,
+      source: normalizedSource,
+      target: normalizedTarget,
+      format: 'text'
+    };
+    
+    // Configuración de tiempo de espera (5 segundos)
+    const axiosConfig = {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      timeout: 5000 // 5 segundos de timeout
+    };
+    
+    // Intentar con cada endpoint hasta que uno funcione
+    let lastError = null;
+    
+    for (const endpoint of endpoints) {
+      try {
+        const response = await axios.post(endpoint, requestData, axiosConfig);
+        
+        if (response.data && response.data.translatedText) {
+          return response.data.translatedText;
+        }
+      } catch (endpointError) {
+        lastError = endpointError;
+        console.warn(`Error con el endpoint ${endpoint}:`, endpointError.message);
+        // Continuar con el siguiente endpoint
+        continue;
+      }
+    }
+    
+    // Si llegamos aquí, todos los endpoints fallaron
+    if (lastError) {
+      throw lastError;
     }
     
     return text;
@@ -80,10 +105,17 @@ export async function translateText(text: string, targetLang: string, sourceLang
     console.error('Error al traducir texto:', error);
     
     // Verificar si hay errores específicos
-    if (axios.isAxiosError(error) && error.response) {
-      console.error(`Error de la API LibreTranslate: ${error.response.status} - ${JSON.stringify(error.response.data)}`);
+    if (axios.isAxiosError(error)) {
+      if (error.code === 'ECONNABORTED') {
+        console.error('Tiempo de espera agotado al conectar con el servicio de traducción');
+      } else if (error.response) {
+        console.error(`Error de la API de traducción: ${error.response.status} - ${JSON.stringify(error.response.data)}`);
+      } else if (error.request) {
+        console.error('No se recibió respuesta del servicio de traducción');
+      }
     }
     
+    // En caso de error, devolver el texto original
     return text;
   }
 }
@@ -124,7 +156,7 @@ export async function translateObject<T extends Record<string, any>>(
 }
 
 /**
- * Traduce múltiples textos en un solo lote
+ * Traduce múltiples textos en un solo lote con mejor manejo de errores
  * @param texts Array de textos a traducir
  * @param targetLang Idioma destino para la traducción
  * @param sourceLang Idioma origen para la traducción (por defecto 'en')
@@ -154,10 +186,49 @@ export async function bulkTranslate(texts: string[], targetLang: string, sourceL
       return texts;
     }
     
-    // LibreTranslate no tiene una API de lote, así que traducimos uno por uno
-    const translatedTexts = await Promise.all(
-      validTexts.map(text => translateText(text, targetLang, sourceLang))
-    );
+    // Traducir textos en lotes pequeños para no sobrecargar la API
+    // y con reintentos en caso de error
+    const batchSize = 5; // Traducir 5 textos a la vez
+    const translatedTexts: string[] = [];
+    
+    for (let i = 0; i < validTexts.length; i += batchSize) {
+      const batch = validTexts.slice(i, i + batchSize);
+      
+      // Traducir cada lote con 3 intentos máximo
+      let attempts = 0;
+      let batchTranslated = false;
+      let batchResults: string[] = [];
+      
+      while (!batchTranslated && attempts < 3) {
+        try {
+          // Usamos Promise.all pero con un pequeño delay entre solicitudes
+          batchResults = await Promise.all(
+            batch.map(async (text, index) => {
+              // Pequeño delay para no saturar la API
+              if (index > 0) {
+                await new Promise(resolve => setTimeout(resolve, 200));
+              }
+              return await translateText(text, normalizedTarget, normalizedSource);
+            })
+          );
+          batchTranslated = true;
+        } catch (error) {
+          attempts++;
+          console.warn(`Error en lote ${i}-${i+batch.length}, intento ${attempts}/3:`, error.message);
+          // Esperar un poco más antes del siguiente intento
+          await new Promise(resolve => setTimeout(resolve, 1000 * attempts));
+        }
+      }
+      
+      // Si después de 3 intentos sigue fallando, usar los textos originales
+      if (!batchTranslated) {
+        console.error(`No se pudo traducir el lote ${i}-${i+batch.length} después de 3 intentos.`);
+        batchResults = batch;
+      }
+      
+      // Añadir los resultados del lote
+      translatedTexts.push(...batchResults);
+    }
     
     // Reemplazar los textos originales con las traducciones
     const result = [...texts]; // Clonar el array original
