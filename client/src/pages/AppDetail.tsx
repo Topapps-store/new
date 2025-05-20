@@ -10,8 +10,7 @@ import { apiRequest } from "../lib/queryClient";
 import { Download, PlayCircle } from "lucide-react";
 import { processAffiliateUrl } from "../lib/url-utils";
 import DownloadButton from "../components/DownloadButton";
-import TranslatedText from "../components/TranslatedText";
-import TranslatedAppDescription from "../components/TranslatedAppDescription";
+
 
 
 // Type guard to check if the app is of type AppLegacy
@@ -178,7 +177,7 @@ const AppDetail = () => {
                   alt={app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
-                <h1 className="text-xl font-bold text-center"><TranslatedText text={app.name} /></h1>
+                <h1 className="text-xl font-bold text-center">{app.name}</h1>
                 
                 <div className="flex items-center mt-1 mb-3">
                   <StarRating rating={app.rating} showScore={true} />
@@ -228,7 +227,7 @@ const AppDetail = () => {
                   }`}
                   onClick={() => setActiveTab("description")}
                 >
-                  {t('appDetail.description')}
+                  Description
                 </button>
                 <button
                   className={`pb-1 text-sm font-medium ${
@@ -238,7 +237,7 @@ const AppDetail = () => {
                   }`}
                   onClick={() => setActiveTab("screenshots")}
                 >
-                  {t('appDetail.screenshots')}
+                  Screenshots
                 </button>
                 <button
                   className={`pb-1 text-sm font-medium ${
@@ -248,7 +247,7 @@ const AppDetail = () => {
                   }`}
                   onClick={() => setActiveTab("info")}
                 >
-                  {t('appDetail.information')}
+                  Information
                 </button>
 
               </div>
@@ -256,7 +255,7 @@ const AppDetail = () => {
               {activeTab === "description" && (
                 <div className="mb-3">
                   <div className="text-gray-700 whitespace-pre-line text-sm">
-                    <TranslatedAppDescription text={app.description} />
+                    {app.description}
                   </div>
                   
                   {/* Google Play download link */}
@@ -271,7 +270,7 @@ const AppDetail = () => {
                       data-event="click:googlePlay"
                     >
                       <PlayCircle size={20} />
-                      {t('appDetail.googlePlay', 'Google Play')}
+                      Google Play
                     </a>
                   </div>
                 </div>
@@ -307,7 +306,7 @@ const AppDetail = () => {
                   {/* App info grid */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">{t('appDetail.category')}</h3>
+                      <h3 className="text-sm font-medium text-gray-500">Category</h3>
                       <p className="font-medium">
                         <Link href={`/category/${isAppLegacy(app) ? app.categoryId : ''}`}>
                           <span className="text-primary hover:underline cursor-pointer">
@@ -318,27 +317,27 @@ const AppDetail = () => {
                     </div>
                     
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">{t('appDetail.downloads')}</h3>
+                      <h3 className="text-sm font-medium text-gray-500">Downloads</h3>
                       <p className="font-medium">{app.downloads}</p>
                     </div>
                     
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">{t('appDetail.lastUpdated')}</h3>
+                      <h3 className="text-sm font-medium text-gray-500">Last Updated</h3>
                       <p className="font-medium">{app.updated}</p>
                     </div>
                     
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">{t('appDetail.version')}</h3>
+                      <h3 className="text-sm font-medium text-gray-500">Version</h3>
                       <p className="font-medium">{app.version}</p>
                     </div>
                     
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">{t('appDetail.size')}</h3>
+                      <h3 className="text-sm font-medium text-gray-500">Size</h3>
                       <p className="font-medium">{app.size}</p>
                     </div>
                     
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">{t('appDetail.requires')}</h3>
+                      <h3 className="text-sm font-medium text-gray-500">Requires</h3>
                       <p className="font-medium">{app.requires || 'Android 5.0+'}</p>
                     </div>
                   </div>
@@ -350,7 +349,7 @@ const AppDetail = () => {
         
         {/* Related Apps */}
         <div className="p-6 bg-gray-50 border-t border-gray-200">
-          <h2 className="text-xl font-bold mb-4">{t('appDetail.relatedApps')}</h2>
+          <h2 className="text-xl font-bold mb-4">Related Apps</h2>
           
           {isLoadingRelated ? (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -369,7 +368,7 @@ const AppDetail = () => {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">{t('appDetail.noRelatedApps')}</p>
+            <p className="text-gray-500">No related apps found</p>
           )}
         </div>
       </div>
