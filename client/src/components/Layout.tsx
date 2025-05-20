@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar";
 import { useLanguage } from "../context/StaticLanguageContext";
 import TranslatedText from "./TranslatedText";
 import TranslatedParagraph from "./TranslatedParagraph";
+import LanguageSelector from "./LanguageSelector";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -43,6 +44,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <span className="hidden md:inline">{t('nav.addApp')}</span>
               </div>
             </Link>
+            {/* Agregado el selector de idiomas */}
+            <div className="ml-2 border-l pl-2">
+              <LanguageSelector />
+            </div>
           </nav>
         </div>
 
