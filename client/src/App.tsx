@@ -74,12 +74,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <TooltipProvider>
-          <EnglishProvider>
+          <LanguageProvider>
             <AdminProvider>
               <Toaster />
               <Router />
             </AdminProvider>
-          </EnglishProvider>
+          </LanguageProvider>
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>

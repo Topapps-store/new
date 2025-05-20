@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
 import { useLocation } from "wouter";
-import { useText } from "../context/EnglishContext";
+import { useLanguage } from "../context/StaticLanguageContext";
 
 const SearchBar = ({ className = "" }: { className?: string }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [, navigate] = useLocation();
-  const { t } = useText();
+  const { t } = useLanguage();
 
   const handleSearch = useCallback((e: React.FormEvent) => {
     e.preventDefault();
