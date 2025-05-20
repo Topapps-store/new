@@ -7,20 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <style>
-      /* Ocultar solo elementos visuales, pero permitir que el widget funcione */
-      .goog-te-banner-frame.skiptranslate {
-        display: none !important;
-      }
       body {
         top: 0 !important;
-      }
-      /* Hacemos esto invisible pero funcional */
-      #google_translate_element {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        opacity: 0.01;
-        z-index: 9999;
       }
     </style>
   </head>
@@ -30,57 +18,83 @@
     <script type="module" src="/src/main.tsx"></script>
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
 
-    <div id="google_translate_element"></div>
-
-    <script>
-      window.googleTranslateElementInit = function () {
+    <!-- Google Translate Integration -->
+    <div id="google_translate_element" style="position:absolute; top:-999px; left:-999px;"></div>
+    
+    <script type="text/javascript">
+      // Función que se ejecuta cuando Google Translate está listo
+      function googleTranslateElementInit() {
         new google.translate.TranslateElement({
           pageLanguage: 'en',
           includedLanguages: 'ar,de,en,es,fr,hi,id,it,ja,ko,nl,pt,ru,th,tr,vi,zh-CN',
           layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-          autoDisplay: true
+          autoDisplay: false
         }, 'google_translate_element');
-      };
-    </script>
-
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
-
-    <script>
-      // Intenta forzar la traducción si Google carga correctamente
-      const tryTranslate = () => {
-        const combo = document.querySelector('.goog-te-combo');
-        console.log('Trying to find Google Translate element:', combo);
-        const lang = (navigator.language || 'en').split('-')[0];
-        if (combo && lang !== 'en') {
-          console.log('Setting language to:', lang);
-          combo.value = lang;
-          combo.dispatchEvent(new Event('change'));
+        
+        // Verificar si debemos traducir automáticamente
+        detectBrowserLanguage();
+      }
+      
+      // Detectar y aplicar el idioma del navegador
+      function detectBrowserLanguage() {
+        const browserLang = navigator.language || navigator.userLanguage;
+        const lang = browserLang.split('-')[0]; // Obtener solo la parte principal del idioma
+        
+        if (lang && lang !== 'en') {
+          // Esperar un poco para que el componente se inicialice
+          setTimeout(() => {
+            console.log('Attempting to translate to browser language:', lang);
+            translateTo(lang);
+          }, 1000);
+        }
+      }
+      
+      // Traducir a un idioma específico
+      function translateTo(lang) {
+        // Verificamos si el selector existe
+        const comboBox = document.querySelector('.goog-te-combo');
+        if (comboBox) {
+          comboBox.value = lang;
+          comboBox.dispatchEvent(new Event('change'));
+          console.log('Translation applied to:', lang);
         } else {
-          console.log('Waiting for Google Translate to load...');
-          setTimeout(tryTranslate, 1000); // Increased timeout
+          console.log('Translation element not found. Retrying...');
+          setTimeout(() => translateTo(lang), 500);
         }
-      };
-
-      // Try multiple times with increasing delay
-      let attempts = 0;
-      const maxAttempts = 10;
+      }
       
-      const initTranslation = () => {
-        if (attempts < maxAttempts) {
-          attempts++;
-          console.log(`Translation attempt ${attempts}/${maxAttempts}`);
-          setTimeout(tryTranslate, 1000 * attempts);
-        }
-      };
-
-      window.addEventListener('load', initTranslation);
-      
-      // Additional attempt when Google script loads
-      document.querySelector('script[src*="translate_a/element.js"]')?.addEventListener('load', () => {
-        console.log('Google Translate script loaded');
-        setTimeout(tryTranslate, 1500);
+      // Crear un botón de traducción manual si la traducción automática falla
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          // Verificar si el selector ya existe (traducción automática funcionó)
+          if (!document.querySelector('.goog-te-combo')) {
+            console.log('Adding manual translation button...');
+            const translateBtn = document.createElement('button');
+            translateBtn.innerHTML = 'Translate';
+            translateBtn.style.position = 'fixed';
+            translateBtn.style.bottom = '20px';
+            translateBtn.style.right = '20px';
+            translateBtn.style.zIndex = '9999';
+            translateBtn.style.padding = '8px 16px';
+            translateBtn.style.backgroundColor = '#4caf50';
+            translateBtn.style.color = 'white';
+            translateBtn.style.border = 'none';
+            translateBtn.style.borderRadius = '4px';
+            translateBtn.style.cursor = 'pointer';
+            
+            translateBtn.onclick = function() {
+              const langSelect = prompt('Enter language code (es, fr, de, etc):', 'es');
+              if (langSelect) {
+                translateTo(langSelect);
+              }
+            };
+            
+            document.body.appendChild(translateBtn);
+          }
+        }, 3000);
       });
     </script>
-
+    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </body>
 </html>
