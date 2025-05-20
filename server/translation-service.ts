@@ -87,9 +87,9 @@ export async function translateText(text: string, targetLang: string, sourceLang
         if (response.data && response.data.translatedText) {
           return response.data.translatedText;
         }
-      } catch (endpointError) {
-        lastError = endpointError;
-        console.warn(`Error con el endpoint ${endpoint}:`, endpointError.message);
+      } catch (error: any) {
+        lastError = error;
+        console.warn(`Error con el endpoint ${endpoint}:`, error.message || 'Error desconocido');
         // Continuar con el siguiente endpoint
         continue;
       }
@@ -212,9 +212,9 @@ export async function bulkTranslate(texts: string[], targetLang: string, sourceL
             })
           );
           batchTranslated = true;
-        } catch (error) {
+        } catch (error: any) {
           attempts++;
-          console.warn(`Error en lote ${i}-${i+batch.length}, intento ${attempts}/3:`, error.message);
+          console.warn(`Error en lote ${i}-${i+batch.length}, intento ${attempts}/3:`, error.message || 'Error desconocido');
           // Esperar un poco más antes del siguiente intento
           await new Promise(resolve => setTimeout(resolve, 1000 * attempts));
         }
@@ -244,8 +244,8 @@ export async function bulkTranslate(texts: string[], targetLang: string, sourceL
     }
     
     return result;
-  } catch (error) {
-    console.error('Error en traducción por lotes:', error);
+  } catch (error: any) {
+    console.error('Error en traducción por lotes:', error?.message || error);
     return texts;
   }
 }
