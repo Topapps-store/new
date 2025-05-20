@@ -20,7 +20,7 @@ import HardcodedTerms from "./pages/HardcodedTerms";
 import Search from "./pages/Search";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
-import { LanguageProvider } from "./context/LanguageContext";
+import { LanguageProvider } from "./context/StaticLanguageContext";
 import { AdminProvider } from "./context/AdminContext";
 import { ThemeProvider } from "./context/ThemeContext";
 
