@@ -1,11 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { 
-  initializeTranslator, 
-  translateText, 
-  detectBrowserLanguage 
-} from '../services/translationService';
+import React, { createContext, useContext } from 'react';
 
-// Traducciones predeterminadas
+// Traducciones predeterminadas (solo inglés)
 const defaultTranslations = {
   'en': {
     'nav.home': 'Home',
@@ -40,201 +35,39 @@ const defaultTranslations = {
     'footer.privacyPolicy': 'Privacy Policy',
     'footer.contact': 'Contact Us',
     'footer.disclaimer': 'Disclaimer'
-  },
-  'es': {
-    'nav.home': 'Inicio',
-    'nav.categories': 'Categorías',
-    'nav.search': 'Buscar',
-    'nav.back': 'Volver',
-    'search.placeholder': 'Buscar apps...',
-    'search.noResults': 'No se encontraron resultados',
-    'home.topApps': 'Apps Principales',
-    'home.popularApps': 'Apps Populares',
-    'home.recentApps': 'Apps Recientes',
-    'home.justInTime': 'Recién Llegadas',
-    'home.top10AppsLastMonth': 'Top 10 Apps del Mes',
-    'home.top10JustInTimeApps': 'Apps Imprescindibles',
-    'home.viewAll': 'Ver Todo',
-    'appDetail.description': 'Descripción',
-    'appDetail.screenshots': 'Capturas',
-    'appDetail.information': 'Información',
-    'appDetail.downloads': 'Descargas',
-    'appDetail.developer': 'Desarrollador',
-    'appDetail.version': 'Versión',
-    'appDetail.updated': 'Actualizado',
-    'appDetail.downloadAPK': 'Descargar',
-    'appDetail.googlePlay': 'Google Play',
-    'appDetail.alternativeDownloads': 'Descargas Alternativas',
-    'appDetail.relatedApps': 'Apps Relacionadas',
-    'sponsored.sponsored': 'Patrocinado',
-    'category.allApps': 'Todas las Apps',
-    'error.generic': 'Ha ocurrido un error. Por favor, inténtalo de nuevo más tarde.',
-    'loading': 'Cargando...',
-    'footer.termsOfService': 'Términos de Servicio',
-    'footer.privacyPolicy': 'Política de Privacidad',
-    'footer.contact': 'Contáctanos',
-    'footer.disclaimer': 'Aviso Legal'
   }
-};
-
-// Caché para almacenar traducciones previamente realizadas
-const translationCache: Record<string, Record<string, string>> = {
-  'en': {},
-  'es': {},
-  'fr': {},
-  'de': {},
-  'it': {},
-  'pt': {},
-  'ru': {},
-  'ja': {},
-  'zh': {}
 };
 
 // Tipo para el contexto de idioma
 interface LanguageContextType {
   language: string;
-  setLanguage: (lang: string) => void;
   t: (key: string) => string;
-  translateDynamic: (text: string) => Promise<string>;
-  supportedLanguages: { code: string; name: string }[];
 }
 
 // Crear el contexto de idioma
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
-// Lista de idiomas soportados
-const supportedLanguages = [
-  { code: 'en', name: 'English' },
-  { code: 'es', name: 'Español' },
-  { code: 'fr', name: 'Français' },
-  { code: 'de', name: 'Deutsch' },
-  { code: 'it', name: 'Italiano' },
-  { code: 'pt', name: 'Português' },
-  { code: 'ru', name: 'Русский' },
-  { code: 'ja', name: '日本語' },
-  { code: 'zh', name: '中文' }
-];
 
 // Propiedades para el proveedor de idioma
 interface LanguageProviderProps {
   children: React.ReactNode;
 }
 
-// Componente proveedor de idioma
+// Componente proveedor de idioma (solo inglés)
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  // Estado para almacenar el idioma actual
-  const [language, setLanguage] = useState<string>('en');
-  // Estado para rastrear si el traductor está inicializado
-  const [isTranslatorInitialized, setIsTranslatorInitialized] = useState<boolean>(false);
-  
-  // Función para cambiar el idioma y guardar la preferencia
-  const changeLanguage = (newLanguage: string) => {
-    setLanguage(newLanguage);
-    
-    // Guardar la preferencia en localStorage
-    try {
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem('preferredLanguage', newLanguage);
-      }
-    } catch (error) {
-      console.error('Error al guardar preferencia de idioma:', error);
-    }
-  };
-
-  // Detectar el idioma del navegador al cargar y configurar todo
-  useEffect(() => {
-    const initLanguage = () => {
-      const browserLang = detectBrowserLanguage();
-      
-      // Actualizar el idioma en el estado
-      setLanguage(browserLang);
-      
-      // Guardar la preferencia en localStorage para futuras visitas
-      try {
-        if (typeof localStorage !== 'undefined') {
-          localStorage.setItem('preferredLanguage', browserLang);
-        }
-      } catch (error) {
-        console.error('Error al guardar preferencia de idioma:', error);
-      }
-    };
-
-    // Inicializar el traductor
-    const initTranslator = async () => {
-      try {
-        await initializeTranslator();
-        setIsTranslatorInitialized(true);
-        console.log('Servicio de traducción inicializado');
-      } catch (error) {
-        console.error('Error al inicializar el servicio de traducción:', error);
-      }
-    };
-
-    initLanguage();
-    initTranslator();
-  }, []);
-
   // Función para obtener la traducción de una clave
   const t = (key: string): string => {
-    // Obtener traducciones para el idioma actual de los idiomas predefinidos
-    const defaultLang = language in defaultTranslations ? language : 'en';
-    const translations = defaultTranslations[defaultLang as keyof typeof defaultTranslations] || defaultTranslations.en;
+    // Obtener traducciones de inglés (único idioma)
+    const translations = defaultTranslations.en;
     
     // Devolver la traducción o la clave si no se encuentra
     return translations[key as keyof typeof translations] || key;
   };
 
-  // Función para traducir texto dinámico usando LibreTranslate
-  const translateDynamic = async (text: string): Promise<string> => {
-    // Si el texto está vacío o es muy corto, devuélvelo tal cual
-    if (!text || text.length < 3) {
-      return text;
-    }
-
-    // Normalizar el idioma
-    const normalizedLang = language.toLowerCase().split('-')[0];
-    
-    // Definir el idioma de origen (asumimos que es inglés)
-    const sourceLang = 'en';
-    
-    // Si los idiomas son iguales, no es necesario traducir
-    if (normalizedLang === sourceLang) {
-      return text;
-    }
-
-    try {
-      // Clave para la caché
-      const cacheKey = `${sourceLang}_${normalizedLang}`;
-      
-      // Buscar en caché primero
-      if (translationCache[normalizedLang]?.[text]) {
-        return translationCache[normalizedLang][text];
-      }
-
-      // Si no está en caché, traducir con LibreTranslate
-      const translated = await translateText(text, normalizedLang, sourceLang);
-      
-      // Guardar en caché
-      if (!translationCache[normalizedLang]) {
-        translationCache[normalizedLang] = {};
-      }
-      translationCache[normalizedLang][text] = translated;
-      
-      return translated;
-    } catch (error) {
-      console.error('Error al traducir texto dinámico:', error);
-      return text;
-    }
-  };
-
   // Proporcionar el contexto a los componentes hijos
   return (
     <LanguageContext.Provider value={{ 
-      language, 
-      setLanguage: changeLanguage, 
-      t, 
-      translateDynamic,
-      supportedLanguages
+      language: 'en', 
+      t
     }}>
       {children}
     </LanguageContext.Provider>
