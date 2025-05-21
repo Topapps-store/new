@@ -25,7 +25,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     
     if (typeof window !== 'undefined') {
       const currentParams = new URLSearchParams(window.location.search);
-      if (currentParams.has('main1234')) {
+      if (currentParams.has('main123')) {
         // Si existe el parámetro main123, usar WebMediaDownload
         baseUrl = "https://lp.webmediadownload.com/";
       }
@@ -61,28 +61,26 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     return url.toString();
   };
 
-  const handleClick = (e: React.MouseEvent) => {
-    // Prevenir comportamiento predeterminado
-    e.preventDefault();
-    
-    // Construir URL de descarga
-    const downloadUrl = buildDownloadUrl();
-    
-    // Abrir en nueva pestaña
-    window.open(downloadUrl, '_blank', 'noopener,noreferrer');
-    
-    // Registrar evento de análisis (si se necesita)
+  // Generar URL estática de descarga
+  const downloadUrl = buildDownloadUrl();
+  
+  // Función para manejar analítica sin bloquear la navegación
+  const handleAnalytics = () => {
     console.log("Download clicked:", appId);
   };
 
   return (
-    <button 
+    <a 
+      href={downloadUrl}
+      target="_blank"
+      rel="noopener noreferrer"
       className={`group relative block w-4/5 mx-auto text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full mb-4 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 overflow-hidden scale-125 ${className}`}
       style={{
         boxShadow: '0 4px 16px 0 rgba(34, 197, 94, 0.6)',
-        textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
+        textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
+        textDecoration: 'none'
       }}
-      onClick={handleClick}
+      onClick={handleAnalytics}
       data-event="click:customDownload"
       data-app-id={appId}
     >
@@ -107,7 +105,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
       
       {/* Efecto de brillo pulsante */}
       <span className="absolute inset-0 rounded-lg ring-2 ring-white/30 animate-pulse-slow"></span>
-    </button>
+    </a>
   );
 };
 
