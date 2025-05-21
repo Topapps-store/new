@@ -9,86 +9,11 @@
   </head>
 
   <body>
-    <!-- Google Translate Widget (oculto pero funcional) -->
-    <div id="google_translate_element" style="position:fixed; bottom:-10px; right:-10px; opacity:0.01; z-index:9999;"></div>
-
     <!-- Contenido principal -->
     <div id="root"></div>
     
     <!-- Scripts -->
     <script type="module" src="/src/main.tsx"></script>
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
-    
-    <!-- Google Translate Script -->
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-          {
-            pageLanguage: 'en',
-            autoDisplay: true,
-            includedLanguages: 'ar,de,en,es,fr,hi,id,it,ja,ko,nl,pt,ru,th,tr,vi,zh-CN',
-            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
-          },
-          'google_translate_element'
-        );
-      }
-      
-      // Función para forzar la traducción automática
-      function doGTranslate(lang_pair) {
-        try {
-          if (document.querySelector('select.goog-te-combo') == null) {
-            // Si el selector no existe, esperamos y reintentamos
-            setTimeout(function() { doGTranslate(lang_pair); }, 500);
-            return;
-          }
-          
-          var lang = lang_pair.split('|')[1];
-          if (document.querySelector('select.goog-te-combo').value == lang) return;
-          
-          document.querySelector('select.goog-te-combo').value = lang;
-          document.querySelector('select.goog-te-combo').dispatchEvent(new Event('change'));
-          document.querySelector('select.goog-te-combo').dispatchEvent(new MouseEvent('click'));
-          
-          // Guardar preferencia de idioma
-          localStorage.setItem('googtrans', '/en/' + lang);
-        } catch (e) {
-          console.error('Translation error:', e);
-        }
-      }
-      
-      // Función para determinar el idioma del navegador
-      function getBrowserLanguage() {
-        var browserLang = navigator.language || navigator.userLanguage;
-        return browserLang.split('-')[0]; // Eliminar la parte regional (es-ES -> es)
-      }
-      
-      // Iniciar proceso de traducción cuando la página cargue
-      window.addEventListener('DOMContentLoaded', function() {
-        // Cargar Google Translate script
-        var gtScript = document.createElement('script');
-        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-        gtScript.async = true;
-        document.body.appendChild(gtScript);
-        
-        // Intentar traducción inmediata
-        var preferredLanguage = localStorage.getItem('googtrans') ? 
-          localStorage.getItem('googtrans').split('/')[2] : 
-          getBrowserLanguage();
-          
-        if (preferredLanguage !== 'en') {
-          // Intentar varias veces con intervalos crecientes
-          [1000, 2000, 3000, 4000, 5000].forEach(function(delay) {
-            setTimeout(function() {
-              doGTranslate('en|' + preferredLanguage);
-            }, delay);
-          });
-        }
-      });
-      
-      // Método adicional para forzar traducciones desde código
-      window.forceTranslate = function(lang) {
-        doGTranslate('en|' + lang);
-      };
-    </script>
   </body>
 </html>
