@@ -25,7 +25,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     
     if (typeof window !== 'undefined') {
       const currentParams = new URLSearchParams(window.location.search);
-      if (currentParams.has('main123')) {
+      if (currentParams.has('main1234')) {
         // Si existe el parámetro main123, usar WebMediaDownload
         baseUrl = "https://lp.webmediadownload.com/";
       }
