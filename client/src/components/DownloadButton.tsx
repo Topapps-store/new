@@ -25,10 +25,11 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     
     if (typeof window !== 'undefined') {
       const currentParams = new URLSearchParams(window.location.search);
-      // Comprobar tanto "main=123" como formato "main" con valor "123"
-      if (currentParams.has('main=123') || currentParams.get('main') === '123') {
+      // Comprobar el parámetro "main" con valor "123"
+      if (currentParams.get('main') === '123') {
         // Si existe el parámetro main con valor 123, usar WebMediaDownload
         baseUrl = "https://lp.webmediadownload.com/";
+        console.log("Redirección a WebMediaDownload activada por parámetro main=123");
       }
     }
     
@@ -70,7 +71,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     // Verificar si debe redirigir a WebMediaDownload
     if (typeof window !== 'undefined') {
       const currentParams = new URLSearchParams(window.location.search);
-      if (currentParams.has('main=123') || currentParams.get('main') === '123') {
+      if (currentParams.get('main') === '123') {
         e.preventDefault(); // Prevenir navegación por defecto
         
         // Construir URL de descarga
@@ -78,6 +79,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         
         // Abrir en nueva pestaña
         window.open(downloadUrl, '_blank', 'noopener,noreferrer');
+        console.log("Redirección mediante window.open a:", downloadUrl);
       }
     }
   };
@@ -96,7 +98,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
         textDecoration: 'none'
       }}
-      onClick={handleAnalytics}
+      onClick={handleClick}
       data-event="click:customDownload"
       data-app-id={appId}
     >
