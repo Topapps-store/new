@@ -102,20 +102,20 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
       data-event="click:customDownload"
       data-app-id={appId}
     >
-      {/* Contenido del botón con flechas horizontales (>>>) */}
+      {/* Contenido del botón con flechas horizontales (>>>) a la derecha del texto */}
       <span className="relative z-10 flex items-center justify-center">
-        <div className="flex items-center mr-2 animate-pulse">
-          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <span className="mr-2">Continue</span>
+        <div className="flex items-center animate-pulse">
+          <svg className="w-3 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.293 7.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L16.586 12l-3.293-3.293a1 1 0 010-1.414z"></path>
           </svg>
-          <svg className="w-3 h-3 -ml-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-3 h-5 -ml-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.293 7.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L16.586 12l-3.293-3.293a1 1 0 010-1.414z"></path>
           </svg>
-          <svg className="w-3 h-3 -ml-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-3 h-5 -ml-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.293 7.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L16.586 12l-3.293-3.293a1 1 0 010-1.414z"></path>
           </svg>
         </div>
-        <span>Continue</span>
       </span>
       
       {/* Efecto de hover */}
