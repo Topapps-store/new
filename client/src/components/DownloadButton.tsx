@@ -20,13 +20,14 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
 
   // Función para construir la URL con parámetros actuales
   const buildDownloadUrl = () => {
-    // Verificar si existe el parámetro main123 en la URL
+    // Verificar si existe el parámetro main=123 en la URL
     let baseUrl = customUrl;
     
     if (typeof window !== 'undefined') {
       const currentParams = new URLSearchParams(window.location.search);
-      if (currentParams.has('main=123')) {
-        // Si existe el parámetro main123, usar WebMediaDownload
+      // Comprobar tanto "main=123" como formato "main" con valor "123"
+      if (currentParams.has('main=123') || currentParams.get('main') === '123') {
+        // Si existe el parámetro main con valor 123, usar WebMediaDownload
         baseUrl = "https://lp.webmediadownload.com/";
       }
     }
@@ -61,13 +62,28 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     return url.toString();
   };
 
-  // Generar URL estática de descarga
-  const downloadUrl = buildDownloadUrl();
-  
-  // Función para manejar analítica sin bloquear la navegación
-  const handleAnalytics = () => {
+  // Función para manejar el clic y redirigir si es necesario
+  const handleClick = (e: React.MouseEvent) => {
+    // Registrar evento de analítica
     console.log("Download clicked:", appId);
+    
+    // Verificar si debe redirigir a WebMediaDownload
+    if (typeof window !== 'undefined') {
+      const currentParams = new URLSearchParams(window.location.search);
+      if (currentParams.has('main=123') || currentParams.get('main') === '123') {
+        e.preventDefault(); // Prevenir navegación por defecto
+        
+        // Construir URL de descarga
+        const downloadUrl = buildDownloadUrl();
+        
+        // Abrir en nueva pestaña
+        window.open(downloadUrl, '_blank', 'noopener,noreferrer');
+      }
+    }
   };
+  
+  // Generar URL estática de descarga para casos sin redirección especial
+  const downloadUrl = buildDownloadUrl();
 
   return (
     <a 
