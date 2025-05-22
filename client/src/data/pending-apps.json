@@ -1,9 +1,5 @@
 {
-  "pendingUrls": [
-    "https://play.google.com/store/apps/details?id=com.xatori.Plugshare",
-    "https://play.google.com/store/apps/details?id=com.chargemap_beta.android"
-  
-  ],
+  "pendingUrls": [],
   "processedUrls": [
     "https://play.google.com/store/apps/details?id=com.ubercab&hl=es",
     "https://play.google.com/store/apps/details?id=com.pdf.editor.viewer.pdfreader.pdfviewer&hl=ca",
@@ -110,6 +106,9 @@
     "https://play.google.com/store/apps/details?id=com.sec.android.app.shealth",
     "https://play.google.com/store/apps/details?id=com.freeletics.lite",
     "https://play.google.com/store/apps/details?id=softin.my.fast.fitness",
-    "https://play.google.com/store/apps/details?id=loseweightapp.loseweightappforwomen.womenworkoutathome"
+    "https://play.google.com/store/apps/details?id=loseweightapp.loseweightappforwomen.womenworkoutathome",
+    "https://play.google.com/store/apps/details?id=com.xatori.Plugshare",
+    "https://play.google.com/store/apps/details?id=com.chargemap_beta.android",
+    "https://play.google.com/store/apps/details?id=com.ea.evowner&hl=en"
   ]
 }

@@ -186,7 +186,7 @@ const AppDetail = () => {
                 {/* Advertisement buttons with affiliate links - moved up, below rating */}
                 <div className="w-full mb-3 flex flex-col items-center">
                   <div className="text-[10px] text-gray-500 mb-3 self-start">
-                    Sponsored
+                    ADVERTISEMENT
                   </div>
                   
                   {/* Solo mostramos el botón de descarga verde */}

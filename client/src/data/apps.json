@@ -3459,6 +3459,34 @@
         "https://play-lh.googleusercontent.com/EIb4Mn3kSLrdz3oLqhrFGZKfSMs_k91xSD2lXs9tlbptTXcrq_7bRGRlKwtbqqxiXw"
       ],
       "isAffiliate": false
+    },
+    {
+      "id": "electrify-america",
+      "name": "Electrify America",
+      "category": "Maps & Navigation",
+      "categoryId": "maps-and-navigation",
+      "description": "Charge in as little as 30 minutes on the nation’s largest public DC fast charging network. The Electrify America app lets you find a charging station nearby, charge your EV, and manage your charging session. (Level 2 chargers also available at some locations).\n\nYou can use this app to:\n    • Find an Electrify America charging station\n    • Get directions from your current location to a selected charging station location\n    • Become an Electrify America Pass or Pass+ member\n\nWhen you sign up for a free Electrify America Pass membership, you can use this app to:\n    • Check the availability of a charger in real-time and get notified when a charger becomes available\n    • See charger details and save your favorite charging stations\n    • Start and stop your charging session from your phone\n    • Track your charging status easily while you shop or dine nearby\n    • Get notified when your compatible EV reaches your desired state of charge\n    • Pay contact-free from your phone\n    • See your charge history and email a receipt\n\nVisit a charging station often? Consider our Pass+ plan, which gives you all the benefits above, plus reduced costs for charging. (Monthly Fees Apply; Check App and the Electrify America Terms of Use for Details)\n\nElectrify America’s powerful DC fast charging stations support all CCS (SAE Combo) and CHAdeMO-compatible EVs. You can also use the app to find Electrify America’s Level 2 chargers (with J1772 connectors). \n\nThat means you can charge just about any electric vehicle on the road with us, including:\n    • Audi e-tron\n    • Volkswagen ID.4\n    • Volkswagen e-Golf\n    • Harley-Davidson LiveWire\n    • Hyundai Kona Electric\n    • BMW i3\n    • Mini Cooper SE Electric\n    • Nissan Leaf\n    • Nissan Leaf Plus\n    • Chevrolet Volt\n    • Chevrolet Bolt EV\n    • Kia Niro EV\n    • Kia Soul EV\n    • Porsche Taycan\n    • Tesla Model 3 (requires separate adapter)\n    • Tesla Model S (requires separate adapter)\n    • Tesla Model X (requires separate adapter)\n    • Tesla Model Y (requires separate adapter)\n\nHappy charging!",
+      "iconUrl": "https://play-lh.googleusercontent.com/iMRe77xUooYqh5yZ-TEyHkUMQ85UL9DNB3JDH1bklpWU61qqNXYwSCdQT2r-T1gCXRs",
+      "rating": 4.5666666,
+      "downloads": "500K+",
+      "version": "7.23.0",
+      "updated": "May 7, 2025",
+      "requires": "Android 8.0+",
+      "developer": "Electrify America LLC",
+      "installs": "500,000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.ea.evowner&hl=en&gl=us",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.ea.evowner&hl=en&gl=us",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/0AWRYNOuYEIib2iKCC6FsYf1Spn4X6KKKvxiJnXM2oWwNclAIYm1_Fr4pOpOMsxb26qI",
+        "https://play-lh.googleusercontent.com/FH38hBGyvvanl0PMAOks_CGddFxeQujMOHLLhj-y7cmnNCvb5binH2bQq6jbeSlH7Ic",
+        "https://play-lh.googleusercontent.com/0eW3rMoBmVmkBvWsxFQTOqeZEP4neRs1BJ6QYAX1TU5qX82Uft8LapvKfnMCENvcnA",
+        "https://play-lh.googleusercontent.com/_AozNLF200x6-myBg66NtF9SYX4Ck9PZbMRzz7t-hQkFPsNobJrG8oH07GFudsC9i2QU",
+        "https://play-lh.googleusercontent.com/Z8NkyE2yqfLY81Jwb5uAvsvDuZ_E7iQWSRz4RB7W0q4jpBaROTN_GkIJzyc6DF1bCDbm",
+        "https://play-lh.googleusercontent.com/uWRa6xbqtljakWO9H1Dkf_sLMfTdL0dXMLt7rNTZetZJBhbTxLyS-IJLvqF1i_t6S0Vj",
+        "https://play-lh.googleusercontent.com/fnvkXFtA74P-MARLg8J9ozKTTSkGetwcgKJeCXEAQL8HAxQKLLLhcBG-ASYRZ9IrGrw",
+        "https://play-lh.googleusercontent.com/rzv9QtFIm2JFX5C2sPYGnepm4u0KQsHQ1NDODVdgkSxvYsbS7rUOTnwOM2bjOuP9-w0U"
+      ],
+      "isAffiliate": false
     }
   ],
   "categories": [
