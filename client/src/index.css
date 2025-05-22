@@ -27,6 +27,28 @@
   animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* Animación para el movimiento de flechas */
+@keyframes moveLeftToRight {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(150%); }
+}
+
+.animate-moveLeftToRight {
+  animation: moveLeftToRight 1.8s infinite;
+}
+
+/* Animación para el movimiento de círculos */
+@keyframes moveArrows {
+  0% { transform: translateX(0); opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { transform: translateX(12px); opacity: 0; }
+}
+
+.animate-arrows {
+  animation: moveArrows 1.2s infinite;
+}
+
 :root {
   --background: 210 50% 98%;
   --foreground: 240 10% 3.9%;
