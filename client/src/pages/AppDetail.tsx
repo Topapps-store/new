@@ -382,8 +382,9 @@ const AppDetail = () => {
                     )}
                   </div>
                   
-                  {/* Google Play download link */}
-                  <div className="mt-4">
+                  {/* App Store links */}
+                  <div className="mt-4 flex flex-col space-y-3">
+                    {/* Google Play download link */}
                     <a 
                       href={app.googlePlayUrl || app.downloadUrl}
                       className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
@@ -396,6 +397,21 @@ const AppDetail = () => {
                       <PlayCircle size={20} />
                       {isUberPage || appId === 'lyft' ? "Download for Android on Google Play" : "Google Play"}
                     </a>
+
+                    {/* iOS App Store link for Lyft */}
+                    {isLyftPage && (
+                      <a 
+                        href="https://apps.apple.com/us/app/lyft/id529379082"
+                        className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-app-id={app.id}
+                        data-event="click:appStore"
+                      >
+                        <i className="fab fa-apple text-lg"></i>
+                        Download for iOS on App Store
+                      </a>
+                    )}
                   </div>
                 </div>
               )}
