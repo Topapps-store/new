@@ -32,10 +32,37 @@ const AppDetail = () => {
   const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info">("description");
   const { t } = useLanguage();
   
-  // Scroll to top when component mounts
+  // Scroll to top when component mounts and update SEO meta tags
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    
+    // Si es la página de Uber, añadir metaetiquetas SEO
+    if (appId === 'uber-request-a-ride') {
+      // Guardar el título original para restaurarlo al desmontar
+      const originalTitle = document.title;
+      
+      // Establecer nuevo título
+      document.title = "Download Uber App – Request a Ride Today | TopApps Store";
+      
+      // Crear o actualizar meta description
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.setAttribute('name', 'description');
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.setAttribute('content', 'Get the Uber ride app for Android or iPhone. Download now and request safe, fast rides.');
+      
+      // Limpiar al desmontar
+      return () => {
+        document.title = originalTitle;
+        metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+          metaDescription.setAttribute('content', '');
+        }
+      };
+    }
+  }, [appId]);
 
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
     queryKey: [`/api/apps/${appId}`],
@@ -158,35 +185,6 @@ const AppDetail = () => {
 
   // Verificar si estamos en la página de Uber
   const isUberPage = appId === 'uber-request-a-ride';
-
-  // Usar useEffect para modificar las metaetiquetas solo si es la página de Uber
-  useEffect(() => {
-    if (isUberPage) {
-      // Guardar el título original para restaurarlo al desmontar
-      const originalTitle = document.title;
-      
-      // Establecer nuevo título
-      document.title = "Download Uber App – Request a Ride Today | TopApps Store";
-      
-      // Crear o actualizar meta description
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (!metaDescription) {
-        metaDescription = document.createElement('meta');
-        metaDescription.setAttribute('name', 'description');
-        document.head.appendChild(metaDescription);
-      }
-      metaDescription.setAttribute('content', 'Get the Uber ride app for Android or iPhone. Download now and request safe, fast rides.');
-      
-      // Limpiar al desmontar
-      return () => {
-        document.title = originalTitle;
-        metaDescription = document.querySelector('meta[name="description"]');
-        if (metaDescription) {
-          metaDescription.setAttribute('content', '');
-        }
-      };
-    }
-  }, [isUberPage]);
 
   return (
     <div className="max-w-4xl mx-auto">
