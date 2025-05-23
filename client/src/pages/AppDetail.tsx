@@ -36,32 +36,37 @@ const AppDetail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Si es la página de Uber, añadir metaetiquetas SEO
+    // Guardar el título original para restaurarlo al desmontar
+    const originalTitle = document.title;
+    
+    // Crear o actualizar meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    
+    // Personalizar SEO según la página
     if (appId === 'uber-request-a-ride') {
-      // Guardar el título original para restaurarlo al desmontar
-      const originalTitle = document.title;
-      
       // Establecer nuevo título
       document.title = "Download Uber App – Request a Ride Today | TopApps Store";
-      
-      // Crear o actualizar meta description
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (!metaDescription) {
-        metaDescription = document.createElement('meta');
-        metaDescription.setAttribute('name', 'description');
-        document.head.appendChild(metaDescription);
-      }
       metaDescription.setAttribute('content', 'Get the Uber ride app for Android or iPhone. Download now and request safe, fast rides.');
-      
-      // Limpiar al desmontar
-      return () => {
-        document.title = originalTitle;
-        metaDescription = document.querySelector('meta[name="description"]');
-        if (metaDescription) {
-          metaDescription.setAttribute('content', '');
-        }
-      };
+    } 
+    else if (appId === 'lyft') {
+      // Establecer nuevo título
+      document.title = "Download Lyft App | TopApps Store";
+      metaDescription.setAttribute('content', 'Install the official Lyft app for iPhone or Android. Tap to request a ride now.');
     }
+    
+    // Limpiar al desmontar
+    return () => {
+      document.title = originalTitle;
+      metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', '');
+      }
+    };
   }, [appId]);
 
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
@@ -183,8 +188,9 @@ const AppDetail = () => {
     return <div className="text-center py-10">App not found</div>;
   }
 
-  // Verificar si estamos en la página de Uber
+  // Verificar si estamos en la página de Uber o Lyft
   const isUberPage = appId === 'uber-request-a-ride';
+  const isLyftPage = appId === 'lyft';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -205,11 +211,15 @@ const AppDetail = () => {
               <div className="flex flex-col items-center">
                 <img 
                   src={app.iconUrl} 
-                  alt={isUberPage ? "Uber app download icon" : app.name} 
+                  alt={isUberPage ? "Uber app download icon" : 
+                       isLyftPage ? "Lyft App Android iPhone" : 
+                       app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
                 <h1 className="text-xl font-bold text-center">
-                  {isUberPage ? "Uber App - Request a Ride" : app.name}
+                  {isUberPage ? "Uber App - Request a Ride" : 
+                   isLyftPage ? "Download the Lyft App – Fast, Safe Rides" : 
+                   app.name}
                 </h1>
                 
                 <div className="flex items-center mt-1 mb-3">
@@ -329,6 +339,44 @@ const AppDetail = () => {
                           <p>Fast, Safe, and Easy Rides</p>
                         </div>
                       </>
+                    ) : isLyftPage ? (
+                      <>
+                        <h3 className="text-xl font-bold mb-3">Download the Lyft App – Fast, Safe Rides</h3>
+                        
+                        <p className="mb-3">Get the official Lyft ride app for iPhone and Android. Request your ride in seconds.</p>
+                        
+                        <p className="mb-3">The Lyft mobile app makes it easy to get around your city. Whether you're on Android or iPhone, install the Lyft app and start riding today.</p>
+                        
+                        <p className="mb-3">Download the Lyft app to request a ride in seconds. With the Lyft ride app, you just tap to book a ride, and payment is simple and automatic through the app.</p>
+                        
+                        <p className="mb-3">Get fast, safe, and affordable rides using the Lyft app. The official Lyft mobile app is available for Android and iPhone users across hundreds of cities.</p>
+                        
+                        <p className="mb-3">Tap, book, and ride with Lyft—anytime, anywhere. Installing the Lyft app is the fastest way to move around your city.</p>
+                        
+                        <p className="font-semibold">Get Lyft App for Android or iPhone and enjoy:</p>
+                        <ul className="list-disc pl-5 mt-2 mb-3">
+                          <li>Quick ride requests with just a few taps</li>
+                          <li>Upfront pricing with no surprises</li>
+                          <li>Multiple ride options to fit your needs</li>
+                          <li>Real-time driver location tracking</li>
+                          <li>Easy payment through the app</li>
+                        </ul>
+                        
+                        <p className="mb-3">Download Lyft today and have a ride ready whenever you need it. Install the Lyft App on your phone and enjoy the convenience of on-demand rides!</p>
+                        
+                        {/* Keywords ocultos para SEO pero visibles para lectores de pantalla */}
+                        <div className="sr-only">
+                          <p>Lyft App</p>
+                          <p>Download Lyft</p>
+                          <p>Lyft Mobile App</p>
+                          <p>Request a Lyft ride</p>
+                          <p>Get Lyft app</p>
+                          <p>Lyft app for Android</p>
+                          <p>Lyft app for iPhone</p>
+                          <p>Install Lyft on Your Phone</p>
+                          <p>Lyft Rider App</p>
+                        </div>
+                      </>
                     ) : (
                       app.description
                     )}
@@ -346,7 +394,7 @@ const AppDetail = () => {
                       data-event="click:googlePlay"
                     >
                       <PlayCircle size={20} />
-                      {isUberPage ? "Download for Android on Google Play" : "Google Play"}
+                      {isUberPage || appId === 'lyft' ? "Download for Android on Google Play" : "Google Play"}
                     </a>
                   </div>
                 </div>
