@@ -218,7 +218,7 @@ const AppDetail = () => {
                 />
                 <h1 className="text-xl font-bold text-center">
                   {isUberPage ? "Uber App - Request a Ride" : 
-                   isLyftPage ? "Download the Lyft App – Fast, Safe Rides" : 
+                   isLyftPage ? "Lyft" : 
                    app.name}
                 </h1>
                 
