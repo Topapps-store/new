@@ -398,10 +398,25 @@ const AppDetail = () => {
                       {isUberPage || appId === 'lyft' ? "Download for Android on Google Play" : "Google Play"}
                     </a>
 
-                    {/* iOS App Store link for Lyft */}
+                    {/* iOS App Store links */}
                     {isLyftPage && (
                       <a 
                         href="https://apps.apple.com/us/app/lyft/id529379082"
+                        className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-app-id={app.id}
+                        data-event="click:appStore"
+                      >
+                        <i className="fab fa-apple text-lg"></i>
+                        Download for iOS on App Store
+                      </a>
+                    )}
+                    
+                    {/* iOS App Store link for Uber */}
+                    {isUberPage && (
+                      <a 
+                        href="https://apps.apple.com/us/app/uber-request-a-ride/id368677368"
                         className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
