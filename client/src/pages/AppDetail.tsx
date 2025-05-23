@@ -193,9 +193,10 @@ const AppDetail = () => {
     return <div className="text-center py-10">App not found</div>;
   }
 
-  // Verificar si estamos en la página de Uber o Lyft
+  // Verificar si estamos en la página de Uber, Lyft o Electrify America
   const isUberPage = appId === 'uber-request-a-ride';
   const isLyftPage = appId === 'lyft';
+  const isElectrifyAmericaPage = appId === 'electrify-america';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -218,12 +219,14 @@ const AppDetail = () => {
                   src={app.iconUrl} 
                   alt={isUberPage ? "Uber app download icon" : 
                        isLyftPage ? "Lyft App Android iPhone" : 
+                       isElectrifyAmericaPage ? "Electrify America app download" :
                        app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
                 <h1 className="text-xl font-bold text-center">
                   {isUberPage ? "Uber App - Request a Ride" : 
                    isLyftPage ? "Lyft" : 
+                   isElectrifyAmericaPage ? "Electrify America" :
                    app.name}
                 </h1>
                 
@@ -382,6 +385,45 @@ const AppDetail = () => {
                           <p>Lyft Rider App</p>
                         </div>
                       </>
+                    ) : isElectrifyAmericaPage ? (
+                      <>
+                        <h3 className="text-xl font-bold mb-3">Download Electrify America App – Find EV Charging Stations Fast</h3>
+                        
+                        <p className="mb-3">Get the Electrify America app to locate chargers, manage your EV sessions, and pay easily.</p>
+                        
+                        <p className="mb-3">Use the Electrify America app to find charging stations across the U.S. Whether you're nearby or on a road trip, Electrify America keeps your EV moving.</p>
+                        
+                        <p className="mb-3">Charging at Electrify America is easy with the mobile app. Simply locate a station, start charging your EV in seconds—just tap and go.</p>
+                        
+                        <p className="mb-3">Learn how to use Electrify America and manage all your sessions from your phone. The app shows real-time charger availability and allows you to monitor your charging progress.</p>
+                        
+                        <p className="mb-3">Looking for EV charging near me? The Electrify America app makes it simple to find charging stations wherever you are.</p>
+                        
+                        <p className="font-semibold">Download the Electrify America app and enjoy:</p>
+                        <ul className="list-disc pl-5 mt-2 mb-3">
+                          <li>Fast station location with interactive maps</li>
+                          <li>Real-time charger availability</li>
+                          <li>Simple payment through the app</li>
+                          <li>Charging session monitoring</li>
+                          <li>Saved favorite locations</li>
+                          <li>Manage your electric vehicle charging easily</li>
+                        </ul>
+                        
+                        <p className="mb-3">Start charging your EV with ease. Download the Electrify America app today and experience convenient, reliable electric vehicle charging across the country!</p>
+                        
+                        {/* Keywords ocultos para SEO pero visibles para lectores de pantalla */}
+                        <div className="sr-only">
+                          <p>Electrify America app</p>
+                          <p>Download Electrify America app</p>
+                          <p>Find charging stations</p>
+                          <p>EV charging near me</p>
+                          <p>How to use Electrify America</p>
+                          <p>Charging at Electrify America</p>
+                          <p>Electrify America near me</p>
+                          <p>Start charging your EV</p>
+                          <p>Manage your electric vehicle charging</p>
+                        </div>
+                      </>
                     ) : (
                       app.description
                     )}
@@ -422,6 +464,21 @@ const AppDetail = () => {
                     {isUberPage && (
                       <a 
                         href="https://apps.apple.com/us/app/uber-request-a-ride/id368677368"
+                        className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-app-id={app.id}
+                        data-event="click:appStore"
+                      >
+                        <i className="fab fa-apple text-lg"></i>
+                        Download for iOS on App Store
+                      </a>
+                    )}
+                    
+                    {/* iOS App Store link for Electrify America */}
+                    {isElectrifyAmericaPage && (
+                      <a 
+                        href="https://apps.apple.com/us/app/electrify-america/id1458030456"
                         className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
