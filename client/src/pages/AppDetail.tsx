@@ -10,6 +10,7 @@ import { apiRequest } from "../lib/queryClient";
 import { Download, PlayCircle } from "lucide-react";
 import { processAffiliateUrl } from "../lib/url-utils";
 import DownloadButton from "../components/DownloadButton";
+import UberAppSEO from "../components/UberAppSEO";
 
 
 
@@ -155,6 +156,9 @@ const AppDetail = () => {
     return <div className="text-center py-10">App not found</div>;
   }
 
+  // Verificar si estamos en la página de Uber
+  const isUberPage = appId === 'uber-request-a-ride';
+
   return (
     <div className="max-w-4xl mx-auto">
       {/* Back button - reduced margin */}
@@ -166,6 +170,9 @@ const AppDetail = () => {
           </div>
         </Link>
       </div>
+      
+      {/* Contenido SEO específico para Uber */}
+      {isUberPage && <UberAppSEO />}
 
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-4">
@@ -174,10 +181,12 @@ const AppDetail = () => {
               <div className="flex flex-col items-center">
                 <img 
                   src={app.iconUrl} 
-                  alt={app.name} 
+                  alt={isUberPage ? "Uber app download icon" : app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
-                <h1 className="text-xl font-bold text-center">{app.name}</h1>
+                <h1 className="text-xl font-bold text-center">
+                  {isUberPage ? "Uber App - Request a Ride" : app.name}
+                </h1>
                 
                 <div className="flex items-center mt-1 mb-3">
                   <StarRating rating={app.rating} showScore={true} />
@@ -255,7 +264,24 @@ const AppDetail = () => {
               {activeTab === "description" && (
                 <div className="mb-3">
                   <div className="text-gray-700 whitespace-pre-line text-sm">
-                    {app.description}
+                    {isUberPage ? (
+                      <>
+                        <p className="mb-3">The Uber app connects you to a ride in minutes. With Uber, you just tap to request a ride, and it's easy to pay with credit or cash in select cities.</p>
+                        <p className="mb-3">Whether you're going to the airport or across town, there's an Uber for every occasion. Uber is available in more than 10,000 cities worldwide—download the app and take your first trip today.</p>
+                        <p className="mb-3">Fast, Safe, and Easy Rides on the Uber mobile app. Install Uber App and Request a Ride with Uber today!</p>
+                        <p className="font-semibold">Get Uber App for Android or iPhone and enjoy:</p>
+                        <ul className="list-disc pl-5 mt-2 mb-3">
+                          <li>One-tap ride requests</li>
+                          <li>Multiple payment options</li>
+                          <li>Price estimates before you confirm</li>
+                          <li>GPS tracking to follow your driver's route</li>
+                          <li>Driver ratings and reviews</li>
+                        </ul>
+                        <p>Download Uber App now and make transportation easier than ever!</p>
+                      </>
+                    ) : (
+                      app.description
+                    )}
                   </div>
                   
                   {/* Google Play download link */}
@@ -270,7 +296,7 @@ const AppDetail = () => {
                       data-event="click:googlePlay"
                     >
                       <PlayCircle size={20} />
-                      Google Play
+                      {isUberPage ? "Download for Android on Google Play" : "Google Play"}
                     </a>
                   </div>
                 </div>
