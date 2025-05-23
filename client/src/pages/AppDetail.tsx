@@ -63,6 +63,11 @@ const AppDetail = () => {
       document.title = "Download Electrify America App | Fast EV Charging Stations Near You";
       metaDescription.setAttribute('content', 'Get the Electrify America app to locate chargers, start charging, and manage your EV trips.');
     }
+    else if (appId === 'chargepoint') {
+      // Establecer título y descripción optimizados para ChargePoint
+      document.title = "Download ChargePoint App | EV Charging Stations Near You";
+      metaDescription.setAttribute('content', 'Get the ChargePoint app to find EV charging stations, start charging, and manage sessions.');
+    }
     
     // Limpiar al desmontar
     return () => {
@@ -193,10 +198,11 @@ const AppDetail = () => {
     return <div className="text-center py-10">App not found</div>;
   }
 
-  // Verificar si estamos en la página de Uber, Lyft o Electrify America
+  // Verificar si estamos en la página de Uber, Lyft, Electrify America o ChargePoint
   const isUberPage = appId === 'uber-request-a-ride';
   const isLyftPage = appId === 'lyft';
   const isElectrifyAmericaPage = appId === 'electrify-america';
+  const isChargePointPage = appId === 'chargepoint';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -220,6 +226,7 @@ const AppDetail = () => {
                   alt={isUberPage ? "Uber app download icon" : 
                        isLyftPage ? "Lyft App Android iPhone" : 
                        isElectrifyAmericaPage ? "Electrify America app download" :
+                       isChargePointPage ? "Download ChargePoint app" :
                        app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
@@ -227,6 +234,7 @@ const AppDetail = () => {
                   {isUberPage ? "Uber App - Request a Ride" : 
                    isLyftPage ? "Lyft" : 
                    isElectrifyAmericaPage ? "Electrify America" :
+                   isChargePointPage ? "ChargePoint" :
                    app.name}
                 </h1>
                 
@@ -424,6 +432,47 @@ const AppDetail = () => {
                           <p>Manage your electric vehicle charging</p>
                         </div>
                       </>
+                    ) : isChargePointPage ? (
+                      <>
+                        <h3 className="text-xl font-bold mb-3">Download ChargePoint App – EV Charging Made Easy</h3>
+                        
+                        <p className="mb-3">Find charging stations, start charging, and manage sessions with the ChargePoint app.</p>
+                        
+                        <p className="mb-3">Download the ChargePoint app to find EV charging stations nearby and on your route. With thousands of charging locations across the country, ChargePoint makes it simple to keep your electric vehicle powered up.</p>
+                        
+                        <p className="mb-3">Start charging in seconds and track your charging history on your phone. The ChargePoint app allows you to manage your charging experience from start to finish with just a few taps.</p>
+                        
+                        <p className="mb-3">The ChargePoint app supports Android and iOS for all EV drivers. No matter what electric vehicle you drive, ChargePoint provides a seamless charging experience.</p>
+                        
+                        <p className="mb-3">Whether you're at home or on a road trip, the ChargePoint app helps you stay charged. Locate ChargePoint near me with the interactive station map and never worry about running out of power.</p>
+                        
+                        <p className="mb-3">Learn how to use ChargePoint for fast and reliable EV charging. The app guides you through the entire process for a hassle-free experience.</p>
+                        
+                        <p className="font-semibold">Get the ChargePoint app and enjoy these features:</p>
+                        <ul className="list-disc pl-5 mt-2 mb-3">
+                          <li>Find available charging stations in real-time</li>
+                          <li>Start and stop charging sessions remotely</li>
+                          <li>Receive notifications when your car is fully charged</li>
+                          <li>Track your charging history and energy usage</li>
+                          <li>Set charging reminders and favorites</li>
+                          <li>Pay for charging sessions securely through the app</li>
+                        </ul>
+                        
+                        <p className="mb-3">Install ChargePoint app today and experience the convenience of managing your EV charging from anywhere. Download now and join the largest EV charging network!</p>
+                        
+                        {/* Keywords ocultos para SEO pero visibles para lectores de pantalla */}
+                        <div className="sr-only">
+                          <p>ChargePoint app</p>
+                          <p>Download ChargePoint</p>
+                          <p>EV charging with ChargePoint</p>
+                          <p>Find charging stations</p>
+                          <p>Start charging with the ChargePoint app</p>
+                          <p>ChargePoint station map</p>
+                          <p>Install ChargePoint app</p>
+                          <p>ChargePoint near me</p>
+                          <p>How to use ChargePoint</p>
+                        </div>
+                      </>
                     ) : (
                       app.description
                     )}
@@ -479,6 +528,21 @@ const AppDetail = () => {
                     {isElectrifyAmericaPage && (
                       <a 
                         href="https://apps.apple.com/us/app/electrify-america/id1458030456"
+                        className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-app-id={app.id}
+                        data-event="click:appStore"
+                      >
+                        <i className="fab fa-apple text-lg"></i>
+                        Download for iOS on App Store
+                      </a>
+                    )}
+                    
+                    {/* iOS App Store link for ChargePoint */}
+                    {isChargePointPage && (
+                      <a 
+                        href="https://apps.apple.com/us/app/chargepoint/id356866743"
                         className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
