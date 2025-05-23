@@ -491,7 +491,7 @@ const AppDetail = () => {
                       data-event="click:googlePlay"
                     >
                       <PlayCircle size={20} />
-                      {isUberPage || appId === 'lyft' ? "Download for Android on Google Play" : "Google Play"}
+                      {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : "Google Play"}
                     </a>
 
                     {/* iOS App Store links */}
