@@ -58,6 +58,11 @@ const AppDetail = () => {
       document.title = "Download Lyft App | TopApps Store";
       metaDescription.setAttribute('content', 'Install the official Lyft app for iPhone or Android. Tap to request a ride now.');
     }
+    else if (appId === 'electrify-america') {
+      // Establecer título y descripción optimizados para Electrify America
+      document.title = "Download Electrify America App | Fast EV Charging Stations Near You";
+      metaDescription.setAttribute('content', 'Get the Electrify America app to locate chargers, start charging, and manage your EV trips.');
+    }
     
     // Limpiar al desmontar
     return () => {
