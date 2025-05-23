@@ -159,6 +159,35 @@ const AppDetail = () => {
   // Verificar si estamos en la página de Uber
   const isUberPage = appId === 'uber-request-a-ride';
 
+  // Usar useEffect para modificar las metaetiquetas solo si es la página de Uber
+  useEffect(() => {
+    if (isUberPage) {
+      // Guardar el título original para restaurarlo al desmontar
+      const originalTitle = document.title;
+      
+      // Establecer nuevo título
+      document.title = "Download Uber App – Request a Ride Today | TopApps Store";
+      
+      // Crear o actualizar meta description
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.setAttribute('name', 'description');
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.setAttribute('content', 'Get the Uber ride app for Android or iPhone. Download now and request safe, fast rides.');
+      
+      // Limpiar al desmontar
+      return () => {
+        document.title = originalTitle;
+        metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+          metaDescription.setAttribute('content', '');
+        }
+      };
+    }
+  }, [isUberPage]);
+
   return (
     <div className="max-w-4xl mx-auto">
       {/* Back button - reduced margin */}
@@ -170,9 +199,6 @@ const AppDetail = () => {
           </div>
         </Link>
       </div>
-      
-      {/* Contenido SEO específico para Uber */}
-      {isUberPage && <UberAppSEO />}
 
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-4">
@@ -266,9 +292,20 @@ const AppDetail = () => {
                   <div className="text-gray-700 whitespace-pre-line text-sm">
                     {isUberPage ? (
                       <>
-                        <p className="mb-3">The Uber app connects you to a ride in minutes. With Uber, you just tap to request a ride, and it's easy to pay with credit or cash in select cities.</p>
-                        <p className="mb-3">Whether you're going to the airport or across town, there's an Uber for every occasion. Uber is available in more than 10,000 cities worldwide—download the app and take your first trip today.</p>
+                        <h3 className="text-xl font-bold mb-3">Download the Uber App – Fast & Easy Rides at Your Fingertips</h3>
+                        
+                        <p className="mb-3">Get the official Uber ride app for Android and iPhone. Request your ride in seconds.</p>
+                        
+                        <p className="mb-3">The Uber mobile app makes getting around easy and reliable. Whether you're on Android or iPhone, install the Uber app and start riding today.</p>
+                        
+                        <p className="mb-3">The Uber app connects you to a ride in minutes. With the Uber ride app, you just tap to request a ride, and it's easy to pay with credit or cash in select cities.</p>
+                        
+                        <p className="mb-3">Whether you're going to the airport or across town, there's an Uber for every occasion. Uber is available in more than 10,000 cities worldwide—download Uber today and take your first trip.</p>
+                        
+                        <p className="mb-3">Get the Uber ride app now and enjoy safe, fast, and affordable transportation. Download Uber today to book a ride anytime, anywhere.</p>
+                        
                         <p className="mb-3">Fast, Safe, and Easy Rides on the Uber mobile app. Install Uber App and Request a Ride with Uber today!</p>
+                        
                         <p className="font-semibold">Get Uber App for Android or iPhone and enjoy:</p>
                         <ul className="list-disc pl-5 mt-2 mb-3">
                           <li>One-tap ride requests</li>
@@ -277,7 +314,22 @@ const AppDetail = () => {
                           <li>GPS tracking to follow your driver's route</li>
                           <li>Driver ratings and reviews</li>
                         </ul>
-                        <p>Download Uber App now and make transportation easier than ever!</p>
+                        
+                        <p className="mb-3">Uber download is simple. Just tap, install, and ride. Download Uber App now and make transportation easier than ever!</p>
+                        
+                        {/* Keywords ocultos para SEO pero visibles para lectores de pantalla */}
+                        <div className="sr-only">
+                          <p>Uber App</p>
+                          <p>Download Uber App</p>
+                          <p>Uber Ride App</p>
+                          <p>Install Uber App</p>
+                          <p>Get Uber App for Android</p>
+                          <p>Get Uber App for iPhone</p>
+                          <p>Uber Mobile App</p>
+                          <p>Request a Ride with Uber</p>
+                          <p>Uber Download</p>
+                          <p>Fast, Safe, and Easy Rides</p>
+                        </div>
                       </>
                     ) : (
                       app.description
