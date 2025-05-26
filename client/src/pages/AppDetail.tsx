@@ -71,9 +71,9 @@ const AppDetail = () => {
       metaDescription.setAttribute('content', 'Get the ChargePoint app to find EV charging stations, start charging, and manage sessions.');
     }
     else if (appId === 'bp-pulse') {
-      // Establecer título y descripción optimizados para BP Pulse en español
-      document.title = "Descargar BP Pulse App | Puntos de Carga para Vehículos Eléctricos";
-      metaDescription.setAttribute('content', 'Descarga la app BP Pulse para encontrar puntos de carga, iniciar carga y gestionar tus sesiones de carga eléctrica.');
+      // Establecer título y descripción optimizados para BP Pulse según especificaciones de Google Ads
+      document.title = "Descargar App BP Pulse | Carga tu Coche Eléctrico Rápido y Fácil";
+      metaDescription.setAttribute('content', 'Instala la app oficial de BP Pulse y encuentra puntos de carga cerca de ti. Disponible para Android y iPhone.');
     }
     
     // Limpiar al desmontar
@@ -367,11 +367,12 @@ const AppDetail = () => {
                       </>
                     ) : isBPPulsePage ? (
                       <>
-                        <h3 className="text-xl font-bold mb-3">Descargar BP Pulse App – Puntos de Carga para Vehículos Eléctricos</h3>
+                        <h1 className="text-2xl font-bold mb-3">Descargar App BP Pulse – Recarga tu Coche Eléctrico</h1>
+                        <h2 className="text-xl text-gray-700 mb-4">Localiza estaciones BP Pulse, paga desde la app y recarga tu coche en minutos.</h2>
                         
-                        <p className="mb-3">Obtén la aplicación BP Pulse para encontrar puntos de carga, iniciar sesiones de carga y gestionar tu experiencia de carga eléctrica de manera fácil y rápida.</p>
+                        <p className="mb-3">Descargar BP Pulse te permite encontrar estaciones de carga BP Pulse, iniciar sesiones de carga rápida y segura, y paga desde tu móvil de manera fácil y conveniente.</p>
                         
-                        <p className="mb-3">La app BP Pulse te conecta con la red más confiable de puntos de carga para vehículos eléctricos. Descarga BP Pulse y descubre estaciones de carga cercanas en segundos.</p>
+                        <p className="mb-3">La App BP Pulse para Android e iOS te conecta con el mapa de puntos de carga BP más completo. Esta aplicación de recarga de coches eléctricos ofrece instalación fácil y gratuita disponible en Google Play y App Store.</p>
                         
                         <p className="mb-3">Con BP Pulse puedes localizar cargadores disponibles, verificar precios en tiempo real, y iniciar sesiones de carga directamente desde tu teléfono móvil.</p>
                         
@@ -380,6 +381,9 @@ const AppDetail = () => {
                         <p className="mb-3">BP Pulse App facilita el pago seguro y el seguimiento de tus sesiones de carga. Obtén la app BP Pulse y únete a la comunidad de conductores de vehículos eléctricos más grande de Europa.</p>
                         
                         <p className="mb-3">Gestiona tu cuenta BP Pulse, revisa el historial de cargas y encuentra nuevos destinos con puntos de carga disponibles. La aplicación BP Pulse hace que conducir un vehículo eléctrico sea más conveniente que nunca.</p>
+                        
+                        <h3 className="text-xl font-bold mb-3">¿Qué es la app BP Pulse?</h3>
+                        <p className="mb-4">La app BP Pulse es una aplicación de recarga de coches eléctricos que te permite localizar estaciones de carga BP Pulse en toda Europa. Con esta App BP Pulse para Android e iOS puedes encontrar puntos de carga disponibles, realizar carga rápida y segura, y paga desde tu móvil de forma instantánea. La instalación fácil y gratuita está disponible en Google Play y App Store.</p>
                         
                         <h4 className="font-semibold mb-2">¿Por qué elegir BP Pulse App?</h4>
                         <ul className="list-disc pl-5 mt-2 mb-3">
@@ -404,7 +408,7 @@ const AppDetail = () => {
                             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.807 1.626L15.833 12l1.865-1.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/>
                             </svg>
-                            Descargar para Android en Google Play
+                            Descargar App BP Pulse en Google Play
                           </a>
                           
                           <a 
@@ -416,7 +420,7 @@ const AppDetail = () => {
                             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                             </svg>
-                            Descargar para iOS en App Store
+                            Descargar App BP Pulse en App Store
                           </a>
                         </div>
                         
