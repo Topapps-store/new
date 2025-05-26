@@ -695,7 +695,7 @@ const AppDetail = () => {
                     </div>
                     
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">Requires</h3>
+                      <h3 className="text-sm font-medium text-gray-500">{translate('ui.requires', 'Requires')}</h3>
                       <p className="font-medium">{app.requires || 'Android 5.0+'}</p>
                     </div>
                   </div>
