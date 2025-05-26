@@ -1,27 +1,50 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import esTranslations from '../locales/es.json';
 
-/**
- * Hook simplificado que solo devuelve el texto original
- * La traducción se maneja con Google Translate directamente en el cliente
- * @param text Texto original
- * @returns El texto original sin traducir
- */
-export function useTranslation(text: string) {
-  // Simplemente devolvemos el texto original
-  const [translatedText] = useState(text);
-  const [isLoading] = useState(false);
+type TranslationKey = keyof typeof esTranslations;
+type NestedTranslationKey<T> = T extends object ? {
+  [K in keyof T]: T[K] extends object ? `${string & K}.${string & keyof T[K]}` : string & K;
+}[keyof T] : never;
 
-  return { translatedText, isLoading };
-}
+type AllTranslationKeys = NestedTranslationKey<typeof esTranslations>;
 
-// Función auxiliar para traducir textos estáticos
-export function t(key: string): string {
-  // Mapa de traducciones para los elementos de navegación
-  const translations: Record<string, string> = {
-    'nav.apps': 'Apps',
-    'nav.games': 'Games',
-    'nav.addApp': 'Add App',
+export function useTranslation() {
+  const [locale, setLocale] = useState<string>('en');
+
+  useEffect(() => {
+    // Detectar idioma del navegador
+    const browserLang = navigator.language.toLowerCase();
+    const langCode = browserLang.split('-')[0];
+    
+    // Detectar si es español o catalán
+    if (langCode === 'es' || langCode === 'ca') {
+      setLocale('es');
+    } else {
+      setLocale('en');
+    }
+  }, []);
+
+  const t = (key: AllTranslationKeys, fallback?: string): string => {
+    if (locale === 'en') {
+      return fallback || key;
+    }
+
+    // Navegar por el objeto de traducciones usando la clave con puntos
+    const keys = key.split('.');
+    let value: any = esTranslations;
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k];
+      } else {
+        return fallback || key;
+      }
+    }
+    
+    return typeof value === 'string' ? value : (fallback || key);
   };
-  
-  return translations[key] || key;
+
+  const isSpanish = locale === 'es';
+
+  return { t, locale, isSpanish };
 }
