@@ -555,82 +555,84 @@ const AppDetail = () => {
                     )}
                   </div>
                   
-                  {/* App Store links */}
-                  <div className="mt-4 flex flex-col space-y-3">
-                    {/* Google Play download link */}
-                    <a 
-                      href={app.googlePlayUrl || app.downloadUrl}
-                      className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
-                      onClick={(e) => handleGooglePlayClick(e)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-app-id={app.id}
-                      data-event="click:googlePlay"
-                    >
-                      <PlayCircle size={20} />
-                      {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : "Google Play"}
-                    </a>
+                  {/* App Store links - Hidden for BP Pulse as it has integrated download buttons */}
+                  {!isBPPulsePage && (
+                    <div className="mt-4 flex flex-col space-y-3">
+                      {/* Google Play download link */}
+                      <a 
+                        href={app.googlePlayUrl || app.downloadUrl}
+                        className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                        onClick={(e) => handleGooglePlayClick(e)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-app-id={app.id}
+                        data-event="click:googlePlay"
+                      >
+                        <PlayCircle size={20} />
+                        {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : "Google Play"}
+                      </a>
 
-                    {/* iOS App Store links */}
-                    {isLyftPage && (
-                      <a 
-                        href="https://apps.apple.com/us/app/lyft/id529379082"
-                        className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-app-id={app.id}
-                        data-event="click:appStore"
-                      >
-                        <i className="fab fa-apple text-lg"></i>
-                        Download for iOS on App Store
-                      </a>
-                    )}
-                    
-                    {/* iOS App Store link for Uber */}
-                    {isUberPage && (
-                      <a 
-                        href="https://apps.apple.com/us/app/uber-request-a-ride/id368677368"
-                        className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-app-id={app.id}
-                        data-event="click:appStore"
-                      >
-                        <i className="fab fa-apple text-lg"></i>
-                        Download for iOS on App Store
-                      </a>
-                    )}
-                    
-                    {/* iOS App Store link for Electrify America */}
-                    {isElectrifyAmericaPage && (
-                      <a 
-                        href="https://apps.apple.com/us/app/electrify-america/id1458030456"
-                        className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-app-id={app.id}
-                        data-event="click:appStore"
-                      >
-                        <i className="fab fa-apple text-lg"></i>
-                        Download for iOS on App Store
-                      </a>
-                    )}
-                    
-                    {/* iOS App Store link for ChargePoint */}
-                    {isChargePointPage && (
-                      <a 
-                        href="https://apps.apple.com/us/app/chargepoint/id356866743"
-                        className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-app-id={app.id}
-                        data-event="click:appStore"
-                      >
-                        <i className="fab fa-apple text-lg"></i>
-                        Download for iOS on App Store
-                      </a>
-                    )}
-                  </div>
+                      {/* iOS App Store links */}
+                      {isLyftPage && (
+                        <a 
+                          href="https://apps.apple.com/us/app/lyft/id529379082"
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Download for iOS on App Store
+                        </a>
+                      )}
+                      
+                      {/* iOS App Store link for Uber */}
+                      {isUberPage && (
+                        <a 
+                          href="https://apps.apple.com/us/app/uber-request-a-ride/id368677368"
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Download for iOS on App Store
+                        </a>
+                      )}
+                      
+                      {/* iOS App Store link for Electrify America */}
+                      {isElectrifyAmericaPage && (
+                        <a 
+                          href="https://apps.apple.com/us/app/electrify-america/id1458030456"
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Download for iOS on App Store
+                        </a>
+                      )}
+                      
+                      {/* iOS App Store link for ChargePoint */}
+                      {isChargePointPage && (
+                        <a 
+                          href="https://apps.apple.com/us/app/chargepoint/id356866743"
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Download for iOS on App Store
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
               
