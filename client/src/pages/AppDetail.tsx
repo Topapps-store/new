@@ -316,30 +316,30 @@ const AppDetail = () => {
                   <div className="text-gray-700 whitespace-pre-line text-sm">
                     {isUberPage ? (
                       <>
-                        <h3 className="text-xl font-bold mb-3">Download the Uber App – Fast & Easy Rides at Your Fingertips</h3>
+                        <h3 className="text-xl font-bold mb-3">Download Uber App – Fast & Easy Rides at Your Fingertips</h3>
                         
-                        <p className="mb-3">Get the official Uber ride app for Android and iPhone. Request your ride in seconds.</p>
+                        <p className="mb-3">Get Uber App for the most reliable transportation experience. The Uber Ride App is available for Android and iPhone, making it easy to request rides in seconds.</p>
                         
-                        <p className="mb-3">The Uber mobile app makes getting around easy and reliable. Whether you're on Android or iPhone, install the Uber app and start riding today.</p>
+                        <p className="mb-3">The Uber Mobile App is designed to make getting around simple and convenient. Whether you need the Uber App for Android or iPhone, you can Download Uber App and start riding immediately.</p>
                         
-                        <p className="mb-3">The Uber app connects you to a ride in minutes. With the Uber ride app, you just tap to request a ride, and it's easy to pay with credit or cash in select cities.</p>
+                        <p className="mb-3">Get Uber App today and experience the difference. The Uber Ride App connects you to drivers in minutes, and with one tap you can book your ride using the trusted Uber Mobile App.</p>
                         
-                        <p className="mb-3">Whether you're going to the airport or across town, there's an Uber for every occasion. Uber is available in more than 10,000 cities worldwide—download Uber today and take your first trip.</p>
+                        <p className="mb-3">Looking for a quick Uber Download? Our Uber App for Android and iOS is available worldwide. Whether you're traveling across town or to the airport, Get Uber App for instant access to rides.</p>
                         
-                        <p className="mb-3">Get the Uber ride app now and enjoy safe, fast, and affordable transportation. Download Uber today to book a ride anytime, anywhere.</p>
+                        <p className="mb-3">The Uber Mobile App offers safe, fast, and affordable transportation anytime. With the Uber Ride App, you can track your driver, pay seamlessly, and rate your experience.</p>
                         
-                        <p className="mb-3">Fast, Safe, and Easy Rides on the Uber mobile app. Install Uber App and Request a Ride with Uber today!</p>
+                        <p className="mb-3">Ready for your Uber Download? The Uber App for Android and iPhone provides reliable service in over 10,000 cities. Download Uber App now and join millions of satisfied riders worldwide.</p>
                         
-                        <p className="font-semibold">Get Uber App for Android or iPhone and enjoy:</p>
+                        <h4 className="font-semibold mb-2">Why Get Uber App?</h4>
                         <ul className="list-disc pl-5 mt-2 mb-3">
-                          <li>One-tap ride requests</li>
-                          <li>Multiple payment options</li>
-                          <li>Price estimates before you confirm</li>
-                          <li>GPS tracking to follow your driver's route</li>
-                          <li>Driver ratings and reviews</li>
+                          <li>Download Uber App for instant ride access</li>
+                          <li>Uber Ride App with real-time tracking</li>
+                          <li>Uber App for Android and iOS compatibility</li>
+                          <li>Multiple payment options in the Uber Mobile App</li>
+                          <li>Price estimates before confirming your ride</li>
                         </ul>
                         
-                        <p className="mb-3">Uber download is simple. Just tap, install, and ride. Download Uber App now and make transportation easier than ever!</p>
+                        <p className="mb-3">Your Uber Download is just a tap away. Get Uber App and experience the convenience of the world's most popular Uber Ride App. The Uber Mobile App makes every journey smooth and reliable!</p>
                         
                         {/* Keywords ocultos para SEO pero visibles para lectores de pantalla */}
                         <div className="sr-only">

@@ -3552,6 +3552,41 @@
         "https://play-lh.googleusercontent.com/YFyaclxUNftgMRpt8T2BJaI3p4JVQERbLbeKY05ragF38jpwdKBI45ILodYANZnaVkbq"
       ],
       "isAffiliate": false
+    },
+    {
+      "id": "bp-pulse",
+      "name": "bp pulse",
+      "category": "Maps & Navigation",
+      "categoryId": "maps-and-navigation",
+      "description": "Get energy effortlessly when you’re charging on the go with the bp pulse app. \n \nOur network is one of the Uk’s largest – with more than 9,000 EV charging points.\n \nRegister on the app and upgrade to a bp pulse subscription to:\n•\tUnlock your special free offer, 1 month free subscription*\n•\tPay 20% less** than when you Pay as You Go with our best on the go charging tariff. \n•\tOrder a bp pulse charge card if you’d prefer a different way to start your charge. \n \nOr register as a free Pay as You Go user and simply add a payment card within the app wallet to get started. \n \nBoth Subscribers and Pay as You Go users can use the app too: \n•\tStart and stop a charge\n•\tSave your favourite charging points on our live map\n•\tFind available electric vehicle charging stations \n•\tFilter by connector type and kW speed\n•\tCheck charging history and download VAT receipts\n \nWhether you’re shopping for groceries, travelling or staying in a hotel – plug in, power up and go with the bp pulse app. \n  \n* Subscription is £7.85 a month collected via your chosen payment card from the second month. T&Cs of the network apply. \n**Pay on average 20% less than Contactless rates when using chargers on our standard price tariffs within the bp pulse network as available here. Savings vary by charger type (Fast = 25%, Rapid = 20%, UFC = 19% less). Rates & average subscriber savings are subject to change. \n bp’s here for your travel needs – mostly with petrol and diesel – but bp pulse already has over 3,000 rapid and ultra-fast charging points.",
+      "iconUrl": "https://play-lh.googleusercontent.com/dFSy7dWdAg7xW99kusyFAraPCS3-h23ba0TDRDbjqarDIVJrXXo5Dr3etcGNRcwu4nM",
+      "rating": 4,
+      "downloads": "100K+",
+      "version": "4.3.0",
+      "updated": "Apr 30, 2025",
+      "requires": "Android 7.0+",
+      "developer": "bp pulse",
+      "installs": "100,000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.aml.evapp&hl=en&gl=us",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.aml.evapp&hl=en&gl=us",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/WY0mNPrcKYrfZF_hmD3TmEAdstwO1CTEoKg3TsTeysYlIykvFJ5VRNOHdeQs8a4YJJID",
+        "https://play-lh.googleusercontent.com/74y9JJbfuOcDXJPpX3XHyiNMaHkMAdotaRQVf6dTV3poB4kC46OGdkOWKqbHs31rSw",
+        "https://play-lh.googleusercontent.com/IYP6fr_U_0N2XP0lNA9CVHSX9nR38snJMHfOndW3liqyZNIYmbJWvXBDy8JSmL7_cM8",
+        "https://play-lh.googleusercontent.com/De3wFPzAYnz02FPbw5zSRNNSKw4LhEuB0Tb3LgFEM9cPhH-JyYfJ3q1VHJWHEcx4jN8",
+        "https://play-lh.googleusercontent.com/UgJWD822jmRds12-0Uf4q94_ZzegSwSwy8kQzCrDraq6zBNJcnx8Sn-d6a8zgzFoIQM",
+        "https://play-lh.googleusercontent.com/uSKb-YaDFtfmylbIjApC_DEase18BsPYhc932mQ-isBgiaZhZ_VWdB7JdoO-K7v5-lM",
+        "https://play-lh.googleusercontent.com/nH2dNUI2khTDLXvsX0JjCmARH7PRmV1klPN_4zLrGaSTZKzjWgOMjffY7KosG6uVAA",
+        "https://play-lh.googleusercontent.com/O2JwugCqEQQHw3_twis5Yb8bE-5-0DOJwicJ1JMuIkFc8R5V9KtTEZ2Tg-z51zS151k",
+        "https://play-lh.googleusercontent.com/3nvQIv8u5TthWeH8ISJqLmAD51JpWOYbucQ4oxGWRaPEsNCGl9IOp1lpl42MylfzPQ",
+        "https://play-lh.googleusercontent.com/wAqK2hQ5shRBCk5DapqjqbbtJrTZzzXpeOFRJtKP3JzbYMnY1qV3RHQYOPeI0gJ4J7I",
+        "https://play-lh.googleusercontent.com/alnrfaKBN0Z4xz62Vn_QU2kOe-fGC9frBkDfUg-mNc6Yax2PsyaXT5QbMYsNJyVvnA",
+        "https://play-lh.googleusercontent.com/6glzcn4A9JLk7xnTUaMY5zRqRIcrzeb9LLcRnIzSW_bpoNVm9JMyRcR7Wgl14XtuPZhB",
+        "https://play-lh.googleusercontent.com/-mcbRjNbV86_pYntlsKQuZ_3vN9HMckaLEw5lyuEDP7Op1yydU5cG3wbCQ2uU8W-UaQ",
+        "https://play-lh.googleusercontent.com/jI49mjtB-8AbN2Nhg8DJrg0HJKa6mKYfRu8y_GrdsrKvTDJiDaSsphYgzVkjNA741Q",
+        "https://play-lh.googleusercontent.com/t83aEjwS6_BCqjFTFNzs0Xft8bqJ-s4f-xD-Ks9_iSQo3RBJdRX9YTQEVxVhWAd7Xs8Q"
+      ],
+      "isAffiliate": false
     }
   ],
   "categories": [
