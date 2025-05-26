@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLanguage } from '../context/StaticLanguageContext';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface DownloadButtonProps {
   appId: string;
@@ -16,7 +16,18 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
   customUrl = "https://download.example.com/app", 
   className = "" 
 }) => {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
+
+  // Obtener el texto del botón basado en el idioma
+  const getButtonText = () => {
+    const browserLang = navigator.language.toLowerCase();
+    const langCode = browserLang.split('-')[0];
+    
+    if (langCode === 'es' || langCode === 'ca') {
+      return 'Continuar';
+    }
+    return 'Continue';
+  };
 
   // Función para construir la URL con parámetros actuales
   const buildDownloadUrl = () => {
@@ -104,7 +115,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     >
       {/* Botón simple solo con texto */}
       <span className="relative z-10 flex items-center justify-center">
-        <span className="text-lg font-medium">{t('ui.continue', 'Continue')}</span>
+        <span className="text-lg font-medium">{getButtonText()}</span>
       </span>
       
       {/* Efecto de hover */}
