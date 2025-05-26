@@ -253,7 +253,10 @@ const AppDetail = () => {
                 </div>
                 
                 {/* Advertisement buttons with affiliate links - moved up, below rating */}
-                <div className="w-full mb-3 flex flex-col items-center border border-gray-200 rounded-lg p-3">
+                <div className="w-full mb-3 flex flex-col items-center border border-gray-200 rounded-lg p-3 relative">
+                  <button className="absolute top-2 right-2 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs">
+                    ×
+                  </button>
                   <div className="text-[10px] text-gray-500 mb-3 self-start">
                     {translate('ui.advertisement', 'ADVERTISEMENT')}
                   </div>
