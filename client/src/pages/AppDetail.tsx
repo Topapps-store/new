@@ -32,6 +32,7 @@ const AppDetail = () => {
   const { appId } = useParams();
   const [activeTab, setActiveTab] = useState<"description" | "screenshots" | "info">("description");
   const { t } = useLanguage();
+  const { t: translate, isSpanish } = useTranslation();
   
   // Scroll to top when component mounts and update SEO meta tags
   useEffect(() => {
@@ -218,7 +219,7 @@ const AppDetail = () => {
         <Link href="/">
           <div className="flex items-center text-gray-600 hover:text-primary cursor-pointer">
             <i className="fas fa-arrow-left mr-2"></i>
-            <span>Back</span>
+            <span>{translate('ui.backToApps', 'Back')}</span>
           </div>
         </Link>
       </div>
@@ -295,7 +296,7 @@ const AppDetail = () => {
                   }`}
                   onClick={() => setActiveTab("description")}
                 >
-                  Description
+                  {translate('ui.description', 'Description')}
                 </button>
                 <button
                   className={`pb-1 text-sm font-medium ${
@@ -305,7 +306,7 @@ const AppDetail = () => {
                   }`}
                   onClick={() => setActiveTab("screenshots")}
                 >
-                  Screenshots
+                  {translate('ui.screenshots', 'Screenshots')}
                 </button>
                 <button
                   className={`pb-1 text-sm font-medium ${
@@ -315,7 +316,7 @@ const AppDetail = () => {
                   }`}
                   onClick={() => setActiveTab("info")}
                 >
-                  Information
+                  {translate('ui.information', 'Information')}
                 </button>
 
               </div>
@@ -663,7 +664,7 @@ const AppDetail = () => {
                   {/* App info grid */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">Category</h3>
+                      <h3 className="text-sm font-medium text-gray-500">{translate('ui.category', 'Category')}</h3>
                       <p className="font-medium">
                         <Link href={`/category/${isAppLegacy(app) ? app.categoryId : ''}`}>
                           <span className="text-primary hover:underline cursor-pointer">
@@ -674,22 +675,22 @@ const AppDetail = () => {
                     </div>
                     
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">Downloads</h3>
+                      <h3 className="text-sm font-medium text-gray-500">{translate('ui.downloads', 'Downloads')}</h3>
                       <p className="font-medium">{app.downloads}</p>
                     </div>
                     
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">Last Updated</h3>
+                      <h3 className="text-sm font-medium text-gray-500">{translate('ui.updated', 'Last Updated')}</h3>
                       <p className="font-medium">{app.updated}</p>
                     </div>
                     
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">Version</h3>
+                      <h3 className="text-sm font-medium text-gray-500">{translate('ui.version', 'Version')}</h3>
                       <p className="font-medium">{app.version}</p>
                     </div>
                     
                     <div>
-                      <h3 className="text-sm font-medium text-gray-500">Size</h3>
+                      <h3 className="text-sm font-medium text-gray-500">{translate('ui.size', 'Size')}</h3>
                       <p className="font-medium">{app.size}</p>
                     </div>
                     
