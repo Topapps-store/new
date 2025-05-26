@@ -68,6 +68,11 @@ const AppDetail = () => {
       document.title = "Download ChargePoint App | EV Charging Stations Near You";
       metaDescription.setAttribute('content', 'Get the ChargePoint app to find EV charging stations, start charging, and manage sessions.');
     }
+    else if (appId === 'bp-pulse') {
+      // Establecer título y descripción optimizados para BP Pulse en español
+      document.title = "Descargar BP Pulse App | Puntos de Carga para Vehículos Eléctricos";
+      metaDescription.setAttribute('content', 'Descarga la app BP Pulse para encontrar puntos de carga, iniciar carga y gestionar tus sesiones de carga eléctrica.');
+    }
     
     // Limpiar al desmontar
     return () => {
@@ -198,11 +203,12 @@ const AppDetail = () => {
     return <div className="text-center py-10">App not found</div>;
   }
 
-  // Verificar si estamos en la página de Uber, Lyft, Electrify America o ChargePoint
+  // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint o BP Pulse
   const isUberPage = appId === 'uber-request-a-ride';
   const isLyftPage = appId === 'lyft';
   const isElectrifyAmericaPage = appId === 'electrify-america';
   const isChargePointPage = appId === 'chargepoint';
+  const isBPPulsePage = appId === 'bp-pulse';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -227,6 +233,7 @@ const AppDetail = () => {
                        isLyftPage ? "Lyft App Android iPhone" : 
                        isElectrifyAmericaPage ? "Electrify America app download" :
                        isChargePointPage ? "Download ChargePoint app" :
+                       isBPPulsePage ? "Descargar BP Pulse app" :
                        app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
@@ -235,6 +242,7 @@ const AppDetail = () => {
                    isLyftPage ? "Lyft" : 
                    isElectrifyAmericaPage ? "Electrify America" :
                    isChargePointPage ? "ChargePoint" :
+                   isBPPulsePage ? "BP Pulse" :
                    app.name}
                 </h1>
                 
@@ -353,6 +361,73 @@ const AppDetail = () => {
                           <p>Request a Ride with Uber</p>
                           <p>Uber Download</p>
                           <p>Fast, Safe, and Easy Rides</p>
+                        </div>
+                      </>
+                    ) : isBPPulsePage ? (
+                      <>
+                        <h3 className="text-xl font-bold mb-3">Descargar BP Pulse App – Puntos de Carga para Vehículos Eléctricos</h3>
+                        
+                        <p className="mb-3">Obtén la aplicación BP Pulse para encontrar puntos de carga, iniciar sesiones de carga y gestionar tu experiencia de carga eléctrica de manera fácil y rápida.</p>
+                        
+                        <p className="mb-3">La app BP Pulse te conecta con la red más confiable de puntos de carga para vehículos eléctricos. Descarga BP Pulse y descubre estaciones de carga cercanas en segundos.</p>
+                        
+                        <p className="mb-3">Con BP Pulse puedes localizar cargadores disponibles, verificar precios en tiempo real, y iniciar sesiones de carga directamente desde tu teléfono móvil.</p>
+                        
+                        <p className="mb-3">Descargar BP Pulse te permite acceder a miles de puntos de carga en toda Europa. La aplicación BP Pulse está disponible para Android e iOS, ofreciendo una experiencia de carga sin complicaciones.</p>
+                        
+                        <p className="mb-3">BP Pulse App facilita el pago seguro y el seguimiento de tus sesiones de carga. Obtén la app BP Pulse y únete a la comunidad de conductores de vehículos eléctricos más grande de Europa.</p>
+                        
+                        <p className="mb-3">Gestiona tu cuenta BP Pulse, revisa el historial de cargas y encuentra nuevos destinos con puntos de carga disponibles. La aplicación BP Pulse hace que conducir un vehículo eléctrico sea más conveniente que nunca.</p>
+                        
+                        <h4 className="font-semibold mb-2">¿Por qué elegir BP Pulse App?</h4>
+                        <ul className="list-disc pl-5 mt-2 mb-3">
+                          <li>Encuentra puntos de carga BP Pulse cerca de ti</li>
+                          <li>Inicia y termina sesiones de carga remotamente</li>
+                          <li>Precios transparentes y pago sin contacto</li>
+                          <li>Navegación integrada a estaciones de carga</li>
+                          <li>Historial completo de todas tus cargas</li>
+                          <li>Soporte 24/7 para asistencia técnica</li>
+                        </ul>
+                        
+                        <p className="mb-3">Descargar BP Pulse es gratis y te da acceso instantáneo a la red de carga rápida más extensa. La app BP Pulse convierte la carga de tu vehículo eléctrico en una experiencia simple y eficiente.</p>
+                        
+                        {/* Botones de descarga para BP Pulse */}
+                        <div className="flex flex-col gap-3 mt-4">
+                          <a 
+                            href="https://play.google.com/store/apps/details?id=com.aml.evapp&hl=es"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.807 1.626L15.833 12l1.865-1.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/>
+                            </svg>
+                            Descargar para Android en Google Play
+                          </a>
+                          
+                          <a 
+                            href="https://apps.apple.com/es/app/bp-pulse-puntos-de-carga/id1515768723"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Descargar para iOS en App Store
+                          </a>
+                        </div>
+                        
+                        {/* Keywords para SEO */}
+                        <div className="sr-only">
+                          <p>BP Pulse App</p>
+                          <p>Descargar BP Pulse</p>
+                          <p>Puntos de carga BP Pulse</p>
+                          <p>App carga vehículos eléctricos</p>
+                          <p>BP Pulse Android</p>
+                          <p>BP Pulse iOS</p>
+                          <p>Estaciones de carga BP</p>
+                          <p>Carga rápida vehículos eléctricos</p>
                         </div>
                       </>
                     ) : isLyftPage ? (
