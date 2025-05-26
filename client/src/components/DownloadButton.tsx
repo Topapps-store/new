@@ -104,7 +104,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     >
       {/* Botón simple solo con texto */}
       <span className="relative z-10 flex items-center justify-center">
-        <span className="text-lg font-medium">Continue</span>
+        <span className="text-lg font-medium">{t('ui.continue', 'Continue')}</span>
       </span>
       
       {/* Efecto de hover */}

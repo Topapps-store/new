@@ -29,7 +29,8 @@
     "allCategories": "Todas las categorías",
     "topApps": "Aplicaciones destacadas",
     "newApps": "Nuevas aplicaciones",
-    "popularApps": "Aplicaciones populares"
+    "popularApps": "Aplicaciones populares",
+    "advertisement": "PUBLICIDAD"
   },
   "categories": {
     "productivity": "Productividad",
@@ -61,6 +62,7 @@
     "appNotFound": "Aplicación no encontrada",
     "searchPlaceholder": "Buscar aplicaciones...",
     "free": "Gratis",
-    "paid": "De pago"
+    "paid": "De pago",
+    "noRelatedApps": "No se encontraron aplicaciones relacionadas"
   }
 }

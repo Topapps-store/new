@@ -255,7 +255,7 @@ const AppDetail = () => {
                 {/* Advertisement buttons with affiliate links - moved up, below rating */}
                 <div className="w-full mb-3 flex flex-col items-center">
                   <div className="text-[10px] text-gray-500 mb-3 self-start">
-                    ADVERTISEMENT
+                    {translate('ui.advertisement', 'ADVERTISEMENT')}
                   </div>
                   
                   {/* Solo mostramos el botón de descarga verde */}
@@ -270,7 +270,7 @@ const AppDetail = () => {
                   <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
                     <i className="fas fa-download text-green-500 w-6 text-lg"></i>
                     <div>
-                      <p className="text-xs text-gray-500">Downloads</p>
+                      <p className="text-xs text-gray-500">{translate('ui.downloads', 'Downloads')}</p>
                       <p className="font-medium text-sm">{app.downloads || '10M+'}</p>
                     </div>
                   </div>
@@ -278,7 +278,7 @@ const AppDetail = () => {
                   <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
                     <i className="fas fa-code-branch text-blue-500 w-6 text-lg"></i>
                     <div>
-                      <p className="text-xs text-gray-500">Developer</p>
+                      <p className="text-xs text-gray-500">{translate('ui.developer', 'Developer')}</p>
                       <p className="font-medium text-sm">{app.developer}</p>
                     </div>
                   </div>
@@ -709,7 +709,7 @@ const AppDetail = () => {
         
         {/* Related Apps */}
         <div className="p-6 bg-gray-50 border-t border-gray-200">
-          <h2 className="text-xl font-bold mb-4">Related Apps</h2>
+          <h2 className="text-xl font-bold mb-4">{translate('ui.relatedApps', 'Related Apps')}</h2>
           
           {isLoadingRelated ? (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -728,7 +728,7 @@ const AppDetail = () => {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">No related apps found</p>
+            <p className="text-gray-500">{translate('common.noRelatedApps', 'No related apps found')}</p>
           )}
         </div>
       </div>
