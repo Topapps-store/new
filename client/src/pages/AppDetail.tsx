@@ -257,7 +257,7 @@ const AppDetail = () => {
                   <div className="text-[10px] text-gray-500 mb-1">
                     {translate('ui.advertisement', 'ADVERTISEMENT')}
                   </div>
-                  <div className="border border-gray-200 rounded-lg p-2 relative flex justify-center items-center">
+                  <div className="border border-gray-200 rounded-lg py-4 px-2 relative flex justify-center items-center min-h-[60px]">
                     <button className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs">
                       ×
                     </button>
