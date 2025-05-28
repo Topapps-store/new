@@ -253,19 +253,21 @@ const AppDetail = () => {
                 </div>
                 
                 {/* Advertisement buttons with affiliate links - moved up, below rating */}
-                <div className="w-full mb-3 flex flex-col items-center border border-gray-200 rounded-lg p-3 relative">
-                  <button className="absolute top-2 right-2 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs">
-                    ×
-                  </button>
-                  <div className="text-[10px] text-gray-500 mb-3 self-start">
+                <div className="w-full mb-2">
+                  <div className="text-[10px] text-gray-500 mb-1">
                     {translate('ui.advertisement', 'ADVERTISEMENT')}
                   </div>
-                  
-                  {/* Solo mostramos el botón de descarga verde */}
-                  <DownloadButton 
-                    appId={app?.id || ''} 
-                    customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
-                  />
+                  <div className="border border-gray-200 rounded-lg p-2 relative">
+                    <button className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs">
+                      ×
+                    </button>
+                    
+                    {/* Solo mostramos el botón de descarga verde */}
+                    <DownloadButton 
+                      appId={app?.id || ''} 
+                      customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
+                    />
+                  </div>
                 </div>
                 
                 {/* App Info Cards - more compact */}
