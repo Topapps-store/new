@@ -1,8 +1,8 @@
 import { Link } from "wouter";
-import { Category } from "@shared/schema";
+import { CategoryLegacy } from "@shared/schema";
 
 type CategoryCardProps = {
-  category: Category;
+  category: CategoryLegacy;
 };
 
 const getCategoryIcon = (id: string) => {

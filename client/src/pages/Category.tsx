@@ -1,17 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "wouter";
 import AppCard from "../components/AppCard";
-import { App, Category } from "@shared/schema";
 
 const CategoryPage = () => {
   const { categoryId } = useParams();
 
-  const { data: category, isLoading: isLoadingCategory } = useQuery<Category>({
+  const { data: category, isLoading: isLoadingCategory } = useQuery({
     queryKey: [`/api/categories/${categoryId}`],
+    queryFn: async () => {
+      const { getCategoryById } = await import('../services/staticDataService');
+      const result = getCategoryById(categoryId || '');
+      if (!result) throw new Error('Category not found');
+      return result;
+    },
+    enabled: !!categoryId
   });
 
-  const { data: apps, isLoading: isLoadingApps } = useQuery<App[]>({
+  const { data: apps, isLoading: isLoadingApps } = useQuery({
     queryKey: [`/api/categories/${categoryId}/apps`],
+    queryFn: async () => {
+      const { getAppsByCategory } = await import('../services/staticDataService');
+      return getAppsByCategory(categoryId || '');
+    },
+    enabled: !!categoryId
   });
 
   // Get a random app to mark as an affiliate app
