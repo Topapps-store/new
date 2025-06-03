@@ -1,5 +1,36 @@
 [
   {
+    "id": "enbw-mobility-plus",
+    "name": "EnBW mobility+",
+    "category_id": "maps",
+    "description": "Wir laden alles, was uns bewegt. Willkommen bei Deutschlands bestem E-Mobilitätsanbieter! Mit der EnBW mobility+ App starten Sie elektrisch durch. Unsere Alleskönner-App bietet Ihnen diverse Funktionen rund um die Elektromobilität: Ladestationen in der Nähe finden, Ladevorgang via App, Ladekarte oder AutoCharge starten, bequem per App bezahlen.",
+    "icon_url": "https://play-lh.googleusercontent.com/9Z93OfAfGli6_CvnICljhDsUuhG4SQmhlpGjyi4h-__mc6eKQExGNlg_BX4OzZbRI_8",
+    "rating": 3.0,
+    "downloads": "1M+",
+    "version": "Varies",
+    "size": "Varies",
+    "updated": "2025-05-26T00:00:00.000Z",
+    "requires": "Android 5.0+",
+    "developer": "EnBW AG",
+    "installs": "1,000,000+",
+    "download_url": "https://topapps.store/download/enbw-mobility-plus",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.enbw.ev&hl=de",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/tYxxQb6HVTsxuE4JGBgNBqmsUolbKwLQ6br3i1cX4tlZt9CE48UilH3_-STpnJWWiM8",
+      "https://play-lh.googleusercontent.com/yLk6An79K8MkzgWvL2FwnxhAzYUDgGonxadvEsFPBn1OIHuvSPeiZhunWQC2EPgkVQ",
+      "https://play-lh.googleusercontent.com/S54Pc2zwy8kabpdiIc8IRxgbhyZ5ofJ9DPPuiMHT7mBd0QWALQ7VzCvwSC_DRfMtwGM",
+      "https://play-lh.googleusercontent.com/IYo19jc4LYVPtEGICXLa49APg3HaaLyU-5iSVmTKjACAPEXv28ZZh9zt6LJpYYURQxIH",
+      "https://play-lh.googleusercontent.com/WjDAgFblYKYLuQZ5JzQnyadvso6PYHsHbCWhlLyhm6-vNJyJ0YoCw1Bfh9LcG2vQdfiz",
+      "https://play-lh.googleusercontent.com/fscL0OfHaLwq3yARNZGD9mDZdOfR3H5pFzvHPM-cAalOfkmVwL_T_7DFP5vwg86KuiD0"
+    ],
+    "is_affiliate": true,
+    "created_at": "2025-06-03T00:00:00.000Z",
+    "ios_app_store_url": "https://apps.apple.com/de/app/enbw-mobility-e-auto-laden/id1232210521",
+    "original_app_id": null,
+    "last_synced_at": null,
+    "category_name": "Maps & Navigation"
+  },
+  {
     "id": "uber-request-a-ride",
     "name": "Uber - Request a ride",
     "category_id": "maps",

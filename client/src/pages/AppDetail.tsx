@@ -75,6 +75,11 @@ const AppDetail = () => {
       document.title = "Descargar App BP Pulse | Carga tu Coche Eléctrico Rápido y Fácil";
       metaDescription.setAttribute('content', 'Instala la app oficial de BP Pulse y encuentra puntos de carga cerca de ti. Disponible para Android y iPhone.');
     }
+    else if (appId === 'enbw-mobility-plus') {
+      // Establecer título y descripción optimizados para EnBW mobility+ según especificaciones de Google Ads
+      document.title = "EnBW mobility+ App herunterladen | Schnellladen für Elektroautos";
+      metaDescription.setAttribute('content', 'EnBW App für Android & iOS. Finde Ladestationen, nutze AutoCharge und lade dein Elektroauto in Minuten. Jetzt EnBW App herunterladen.');
+    }
     
     // Limpiar al desmontar
     return () => {
@@ -205,12 +210,13 @@ const AppDetail = () => {
     return <div className="text-center py-10">App not found</div>;
   }
 
-  // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint o BP Pulse
+  // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse o EnBW mobility+
   const isUberPage = appId === 'uber-request-a-ride';
   const isLyftPage = appId === 'lyft';
   const isElectrifyAmericaPage = appId === 'electrify-america';
   const isChargePointPage = appId === 'chargepoint';
   const isBPPulsePage = appId === 'bp-pulse';
+  const isEnBWPage = appId === 'enbw-mobility-plus';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -439,6 +445,109 @@ const AppDetail = () => {
                           <p>BP Pulse iOS</p>
                           <p>Estaciones de carga BP</p>
                           <p>Carga rápida vehículos eléctricos</p>
+                        </div>
+                      </>
+                    ) : isEnBWPage ? (
+                      <>
+                        <h1 className="text-2xl font-bold mb-3">EnBW mobility+ App herunterladen – Schnellladen für dein Elektroauto</h1>
+                        <h2 className="text-xl text-gray-700 mb-4">Installiere die EnBW mobility+ App für Android & iOS und nutze AutoCharge sofort.</h2>
+                        
+                        <p className="mb-3">Mit der EnBW mobility+ App startest du elektrisch durch und findest Ladestationen in der Nähe. Die EnBW App herunterladen gibt dir Zugang zum größten Ladenetz Deutschlands mit über 800.000 Ladepunkten in Europa.</p>
+                        
+                        <p className="mb-3">EnBW mobility+ installieren ist kostenlos und bietet dir AutoCharge-Funktionalität für automatisches Laden ohne App oder Ladekarte. Die EnBW App für Android und iOS macht Elektromobilität einfach und bequem.</p>
+                        
+                        <p className="mb-3">Mit der EnBW App für Elektroauto findest du schnell verfügbare Ladestationen, startest den Ladevorgang direkt per App und bezahlst kontaktlos. EnBW mobility+ AutoCharge revolutioniert das Laden: einfach anschließen und losladen!</p>
+                        
+                        <p className="mb-3">Die EnBW App Ladestationen-Finder zeigt dir über 800.000 Ladepunkte in Europa. EnBW mobility+ Schnellladen ist an über 3.000 Schnellladestationen verfügbar - perfekt für lange Strecken und schnelle Stopps.</p>
+                        
+                        <h3 className="text-xl font-semibold mb-3 mt-6">Was ist die EnBW mobility+ App?</h3>
+                        <p className="mb-4">Die EnBW mobility+ App ist Deutschlands führende Lade-App für Elektroautos. Mit dieser EnBW App für Android & iOS findest du Ladestationen, startest AutoCharge-Sessions und bezahlst kontaktlos. Die EnBW mobility+ Download ist kostenlos und bietet Zugang zum größten Ladenetz Europas.</p>
+                        
+                        <h4 className="font-semibold mb-2">Warum EnBW mobility+ App wählen?</h4>
+                        <ul className="list-disc pl-5 mt-2 mb-3">
+                          <li>Über 800.000 Ladepunkte in Europa verfügbar</li>
+                          <li>AutoCharge: Automatisches Laden ohne App oder Karte</li>
+                          <li>Schnellladen an über 3.000 EnBW-Stationen</li>
+                          <li>Apple CarPlay und Android Auto Integration</li>
+                          <li>Transparente Preise und kontaktloses Bezahlen</li>
+                          <li>Lademonitor für Echtzeit-Überwachung</li>
+                          <li>24/7 Service-Hotline für Unterstützung</li>
+                        </ul>
+                        
+                        <p className="mb-3">Jetzt EnBW App herunterladen und von Deutschlands bestem E-Mobilitätsanbieter profitieren. Die EnBW mobility+ App wurde mehrfach als Testsieger ausgezeichnet und bietet die beste Ladenetzabdeckung in Deutschland.</p>
+                        
+                        <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                          <h4 className="font-semibold mb-2">🏆 Auszeichnungen für EnBW mobility+</h4>
+                          <ul className="text-sm space-y-1">
+                            <li>• Connect Testsieger: bester Elektromobilitätsanbieter</li>
+                            <li>• COMPUTER BILD Testsieger: beste Lade-App</li>
+                            <li>• AUTO BILD Sieger: Lade-App Bedienbarkeit</li>
+                            <li>• AUTO BILD Testsieger: größtes Schnellladenetz</li>
+                          </ul>
+                        </div>
+                        
+                        <div className="bg-blue-50 p-4 rounded-lg mb-4">
+                          <h4 className="font-semibold mb-2">⚡ AutoCharge - Die Zukunft des Ladens</h4>
+                          <p className="text-sm">Anschließen, losladen, weiterfahren! Mit AutoCharge laden Sie ohne App oder Ladekarte. Nach einmaliger Aktivierung startet Ihr Ladevorgang automatisch.</p>
+                        </div>
+                        
+                        {/* Call to Action */}
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-blue-600 mb-2">Jetzt EnBW App herunterladen</p>
+                        </div>
+                        
+                        {/* Botones de descarga para EnBW mobility+ */}
+                        <div className="flex flex-col gap-3 mt-4">
+                          <a 
+                            href="https://play.google.com/store/apps/details?id=com.enbw.ev&hl=de"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.807 1.626L15.833 12l1.865-1.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/>
+                            </svg>
+                            EnBW App herunterladen - Google Play
+                          </a>
+                          
+                          <a 
+                            href="https://apps.apple.com/de/app/enbw-mobility-e-auto-laden/id1232210521"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            EnBW App herunterladen - App Store
+                          </a>
+                        </div>
+                        
+                        {/* Second Call to Action */}
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-green-600">Jetzt EnBW App herunterladen</p>
+                        </div>
+                        
+                        {/* Keywords para SEO */}
+                        <div className="sr-only">
+                          <p>EnBW mobility+ App</p>
+                          <p>EnBW App herunterladen</p>
+                          <p>EnBW mobility+ installieren</p>
+                          <p>EnBW mobility+ Download</p>
+                          <p>EnBW App für Android</p>
+                          <p>EnBW App für iOS</p>
+                          <p>EnBW App für Elektroauto</p>
+                          <p>EnBW mobility+ AutoCharge</p>
+                          <p>EnBW mobility+ Schnellladen</p>
+                          <p>EnBW App Ladestationen</p>
+                        </div>
+                        
+                        {/* ALT text optimized images - hidden for SEO */}
+                        <div className="sr-only">
+                          <img alt="EnBW App herunterladen" />
+                          <img alt="EnBW App für Elektroauto" />
+                          <img alt="EnBW App AutoCharge" />
+                          <img alt="EnBW App Schnellladen" />
                         </div>
                       </>
                     ) : isLyftPage ? (
