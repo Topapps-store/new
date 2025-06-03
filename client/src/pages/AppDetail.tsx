@@ -518,7 +518,7 @@ const AppDetail = () => {
                         {/* Botones de descarga para EnBW mobility+ */}
                         <div className="flex flex-col gap-3 mt-4">
                           <a 
-                            href="https://play.google.com/store/apps/details?id=com.enbw.ev&hl=de"
+                            href={app.googlePlayUrl || "https://play.google.com/store/apps/details?id=com.enbw.ev&hl=de"}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
@@ -530,7 +530,7 @@ const AppDetail = () => {
                           </a>
                           
                           <a 
-                            href="https://apps.apple.com/de/app/enbw-mobility-e-auto-laden/id1232210521"
+                            href={app.appStoreUrl || "https://apps.apple.com/de/app/enbw-mobility-e-auto-laden/id1232210521"}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center px-4 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
