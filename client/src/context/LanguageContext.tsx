@@ -5,15 +5,17 @@ import axios from 'axios';
 import enTranslations from '../translations/en.json';
 import esTranslations from '../translations/es.json';
 import frTranslations from '../translations/fr.json';
+import deTranslations from '../translations/de.json';
 
 // Type for supported languages
-export type Language = 'en' | 'es' | 'fr';
+export type Language = 'en' | 'es' | 'fr' | 'de';
 
 // Map client language codes to DeepL API language codes
 const languageCodeMap: Record<Language, string> = {
   en: 'EN',
   es: 'ES',
   fr: 'FR',
+  de: 'DE',
 };
 
 // Type for translation object
@@ -37,6 +39,7 @@ const translations: Record<Language, TranslationObject> = {
   en: enTranslations,
   es: esTranslations,
   fr: frTranslations,
+  de: deTranslations,
 };
 
 // Translation cache to avoid unnecessary API calls
@@ -44,13 +47,14 @@ const translationCache: Record<Language, TranslationCache> = {
   en: {},
   es: {},
   fr: {},
+  de: {},
 };
 
 // Function to get browser language
 const getBrowserLanguage = (): Language => {
   if (typeof window === 'undefined') return 'en';
   const browserLang = navigator.language.split('-')[0];
-  return (browserLang === 'en' || browserLang === 'es' || browserLang === 'fr') 
+  return (browserLang === 'en' || browserLang === 'es' || browserLang === 'fr' || browserLang === 'de') 
     ? browserLang as Language 
     : 'en';
 };
