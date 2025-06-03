@@ -33,12 +33,16 @@ export function useTranslation() {
   }, []);
 
   const t = (key: AllTranslationKeys, fallback?: string): string => {
+    // Debug logging
+    console.log('Translation request:', { key, locale, fallback });
+    
     if (locale === 'en') {
       return fallback || key;
     }
 
     // Seleccionar el archivo de traducciones correcto
     const translations = locale === 'de' ? deTranslations : esTranslations;
+    console.log('Using translations for locale:', locale, translations);
 
     // Navegar por el objeto de traducciones usando la clave con puntos
     const keys = key.split('.');
@@ -48,11 +52,14 @@ export function useTranslation() {
       if (value && typeof value === 'object' && k in value) {
         value = value[k];
       } else {
+        console.log('Translation key not found:', key, 'at segment:', k);
         return fallback || key;
       }
     }
     
-    return typeof value === 'string' ? value : (fallback || key);
+    const result = typeof value === 'string' ? value : (fallback || key);
+    console.log('Translation result:', result);
+    return result;
   };
 
   const isSpanish = locale === 'es';
