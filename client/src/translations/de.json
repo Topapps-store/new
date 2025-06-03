@@ -80,7 +80,16 @@
     "advertisement": "WERBUNG",
     "continue": "Weiter",
     "downloads": "Downloads",
-    "developer": "Entwickler"
+    "developer": "Entwickler",
+    "description": "Beschreibung",
+    "screenshots": "Screenshots",
+    "information": "Information",
+    "category": "Kategorie",
+    "updated": "Aktualisiert",
+    "version": "Version",
+    "size": "Größe",
+    "requires": "Benötigt",
+    "relatedApps": "Ähnliche Apps"
   },
   "search": {
     "searchApps": "Apps suchen",
