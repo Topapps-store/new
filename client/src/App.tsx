@@ -49,6 +49,43 @@ function Router() {
         <Route path="*">
           <Layout>
             <Switch>
+              {/* German routes with /de/ prefix */}
+              <Route path="/de/" component={Home} />
+              <Route path="/de/apps/all" component={AllApps} />
+              <Route path="/de/apps/add" component={AddApp} />
+              <Route path="/de/apps/:appId" component={AppDetail} />
+              <Route path="/de/categories/:categoryId" component={Category} />
+              <Route path="/de/search" component={Search} />
+              <Route path="/de/terms-of-service" component={HardcodedTerms} />
+              <Route path="/de/privacy-policy" component={PrivacyPolicy} />
+              <Route path="/de/disclaimer" component={Disclaimer} />
+              <Route path="/de/contact" component={Contact} />
+              
+              {/* Spanish routes with /es/ prefix */}
+              <Route path="/es/" component={Home} />
+              <Route path="/es/apps/all" component={AllApps} />
+              <Route path="/es/apps/add" component={AddApp} />
+              <Route path="/es/apps/:appId" component={AppDetail} />
+              <Route path="/es/categories/:categoryId" component={Category} />
+              <Route path="/es/search" component={Search} />
+              <Route path="/es/terms-of-service" component={HardcodedTerms} />
+              <Route path="/es/privacy-policy" component={PrivacyPolicy} />
+              <Route path="/es/disclaimer" component={Disclaimer} />
+              <Route path="/es/contact" component={Contact} />
+              
+              {/* French routes with /fr/ prefix */}
+              <Route path="/fr/" component={Home} />
+              <Route path="/fr/apps/all" component={AllApps} />
+              <Route path="/fr/apps/add" component={AddApp} />
+              <Route path="/fr/apps/:appId" component={AppDetail} />
+              <Route path="/fr/categories/:categoryId" component={Category} />
+              <Route path="/fr/search" component={Search} />
+              <Route path="/fr/terms-of-service" component={HardcodedTerms} />
+              <Route path="/fr/privacy-policy" component={PrivacyPolicy} />
+              <Route path="/fr/disclaimer" component={Disclaimer} />
+              <Route path="/fr/contact" component={Contact} />
+              
+              {/* Default English routes */}
               <Route path="/" component={Home} />
               <Route path="/apps/all" component={AllApps} />
               <Route path="/apps/add" component={AddApp} />
