@@ -75,7 +75,7 @@ const AppDetail = () => {
       document.title = "Descargar App BP Pulse | Carga tu Coche Eléctrico Rápido y Fácil";
       metaDescription.setAttribute('content', 'Instala la app oficial de BP Pulse y encuentra puntos de carga cerca de ti. Disponible para Android y iPhone.');
     }
-    else if (appId === 'enbw-mobility-plus') {
+    else if (appId === 'enbw-mobility-ev-charging') {
       // Establecer título y descripción optimizados para EnBW mobility+ según especificaciones de Google Ads
       document.title = "EnBW mobility+ App herunterladen | Schnellladen für Elektroautos";
       metaDescription.setAttribute('content', 'EnBW App für Android & iOS. Finde Ladestationen, nutze AutoCharge und lade dein Elektroauto in Minuten. Jetzt EnBW App herunterladen.');
@@ -216,7 +216,7 @@ const AppDetail = () => {
   const isElectrifyAmericaPage = appId === 'electrify-america';
   const isChargePointPage = appId === 'chargepoint';
   const isBPPulsePage = appId === 'bp-pulse';
-  const isEnBWPage = appId === 'enbw-mobility-plus';
+  const isEnBWPage = appId === 'enbw-mobility-ev-charging';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -242,6 +242,7 @@ const AppDetail = () => {
                        isElectrifyAmericaPage ? "Electrify America app download" :
                        isChargePointPage ? "Download ChargePoint app" :
                        isBPPulsePage ? "Descargar BP Pulse app" :
+                       isEnBWPage ? "EnBW App herunterladen" :
                        app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
@@ -452,44 +453,62 @@ const AppDetail = () => {
                         <h1 className="text-2xl font-bold mb-3">EnBW mobility+ App herunterladen – Schnellladen für dein Elektroauto</h1>
                         <h2 className="text-xl text-gray-700 mb-4">Installiere die EnBW mobility+ App für Android & iOS und nutze AutoCharge sofort.</h2>
                         
-                        <p className="mb-3">Mit der EnBW mobility+ App startest du elektrisch durch und findest Ladestationen in der Nähe. Die EnBW App herunterladen gibt dir Zugang zum größten Ladenetz Deutschlands mit über 800.000 Ladepunkten in Europa.</p>
+                        <p className="mb-3"><strong>Wir laden alles, was uns bewegt. Willkommen bei Deutschlands bestem E-Mobilitätsanbieter!</strong></p>
                         
-                        <p className="mb-3">EnBW mobility+ installieren ist kostenlos und bietet dir AutoCharge-Funktionalität für automatisches Laden ohne App oder Ladekarte. Die EnBW App für Android und iOS macht Elektromobilität einfach und bequem.</p>
+                        <p className="mb-3">Mit der EnBW mobility+ App starten Sie elektrisch durch. Unsere Alleskönner-App bietet Ihnen diverse Funktionen rund um die Elektromobilität an:</p>
                         
-                        <p className="mb-3">Mit der EnBW App für Elektroauto findest du schnell verfügbare Ladestationen, startest den Ladevorgang direkt per App und bezahlst kontaktlos. EnBW mobility+ AutoCharge revolutioniert das Laden: einfach anschließen und losladen!</p>
+                        <ol className="list-decimal pl-5 mb-4">
+                          <li>Ladestationen in der Nähe finden</li>
+                          <li>Ladevorgang via App, Ladekarte oder AutoCharge starten</li>
+                          <li>Bequem per App bezahlen</li>
+                        </ol>
                         
-                        <p className="mb-3">Die EnBW App Ladestationen-Finder zeigt dir über 800.000 Ladepunkte in Europa. EnBW mobility+ Schnellladen ist an über 3.000 Schnellladestationen verfügbar - perfekt für lange Strecken und schnelle Stopps.</p>
+                        <h3 className="text-xl font-semibold mb-3 mt-6"><strong>Wir laden überall</strong></h3>
+                        <p className="mb-3">Dank der EnBW mobility+ App sind Sie mit Ihrem E-Auto überall sorglos unterwegs. Wir bieten Ihnen Zugang zum größten Ladenetz und der besten Ladenetzabdeckung in Deutschland, Österreich, der Schweiz und weiteren Ländern Europas. Eine interaktive Karte ermöglicht es Ihnen, freie Ladesäulen in Ihrer Nähe zu finden. Dabei stehen zahlreiche Filter für z. B. Ladeleistung, Anzahl an Ladepunkten, Preis, Umgebungsinformationen oder barrierearmer Zugang zur Verfügung.</p>
                         
-                        <h3 className="text-xl font-semibold mb-3 mt-6">Was ist die EnBW mobility+ App?</h3>
-                        <p className="mb-4">Die EnBW mobility+ App ist Deutschlands führende Lade-App für Elektroautos. Mit dieser EnBW App für Android & iOS findest du Ladestationen, startest AutoCharge-Sessions und bezahlst kontaktlos. Die EnBW mobility+ Download ist kostenlos und bietet Zugang zum größten Ladenetz Europas.</p>
+                        <p className="mb-3">Mit Apple CarPlay/Android Auto kann die EnBW mobility+ App über das Display in Ihrem E-Auto angezeigt werden. So ist das Finden der nächsten Ladesäule noch einfacher.</p>
                         
-                        <h4 className="font-semibold mb-2">Warum EnBW mobility+ App wählen?</h4>
-                        <ul className="list-disc pl-5 mt-2 mb-3">
-                          <li>Über 800.000 Ladepunkte in Europa verfügbar</li>
-                          <li>AutoCharge: Automatisches Laden ohne App oder Karte</li>
-                          <li>Schnellladen an über 3.000 EnBW-Stationen</li>
-                          <li>Apple CarPlay und Android Auto Integration</li>
-                          <li>Transparente Preise und kontaktloses Bezahlen</li>
-                          <li>Lademonitor für Echtzeit-Überwachung</li>
-                          <li>24/7 Service-Hotline für Unterstützung</li>
-                        </ul>
+                        <h3 className="text-xl font-semibold mb-3 mt-6"><strong>Wir laden einfach</strong></h3>
+                        <p className="mb-3">Mit der EnBW mobility+ App starten Sie bequem den Ladevorgang Ihres E-Autos und bezahlen auf Wunsch direkt mit dem Smartphone. Und das an allen Ladestationen im EnBW HyperNetz – egal ob sie von der EnBW oder anderen Anbietern betrieben werden. Hinterlegen Sie bei der Registrierung einfach die gewünschte Bezahlmethode – und los geht's! Mit unserem Lademonitor behalten Sie stets den Überblick und beenden per Knopfdruck den Ladevorgang. Wer lieber mit der Ladekarte unterwegs ist: Diese können Sie problemlos mit der EnBW mobility+ App bestellen.</p>
                         
-                        <p className="mb-3">Jetzt EnBW App herunterladen und von Deutschlands bestem E-Mobilitätsanbieter profitieren. Die EnBW mobility+ App wurde mehrfach als Testsieger ausgezeichnet und bietet die beste Ladenetzabdeckung in Deutschland.</p>
+                        <h3 className="text-xl font-semibold mb-3 mt-6"><strong>Noch einfacher geht's mit AutoCharge!</strong></h3>
+                        <p className="mb-3">Anschließen, losladen, weiterfahren! Mit AutoCharge laden Sie ohne App oder Ladekarte. Nach einmaliger Aktivierung in der EnBW mobility+ App müssen Sie künftig nur noch den Ladestecker einstecken und Ihr Ladevorgang startet an EnBW-Schnellladestationen automatisch.</p>
+                        
+                        <h3 className="text-xl font-semibold mb-3 mt-6"><strong>Wir laden volle Preistransparenz</strong></h3>
+                        <p className="mb-4">Ihre Ladekosten und den aktuellen Kontostand haben Sie mit der EnBW mobility+ App immer im Blick. Mit einem Preisfilter können Sie Ihre individuelle Preisgrenze festlegen. Ihre monatlichen Rechnungen können Sie jederzeit in der App einsehen und überprüfen.</p>
+                        
+                        <h3 className="text-xl font-semibold mb-3 mt-6"><strong>Wir laden ausgezeichnet</strong></h3>
                         
                         <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                          <h4 className="font-semibold mb-2">🏆 Auszeichnungen für EnBW mobility+</h4>
-                          <ul className="text-sm space-y-1">
-                            <li>• Connect Testsieger: bester Elektromobilitätsanbieter</li>
-                            <li>• COMPUTER BILD Testsieger: beste Lade-App</li>
-                            <li>• AUTO BILD Sieger: Lade-App Bedienbarkeit</li>
-                            <li>• AUTO BILD Testsieger: größtes Schnellladenetz</li>
-                          </ul>
+                          <h4 className="font-semibold mb-2"><strong>Connect Testsieger: bester Elektromobilitätsanbieter</strong></h4>
+                          <p className="text-sm">Als Deutschlands größter und bester E-Mobilitätsanbieter belegt EnBW mobility+ zum wiederholten Mal Platz 1 im connect Ladenetztest und überzeugt in diversen Kategorien.</p>
                         </div>
                         
-                        <div className="bg-blue-50 p-4 rounded-lg mb-4">
-                          <h4 className="font-semibold mb-2">⚡ AutoCharge - Die Zukunft des Ladens</h4>
-                          <p className="text-sm">Anschließen, losladen, weiterfahren! Mit AutoCharge laden Sie ohne App oder Ladekarte. Nach einmaliger Aktivierung startet Ihr Ladevorgang automatisch.</p>
+                        <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                          <h4 className="font-semibold mb-2"><strong>COMPUTER BILD Testsieger: beste Lade-App</strong></h4>
+                          <p className="text-sm">Im Lade-App Vergleich 2024 der COMPUTER BILD sichert sich die EnBW mobility+ App den Testsieg durch gute Bedienbarkeit und hervorragende Filterfunktionen.</p>
                         </div>
+                        
+                        <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                          <h4 className="font-semibold mb-2"><strong>AUTO BILD Sieger: Lade-App Bedienbarkeit</strong></h4>
+                          <p className="text-sm">Die EnBW mobility+ App hat sich erneut als herausragender Anbieter unter den freien Lade-Apps erwiesen. Betont werden die besonders gute Bedienbarkeit, die hilfreichen Filtermöglichkeiten und die exzellente Ladenetzabdeckung mit über 800.000 Ladepunkten in Europa.</p>
+                        </div>
+                        
+                        <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                          <h4 className="font-semibold mb-2"><strong>AUTO BILD Testsieger: größtes Schnellladenetz</strong></h4>
+                          <p className="text-sm">Mit dem größten Schnellladenetz in Deutschland punktet EnBW mobility+ beim aktuellen e-mobility Excellence Report. Durch die große Anzahl an Schnellladepunkten in Deutschland liegt die EnBW weit vor anderen Ladenetz-Betreibern.</p>
+                        </div>
+                        
+                        <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                          <h4 className="font-semibold mb-2"><strong>Elektroautomobil Testsieger: dreifacher Testsieg für unsere Tarife</strong></h4>
+                          <p className="text-sm">Das Magazin „elektroautomobil" hat die EnBW mobility+ Ladetarife gleich dreimal zum Testsieger gekürt und lobte besonders das „stimmige Gesamtpaket aus hoher Verfügbarkeit an Ladepunkten, der durchdachten App und den fairen Ladepreisen".</p>
+                        </div>
+                        
+                        <h3 className="text-xl font-semibold mb-3 mt-6"><strong>Wie können wir noch besser werden?</strong></h3>
+                        <p className="mb-4">Wir möchten, dass die EnBW mobility+ App perfekt zu Ihren Anforderungen passt und elektrisch Fahren Freude macht. Deshalb sind wir gespannt auf Ihr Feedback an mobility@enbw.com.</p>
+                        
+                        <p className="mb-4 font-medium">Allzeit gute Fahrt im EnBW HyperNetz!</p>
+                        <p className="mb-4 font-medium">Ihr EnBW mobility+ Team</p>
                         
                         {/* Call to Action */}
                         <div className="text-center my-6">
