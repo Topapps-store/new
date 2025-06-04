@@ -210,13 +210,14 @@ const AppDetail = () => {
     return <div className="text-center py-10">App not found</div>;
   }
 
-  // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse o EnBW mobility+
+  // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse, EnBW mobility+ o HBO Max
   const isUberPage = appId === 'uber-request-a-ride';
   const isLyftPage = appId === 'lyft';
   const isElectrifyAmericaPage = appId === 'electrify-america';
   const isChargePointPage = appId === 'chargepoint';
   const isBPPulsePage = appId === 'bp-pulse';
   const isEnBWPage = appId === 'enbw-mobility-ev-charging';
+  const isHBOMaxPage = appId === 'max-stream-hbo-tv-movies';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -687,13 +688,97 @@ const AppDetail = () => {
                           <p>How to use ChargePoint</p>
                         </div>
                       </>
+                    ) : isHBOMaxPage ? (
+                      <>
+                        <h1 className="text-2xl font-bold mb-3">Download HBO Max App – Stream HBO TV & Movies Instantly</h1>
+                        <h2 className="text-xl text-gray-700 mb-4">Start your HBO Max subscription and enjoy exclusive series, movies and Max Originals.</h2>
+                        
+                        <p className="mb-3">Download HBO Max and unlock unlimited access to the world's most talked-about shows and movies. The HBO app for Android and iOS brings you exclusive HBO series, blockbuster movies, and Max Originals right to your fingertips. Install the HBO Max app today and start streaming instantly.</p>
+                        
+                        <p className="mb-3">With your HBO Max subscription, you'll get access to thousands of premium titles including The Last of Us, House of the Dragon, Succession, and The White Lotus. Stream HBO Max shows and movies with the highest video and audio quality available.</p>
+                        
+                        <p className="mb-3">Get the HBO Max app now and enjoy seamless streaming across all your devices. Your Max subscription lets you watch on any device – phone, tablet, Smart TV, or laptop. Download Max app and enjoy offline viewing, so you can watch your favorite content anywhere, anytime.</p>
+                        
+                        <p className="mb-3">Install the HBO Max app for personalized profiles and parental controls. Watch HBO Max on your Smart TV, mobile device, tablet, and gaming console with crystal-clear picture quality and immersive sound.</p>
+                        
+                        <h3 className="text-xl font-bold mb-3">Why Download HBO Max?</h3>
+                        
+                        <ul className="list-disc pl-5 mt-2 mb-3">
+                          <li>Stream HBO Max shows including exclusive Max Originals not available anywhere else</li>
+                          <li>HBO app for Android and iOS with seamless streaming across all devices</li>
+                          <li>Download Max app to continue watching where you left off across devices</li>
+                          <li>HBO Max subscription includes live sports and breaking news coverage</li>
+                          <li>Get the HBO Max app now for award-winning documentaries and true crime series</li>
+                          <li>Max subscription lets you watch on any device with multiple user profiles</li>
+                          <li>Download shows and movies for offline viewing with select plans</li>
+                          <li>Stream up to 3 games simultaneously with Multiview experience</li>
+                        </ul>
+                        
+                        <p className="mb-3">Get the HBO Max app now and join millions of subscribers enjoying premium entertainment. Your Max subscription lets you watch on any device, anywhere, anytime. Download HBO Max today and start your premium streaming experience with exclusive content you can't find anywhere else.</p>
+                        
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-blue-600 mb-2">Download HBO Max Now</p>
+                        </div>
+                        
+                        {/* Botones de descarga para HBO Max */}
+                        <div className="flex flex-col gap-3 mt-4">
+                          <a 
+                            href="https://play.google.com/store/apps/details?id=com.wbd.stream&hl=en_US"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.807 1.626L15.833 12l1.865-1.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/>
+                            </svg>
+                            Download HBO Max App for Android on Google Play
+                          </a>
+                          
+                          <a 
+                            href="https://apps.apple.com/us/app/max-stream-hbo-tv-movies/id1666653815"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Download HBO Max App for iOS on App Store
+                          </a>
+                        </div>
+                        
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-green-600">Download HBO Max Now</p>
+                        </div>
+                        
+                        {/* Keywords para SEO */}
+                        <div className="sr-only">
+                          <p>Download HBO Max</p>
+                          <p>HBO Max subscription</p>
+                          <p>HBO app for Android and iOS</p>
+                          <p>Install the HBO Max app</p>
+                          <p>Stream HBO Max shows and movies</p>
+                          <p>Max subscription lets you watch on any device</p>
+                          <p>Get the HBO Max app now</p>
+                          <p>Watch HBO Max on your Smart TV</p>
+                          <p>Download Max app and enjoy offline viewing</p>
+                        </div>
+                        
+                        {/* ALT text optimized images - hidden for SEO */}
+                        <div className="sr-only">
+                          <img alt="Download HBO Max App" />
+                          <img alt="HBO Max subscription" />
+                          <img alt="Stream HBO movies and shows" />
+                          <img alt="Install HBO Max for Android" />
+                        </div>
+                      </>
                     ) : (
                       app.description
                     )}
                   </div>
                   
-                  {/* App Store links - Hidden for BP Pulse as it has integrated download buttons */}
-                  {!isBPPulsePage && (
+                  {/* App Store links - Hidden for BP Pulse and HBO Max as they have integrated download buttons */}
+                  {!isBPPulsePage && !isHBOMaxPage && (
                     <div className="mt-4 flex flex-col space-y-3">
                       {/* Google Play download link */}
                       <a 
