@@ -319,7 +319,7 @@ const AppDetail = () => {
                   }`}
                   onClick={() => setActiveTab("screenshots")}
                 >
-                  {translate('appDetail.screenshots', 'Screenshots')}
+                  {translate('ui.screenshots', 'Screenshots')}
                 </button>
                 <button
                   className={`pb-1 text-sm font-medium ${
@@ -329,7 +329,7 @@ const AppDetail = () => {
                   }`}
                   onClick={() => setActiveTab("info")}
                 >
-                  {translate('appDetail.information', 'Information')}
+                  {translate('ui.information', 'Information')}
                 </button>
 
               </div>
