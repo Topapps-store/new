@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 import esTranslations from '../locales/es.json';
 import deTranslations from '../translations/de.json';
+import enTranslations from '../translations/en.json';
+import frTranslations from '../translations/fr.json';
+import daTranslations from '../translations/da.json';
+import svTranslations from '../translations/sv.json';
+import fiTranslations from '../translations/fi.json';
+import ptTranslations from '../translations/pt.json';
+import roTranslations from '../translations/ro.json';
+import huTranslations from '../translations/hu.json';
 
 type TranslationKey = keyof typeof esTranslations;
 type NestedTranslationKey<T> = T extends object ? {
@@ -23,10 +31,38 @@ export function useTranslation() {
       setLocale('de');
     } else if (urlPath.startsWith('/es/') || urlPath.startsWith('/es')) {
       setLocale('es');
+    } else if (urlPath.startsWith('/fr/') || urlPath.startsWith('/fr')) {
+      setLocale('fr');
+    } else if (urlPath.startsWith('/da/') || urlPath.startsWith('/da')) {
+      setLocale('da');
+    } else if (urlPath.startsWith('/sv/') || urlPath.startsWith('/sv')) {
+      setLocale('sv');
+    } else if (urlPath.startsWith('/fi/') || urlPath.startsWith('/fi')) {
+      setLocale('fi');
+    } else if (urlPath.startsWith('/pt/') || urlPath.startsWith('/pt')) {
+      setLocale('pt');
+    } else if (urlPath.startsWith('/ro/') || urlPath.startsWith('/ro')) {
+      setLocale('ro');
+    } else if (urlPath.startsWith('/hu/') || urlPath.startsWith('/hu')) {
+      setLocale('hu');
     } else if (langCode === 'de') {
       setLocale('de');
     } else if (langCode === 'es' || langCode === 'ca') {
       setLocale('es');
+    } else if (langCode === 'fr') {
+      setLocale('fr');
+    } else if (langCode === 'da') {
+      setLocale('da');
+    } else if (langCode === 'sv') {
+      setLocale('sv');
+    } else if (langCode === 'fi') {
+      setLocale('fi');
+    } else if (langCode === 'pt') {
+      setLocale('pt');
+    } else if (langCode === 'ro') {
+      setLocale('ro');
+    } else if (langCode === 'hu') {
+      setLocale('hu');
     } else {
       setLocale('en');
     }
@@ -36,12 +72,41 @@ export function useTranslation() {
     // Debug logging
     console.log('Translation request:', { key, locale, fallback });
     
-    if (locale === 'en') {
-      return fallback || key;
-    }
-
     // Seleccionar el archivo de traducciones correcto
-    const translations = locale === 'de' ? deTranslations : esTranslations;
+    let translations;
+    switch (locale) {
+      case 'en':
+        translations = enTranslations;
+        break;
+      case 'de':
+        translations = deTranslations;
+        break;
+      case 'fr':
+        translations = frTranslations;
+        break;
+      case 'da':
+        translations = daTranslations;
+        break;
+      case 'sv':
+        translations = svTranslations;
+        break;
+      case 'fi':
+        translations = fiTranslations;
+        break;
+      case 'pt':
+        translations = ptTranslations;
+        break;
+      case 'ro':
+        translations = roTranslations;
+        break;
+      case 'hu':
+        translations = huTranslations;
+        break;
+      case 'es':
+      default:
+        translations = esTranslations;
+        break;
+    }
     console.log('Using translations for locale:', locale, translations);
 
     // Navegar por el objeto de traducciones usando la clave con puntos
