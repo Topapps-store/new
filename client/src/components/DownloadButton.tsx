@@ -18,27 +18,9 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  // Obtener el texto del botón basado en el idioma
+  // Obtener el texto del botón usando el sistema de traducción
   const getButtonText = () => {
-    const urlPath = window.location.pathname;
-    
-    // Detectar desde la URL primero
-    if (urlPath.startsWith('/de/') || urlPath.startsWith('/de')) {
-      return 'Weiter';
-    } else if (urlPath.startsWith('/es/') || urlPath.startsWith('/es')) {
-      return 'Continuar';
-    } else {
-      // Fallback a detección del navegador
-      const browserLang = navigator.language.toLowerCase();
-      const langCode = browserLang.split('-')[0];
-      
-      if (langCode === 'de') {
-        return 'Weiter';
-      } else if (langCode === 'es' || langCode === 'ca') {
-        return 'Continuar';
-      }
-      return 'Continue';
-    }
+    return t('ui.continue', 'Download');
   };
 
   // Función para construir la URL con parámetros actuales
