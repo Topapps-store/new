@@ -1832,6 +1832,35 @@
       "isAffiliate": false
     },
     {
+      "id": "uber-romania",
+      "name": "Uber - Request a ride",
+      "category": "Maps & Navigation",
+      "categoryId": "maps-and-navigation",
+      "description": "Alătură-te milioanelor de utilizatori care au încredere în Uber pentru nevoile lor zilnice de transport. Fie că faci o plimbare prin oraș sau explorezi un oraș departe de casă, să ajungi acolo ar trebui să fie ușor.\n\nGĂSEȘTE CURSA PE CARE O VREI\n\nGăsește cursa perfectă la îndemâna ta! Uber este aici pentru a-ți face călătoria fără stres și plăcută.\n\nAlege dintr-o gamă largă de produse pe care aplicația Uber le oferă, inclusiv:\n\n- UberX: Curse accesibile, toate pentru tine\n- Uber Green: Ecologic\n- UberX Priority: Prioritate la ridicare\n- UberXL: Curse pentru grupuri de până la 6 persoane\n- Comfort: Mașini mai noi cu spațiu suplimentar pentru picioare\n- Comfort Electric: Mașini premium cu zero emisii\n- Uber Pet: Curse pentru tine și animalul tău de companie\n- Black: Curse de lux cu șoferi profesioniști\n- Taxi: Acum ai opțiunea de a solicita un taxi în orașe selectate\n- 2-wheels: Găsește un scuter pentru a începe să mergi astăzi\n- Premier: Curse de lux cu șoferi foarte bine evaluați\n\nPREȚURI TRANSPARENTE\nCu Uber, nu mai trebuie să îți faci griji cu privire la costurile ascunse sau surprizele neașteptate. Pe măsură ce introduci destinația în aplicație, obții prețuri transparente și timpul estimat de sosire.\n\nSIGURANȚA ÎMPREUNĂ\nSiguranța este o prioritate de top la Uber. Am stabilit caracteristici complete de siguranță pentru a ajuta la asigurarea că fiecare călător și șofer se simte sigur și confortabil.\n\nALĂTURĂ-TE UBER ONE PENTRU BENEFICII EXCLUSIVE\nBeneficiază de taxă de livrare 0$ și până la 10% reducere la comenzile eligibile de livrare și ridicare și 6% Uber Cash înapoi pentru cursele eligibile. Se aplică alte taxe și termeni.",
+      "iconUrl": "https://play-lh.googleusercontent.com/AQtSF5Sl18yp3mQ2tcbOrBLekb7cyP3kyg5BB1uUuc55zfcnbkCDLHFTBwZfYiu1aDI",
+      "rating": 4.5,
+      "downloads": "500M+",
+      "version": "VARY",
+      "updated": "June 2, 2025",
+      "requires": "Android VARY+",
+      "developer": "Uber Technologies, Inc.",
+      "installs": "500,000,000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.ubercab&hl=ro&gl=ro",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.ubercab&hl=ro&gl=ro",
+      "appStoreUrl": "https://apps.apple.com/ro/app/uber/id368677368",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/CTi76UScOjP2WOjAo8_rLhRzDWm9UH0ahUxdpHay0hbFmVBfwj5XxJtHzQqa5AACekc",
+        "https://play-lh.googleusercontent.com/0H0gSrL54_c_bbNZOgsVEeXpfCGfu32Pjs-_PPElbcBoZk5lu_swvlACRod2G8ncaW8_",
+        "https://play-lh.googleusercontent.com/zXGz0hAwJBjo8vd9mF331IiKc9r8DJMcjdAYGtyyP719-i0nUwI5oTyk5oapP9LUOg",
+        "https://play-lh.googleusercontent.com/cXASMdopWLuKHXueUf6byYPArnRlRYoyjhbphFZ7Vqk8Xj2dbDW2Dileox9VCut9zYo",
+        "https://play-lh.googleusercontent.com/upHgOVevChmKAlbcn7RonZ99Rqz9plpLzda1sNe9KrNV91jBDbyq12ZB0FDYea1CWBg",
+        "https://play-lh.googleusercontent.com/5XLC2PzF9atVpWn9dPJgn1NNnpXpcNH5CAjrG9yM8IRF1LshpvRynGratNM1fn-11tU",
+        "https://play-lh.googleusercontent.com/ZOXh1UiCBc6iHmdx8RjULFpO9A-wGclAHDDU2MBmXzdFSLXJVgbadPcrHyxALP4m5U_s",
+        "https://play-lh.googleusercontent.com/GzmR4Dq4pYTgHvUCflILZl2X1SUa6qdH4CWWG_Vi_l3wD4pWAg7lhbZdVLhaJewCYO8"
+      ],
+      "isAffiliate": false
+    },
+    {
       "id": "uber-eats-food-delivery",
       "name": "Uber Eats: Food Delivery",
       "category": "Food & Drink",
