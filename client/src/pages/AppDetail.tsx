@@ -41,52 +41,80 @@ const AppDetail = () => {
     // Guardar el título original para restaurarlo al desmontar
     const originalTitle = document.title;
     
-    // Crear o actualizar meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
+    // SEO optimization for Romanian Uber page
+    if (appId === 'uber-romania') {
+      // Update page title with Romanian keywords
+      document.title = 'Descarcă Uber App | Comandă Uber Taxi Rapid în România';
+      
+      // Update meta description with all keywords
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.setAttribute('name', 'description');
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.setAttribute('content', 'Descarcă Uber app, comandă Uber taxi rapid și sigur în România. Transport urban sigur cu aplicația Uber pentru călătorii rapide în România.');
+      
+      // Add lang attribute for Romanian
+      document.documentElement.setAttribute('lang', 'ro');
+      
+      // Add keywords meta tag
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.setAttribute('content', 'Uber, Uber taxi, Uber app, transport urban, aplicație taxi, ride sharing, călătorii rapide, România');
+      
     }
     
+    // Get or create meta description element
+    let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+
     // Personalizar SEO según la página
     if (appId === 'uber-request-a-ride') {
       // Establecer nuevo título
       document.title = "Download Uber App – Request a Ride Today | TopApps Store";
-      metaDescription.setAttribute('content', 'Get the Uber ride app for Android or iPhone. Download now and request safe, fast rides.');
+      metaDesc.setAttribute('content', 'Get the Uber ride app for Android or iPhone. Download now and request safe, fast rides.');
     } 
     else if (appId === 'lyft') {
       // Establecer nuevo título
       document.title = "Download Lyft App | TopApps Store";
-      metaDescription.setAttribute('content', 'Install the official Lyft app for iPhone or Android. Tap to request a ride now.');
+      metaDesc.setAttribute('content', 'Install the official Lyft app for iPhone or Android. Tap to request a ride now.');
     }
     else if (appId === 'electrify-america') {
       // Establecer título y descripción optimizados para Electrify America
       document.title = "Download Electrify America App | Fast EV Charging Stations Near You";
-      metaDescription.setAttribute('content', 'Get the Electrify America app to locate chargers, start charging, and manage your EV trips.');
+      metaDesc.setAttribute('content', 'Get the Electrify America app to locate chargers, start charging, and manage your EV trips.');
     }
     else if (appId === 'chargepoint') {
       // Establecer título y descripción optimizados para ChargePoint
       document.title = "Download ChargePoint App | EV Charging Stations Near You";
-      metaDescription.setAttribute('content', 'Get the ChargePoint app to find EV charging stations, start charging, and manage sessions.');
+      metaDesc.setAttribute('content', 'Get the ChargePoint app to find EV charging stations, start charging, and manage sessions.');
     }
     else if (appId === 'bp-pulse') {
       // Establecer título y descripción optimizados para BP Pulse según especificaciones de Google Ads
       document.title = "Descargar App BP Pulse | Carga tu Coche Eléctrico Rápido y Fácil";
-      metaDescription.setAttribute('content', 'Instala la app oficial de BP Pulse y encuentra puntos de carga cerca de ti. Disponible para Android y iPhone.');
+      metaDesc.setAttribute('content', 'Instala la app oficial de BP Pulse y encuentra puntos de carga cerca de ti. Disponible para Android y iPhone.');
     }
     else if (appId === 'enbw-mobility-ev-charging') {
       // Establecer título y descripción optimizados para EnBW mobility+ según especificaciones de Google Ads
       document.title = "EnBW mobility+ App herunterladen | Schnellladen für Elektroautos";
-      metaDescription.setAttribute('content', 'EnBW App für Android & iOS. Finde Ladestationen, nutze AutoCharge und lade dein Elektroauto in Minuten. Jetzt EnBW App herunterladen.');
+      metaDesc.setAttribute('content', 'EnBW App für Android & iOS. Finde Ladestationen, nutze AutoCharge und lade dein Elektroauto in Minuten. Jetzt EnBW App herunterladen.');
     }
     
     // Limpiar al desmontar
     return () => {
       document.title = originalTitle;
-      metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute('content', '');
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', '');
       }
     };
   }, [appId]);
@@ -212,6 +240,7 @@ const AppDetail = () => {
 
   // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse, EnBW mobility+ o HBO Max
   const isUberPage = appId === 'uber-request-a-ride';
+  const isUberRomaniaPage = appId === 'uber-romania';
   const isLyftPage = appId === 'lyft';
   const isElectrifyAmericaPage = appId === 'electrify-america';
   const isChargePointPage = appId === 'chargepoint';
@@ -239,6 +268,7 @@ const AppDetail = () => {
                 <img 
                   src={app.iconUrl} 
                   alt={isUberPage ? "Uber app download icon" : 
+                       isUberRomaniaPage ? "Buton descărcare aplicația Uber" :
                        isLyftPage ? "Lyft App Android iPhone" : 
                        isElectrifyAmericaPage ? "Electrify America app download" :
                        isChargePointPage ? "Download ChargePoint app" :
@@ -248,7 +278,8 @@ const AppDetail = () => {
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
                 <h1 className="text-xl font-bold text-center">
-                  {isUberPage ? "Uber App - Request a Ride" : 
+                  {isUberPage ? "Uber App - Request a Ride" :
+                   isUberRomaniaPage ? "Descarcă aplicația Uber" : 
                    isLyftPage ? "Lyft" : 
                    isElectrifyAmericaPage ? "Electrify America" :
                    isChargePointPage ? "ChargePoint" :
