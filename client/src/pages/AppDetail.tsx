@@ -482,6 +482,90 @@ const AppDetail = () => {
                           <p>taxi sigur România</p>
                         </div>
                       </>
+                    ) : isLyftPage ? (
+                      <>
+                        <h1 className="text-2xl font-bold mb-3">Download Lyft App – Book Your Lyft Ride in Seconds</h1>
+                        <h2 className="text-xl text-gray-700 mb-4">Get instant Lyft ride bookings, compare prices, and enjoy safe transportation with the official Lyft app.</h2>
+                        
+                        <p className="mb-3">Experience the convenience of Lyft ride booking with the most trusted rideshare app. Whether you need a quick Lyft ride to the airport, office, or anywhere in the city, our app makes transportation simple and affordable.</p>
+                        
+                        <h3 className="text-lg font-semibold mb-2">Why Choose Lyft Ride Services?</h3>
+                        <ul className="list-disc pl-6 mb-4 space-y-1">
+                          <li>Instant Lyft ride booking with upfront pricing</li>
+                          <li>Multiple ride options: Lyft, Lyft XL, Lyft Lux, and more</li>
+                          <li>Safe and reliable Lyft ride experience</li>
+                          <li>Real-time tracking for every Lyft ride</li>
+                          <li>24/7 customer support for your Lyft ride</li>
+                          <li>Affordable Lyft ride prices with transparent billing</li>
+                        </ul>
+                        
+                        <h3 className="text-lg font-semibold mb-2">Lyft Ride Features</h3>
+                        <ul className="list-disc pl-6 mb-4 space-y-1">
+                          <li>Book a Lyft ride in just a few taps</li>
+                          <li>See Lyft ride cost upfront before booking</li>
+                          <li>Choose from various Lyft ride types</li>
+                          <li>Schedule your Lyft ride in advance</li>
+                          <li>Share your Lyft ride with friends and family</li>
+                          <li>Rate your Lyft ride driver and provide feedback</li>
+                        </ul>
+                        
+                        <p className="mb-3">Join millions of users who trust Lyft for their daily transportation needs. Download the Lyft app today and experience the best Lyft ride service in your city!</p>
+                        
+                        {/* Call to Action */}
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-pink-600 mb-2">Download Lyft App Now</p>
+                        </div>
+                        
+                        {/* Download buttons for Lyft */}
+                        <div className="flex flex-col gap-3 mt-4">
+                          <a 
+                            href="https://play.google.com/store/apps/details?id=me.lyft.android&hl=en&gl=us"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.807 1.626L15.833 12l1.865-1.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/>
+                            </svg>
+                            Download Lyft App - Google Play
+                          </a>
+                          
+                          <a 
+                            href="https://apps.apple.com/us/app/lyft/id529379082"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Download Lyft App - App Store
+                          </a>
+                        </div>
+                        
+                        {/* Second Call to Action */}
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-green-600">Book Your First Lyft Ride Today</p>
+                        </div>
+                        
+                        {/* SEO Keywords for Lyft Ride */}
+                        <div className="sr-only">
+                          <p>Lyft ride</p>
+                          <p>Lyft</p>
+                          <p>Lyft app</p>
+                          <p>book Lyft ride</p>
+                          <p>Lyft ride booking</p>
+                          <p>Lyft ride cost</p>
+                          <p>Lyft ride service</p>
+                          <p>download Lyft app</p>
+                          <p>Lyft ride near me</p>
+                          <p>Lyft ride share</p>
+                          <p>safe Lyft ride</p>
+                          <p>affordable Lyft ride</p>
+                          <p>instant Lyft ride</p>
+                          <p>reliable Lyft ride</p>
+                        </div>
+                      </>
                     ) : isBPPulsePage ? (
                       <>
                         <h1 className="text-2xl font-bold mb-3">Descargar App BP Pulse – Recarga tu Coche Eléctrico</h1>
