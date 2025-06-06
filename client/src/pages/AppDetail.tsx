@@ -409,6 +409,42 @@ const AppDetail = () => {
                           <p>Fast, Safe, and Easy Rides</p>
                         </div>
                       </>
+                    ) : isUberRomaniaPage ? (
+                      <>
+                        <h2 className="text-xl font-bold mb-4">Uber taxi rapid și sigur în România</h2>
+                        
+                        <p className="mb-3">Descarcă aplicația Uber și comandă un Uber taxi rapid și sigur în România. Uber app îți oferă acces instant la transport urban de calitate cu șoferi verificați.</p>
+                        
+                        <p className="mb-3">Cu aplicația Uber, poți comanda un Uber taxi în câteva secunde și urmări călătoria în timp real. Uber app este disponibilă pentru Android și iPhone, oferind servicii de transport sigur în toate orașele mari din România.</p>
+                        
+                        <p className="mb-3">Uber taxi în România înseamnă călătorii rapide, sigure și convenabile. Aplicația Uber îți permite să plătești direct din telefon și să evaluezi experiența cu fiecare Uber taxi.</p>
+                        
+                        <p className="mb-3">Descarcă Uber app acum și bucură-te de serviciul de Uber taxi care conectează milioane de utilizatori cu șoferi profesioniști. Transport urban nu a fost niciodată mai simplu cu aplicația Uber.</p>
+                        
+                        <h4 className="font-semibold mb-2">De ce să alegi Uber app în România?</h4>
+                        <ul className="list-disc pl-5 mt-2 mb-3">
+                          <li>Descarcă aplicația Uber pentru acces instant la transport</li>
+                          <li>Uber taxi cu urmărire în timp real</li>
+                          <li>Uber app compatibilă cu Android și iOS</li>
+                          <li>Plată simplă și sigură prin aplicația Uber</li>
+                          <li>Estimări de preț înainte de comandă</li>
+                          <li>Șoferi verificați pentru călătorii sigure</li>
+                        </ul>
+                        
+                        <p className="mb-3">Alătură-te milioanelor de utilizatori care au ales aplicația Uber pentru transport urban în România. Comandă primul tău Uber taxi și experimentează diferența!</p>
+                        
+                        {/* Keywords pentru SEO în română */}
+                        <div className="sr-only">
+                          <p>Uber</p>
+                          <p>Uber taxi</p>
+                          <p>Uber app</p>
+                          <p>aplicația Uber</p>
+                          <p>descarcă Uber app</p>
+                          <p>transport urban România</p>
+                          <p>călătorii rapide</p>
+                          <p>taxi sigur România</p>
+                        </div>
+                      </>
                     ) : isBPPulsePage ? (
                       <>
                         <h1 className="text-2xl font-bold mb-3">Descargar App BP Pulse – Recarga tu Coche Eléctrico</h1>
@@ -813,7 +849,7 @@ const AppDetail = () => {
                     <div className="mt-4 flex flex-col space-y-3">
                       {/* Google Play download link */}
                       <a 
-                        href={app.googlePlayUrl || app.downloadUrl}
+                        href={isUberRomaniaPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=ro&gl=ro" : app.googlePlayUrl || app.downloadUrl}
                         className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                         onClick={(e) => handleGooglePlayClick(e)}
                         target="_blank"
@@ -822,7 +858,8 @@ const AppDetail = () => {
                         data-event="click:googlePlay"
                       >
                         <PlayCircle size={20} />
-                        {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : "Google Play"}
+                        {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : 
+                         isUberRomaniaPage ? "Descarcă pe Google Play" : "Google Play"}
                       </a>
 
                       {/* iOS App Store links */}
@@ -867,6 +904,21 @@ const AppDetail = () => {
                         >
                           <i className="fab fa-apple text-lg"></i>
                           Download for iOS on App Store
+                        </a>
+                      )}
+                      
+                      {/* iOS App Store link for Romanian Uber */}
+                      {isUberRomaniaPage && (
+                        <a 
+                          href="https://apps.apple.com/ro/app/uber-request-a-ride/id368677368"
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Descarcă pe App Store
                         </a>
                       )}
                       

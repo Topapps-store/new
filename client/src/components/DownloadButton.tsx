@@ -20,6 +20,10 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
 
   // Obtener el texto del botón usando el sistema de traducción
   const getButtonText = () => {
+    // Romanian text for uber-romania page
+    if (appId === 'uber-romania') {
+      return 'Descarcă Uber app';
+    }
     return t('ui.continue', 'Download');
   };
 
