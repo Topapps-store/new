@@ -22,7 +22,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
   const getButtonText = () => {
     // Romanian text for uber-romania page
     if (appId === 'uber-romania') {
-      return 'Descarcă Uber app';
+      return 'Descarcă';
     }
     return t('ui.continue', 'Download');
   };
