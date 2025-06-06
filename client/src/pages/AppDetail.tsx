@@ -85,8 +85,8 @@ const AppDetail = () => {
     } 
     else if (appId === 'lyft') {
       // Establecer nuevo título
-      document.title = "Download Lyft App | TopApps Store";
-      metaDesc.setAttribute('content', 'Install the official Lyft app for iPhone or Android. Tap to request a ride now.');
+      document.title = "Download Lyft App – Book Your Lyft Ride in Seconds | TopApps Store";
+      metaDesc.setAttribute('content', 'Download Lyft app for instant Lyft ride booking. Get safe, affordable Lyft rides with upfront pricing. Book your Lyft ride now with the official Lyft app.');
     }
     else if (appId === 'electrify-america') {
       // Establecer título y descripción optimizados para Electrify America
