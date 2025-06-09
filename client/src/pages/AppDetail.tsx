@@ -88,6 +88,11 @@ const AppDetail = () => {
       document.title = "Download Lyft App – Book Your Lyft Ride in Seconds | TopApps Store";
       metaDesc.setAttribute('content', 'Download Lyft app for instant Lyft ride booking. Get safe, affordable Lyft rides with upfront pricing. Book your Lyft ride now with the official Lyft app.');
     }
+    else if (appId === 'bolt-france') {
+      // SEO optimisé pour Google Ads français
+      document.title = "Télécharger Bolt App – Commandez un Trajet Instantané | TopApps Store";
+      metaDesc.setAttribute('content', 'Téléchargez l\'application Bolt pour commander un trajet en France. Installer Bolt app, réservez un taxi Bolt 24/7. Service de transport fiable et rapide.');
+    }
     else if (appId === 'electrify-america') {
       // Establecer título y descripción optimizados para Electrify America
       document.title = "Download Electrify America App | Fast EV Charging Stations Near You";
@@ -242,6 +247,7 @@ const AppDetail = () => {
   const isUberPage = appId === 'uber-request-a-ride';
   const isUberRomaniaPage = appId === 'uber-romania';
   const isLyftPage = appId === 'lyft';
+  const isBoltFrancePage = appId === 'bolt-france';
   const isElectrifyAmericaPage = appId === 'electrify-america';
   const isChargePointPage = appId === 'chargepoint';
   const isBPPulsePage = appId === 'bp-pulse';

@@ -3779,6 +3779,30 @@
         "https://play-lh.googleusercontent.com/QQF3jqIxhlIGNSrndpfTudVWVvNheGB5AP6SWKsVt1mgPXd-TbmkKdT332V6sax16Qro"
       ],
       "isAffiliate": false
+    },
+    {
+      "id": "bolt-france",
+      "name": "Bolt : Demandez un Trajet 24/7",
+      "category": "Maps & Navigation",
+      "categoryId": "maps-and-navigation",
+      "description": "Téléchargez l'application Bolt pour commander un trajet en quelques secondes ! Disponible 24h/24 et 7j/7, Bolt est votre solution de transport fiable en France.\n\nPourquoi choisir Bolt ?\n• Commandez un trajet Bolt instantanément\n• Prix transparents affichés avant la réservation\n• Conducteurs vérifiés et véhicules de qualité\n• Service client 24/7\n• Paiement facile et sécurisé\n• Suivi en temps réel de votre trajet\n\nFonctionnalités de l'app Bolt :\n• Interface simple et intuitive\n• Estimation du prix avant confirmation\n• Historique de vos trajets\n• Évaluation des conducteurs\n• Partage de trajet avec vos proches\n• Mode économique pour voyager moins cher\n\nTéléchargez Bolt maintenant et profitez du meilleur service de transport urbain en France !",
+      "iconUrl": "https://play-lh.googleusercontent.com/3ZrqTpJJGktzSJfUCzWdkj5Lj8MdCdlQ0IjG5sMkGcqc4AqIbqrZ8J5F4XoLnHmOkXw",
+      "rating": 4.2,
+      "downloads": "100M+",
+      "version": "8.21.1",
+      "updated": "May 15, 2025",
+      "requires": "Android 6.0+",
+      "developer": "Bolt Technology OÜ",
+      "installs": "100,000,000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=ee.mtakso.client&hl=fr",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=ee.mtakso.client&hl=fr",
+      "appStoreUrl": "https://apps.apple.com/fr/app/bolt-demandez-un-trajet-24-7/id675033630",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/dJf7cK9l2O4XqF1cYnMDwQzL3sAhG6vE8pF4BsC2yH9mR1kT7uV0xZ3aS5d8fG2jN4p",
+        "https://play-lh.googleusercontent.com/M5rQ8wY3nP7vB1xF9sD4kL2aH6mE0cT9yR5uI7oA3zN8pV1qS6gF4jB7nM2xC9vL0k",
+        "https://play-lh.googleusercontent.com/P2sR9xY4mQ8wE1vF6tD5kN3aH7mC0oT8yU6iI9pA4zM7nV2qS5gF3jB8nL1xC0vK9s"
+      ],
+      "isAffiliate": false
     }
   ],
   "categories": [
