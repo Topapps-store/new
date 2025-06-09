@@ -488,6 +488,91 @@ const AppDetail = () => {
                           <p>taxi sigur România</p>
                         </div>
                       </>
+                    ) : isBoltFrancePage ? (
+                      <>
+                        <h1 className="text-2xl font-bold mb-3">Télécharger Bolt App – Commandez un Trajet Instantané en France</h1>
+                        <h2 className="text-xl text-gray-700 mb-4">Installer Bolt app pour réserver un taxi Bolt 24/7. Transport fiable et rapide partout en France.</h2>
+                        
+                        <p className="mb-3">Téléchargez l'application Bolt et profitez du service de transport le plus fiable en France. Avec Bolt taxi, commandez un trajet en quelques secondes et arrivez à destination rapidement et en toute sécurité.</p>
+                        
+                        <h3 className="text-lg font-semibold mb-2">Pourquoi télécharger Bolt app ?</h3>
+                        <ul className="list-disc pl-6 mb-4 space-y-1">
+                          <li>Installer Bolt pour commander un trajet instantanément</li>
+                          <li>Prix transparents avec estimation avant réservation</li>
+                          <li>Service Bolt taxi disponible 24h/24 et 7j/7</li>
+                          <li>Conducteurs vérifiés et véhicules de qualité</li>
+                          <li>Paiement sécurisé directement dans l'app Bolt</li>
+                          <li>Suivi en temps réel de votre trajet Bolt</li>
+                        </ul>
+                        
+                        <h3 className="text-lg font-semibold mb-2">Fonctionnalités de l'Application Bolt</h3>
+                        <ul className="list-disc pl-6 mb-4 space-y-1">
+                          <li>Interface simple pour télécharger Bolt app</li>
+                          <li>Réservation de taxi Bolt en un clic</li>
+                          <li>Historique complet de vos trajets Bolt</li>
+                          <li>Évaluation des chauffeurs Bolt taxi</li>
+                          <li>Partage de trajet avec vos proches</li>
+                          <li>Mode économique pour voyager moins cher</li>
+                        </ul>
+                        
+                        <p className="mb-3">Rejoignez des millions d'utilisateurs qui ont choisi de télécharger Bolt app pour leurs déplacements quotidiens. Installer Bolt maintenant et découvrez le meilleur service de taxi Bolt en France !</p>
+                        
+                        {/* Call to Action en français */}
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-green-600 mb-2">Télécharger Bolt App Maintenant</p>
+                        </div>
+                        
+                        {/* Boutons de téléchargement pour Bolt France */}
+                        <div className="flex flex-col gap-3 mt-4">
+                          <a 
+                            href="https://play.google.com/store/apps/details?id=ee.mtakso.client&hl=fr"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.807 1.626L15.833 12l1.865-1.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/>
+                            </svg>
+                            Télécharger Bolt - Google Play
+                          </a>
+                          
+                          <a 
+                            href="https://apps.apple.com/fr/app/bolt-demandez-un-trajet-24-7/id675033630"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Télécharger Bolt - App Store
+                          </a>
+                        </div>
+                        
+                        {/* Deuxième Call to Action */}
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-blue-600">Commandez Votre Premier Trajet Bolt</p>
+                        </div>
+                        
+                        {/* Mots-clés SEO pour Google Ads français */}
+                        <div className="sr-only">
+                          <p>télécharger bolt app</p>
+                          <p>installer bolt</p>
+                          <p>bolt taxi</p>
+                          <p>bolt app</p>
+                          <p>application bolt</p>
+                          <p>télécharger bolt</p>
+                          <p>bolt france</p>
+                          <p>taxi bolt</p>
+                          <p>commander bolt</p>
+                          <p>réserver bolt</p>
+                          <p>bolt transport</p>
+                          <p>trajet bolt</p>
+                          <p>vtc bolt</p>
+                          <p>bolt chauffeur</p>
+                          <p>bolt course</p>
+                        </div>
+                      </>
                     ) : isLyftPage ? (
                       <>
                         <h1 className="text-2xl font-bold mb-3">Download Lyft App – Book Your Lyft Ride in Seconds</h1>
