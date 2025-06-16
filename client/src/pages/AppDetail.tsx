@@ -318,39 +318,7 @@ const AppDetail = () => {
                   </div>
                 </div>
                 
-                {/* Google Play and App Store buttons for Lose Weight App */}
-                {isLoseWeightPage && (
-                  <div className="w-full mb-3">
-                    <div className="space-y-2">
-                      {/* Google Play Store Button */}
-                      <a 
-                        href={app.googlePlayUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full bg-black hover:bg-gray-800 text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 text-center"
-                      >
-                        <div className="flex items-center justify-center space-x-2">
-                          <i className="fab fa-google-play text-lg"></i>
-                          <span>Get it on Google Play</span>
-                        </div>
-                      </a>
-                      
-                      {/* App Store Button */}
-                      <a 
-                        href={app.appStoreUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full bg-black hover:bg-gray-800 text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 text-center"
-                      >
-                        <div className="flex items-center justify-center space-x-2">
-                          <i className="fab fa-apple text-lg"></i>
-                          <span>Download on App Store</span>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                )}
-                
+
                 {/* App Info Cards - more compact */}
                 <div className="w-full space-y-3 mt-2">
                   <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
@@ -1107,7 +1075,8 @@ const AppDetail = () => {
                       >
                         <PlayCircle size={20} />
                         {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : 
-                         isUberRomaniaPage ? "Descarcă pe Google Play" : "Google Play"}
+                         isUberRomaniaPage ? "Descarcă pe Google Play" :
+                         isLoseWeightPage ? "Download lose weight app for women on Google Play" : "Google Play"}
                       </a>
 
                       {/* iOS App Store links */}
@@ -1182,6 +1151,21 @@ const AppDetail = () => {
                         >
                           <i className="fab fa-apple text-lg"></i>
                           Download for iOS on App Store
+                        </a>
+                      )}
+                      
+                      {/* iOS App Store link for Lose Weight App */}
+                      {isLoseWeightPage && (
+                        <a 
+                          href={app.appStoreUrl}
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Download lose weight app for women on App Store
                         </a>
                       )}
                     </div>
