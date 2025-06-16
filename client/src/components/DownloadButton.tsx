@@ -24,6 +24,10 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
     if (appId === 'uber-romania') {
       return 'Descarcă';
     }
+    // Custom text for lose weight app for women
+    if (appId === 'lose-weight-app-for-women') {
+      return 'Try for free';
+    }
     return t('ui.continue', 'Download');
   };
 

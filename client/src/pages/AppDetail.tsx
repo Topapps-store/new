@@ -243,7 +243,7 @@ const AppDetail = () => {
     return <div className="text-center py-10">App not found</div>;
   }
 
-  // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse, EnBW mobility+ o HBO Max
+  // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse, EnBW mobility+, HBO Max o Lose Weight App
   const isUberPage = appId === 'uber-request-a-ride';
   const isUberRomaniaPage = appId === 'uber-romania';
   const isLyftPage = appId === 'lyft';
@@ -253,6 +253,7 @@ const AppDetail = () => {
   const isBPPulsePage = appId === 'bp-pulse';
   const isEnBWPage = appId === 'enbw-mobility-ev-charging';
   const isHBOMaxPage = appId === 'max-stream-hbo-tv-movies';
+  const isLoseWeightPage = appId === 'lose-weight-app-for-women';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -280,6 +281,7 @@ const AppDetail = () => {
                        isChargePointPage ? "Download ChargePoint app" :
                        isBPPulsePage ? "Descargar BP Pulse app" :
                        isEnBWPage ? "EnBW App herunterladen" :
+                       isLoseWeightPage ? "Lose weight app for women - Get fit at home" :
                        app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
