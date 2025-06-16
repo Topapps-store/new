@@ -109,7 +109,8 @@ The application supports three deployment scenarios:
 - `build-cloudflare.sh`: Cloudflare-specific optimizations
 
 ## Changelog
-- June 16, 2025. Initial setup
+- June 16, 2025: Initial setup
+- June 16, 2025: Implemented automatic language detection for app URLs - system now extracts content in original language from App Store (/fr/, /es/, etc.) and Google Play (&hl=fr) URLs. Fixed 18 French apps that were incorrectly processed in English, now displaying authentic French content for French market targeting.
 
 ## User Preferences
 

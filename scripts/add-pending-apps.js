@@ -35,7 +35,9 @@ function detectLanguageFromUrl(url) {
     if (urlObj.hostname === 'play.google.com') {
       const hlParam = urlObj.searchParams.get('hl');
       if (hlParam) {
-        return hlParam;
+        // Extract just the language code, ignore country codes like 'en_US'
+        const languageCode = hlParam.split('_')[0];
+        return languageCode;
       }
     }
     
