@@ -7,26 +7,111 @@
 import fs from 'fs';
 import path from 'path';
 import gplay from 'google-play-scraper';
+import store from 'app-store-scraper';
+import axios from 'axios';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
- * Obtiene información de una aplicación en Google Play Store
- * @param {string} googlePlayId - ID de la aplicación en Google Play (ej. com.whatsapp)
+ * Detecta el idioma desde una URL de App Store
+ * @param {string} url - URL del App Store
+ * @returns {string} - Código de idioma (ej. 'fr', 'es', 'en')
+ */
+function detectLanguageFromUrl(url) {
+  try {
+    const urlObj = new URL(url);
+    
+    // Para App Store URLs: apps.apple.com/[locale]/app/...
+    if (urlObj.hostname === 'apps.apple.com') {
+      const pathParts = urlObj.pathname.split('/');
+      if (pathParts.length >= 2 && pathParts[1] !== 'app') {
+        return pathParts[1]; // Retorna el código de idioma (fr, es, de, etc.)
+      }
+    }
+    
+    // Para Google Play URLs: play.google.com/store/apps/details?hl=[locale]
+    if (urlObj.hostname === 'play.google.com') {
+      const hlParam = urlObj.searchParams.get('hl');
+      if (hlParam) {
+        return hlParam;
+      }
+    }
+    
+    return 'en'; // Por defecto inglés
+  } catch (error) {
+    console.warn('Error detectando idioma desde URL:', error);
+    return 'en';
+  }
+}
+
+/**
+ * Obtiene información de una aplicación desde App Store en el idioma específico
+ * @param {string} appStoreId - ID de la aplicación en App Store
+ * @param {string} language - Código de idioma (ej. 'fr', 'es')
  * @returns {Promise<Object>} - Datos de la aplicación
  */
-async function getAppInfo(googlePlayId) {
+async function getAppStoreInfo(appStoreId, language = 'en') {
   try {
-    console.log(`Obteniendo información para: ${googlePlayId}`);
+    console.log(`Obteniendo información de App Store para: ${appStoreId} en idioma: ${language}`);
     
     // Obtener información básica de la app
-    const appInfo = await gplay.app({ appId: googlePlayId });
+    const appInfo = await store.app({ 
+      id: appStoreId,
+      country: getCountryFromLanguage(language)
+    });
     
     // Formatear los datos para nuestro formato JSON
     const appData = {
-      id: createAppId(appInfo.title), // Generamos un ID amigable basado en el título
+      id: createAppId(appInfo.title),
+      name: appInfo.title,
+      category: appInfo.genres?.[0] || 'Utilities',
+      categoryId: convertCategoryToId(appInfo.genres?.[0] || 'Utilities'),
+      description: appInfo.description,
+      iconUrl: appInfo.icon,
+      rating: appInfo.score || 4.0,
+      downloads: '1M+', // App Store no proporciona descargas exactas
+      version: appInfo.version,
+      updated: formatDate(appInfo.updated),
+      requires: `iOS ${appInfo.requiredOsVersion}+`,
+      developer: appInfo.developer,
+      installs: '1,000,000+',
+      downloadUrl: appInfo.url,
+      googlePlayUrl: appInfo.url,
+      appStoreUrl: appInfo.url,
+      screenshots: appInfo.screenshots,
+      isAffiliate: false,
+      originalLanguage: language
+    };
+    
+    return appData;
+  } catch (error) {
+    console.error(`Error al obtener información de App Store para ${appStoreId}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Obtiene información de una aplicación en Google Play Store con idioma específico
+ * @param {string} googlePlayId - ID de la aplicación en Google Play (ej. com.whatsapp)
+ * @param {string} language - Código de idioma
+ * @returns {Promise<Object>} - Datos de la aplicación
+ */
+async function getGooglePlayInfo(googlePlayId, language = 'en') {
+  try {
+    console.log(`Obteniendo información de Google Play para: ${googlePlayId} en idioma: ${language}`);
+    
+    // Obtener información básica de la app
+    const appInfo = await gplay.app({ 
+      appId: googlePlayId,
+      lang: language,
+      country: getCountryFromLanguage(language)
+    });
+    
+    // Formatear los datos para nuestro formato JSON
+    const appData = {
+      id: createAppId(appInfo.title),
       name: appInfo.title,
       category: appInfo.genre,
       categoryId: convertCategoryToId(appInfo.genre),
@@ -39,17 +124,84 @@ async function getAppInfo(googlePlayId) {
       requires: `Android ${appInfo.androidVersion}+`,
       developer: appInfo.developer,
       installs: appInfo.installs,
-      downloadUrl: appInfo.url, // URL para descargar
-      googlePlayUrl: appInfo.url, // URL de Google Play
+      downloadUrl: appInfo.url,
+      googlePlayUrl: appInfo.url,
       screenshots: appInfo.screenshots,
-      isAffiliate: false
+      isAffiliate: false,
+      originalLanguage: language
     };
     
     return appData;
   } catch (error) {
-    console.error(`Error al obtener información para ${googlePlayId}:`, error);
+    console.error(`Error al obtener información de Google Play para ${googlePlayId}:`, error);
     return null;
   }
+}
+
+/**
+ * Función principal para obtener información de app (App Store o Google Play)
+ * @param {string} url - URL completa de la app
+ * @returns {Promise<Object>} - Datos de la aplicación
+ */
+async function getAppInfo(url) {
+  try {
+    const language = detectLanguageFromUrl(url);
+    console.log(`Detectado idioma: ${language} desde URL: ${url}`);
+    
+    if (url.includes('apps.apple.com')) {
+      // Es una URL de App Store
+      const appId = extractAppStoreIdFromUrl(url);
+      if (!appId) {
+        throw new Error('No se pudo extraer el ID de App Store');
+      }
+      return await getAppStoreInfo(appId, language);
+    } else if (url.includes('play.google.com')) {
+      // Es una URL de Google Play
+      const appId = extractGooglePlayIdFromUrl(url);
+      if (!appId) {
+        throw new Error('No se pudo extraer el ID de Google Play');
+      }
+      return await getGooglePlayInfo(appId, language);
+    } else {
+      throw new Error('URL no soportada. Solo se admiten URLs de App Store y Google Play');
+    }
+  } catch (error) {
+    console.error(`Error al obtener información de la app:`, error);
+    return null;
+  }
+}
+
+/**
+ * Mapea códigos de idioma a códigos de país
+ * @param {string} language - Código de idioma
+ * @returns {string} - Código de país
+ */
+function getCountryFromLanguage(language) {
+  const languageCountryMap = {
+    'fr': 'fr',
+    'es': 'es', 
+    'de': 'de',
+    'it': 'it',
+    'pt': 'pt',
+    'nl': 'nl',
+    'sv': 'se',
+    'da': 'dk',
+    'fi': 'fi',
+    'no': 'no',
+    'pl': 'pl',
+    'ru': 'ru',
+    'ja': 'jp',
+    'ko': 'kr',
+    'zh': 'cn',
+    'ar': 'sa',
+    'hi': 'in',
+    'tr': 'tr',
+    'ro': 'ro',
+    'hu': 'hu',
+    'en': 'us'
+  };
+  
+  return languageCountryMap[language] || 'us';
 }
 
 /**
@@ -120,11 +272,32 @@ function formatDate(date) {
 }
 
 /**
- * Procesa una URL de Google Play para extraer el ID de la app
+ * Extrae el ID de App Store desde una URL
+ * @param {string} url - URL de App Store
+ * @returns {string|null} - ID de la app
+ */
+function extractAppStoreIdFromUrl(url) {
+  try {
+    // Patrones para URLs de App Store: 
+    // https://apps.apple.com/fr/app/taptap-send-transfert-dargent/id1413346006?mt=8
+    const idMatch = url.match(/\/id(\d+)/);
+    if (idMatch && idMatch[1]) {
+      return idMatch[1];
+    }
+    
+    throw new Error('No se pudo extraer el ID de App Store desde la URL');
+  } catch (error) {
+    console.error('Error al extraer el ID de App Store desde la URL:', error);
+    return null;
+  }
+}
+
+/**
+ * Extrae el ID de Google Play desde una URL
  * @param {string} url - URL de Google Play
  * @returns {string|null} - ID de la app
  */
-function extractAppIdFromUrl(url) {
+function extractGooglePlayIdFromUrl(url) {
   try {
     const idMatch = url.match(/id=([^&]+)/);
     if (idMatch && idMatch[1]) {
@@ -137,9 +310,9 @@ function extractAppIdFromUrl(url) {
       return pathMatch[1];
     }
     
-    throw new Error('No se pudo extraer el ID de la app desde la URL');
+    throw new Error('No se pudo extraer el ID de Google Play desde la URL');
   } catch (error) {
-    console.error('Error al extraer el ID desde la URL:', error);
+    console.error('Error al extraer el ID de Google Play desde la URL:', error);
     return null;
   }
 }
@@ -218,19 +391,15 @@ async function processPendingApps() {
     // Procesar cada URL pendiente
     for (const url of pendingUrls) {
       try {
-        const appId = extractAppIdFromUrl(url);
-        if (!appId) {
-          console.error(`No se pudo extraer el ID de la app desde la URL: ${url}`);
-          failedUrls.push(url);
-          continue;
-        }
+        console.log(`Procesando URL: ${url}`);
         
-        const appData = await getAppInfo(appId);
+        const appData = await getAppInfo(url);
         if (appData) {
           newApps.push(appData);
           newProcessedUrls.push(url);
-          console.log(`✓ Procesada app: ${appData.name}`);
+          console.log(`✓ Procesada app: ${appData.name} (Idioma: ${appData.originalLanguage || 'en'})`);
         } else {
+          console.error(`No se pudo obtener información para la URL: ${url}`);
           failedUrls.push(url);
         }
       } catch (error) {
