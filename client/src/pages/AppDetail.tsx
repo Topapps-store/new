@@ -248,7 +248,7 @@ const AppDetail = () => {
     return <div className="text-center py-10">App not found</div>;
   }
 
-  // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse, EnBW mobility+, HBO Max o Lose Weight App
+  // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse, EnBW mobility+, HBO Max, Lose Weight App o Deliveroo
   const isUberPage = appId === 'uber-request-a-ride';
   const isUberRomaniaPage = appId === 'uber-romania';
   const isLyftPage = appId === 'lyft';
@@ -259,6 +259,7 @@ const AppDetail = () => {
   const isEnBWPage = appId === 'enbw-mobility-ev-charging';
   const isHBOMaxPage = appId === 'max-stream-hbo-tv-movies';
   const isLoseWeightPage = appId === 'lose-weight-app-for-women';
+  const isDeliverooPage = appId === 'deliveroo-food-shopping';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -287,6 +288,7 @@ const AppDetail = () => {
                        isBPPulsePage ? "Descargar BP Pulse app" :
                        isEnBWPage ? "EnBW App herunterladen" :
                        isLoseWeightPage ? "Lose weight app for women - Get fit at home" :
+                       isDeliverooPage ? "telecharger deliveroo app" :
                        app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
@@ -298,6 +300,7 @@ const AppDetail = () => {
                    isChargePointPage ? "ChargePoint" :
                    isBPPulsePage ? "BP Pulse" :
                    isLoseWeightPage ? "Lose Weight App for Women" :
+                   isDeliverooPage ? "Telecharger deliveroo app – livraison repas rapide" :
                    app.name}
                 </h1>
                 
@@ -1081,7 +1084,8 @@ const AppDetail = () => {
                         <PlayCircle size={20} />
                         {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : 
                          isUberRomaniaPage ? "Descarcă pe Google Play" :
-                         isLoseWeightPage ? "Download lose weight app for women on Google Play" : "Google Play"}
+                         isLoseWeightPage ? "Download lose weight app for women on Google Play" :
+                         isDeliverooPage ? "Telecharger deliveroo app sur Google Play - commande repas deliveroo" : "Google Play"}
                       </a>
 
                       {/* iOS App Store links */}
@@ -1171,6 +1175,21 @@ const AppDetail = () => {
                         >
                           <i className="fab fa-apple text-lg"></i>
                           Download lose weight app for women on App Store
+                        </a>
+                      )}
+                      
+                      {/* iOS App Store link for Deliveroo */}
+                      {isDeliverooPage && (
+                        <a 
+                          href="https://apps.apple.com/fr/app/deliveroo/id1001501844"
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Installer deliveroo sur App Store - deliveroo abonnement
                         </a>
                       )}
                     </div>
