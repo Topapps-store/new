@@ -502,28 +502,29 @@ const AppDetail = () => {
                       </>
                     ) : isBoltFrancePage ? (
                       <>
-                        <h1 className="text-2xl font-bold mb-3">Télécharger Bolt App – Commandez un Trajet Instantané en France</h1>
-                        <h2 className="text-xl text-gray-700 mb-4">Installer Bolt app pour réserver un taxi Bolt 24/7. Transport fiable et rapide partout en France.</h2>
+                        <h1 className="text-2xl font-bold mb-3">Télécharger Bolt App Paris - Commander Bolt Course Taxi 24/7</h1>
+                        <h2 className="text-xl text-gray-700 mb-4">Installer Bolt pour réserver bolt course instantanément. Bolt transport fiable à Paris et partout en France.</h2>
                         
-                        <p className="mb-3">Téléchargez l'application Bolt et profitez du service de transport le plus fiable en France. Avec Bolt taxi, commandez un trajet en quelques secondes et arrivez à destination rapidement et en toute sécurité.</p>
+                        <p className="mb-3">Télécharger bolt app officielle et commander bolt course en quelques secondes ! Bolt app paris vous permet de réserver bolt taxi premium avec des chauffeurs vérifiés. Installer bolt maintenant pour profiter du meilleur service de bolt transport en France.</p>
                         
-                        <h3 className="text-lg font-semibold mb-2">Pourquoi télécharger Bolt app ?</h3>
+                        <h3 className="text-lg font-semibold mb-2">🚗 Pourquoi Télécharger Bolt App Paris ?</h3>
                         <ul className="list-disc pl-6 mb-4 space-y-1">
-                          <li>Installer Bolt pour commander un trajet instantanément</li>
-                          <li>Prix transparents avec estimation avant réservation</li>
-                          <li>Service Bolt taxi disponible 24h/24 et 7j/7</li>
-                          <li>Conducteurs vérifiés et véhicules de qualité</li>
-                          <li>Paiement sécurisé directement dans l'app Bolt</li>
-                          <li>Suivi en temps réel de votre trajet Bolt</li>
+                          <li>Commander bolt course instantanément 24h/24 et 7j/7</li>
+                          <li>Bolt app paris optimisé pour la région parisienne</li>
+                          <li>Réserver bolt taxi premium avec estimation de prix</li>
+                          <li>Service bolt france avec conducteurs vérifiés</li>
+                          <li>Trajet bolt sécurisé avec suivi en temps réel</li>
+                          <li>Application bolt rapide et intuitive</li>
                         </ul>
                         
-                        <h3 className="text-lg font-semibold mb-2">Fonctionnalités de l'Application Bolt</h3>
+                        <h3 className="text-lg font-semibold mb-2">📱 Bolt Transport - Fonctionnalités Premium</h3>
                         <ul className="list-disc pl-6 mb-4 space-y-1">
-                          <li>Interface simple pour télécharger Bolt app</li>
-                          <li>Réservation de taxi Bolt en un clic</li>
-                          <li>Historique complet de vos trajets Bolt</li>
-                          <li>Évaluation des chauffeurs Bolt taxi</li>
-                          <li>Partage de trajet avec vos proches</li>
+                          <li>Interface simple pour télécharger bolt app</li>
+                          <li>Commander bolt taxi en un clic depuis bolt app paris</li>
+                          <li>Réserver bolt course à l'avance</li>
+                          <li>Historique complet de vos trajets bolt</li>
+                          <li>Évaluation des chauffeurs bolt taxi</li>
+                          <li>Partage de course bolt avec vos proches</li>
                           <li>Mode économique pour voyager moins cher</li>
                         </ul>
                         
