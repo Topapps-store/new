@@ -4307,6 +4307,33 @@
       ],
       "isAffiliate": false,
       "originalLanguage": "fr"
+    },
+    {
+      "id": "deliveroo-food-shopping",
+      "name": "Deliveroo : Faites-vous livrer",
+      "category": "Food & Drink",
+      "categoryId": "food",
+      "description": "Vos restaurants et commerces préférés, livrés chez vous en un clic. Envie de vous régaler ? Avec Deliveroo, passer commande auprès de votre restaurant favori n’a jamais été aussi simple. Qu’il s’agisse du petit resto coup de cœur de votre quartier ou bien d’une grande chaîne de restauration rapide. \n\nQu’est-ce qu’on mange?\n\nFaites vous livrer les meilleurs restos près de chez vous.\n\nEnvie d’un burger, d’une pizza, de sushis ou d’un poke? Quels que soient vos goûts, vous trouverez votre bonheur sur notre application. Rien de tel que de se faire livrer, à domicile, au bureau ou ailleurs.\n\nDes courses de dernière minute ?\n\nFaites-vous livrer vos courses depuis le confort de votre canapé.\n\nIl vous manque un ingrédient clé pour votre recette ? Vous recevez des amis à la maison et manquez de provisions pour l’apéro ? Commandez dans le supermarché de votre choix, et faites-vous livrer vos courses directement à votre porte grâce à Deliveroo.\n\nMême plus besoin de sortir de chez vous. Avec des milliers de produits disponibles, nous avons tout ce dont vous avez besoin pour vos courses : des essentiels tels que le lait, les œufs, le pain et tout le nécessaire pour vos recettes préférées, ainsi que des produits fruits, légumes, jus, boissons, gâteaux apéritifs et bien plus encore.\n\nVous aimez dénicher de supers bons plans ?\n\nAvec nos offres exclusives et nos promotions régulières vous permettant de bénéficier de réductions importantes auprès de vos restaurants et commerces préférés, Deliveroo vous aide à protéger votre portefeuille et acheter malin.\n\nCommandez selon vos préférences\n\nAvec Deliveroo, faites-vous livrer les plats qui vous correspondent le mieux : \n• Vos plats, restaurants et types de cuisine préférés\n•Des options adaptées à vos préférences alimentaires, que ce soit végétarien, vegan, sans gluten entre autres\n\nPour vous faciliter la vie\n\nNous voulons vous rendre la vie plus simple. Vous pouvez par exemple : \n•Planifiez votre livraison. Une journée bien remplie ? Planifiez votre livraison pour que vos plats arrivent chez vous en même temps que vous. Parfait pour un bon repas chaud et prêt à déguster !\n•Evitez l’attente avec notre option “à emporter”\n•Découvrez toutes nos offres promotionnelles  dans la rubrique “Offres”\n\nSuivez votre commande\n\nRestez parfaitement informé sur l’avancement de votre commande grâce à notre outil de localisation qui vous permet de : \n•Suivre la préparation de votre commande de repas ou de courses, en temps réel\n•Être alerté lorsque votre livreur se met en route et approche de chez vous\n\nProfitez de nos offres promotionnelles\n\nTéléchargez l’application pour découvrir toutes nos offres auprès des restaurants et commerces participants : \n•Utilisez les codes promo disponibles\n•Découvrez les bons plans du moment dans la rubrique “Offres”\n•Filtrez les commerces en fonction des promos disponibles\n\nVous allez adorer vous faire livrer\n\nRejoignez les millions de personnes qui ont déjà téléchargé Deliveroo.",
+      "iconUrl": "https://play-lh.googleusercontent.com/teG1Bndev1Ir5kD85Uxww9TPLQwScuFrvFwZimTBGHJZsSiXZngyLchKjgHO6zRMuima",
+      "rating": 4.3761044,
+      "downloads": "10M+",
+      "version": "3.228.1",
+      "updated": "Jun 10, 2025",
+      "requires": "Android 6.0+",
+      "developer": "Deliveroo",
+      "installs": "10,000,000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.deliveroo.orderapp&hl=en&gl=us",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.deliveroo.orderapp&hl=en&gl=us",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/4_a-uHoBmbRGqSefvS3y_wNO8QU_r3HwhJm53thmw89FsxcEEgNLQs8GEE_E2KTjI0g",
+        "https://play-lh.googleusercontent.com/IPgt0d-lYvkrjrCM0v9VV-jXHtoqEChTvuxs_4YbrUzntwpTFjcJqAabRUPaScB0zg",
+        "https://play-lh.googleusercontent.com/kh7afio6TtMU98lWeywW3E4Y4_dn7P3fGjOu4Wd1j1q1HglS5cm9ClFGzxwzacgbFcoZ",
+        "https://play-lh.googleusercontent.com/dp-p1VefD5gjTsW9LKuMwmOd2xKq8lQFn8fo41qFjlxHHSSVByuTR5XU7IdoR1pT0hE",
+        "https://play-lh.googleusercontent.com/LnzWGH9AyGuihRbf-K9AaIay5f9bangM3fHjyyfXaOgNh_bHhzvHJ_uhWhFNOjHS9g",
+        "https://play-lh.googleusercontent.com/nbHWcP_SY4Fbx0cvOeUa9-dSl1KgB1xdIqiRoT6lIpUnYm8UeWB0n58Yqy8EtQbWRw"
+      ],
+      "isAffiliate": false,
+      "originalLanguage": "fr"
     }
   ],
   "categories": [
