@@ -20,6 +20,7 @@ import HardcodedTerms from "./pages/HardcodedTerms";
 import Search from "./pages/Search";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import GoogleAdsManager from "./pages/GoogleAdsManager";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AdminProvider } from "./context/AdminContext";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -44,6 +45,7 @@ function Router() {
         {/* Admin routes without Layout */}
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin/dashboard" component={AdminDashboard} />
+        <Route path="/admin/google-ads" component={GoogleAdsManager} />
         
         {/* Main site routes with Layout */}
         <Route path="*">

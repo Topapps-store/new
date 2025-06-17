@@ -304,6 +304,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return res.status(500).json({ error: 'Bulk translation failed' });
     }
   });
+
+  // Google Ads integration routes
+  apiRouter.use("/google-ads", requireAdmin, googleAdsRouter);
   
   app.use("/api", apiRouter);
 
