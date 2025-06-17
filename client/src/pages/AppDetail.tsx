@@ -113,6 +113,11 @@ const AppDetail = () => {
       document.title = "EnBW mobility+ App herunterladen | Schnellladen für Elektroautos";
       metaDesc.setAttribute('content', 'EnBW App für Android & iOS. Finde Ladestationen, nutze AutoCharge und lade dein Elektroauto in Minuten. Jetzt EnBW App herunterladen.');
     }
+    else if (appId === 'deliveroo-food-shopping') {
+      // SEO optimisé pour Google Ads français - Deliveroo
+      document.title = "telecharger deliveroo app – abonnement et paiement rapide";
+      metaDesc.setAttribute('content', 'Installez deliveroo app, entrez email & Visa, confirmez votre compte et commandez repas.');
+    }
     
     // Limpiar al desmontar
     return () => {
