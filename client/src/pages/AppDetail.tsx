@@ -1108,6 +1108,48 @@ const AppDetail = () => {
                           <img alt="Install HBO Max for Android" />
                         </div>
                       </>
+                    ) : isBookingComPage ? (
+                      <>
+                        <div className="space-y-4">
+                          <h2 className="text-2xl font-bold text-blue-600">Download Booking App - Beach Hotel & Hotels Close to the Beach</h2>
+                          
+                          <p className="text-lg leading-relaxed">
+                            <strong>Download booking app</strong> to find the best <strong>beach hotel</strong> deals and <strong>hotels close to the beach</strong>. 
+                            Our <strong>booking app download</strong> gives you instant access to thousands of <strong>hotel beach</strong> properties worldwide.
+                          </p>
+                          
+                          <div className="bg-blue-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">🏖️ Beach Hotel Booking Features:</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>Hotel beach</strong> properties with ocean views</li>
+                              <li><strong>Beach hotel</strong> deals and exclusive offers</li>
+                              <li><strong>Hotels close to the beach</strong> with easy access</li>
+                              <li>Instant <strong>booking app</strong> reservations</li>
+                            </ul>
+                          </div>
+                          
+                          <div className="bg-green-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">📱 Download Booking App Benefits:</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>Download booking app for iOS</strong> - iPhone compatible</li>
+                              <li><strong>Download booking app for Android</strong> - all devices</li>
+                              <li><strong>Booking app download</strong> - free and instant</li>
+                              <li>Exclusive <strong>beach hotel</strong> mobile deals</li>
+                            </ul>
+                          </div>
+                          
+                          <p className="text-lg leading-relaxed">
+                            Get the official <strong>booking app</strong> and discover amazing <strong>hotel beach</strong> destinations. 
+                            <strong>Download booking</strong> today for the best <strong>beach hotel</strong> prices and <strong>hotels close to the beach</strong> recommendations.
+                          </p>
+                        </div>
+                        
+                        {/* SEO optimized hidden content */}
+                        <div className="sr-only">
+                          <h4>Beach Hotel Booking Keywords</h4>
+                          <p>hotel beach, beach hotel, hotels close to the beach, booking app, download booking, booking app download, download booking app for iOS, download booking app for android</p>
+                        </div>
+                      </>
                     ) : (
                       app.description
                     )}
@@ -1130,7 +1172,8 @@ const AppDetail = () => {
                         {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : 
                          isUberRomaniaPage ? "Descarcă pe Google Play" :
                          isLoseWeightPage ? "Download lose weight app for women on Google Play" :
-                         isDeliverooPage ? "Telecharger deliveroo app sur Google Play - commande repas deliveroo" : "Google Play"}
+                         isDeliverooPage ? "Telecharger deliveroo app sur Google Play - commande repas deliveroo" :
+                         isBookingComPage ? "Download Booking App for Android - Beach Hotel Bookings" : "Google Play"}
                       </a>
 
                       {/* iOS App Store links */}
