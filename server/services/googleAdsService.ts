@@ -95,7 +95,7 @@ export class GoogleAdsService {
     }
   }
 
-  private generateKeywords(appName: string, language: string): string[] {
+  public generateKeywords(appName: string, language: string): string[] {
     const baseKeywords = [
       appName.toLowerCase(),
       `${appName.toLowerCase()} app`,

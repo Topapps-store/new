@@ -11,6 +11,7 @@ import { Download, PlayCircle } from "lucide-react";
 import { processAffiliateUrl } from "../lib/url-utils";
 import DownloadButton from "../components/DownloadButton";
 import UberAppSEO from "../components/UberAppSEO";
+import BookingComSEO from "../components/BookingComSEO";
 import { useTranslation } from "../hooks/useTranslation";
 
 
