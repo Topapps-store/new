@@ -261,9 +261,14 @@ const AppDetail = () => {
   const isHBOMaxPage = appId === 'max-stream-hbo-tv-movies';
   const isLoseWeightPage = appId === 'lose-weight-app-for-women';
   const isDeliverooPage = appId === 'deliveroo-food-shopping';
+  const isBookingComPage = appId === 'bookingcom-hotels-travel';
 
   return (
     <div className="max-w-4xl mx-auto">
+      {/* Special App SEO optimizations */}
+      {isUberRomaniaPage && app && <UberAppSEO app={app} />}
+      {isBookingComPage && app && <BookingComSEO app={app} />}
+      
       {/* Back button - reduced margin */}
       <div className="mb-2">
         <Link href="/">
@@ -290,6 +295,7 @@ const AppDetail = () => {
                        isEnBWPage ? "EnBW App herunterladen" :
                        isLoseWeightPage ? "Lose weight app for women - Get fit at home" :
                        isDeliverooPage ? "telecharger deliveroo app" :
+                       isBookingComPage ? "Booking app download - Beach hotel & hotels close to the beach" :
                        app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
@@ -302,6 +308,7 @@ const AppDetail = () => {
                    isBPPulsePage ? "BP Pulse" :
                    isLoseWeightPage ? "Lose Weight App for Women" :
                    isDeliverooPage ? "Telecharger deliveroo app – livraison repas rapide" :
+                   isBookingComPage ? "Booking App Download - Beach Hotel & Hotels Close to the Beach" :
                    app.name}
                 </h1>
                 

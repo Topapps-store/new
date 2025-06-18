@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
-import { useLanguage } from '../context/StaticLanguageContext';
 
 interface BookingComSEOProps {
   app: any;
 }
 
 export default function BookingComSEO({ app }: BookingComSEOProps) {
-  const { currentLanguage } = useLanguage();
 
   useEffect(() => {
     // Optimize for Google Ads keywords: hotel beach, beach hotel, hotels close to the beach, booking app, download booking, booking app download
@@ -58,7 +56,7 @@ export default function BookingComSEO({ app }: BookingComSEOProps) {
     let scriptTag = document.querySelector('script[type="application/ld+json"]');
     if (!scriptTag) {
       scriptTag = document.createElement('script');
-      scriptTag.type = 'application/ld+json';
+      scriptTag.setAttribute('type', 'application/ld+json');
       document.head.appendChild(scriptTag);
     }
     scriptTag.textContent = JSON.stringify(structuredData);
