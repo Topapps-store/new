@@ -308,7 +308,7 @@ const AppDetail = () => {
                    isBPPulsePage ? "BP Pulse" :
                    isLoseWeightPage ? "Lose Weight App for Women" :
                    isDeliverooPage ? "Telecharger deliveroo app – livraison repas rapide" :
-                   isBookingComPage ? "Booking App Download - Beach Hotel & Hotels Close to the Beach" :
+                   isBookingComPage ? "Booking.com App: Hotels & Travel" :
                    app.name}
                 </h1>
                 
