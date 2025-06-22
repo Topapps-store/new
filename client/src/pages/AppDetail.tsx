@@ -337,6 +337,7 @@ const AppDetail = () => {
                    isLoseWeightPage ? "Lose Weight App for Women" :
                    isDeliverooPage ? "Telecharger deliveroo app – livraison repas rapide" :
                    isBookingComPage ? "Booking.com App: Hotels & Travel" :
+                   isChargemapPage ? "Chargemap app – Bornes de recharge" :
                    app.name}
                 </h1>
                 
@@ -1217,6 +1218,12 @@ const AppDetail = () => {
                             <p className="text-xl font-bold text-blue-700 mb-2">Télécharger Chargemap maintenant</p>
                             <p className="text-gray-600">Rejoignez la plus grande communauté de conducteurs électriques !</p>
                           </div>
+                          
+                          {/* Second CTA at bottom of page */}
+                          <div className="text-center my-6 p-4 bg-green-50 rounded-lg">
+                            <p className="text-xl font-bold text-green-700 mb-2">Télécharger Chargemap maintenant</p>
+                            <p className="text-gray-600">Commencez à recharger facilement avec l'application Chargemap !</p>
+                          </div>
                         </div>
                         
                         {/* SEO optimized hidden content for Chargemap */}
@@ -1358,6 +1365,21 @@ const AppDetail = () => {
                         >
                           <i className="fab fa-apple text-lg"></i>
                           Installer deliveroo sur App Store - deliveroo abonnement
+                        </a>
+                      )}
+                      
+                      {/* iOS App Store link for Chargemap */}
+                      {isChargemapPage && (
+                        <a 
+                          href={app.appStoreUrl}
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Télécharger Chargemap app sur App Store
                         </a>
                       )}
                     </div>
