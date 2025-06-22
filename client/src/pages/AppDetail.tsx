@@ -68,6 +68,32 @@ const AppDetail = () => {
       }
       metaKeywords.setAttribute('content', 'télécharger Chargemap, application Chargemap, Chargemap app, utiliser Chargemap Pass, bornes de recharge Chargemap');
     }
+    // SEO optimization for Electra page
+    else if (appId === 'electra-charging-hubs') {
+      // Update page title with French keywords
+      document.title = 'Electra App | Télécharger pour Recharge Voiture';
+      
+      // Update meta description with all keywords
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.setAttribute('name', 'description');
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.setAttribute('content', 'Téléchargez Electra, trouvez les bornes et rechargez votre voiture électrique rapidement. Application gratuite pour iOS et Android.');
+      
+      // Add lang attribute for French
+      document.documentElement.setAttribute('lang', 'fr');
+      
+      // Add keywords meta tag
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.setAttribute('content', 'télécharger Electra, application Electra, Electra app, Electra bornes recharge, Electra voiture électrique, app Electra gratuite');
+    }
     // SEO optimization for Romanian Uber page
     else if (appId === 'uber-romania') {
       // Update page title with Romanian keywords
@@ -289,6 +315,7 @@ const AppDetail = () => {
   const isDeliverooPage = appId === 'deliveroo-food-shopping';
   const isBookingComPage = appId === 'bookingcom-hotels-travel';
   const isChargemapPage = appId === 'chargemap-charging-stations';
+  const isElectraPage = appId === 'electra-charging-hubs';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -324,6 +351,7 @@ const AppDetail = () => {
                        isDeliverooPage ? "telecharger deliveroo app" :
                        isBookingComPage ? "Booking app download - Beach hotel & hotels close to the beach" :
                        isChargemapPage ? "télécharger Chargemap" :
+                       isElectraPage ? "application Electra" :
                        app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
@@ -338,6 +366,7 @@ const AppDetail = () => {
                    isDeliverooPage ? "Telecharger deliveroo app – livraison repas rapide" :
                    isBookingComPage ? "Booking.com App: Hotels & Travel" :
                    isChargemapPage ? "Chargemap app – Bornes de recharge" :
+                   isElectraPage ? "Electra – Application Recharge Rapide" :
                    app.name}
                 </h1>
                 
@@ -1236,6 +1265,63 @@ const AppDetail = () => {
                           <img alt="application Chargemap voiture" />
                         </div>
                       </>
+                    ) : isElectraPage ? (
+                      <>
+                        <div className="space-y-4">
+                          <h2 className="text-xl font-bold text-blue-600">Télécharger Electra app pour localiser et recharger votre voiture électrique facilement</h2>
+                          
+                          <p className="text-lg leading-relaxed">
+                            <strong>Télécharger Electra</strong> vous permet d'accéder aux bornes de recharge ultra-rapides en Europe. 
+                            L'<strong>application Electra</strong> est la solution idéale pour recharger votre <strong>Electra voiture électrique</strong> en quelques minutes seulement.
+                          </p>
+                          
+                          <div className="bg-blue-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">⚡ Fonctionnalités Electra app :</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li>Localiser les <strong>Electra bornes recharge</strong> ultra-rapides</li>
+                              <li><strong>App Electra gratuite</strong> pour tous les conducteurs</li>
+                              <li>Recharge rapide pour votre <strong>Electra voiture électrique</strong></li>
+                              <li>Interface intuitive avec l'<strong>application Electra</strong></li>
+                            </ul>
+                          </div>
+                          
+                          <div className="bg-green-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">🚗 Avantages de télécharger Electra :</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>Electra app</strong> 100% gratuite sur iOS et Android</li>
+                              <li><strong>Electra bornes recharge</strong> jusqu'à 300 kW</li>
+                              <li><strong>Application Electra</strong> simple et efficace</li>
+                              <li>Réseau en expansion pour votre <strong>Electra voiture électrique</strong></li>
+                            </ul>
+                          </div>
+                          
+                          <p className="text-lg leading-relaxed">
+                            Avec les stations <strong>Electra bornes recharge</strong> ultra-rapides, rechargez votre véhicule en 15 minutes. 
+                            <strong>Télécharger Electra</strong> maintenant et profitez de l'<strong>app Electra gratuite</strong> pour tous vos trajets.
+                          </p>
+                          
+                          <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
+                            <p className="text-xl font-bold text-blue-700 mb-2">Télécharger Electra app</p>
+                            <p className="text-gray-600">Rechargez votre voiture électrique en 15 minutes !</p>
+                          </div>
+                          
+                          {/* Second CTA at bottom of page */}
+                          <div className="text-center my-6 p-4 bg-green-50 rounded-lg">
+                            <p className="text-xl font-bold text-green-700 mb-2">Télécharger Electra app</p>
+                            <p className="text-gray-600">Découvrez la recharge ultra-rapide avec l'application Electra !</p>
+                          </div>
+                        </div>
+                        
+                        {/* SEO optimized hidden content for Electra */}
+                        <div className="sr-only">
+                          <h4>Electra Keywords</h4>
+                          <p>télécharger Electra, application Electra, Electra app, Electra bornes recharge, Electra voiture électrique, app Electra gratuite</p>
+                          <img alt="application Electra" />
+                          <img alt="Electra recharge voiture" />
+                          <img alt="Electra bornes recharge" />
+                          <img alt="Electra app mobile" />
+                        </div>
+                      </>
                     ) : (
                       app.description
                     )}
@@ -1260,7 +1346,8 @@ const AppDetail = () => {
                          isLoseWeightPage ? "Download lose weight app for women on Google Play" :
                          isDeliverooPage ? "Telecharger deliveroo app sur Google Play - commande repas deliveroo" :
                          isBookingComPage ? "Download Booking App for Android - Beach Hotel Bookings" :
-                         isChargemapPage ? "Télécharger Chargemap app sur Google Play" : "Google Play"}
+                         isChargemapPage ? "Télécharger Chargemap app sur Google Play" :
+                         isElectraPage ? "Télécharger Electra app sur Google Play" : "Google Play"}
                       </a>
 
                       {/* iOS App Store links */}
@@ -1380,6 +1467,21 @@ const AppDetail = () => {
                         >
                           <i className="fab fa-apple text-lg"></i>
                           Télécharger Chargemap app sur App Store
+                        </a>
+                      )}
+                      
+                      {/* iOS App Store link for Electra */}
+                      {isElectraPage && (
+                        <a 
+                          href={app.appStoreUrl}
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Télécharger Electra app sur App Store
                         </a>
                       )}
                     </div>
