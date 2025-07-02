@@ -342,7 +342,6 @@ const AppDetail = () => {
   const isBookingComPage = appId === 'bookingcom-hotels-travel';
   const isChargemapPage = appId === 'chargemap-charging-stations';
   const isElectraPage = appId === 'electra-charging-hubs';
-  const isUberRideAppPage = appId === 'uber-request-a-ride';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -379,7 +378,7 @@ const AppDetail = () => {
                        isBookingComPage ? "Booking app download - Beach hotel & hotels close to the beach" :
                        isChargemapPage ? "télécharger Chargemap" :
                        isElectraPage ? "application Electra" :
-                       isUberRideAppPage ? "download uber rides app" :
+                       isUberPage ? "download uber rides app" :
                        app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
@@ -395,7 +394,7 @@ const AppDetail = () => {
                    isBookingComPage ? "Booking.com App: Hotels & Travel" :
                    isChargemapPage ? "Chargemap app – Bornes de recharge" :
                    isElectraPage ? "Electra – Application Recharge Rapide" :
-                   isUberRideAppPage ? "Download Uber Rides App – Get an Uber Ride Now" :
+                   isUberPage ? "Download Uber Rides App – Get an Uber Ride Now" :
                    app.name}
                 </h1>
                 
@@ -1351,7 +1350,7 @@ const AppDetail = () => {
                           <img alt="Electra app mobile" />
                         </div>
                       </>
-                    ) : isUberRideAppPage ? (
+                    ) : isUberPage ? (
                       <>
                         <div className="space-y-4">
                           <h2 className="text-xl font-bold text-blue-600">Uber app download free for Android – Need Uber ride now? Get the Uber ride app today.</h2>
@@ -1433,7 +1432,7 @@ const AppDetail = () => {
                          isBookingComPage ? "Download Booking App for Android - Beach Hotel Bookings" :
                          isChargemapPage ? "Télécharger Chargemap app sur Google Play" :
                          isElectraPage ? "Télécharger Electra app sur Google Play" :
-                         isUberRideAppPage ? "Download Uber Rides App Now" : "Google Play"}
+                         isUberPage ? "Download Uber Rides App Now" : "Google Play"}
                       </a>
 
                       {/* iOS App Store links */}
@@ -1572,7 +1571,7 @@ const AppDetail = () => {
                       )}
                       
                       {/* iOS App Store link for Uber Ride App */}
-                      {isUberRideAppPage && (
+                      {isUberPage && (
                         <a 
                           href={app.appStoreUrl}
                           className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
