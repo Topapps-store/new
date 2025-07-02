@@ -94,6 +94,32 @@ const AppDetail = () => {
       }
       metaKeywords.setAttribute('content', 'télécharger Electra, application Electra, Electra app, Electra bornes recharge, Electra voiture électrique, app Electra gratuite');
     }
+    // SEO optimization for Uber Ride App page
+    else if (appId === 'uber-request-a-ride') {
+      // Update page title with English keywords
+      document.title = 'Download Uber Rides App | Get an Uber Now';
+      
+      // Update meta description with all keywords
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.setAttribute('name', 'description');
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.setAttribute('content', 'Download the Uber app for Android free. Need an Uber ride now? Book fast and easy.');
+      
+      // Add lang attribute for English
+      document.documentElement.setAttribute('lang', 'en');
+      
+      // Add keywords meta tag
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.setAttribute('content', 'download uber rides app, uber ride app, need uber ride now, get an uber, uber ride sharing app, uber app download, uber app download for android, uber app download free for android');
+    }
     // SEO optimization for Romanian Uber page
     else if (appId === 'uber-romania') {
       // Update page title with Romanian keywords
@@ -316,6 +342,7 @@ const AppDetail = () => {
   const isBookingComPage = appId === 'bookingcom-hotels-travel';
   const isChargemapPage = appId === 'chargemap-charging-stations';
   const isElectraPage = appId === 'electra-charging-hubs';
+  const isUberRideAppPage = appId === 'uber-request-a-ride';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -352,6 +379,7 @@ const AppDetail = () => {
                        isBookingComPage ? "Booking app download - Beach hotel & hotels close to the beach" :
                        isChargemapPage ? "télécharger Chargemap" :
                        isElectraPage ? "application Electra" :
+                       isUberRideAppPage ? "download uber rides app" :
                        app.name} 
                   className="w-24 h-24 object-contain mb-2 rounded-xl"
                 />
@@ -367,6 +395,7 @@ const AppDetail = () => {
                    isBookingComPage ? "Booking.com App: Hotels & Travel" :
                    isChargemapPage ? "Chargemap app – Bornes de recharge" :
                    isElectraPage ? "Electra – Application Recharge Rapide" :
+                   isUberRideAppPage ? "Download Uber Rides App – Get an Uber Ride Now" :
                    app.name}
                 </h1>
                 
@@ -1322,6 +1351,62 @@ const AppDetail = () => {
                           <img alt="Electra app mobile" />
                         </div>
                       </>
+                    ) : isUberRideAppPage ? (
+                      <>
+                        <div className="space-y-4">
+                          <h2 className="text-xl font-bold text-blue-600">Uber app download free for Android – Need Uber ride now? Get the Uber ride app today.</h2>
+                          
+                          <p className="text-lg leading-relaxed">
+                            <strong>Download uber rides app</strong> and experience the convenience of on-demand transportation. 
+                            The <strong>uber ride app</strong> connects you with drivers in minutes, making it easy when you <strong>need uber ride now</strong>.
+                          </p>
+                          
+                          <div className="bg-blue-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">🚗 Why Get an Uber App:</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>Get an uber</strong> in minutes with real-time tracking</li>
+                              <li><strong>Uber ride sharing app</strong> available 24/7 worldwide</li>
+                              <li><strong>Uber app download</strong> is completely free</li>
+                              <li>Safe and reliable <strong>uber ride app</strong> experience</li>
+                            </ul>
+                          </div>
+                          
+                          <div className="bg-green-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">📱 Download Benefits:</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>Uber app download for android</strong> - instant access</li>
+                              <li><strong>Uber app download free for android</strong> - no cost</li>
+                              <li>Easy to use <strong>uber ride sharing app</strong> interface</li>
+                              <li><strong>Need uber ride now</strong>? Book instantly!</li>
+                            </ul>
+                          </div>
+                          
+                          <p className="text-lg leading-relaxed">
+                            When you <strong>need uber ride now</strong>, just open the <strong>uber ride app</strong> and request a ride. 
+                            <strong>Download uber rides app</strong> today and join millions who <strong>get an uber</strong> whenever they need transportation.
+                          </p>
+                          
+                          <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
+                            <p className="text-xl font-bold text-blue-700 mb-2">Download Uber Rides App Now</p>
+                            <p className="text-gray-600">Get an Uber ride in minutes - Available worldwide!</p>
+                          </div>
+                          
+                          {/* Second CTA at bottom of page */}
+                          <div className="text-center my-6 p-4 bg-green-50 rounded-lg">
+                            <p className="text-xl font-bold text-green-700 mb-2">Download Uber Rides App Now</p>
+                            <p className="text-gray-600">Need an Uber ride now? Download the app and ride!</p>
+                          </div>
+                        </div>
+                        
+                        {/* SEO optimized hidden content for Uber Ride App */}
+                        <div className="sr-only">
+                          <h4>Uber Ride App Keywords</h4>
+                          <p>download uber rides app, uber ride app, need uber ride now, get an uber, uber ride sharing app, uber app download, uber app download for android, uber app download free for android</p>
+                          <img alt="download uber rides app" />
+                          <img alt="uber ride sharing app" />
+                          <img alt="uber app download free for android" />
+                        </div>
+                      </>
                     ) : (
                       app.description
                     )}
@@ -1347,7 +1432,8 @@ const AppDetail = () => {
                          isDeliverooPage ? "Telecharger deliveroo app sur Google Play - commande repas deliveroo" :
                          isBookingComPage ? "Download Booking App for Android - Beach Hotel Bookings" :
                          isChargemapPage ? "Télécharger Chargemap app sur Google Play" :
-                         isElectraPage ? "Télécharger Electra app sur Google Play" : "Google Play"}
+                         isElectraPage ? "Télécharger Electra app sur Google Play" :
+                         isUberRideAppPage ? "Download Uber Rides App Now" : "Google Play"}
                       </a>
 
                       {/* iOS App Store links */}
@@ -1482,6 +1568,21 @@ const AppDetail = () => {
                         >
                           <i className="fab fa-apple text-lg"></i>
                           Télécharger Electra app sur App Store
+                        </a>
+                      )}
+                      
+                      {/* iOS App Store link for Uber Ride App */}
+                      {isUberRideAppPage && (
+                        <a 
+                          href={app.appStoreUrl}
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Download Uber Rides App Now
                         </a>
                       )}
                     </div>
