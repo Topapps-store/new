@@ -1363,62 +1363,6 @@ const AppDetail = () => {
                           <img alt="Electra app mobile" />
                         </div>
                       </>
-                    ) : isUberPage ? (
-                      <>
-                        <div className="space-y-4">
-                          <h2 className="text-xl font-bold text-blue-600">Uber app download free for Android – Need Uber ride now? Get the Uber ride app today.</h2>
-                          
-                          <p className="text-lg leading-relaxed">
-                            <strong>Download uber rides app</strong> and experience the convenience of on-demand transportation. 
-                            The <strong>uber ride app</strong> connects you with drivers in minutes, making it easy when you <strong>need uber ride now</strong>.
-                          </p>
-                          
-                          <div className="bg-blue-50 p-4 rounded-lg">
-                            <h3 className="font-bold text-lg mb-2">🚗 Why Get an Uber App:</h3>
-                            <ul className="list-disc list-inside space-y-1">
-                              <li><strong>Get an uber</strong> in minutes with real-time tracking</li>
-                              <li><strong>Uber ride sharing app</strong> available 24/7 worldwide</li>
-                              <li><strong>Uber app download</strong> is completely free</li>
-                              <li>Safe and reliable <strong>uber ride app</strong> experience</li>
-                            </ul>
-                          </div>
-                          
-                          <div className="bg-green-50 p-4 rounded-lg">
-                            <h3 className="font-bold text-lg mb-2">📱 Download Benefits:</h3>
-                            <ul className="list-disc list-inside space-y-1">
-                              <li><strong>Uber app download for android</strong> - instant access</li>
-                              <li><strong>Uber app download free for android</strong> - no cost</li>
-                              <li>Easy to use <strong>uber ride sharing app</strong> interface</li>
-                              <li><strong>Need uber ride now</strong>? Book instantly!</li>
-                            </ul>
-                          </div>
-                          
-                          <p className="text-lg leading-relaxed">
-                            When you <strong>need uber ride now</strong>, just open the <strong>uber ride app</strong> and request a ride. 
-                            <strong>Download uber rides app</strong> today and join millions who <strong>get an uber</strong> whenever they need transportation.
-                          </p>
-                          
-                          <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
-                            <p className="text-xl font-bold text-blue-700 mb-2">Download Uber Rides App Now</p>
-                            <p className="text-gray-600">Get an Uber ride in minutes - Available worldwide!</p>
-                          </div>
-                          
-                          {/* Second CTA at bottom of page */}
-                          <div className="text-center my-6 p-4 bg-green-50 rounded-lg">
-                            <p className="text-xl font-bold text-green-700 mb-2">Download Uber Rides App Now</p>
-                            <p className="text-gray-600">Need an Uber ride now? Download the app and ride!</p>
-                          </div>
-                        </div>
-                        
-                        {/* SEO optimized hidden content for Uber Ride App */}
-                        <div className="sr-only">
-                          <h4>Uber Ride App Keywords</h4>
-                          <p>download uber rides app, uber ride app, need uber ride now, get an uber, uber ride sharing app, uber app download, uber app download for android, uber app download free for android</p>
-                          <img alt="download uber rides app" />
-                          <img alt="uber ride sharing app" />
-                          <img alt="uber app download free for android" />
-                        </div>
-                      </>
                     ) : (
                       app.description
                     )}
@@ -1697,6 +1641,34 @@ const AppDetail = () => {
             <p className="text-gray-500">{translate('common.noRelatedApps', 'No related apps found')}</p>
           )}
         </div>
+        
+        {/* Second CTA button for Uber - positioned before footer */}
+        {isUberPage && (
+          <div className="mt-8 text-center">
+            <div className="bg-gradient-to-r from-blue-500 to-green-500 p-6 rounded-lg text-white">
+              <h3 className="text-xl font-bold mb-2">Download Uber Rides App Now</h3>
+              <p className="mb-4">Need an Uber ride now? Get the app and start riding in minutes!</p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a 
+                  href={app.googlePlayUrl || "https://play.google.com/store/apps/details?id=com.ubercab"}
+                  className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download Uber Rides App Now
+                </a>
+                <a 
+                  href={app.appStoreUrl || "https://apps.apple.com/app/uber/id368677368"}
+                  className="inline-flex items-center justify-center px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-800 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download Uber Rides App Now
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
