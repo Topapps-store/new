@@ -48,7 +48,6 @@
     "developer": "Desarrollador",
     "installs": "Instalaciones",
     "downloadAPK": "Descargar",
-    "expertAnswer": "Chat en directo con los mejores expertos verificados 24/7",
     "googlePlay": "Google Play",
     "relatedApps": "Aplicaciones Relacionadas",
     "language": "Idioma",
@@ -172,6 +171,7 @@
     "topApps": "Aplicaciones destacadas",
     "newApps": "Nuevas aplicaciones",
     "popularApps": "Aplicaciones populares",
-    "advertisement": "ANUNCIO"
+    "advertisement": "ANUNCIO",
+    "expertAnswer": "Chat en directo con los mejores expertos verificados 24/7"
   }
 }

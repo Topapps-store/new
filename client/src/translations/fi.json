@@ -48,7 +48,6 @@
     "developer": "Kehittäjä",
     "installs": "Asennukset",
     "downloadAPK": "Lataa",
-    "expertAnswer": "Live chat parhaimman verifioidun asiantuntijan kanssa 24/7",
     "googlePlay": "Google Play",
     "relatedApps": "Liittyvät Sovellukset",
     "language": "Kieli",
@@ -173,6 +172,7 @@
     "topApps": "Top Sovellukset",
     "newApps": "Uudet Sovellukset",
     "popularApps": "Suositut Sovellukset",
-    "advertisement": "MAINOS"
+    "advertisement": "MAINOS",
+    "expertAnswer": "Live chat parhaimman verifioidun asiantuntijan kanssa 24/7"
   }
 }

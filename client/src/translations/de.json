@@ -47,8 +47,7 @@
     "developer": "Entwickler",
     "moreFromDeveloper": "Mehr von diesem Entwickler",
     "noScreenshotsAvailable": "Keine Screenshots verfügbar",
-    "noRelatedAppsFound": "Keine ähnlichen Apps gefunden",
-    "expertAnswer": "Live-Chat mit den besten verifizierten Experten 24/7"
+    "noRelatedAppsFound": "Keine ähnlichen Apps gefunden"
   },
   "ui": {
     "loading": "Laden...",
@@ -101,7 +100,8 @@
     "searchingSuggestion": "Versuchen Sie es mit:",
     "popularSearches": "Beliebte Suchen",
     "recentSearches": "Letzte Suchen",
-    "clearSearchHistory": "Suchverlauf löschen"
+    "clearSearchHistory": "Suchverlauf löschen",
+    "expertAnswer": "Live-Chat mit den besten verifizierten Experten 24/7"
   },
   "categories": {
     "allCategories": "Alle Kategorien",

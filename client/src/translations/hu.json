@@ -48,7 +48,6 @@
     "developer": "Fejlesztő",
     "installs": "Telepítések",
     "downloadAPK": "Letöltés",
-    "expertAnswer": "Élő chat a legjobb ellenőrzött szakértőkkel 24/7",
     "googlePlay": "Google Play",
     "relatedApps": "Kapcsolódó Alkalmazások",
     "language": "Nyelv",
@@ -173,6 +172,7 @@
     "topApps": "Top Alkalmazások",
     "newApps": "Új Alkalmazások",
     "popularApps": "Népszerű Alkalmazások",
-    "advertisement": "HIRDETÉS"
+    "advertisement": "HIRDETÉS",
+    "expertAnswer": "Élő chat a legjobb ellenőrzött szakértőkkel 24/7"
   }
 }

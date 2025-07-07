@@ -48,7 +48,6 @@
     "developer": "Desenvolvedor",
     "installs": "Instalações",
     "downloadAPK": "Baixar",
-    "expertAnswer": "Chat ao vivo com os melhores especialistas verificados 24/7",
     "googlePlay": "Google Play",
     "relatedApps": "Apps Relacionados",
     "language": "Idioma",
@@ -173,6 +172,7 @@
     "topApps": "Top Apps",
     "newApps": "Novos Apps",
     "popularApps": "Apps Populares",
-    "advertisement": "ANÚNCIO"
+    "advertisement": "ANÚNCIO",
+    "expertAnswer": "Chat ao vivo com os melhores especialistas verificados 24/7"
   }
 }

@@ -418,22 +418,20 @@ const AppDetail = () => {
                       customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
                     />
                     
-                    {/* ExpertAnswer live chat text - only for Uber page */}
-                    {isUberPage && (
-                      <div className="flex items-center justify-center mt-2 text-sm text-gray-600">
-                        <div className="flex items-center">
-                          <img 
-                            src="https://cdn.expertanswer.com/logo-small.png" 
-                            alt="ExpertAnswer logo" 
-                            className="w-4 h-4 mr-2"
-                            onError={(e) => {
-                              e.currentTarget.style.display = 'none';
-                            }}
-                          />
-                          <span>{translate('appDetail.expertAnswer', 'Chat en directo con los mejores expertos verificados 24/7')}</span>
-                        </div>
+                    {/* ExpertAnswer live chat text - for all apps */}
+                    <div className="flex items-center justify-center mt-2 text-sm text-gray-600">
+                      <div className="flex items-center">
+                        <img 
+                          src="https://cdn.expertanswer.com/logo-small.png" 
+                          alt="ExpertAnswer logo" 
+                          className="w-4 h-4 mr-2"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                        <span>{translate('ui.expertAnswer', 'Chat en directo con los mejores expertos verificados 24/7')}</span>
                       </div>
-                    )}
+                    </div>
                   </div>
                 </div>
                 

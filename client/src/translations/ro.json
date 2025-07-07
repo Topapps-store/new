@@ -48,7 +48,6 @@
     "developer": "Dezvoltator",
     "installs": "Instalări",
     "downloadAPK": "Descarcă",
-    "expertAnswer": "Chat live cu cei mai buni experți verificați 24/7",
     "googlePlay": "Google Play",
     "relatedApps": "Aplicații Similare",
     "language": "Limbă",
@@ -173,6 +172,7 @@
     "topApps": "Top Aplicații",
     "newApps": "Aplicații Noi",
     "popularApps": "Aplicații Populare",
-    "advertisement": "RECLAMĂ"
+    "advertisement": "RECLAMĂ",
+    "expertAnswer": "Chat live cu cei mai buni experți verificați 24/7"
   }
 }

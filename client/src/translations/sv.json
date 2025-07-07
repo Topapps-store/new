@@ -48,7 +48,6 @@
     "developer": "Utvecklare",
     "installs": "Installationer",
     "downloadAPK": "Ladda ner",
-    "expertAnswer": "Live chatt med de bästa verifierade experterna 24/7",
     "googlePlay": "Google Play",
     "relatedApps": "Relaterade Appar",
     "language": "Språk",
@@ -173,6 +172,7 @@
     "topApps": "Topp Appar",
     "newApps": "Nya Appar",
     "popularApps": "Populära Appar",
-    "advertisement": "ANNONS"
+    "advertisement": "ANNONS",
+    "expertAnswer": "Live chatt med de bästa verifierade experterna 24/7"
   }
 }

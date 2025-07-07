@@ -48,7 +48,6 @@
     "developer": "Udvikler",
     "installs": "Installationer",
     "downloadAPK": "Download",
-    "expertAnswer": "Live chat med de bedste verificerede eksperter 24/7",
     "googlePlay": "Google Play",
     "relatedApps": "Relaterede Apps",
     "language": "Sprog",
@@ -173,6 +172,7 @@
     "topApps": "Top Apps",
     "newApps": "Nye Apps",
     "popularApps": "Populære Apps",
-    "advertisement": "REKLAME"
+    "advertisement": "REKLAME",
+    "expertAnswer": "Live chat med de bedste verificerede eksperter 24/7"
   }
 }
