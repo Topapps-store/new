@@ -386,6 +386,7 @@ const AppDetail = () => {
                   {isUberPage ? "Uber App - Request a Ride" :
                    isUberRomaniaPage ? "Descarcă aplicația Uber" : 
                    isLyftPage ? "Lyft" : 
+                   isBoltFrancePage ? "Bolt App" :
                    isElectrifyAmericaPage ? "Electrify America" :
                    isChargePointPage ? "ChargePoint" :
                    isBPPulsePage ? "BP Pulse" :
