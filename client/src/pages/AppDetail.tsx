@@ -330,6 +330,7 @@ const AppDetail = () => {
   // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse, EnBW mobility+, HBO Max, Lose Weight App o Deliveroo
   const isUberPage = appId === 'uber-request-a-ride';
   const isUberRomaniaPage = appId === 'uber-romania';
+  const isUberDeutschlandPage = appId === 'uber-deutschland';
   const isLyftPage = appId === 'lyft';
   const isBoltFrancePage = appId === 'bolt-france';
   const isElectrifyAmericaPage = appId === 'electrify-america';
@@ -368,6 +369,7 @@ const AppDetail = () => {
                   src={app.iconUrl} 
                   alt={isUberPage ? "Uber app download icon" : 
                        isUberRomaniaPage ? "Buton descărcare aplicația Uber" :
+                       isUberDeutschlandPage ? "Uber App Deutschland herunterladen" :
                        isLyftPage ? "Lyft App Android iPhone" : 
                        isElectrifyAmericaPage ? "Electrify America app download" :
                        isChargePointPage ? "Download ChargePoint app" :
@@ -385,6 +387,7 @@ const AppDetail = () => {
                 <h1 className="text-xl font-bold text-center">
                   {isUberPage ? "Uber App - Request a Ride" :
                    isUberRomaniaPage ? "Descarcă aplicația Uber" : 
+                   isUberDeutschlandPage ? "Uber App Deutschland - Fahrt anfordern" :
                    isLyftPage ? "Lyft" : 
                    isBoltFrancePage ? "Bolt App : Télécharger Bolt pour Commander Course Taxi" :
                    isElectrifyAmericaPage ? "Electrify America" :
@@ -623,6 +626,106 @@ const AppDetail = () => {
                           <p>transport urban România</p>
                           <p>călătorii rapide</p>
                           <p>taxi sigur România</p>
+                        </div>
+                      </>
+                    ) : isUberDeutschlandPage ? (
+                      <>
+                        <h1 className="text-2xl font-bold mb-3">Uber App Deutschland herunterladen - Fahrt anfordern leicht gemacht</h1>
+                        <h2 className="text-xl text-gray-700 mb-4">Laden Sie die Uber App herunter und fordern Sie eine Fahrt in Deutschland an. Uber Deutschland bietet schnelle und sichere Fahrten mit verifizierten Fahrern.</h2>
+                        
+                        <p className="mb-3">Uber App herunterladen und eine Fahrt in Deutschland anfordern war noch nie so einfach! Die Uber Deutschland App verbindet Sie mit Fahrern in Ihrer Nähe und bietet sichere Fahrten zu transparenten Preisen.</p>
+                        
+                        <h3 className="text-lg font-semibold mb-2">🚗 Warum Uber App Deutschland herunterladen?</h3>
+                        <ul className="list-disc pl-6 mb-4 space-y-1">
+                          <li>Fahrt anfordern in Deutschland 24/7 verfügbar</li>
+                          <li>Uber Deutschland App mit Echtzeit-Tracking</li>
+                          <li>Sichere Zahlungen direkt über die Uber App</li>
+                          <li>Transparente Preise vor der Fahrt anfordern</li>
+                          <li>Verifizierte Fahrer für sicheres Reisen</li>
+                          <li>Verschiedene Fahrzeugtypen verfügbar</li>
+                        </ul>
+                        
+                        <h3 className="text-lg font-semibold mb-2">📱 Uber Deutschland Features</h3>
+                        <ul className="list-disc pl-6 mb-4 space-y-1">
+                          <li>Einfach Uber App herunterladen und registrieren</li>
+                          <li>Schnell eine Fahrt anfordern mit einem Tippen</li>
+                          <li>Fahrer in Echtzeit verfolgen</li>
+                          <li>Fahrten im Voraus planen und buchen</li>
+                          <li>Bewertungssystem für Qualitätssicherung</li>
+                          <li>Fahrten mit Freunden teilen</li>
+                          <li>Kontaktloser Service verfügbar</li>
+                        </ul>
+                        
+                        <h3 className="text-lg font-semibold mb-2">🌟 Uber Deutschland - Ihr zuverlässiger Partner</h3>
+                        <p className="mb-3">Uber App herunterladen und entdecken Sie, warum Millionen von Nutzern Uber Deutschland für ihre täglichen Fahrten vertrauen. Fahrt anfordern war noch nie so komfortabel und sicher.</p>
+                        
+                        <h3 className="text-lg font-semibold mb-2">⭐ Vorteile der Uber App Deutschland</h3>
+                        <ul className="list-disc pl-6 mb-4 space-y-1">
+                          <li>Schnell und einfach Fahrt anfordern</li>
+                          <li>Uber Deutschland mit landesweiter Abdeckung</li>
+                          <li>Sichere und komfortable Fahrten</li>
+                          <li>24/7 Kundensupport verfügbar</li>
+                          <li>Umweltfreundliche Fahrzeugoptionen</li>
+                          <li>Transparente Preisgestaltung</li>
+                        </ul>
+                        
+                        <p className="mb-3">Fahrt anfordern in Deutschland war noch nie so einfach! Uber App herunterladen und erleben Sie die Zukunft der Mobilität mit Uber Deutschland.</p>
+                        
+                        {/* Call to Action für Deutschland */}
+                        <div className="text-center my-6 p-4 bg-green-50 rounded-lg">
+                          <p className="text-xl font-bold text-green-700 mb-2">Uber App Deutschland jetzt herunterladen</p>
+                          <p className="text-gray-600">Fahrt anfordern und erste Fahrt buchen!</p>
+                        </div>
+                        
+                        {/* Download buttons für Deutschland */}
+                        <div className="flex flex-col gap-3 mt-4">
+                          <a 
+                            href="https://play.google.com/store/apps/details?id=com.ubercab&hl=de"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.807 1.626L15.833 12l1.865-1.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/>
+                            </svg>
+                            Uber App Deutschland - Google Play herunterladen
+                          </a>
+                          
+                          <a 
+                            href="https://apps.apple.com/de/app/uber/id368677368"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Uber App auf App Store - Fahrt anfordern
+                          </a>
+                        </div>
+                        
+                        {/* Call to Action sekundär */}
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-blue-600">Fahrt anfordern - Ihre erste Uber Deutschland Fahrt</p>
+                          <p className="text-sm text-gray-600 mt-1">Uber App herunterladen und sofort losfahren!</p>
+                        </div>
+                        
+                        {/* SEO Keywords für Deutschland */}
+                        <div className="sr-only">
+                          <p>uber app herunterladen</p>
+                          <p>fahrt anfordern</p>
+                          <p>uber deutschland</p>
+                          <p>uber app deutschland</p>
+                          <p>uber herunterladen</p>
+                          <p>uber fahrt buchen</p>
+                          <p>uber app download</p>
+                          <p>taxi app deutschland</p>
+                          <p>uber taxi</p>
+                          <p>ridesharing deutschland</p>
+                          <p>uber fahrer</p>
+                          <p>uber fahrt</p>
+                          <p>mobility app</p>
+                          <p>transport app</p>
                         </div>
                       </>
                     ) : isBoltFrancePage ? (
@@ -1391,7 +1494,9 @@ const AppDetail = () => {
                     <div className="mt-4 flex flex-col space-y-3">
                       {/* Google Play download link */}
                       <a 
-                        href={isUberRomaniaPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=ro&gl=ro" : app.googlePlayUrl || app.downloadUrl}
+                        href={isUberRomaniaPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=ro&gl=ro" : 
+                              isUberDeutschlandPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=de&gl=de" : 
+                              app.googlePlayUrl || app.downloadUrl}
                         className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                         onClick={(e) => handleGooglePlayClick(e)}
                         target="_blank"
@@ -1402,6 +1507,7 @@ const AppDetail = () => {
                         <PlayCircle size={20} />
                         {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : 
                          isUberRomaniaPage ? "Descarcă pe Google Play" :
+                         isUberDeutschlandPage ? "Uber App Deutschland auf Google Play herunterladen" :
                          isLoseWeightPage ? "Download lose weight app for women on Google Play" :
                          isDeliverooPage ? "Telecharger deliveroo app sur Google Play - commande repas deliveroo" :
                          isBookingComPage ? "Download Booking App for Android - Beach Hotel Bookings" :
