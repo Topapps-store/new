@@ -22,13 +22,13 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
   const getButtonText = () => {
     // Romanian text for uber-romania page
     if (appId === 'uber-romania') {
-      return 'Descarcă';
+      return 'Continuă';
     }
     // Custom text for lose weight app for women
     if (appId === 'lose-weight-app-for-women') {
-      return 'Try for free';
+      return 'Continue';
     }
-    return t('ui.continue', 'Download');
+    return t('ui.continue', 'Continue');
   };
 
   // Función para construir la URL con parámetros actuales
