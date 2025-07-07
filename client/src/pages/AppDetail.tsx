@@ -402,7 +402,26 @@ const AppDetail = () => {
                   <StarRating rating={app.rating} showScore={true} />
                 </div>
                 
-                {/* Advertisement buttons with affiliate links - moved up, below rating */}
+                {/* App Info Cards - two columns side by side - moved between rating and download button */}
+                <div className="w-full grid grid-cols-2 gap-3 mb-3">
+                  <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
+                    <i className="fas fa-download text-green-500 w-6 text-lg"></i>
+                    <div>
+                      <p className="text-xs text-gray-500">{translate('ui.downloads', 'Downloads')}</p>
+                      <p className="font-medium text-sm">{app.downloads || '10M+'}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
+                    <i className="fas fa-code-branch text-blue-500 w-6 text-lg"></i>
+                    <div>
+                      <p className="text-xs text-gray-500">{translate('ui.developer', 'Developer')}</p>
+                      <p className="font-medium text-sm">{app.developer}</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Advertisement buttons with affiliate links - moved below info cards */}
                 <div className="w-full mb-2">
                   <div className="text-[10px] text-gray-500 mb-1">
                     {translate('ui.advertisement', 'ADVERTISEMENT')}
@@ -436,24 +455,7 @@ const AppDetail = () => {
                 </div>
                 
 
-                {/* App Info Cards - two columns side by side */}
-                <div className="w-full grid grid-cols-2 gap-3 mt-2">
-                  <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
-                    <i className="fas fa-download text-green-500 w-6 text-lg"></i>
-                    <div>
-                      <p className="text-xs text-gray-500">{translate('ui.downloads', 'Downloads')}</p>
-                      <p className="font-medium text-sm">{app.downloads || '10M+'}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
-                    <i className="fas fa-code-branch text-blue-500 w-6 text-lg"></i>
-                    <div>
-                      <p className="text-xs text-gray-500">{translate('ui.developer', 'Developer')}</p>
-                      <p className="font-medium text-sm">{app.developer}</p>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </div>
             
