@@ -48,7 +48,6 @@
     "developer": "Developer",
     "installs": "Installs",
     "downloadAPK": "Download",
-    "expertAnswer": "Live chat with the best verified experts 24/7",
     "googlePlay": "Google Play",
     "relatedApps": "Related Apps",
     "language": "Language",
@@ -173,6 +172,6 @@
     "newApps": "New Apps",
     "popularApps": "Popular Apps",
     "advertisement": "ADVERTISEMENT",
-    "expertAnswer": "Live chat with the best verified experts 24/7"
+    "expertAnswer": "ExpertAnswer: 24/7 live chat"
   }
 }

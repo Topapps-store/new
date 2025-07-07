@@ -419,25 +419,25 @@ const AppDetail = () => {
                     />
                     
                     {/* ExpertAnswer live chat text - for all apps */}
-                    <div className="flex items-center justify-center mt-2 text-sm text-gray-600">
+                    <div className="flex items-center justify-center mt-6 text-xs text-gray-600">
                       <div className="flex items-center">
                         <img 
                           src="https://cdn.expertanswer.com/logo-small.png" 
                           alt="ExpertAnswer logo" 
-                          className="w-4 h-4 mr-2"
+                          className="w-3 h-3 mr-1"
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                           }}
                         />
-                        <span>{translate('ui.expertAnswer', 'Chat en directo con los mejores expertos verificados 24/7')}</span>
+                        <span>{translate('ui.expertAnswer', 'ExpertAnswer: 24/7 chat en directo')}</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 
 
-                {/* App Info Cards - more compact */}
-                <div className="w-full space-y-3 mt-2">
+                {/* App Info Cards - two columns side by side */}
+                <div className="w-full grid grid-cols-2 gap-3 mt-2">
                   <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
                     <i className="fas fa-download text-green-500 w-6 text-lg"></i>
                     <div>
