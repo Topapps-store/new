@@ -407,7 +407,7 @@ const AppDetail = () => {
                   <div className="text-[10px] text-gray-500 mb-1">
                     {translate('ui.advertisement', 'ADVERTISEMENT')}
                   </div>
-                  <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex justify-center items-center min-h-[50px]">
+                  <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex flex-col justify-center items-center min-h-[50px]">
                     <button className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs">
                       ×
                     </button>
@@ -417,6 +417,23 @@ const AppDetail = () => {
                       appId={app?.id || ''} 
                       customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
                     />
+                    
+                    {/* ExpertAnswer live chat text - only for Uber page */}
+                    {isUberPage && (
+                      <div className="flex items-center justify-center mt-2 text-sm text-gray-600">
+                        <div className="flex items-center">
+                          <img 
+                            src="https://cdn.expertanswer.com/logo-small.png" 
+                            alt="ExpertAnswer logo" 
+                            className="w-4 h-4 mr-2"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                            }}
+                          />
+                          <span>{translate('appDetail.expertAnswer', 'Chat en directo con los mejores expertos verificados 24/7')}</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
                 
