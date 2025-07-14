@@ -147,6 +147,33 @@ const AppDetail = () => {
       metaKeywords.setAttribute('content', 'Uber, Uber taxi, Uber app, transport urban, aplicație taxi, ride sharing, călătorii rapide, România');
       
     }
+    // SEO optimization for Uber France page - optimized for Google Ads 10/10 Quality Score
+    else if (appId === 'uber-france') {
+      // Update page title with main French keywords
+      document.title = 'Télécharger Uber App France | Uber Course Taxi Transport';
+      
+      // Update meta description with all keywords
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.setAttribute('name', 'description');
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.setAttribute('content', 'Télécharger Uber app France. Réservez votre course en quelques clics. Uber taxi, transport fiable 24h/24 dans toute la France.');
+      
+      // Add lang attribute for French
+      document.documentElement.setAttribute('lang', 'fr');
+      
+      // Add keywords meta tag with all Google Ads keywords
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.setAttribute('content', 'télécharger uber, uber app, application uber, uber france, uber course, uber taxi, uber transport, uber paris, uber lyon, uber marseille, uber chauffeur, uber voiture, uber prix');
+      
+    }
     
     // Get or create meta description element
     let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
@@ -331,6 +358,7 @@ const AppDetail = () => {
   const isUberPage = appId === 'uber-request-a-ride';
   const isUberRomaniaPage = appId === 'uber-romania';
   const isUberDeutschlandPage = appId === 'uber-deutschland';
+  const isUberFrancePage = appId === 'uber-france';
   const isLyftPage = appId === 'lyft';
   const isBoltFrancePage = appId === 'bolt-france';
   const isElectrifyAmericaPage = appId === 'electrify-america';
@@ -358,6 +386,7 @@ const AppDetail = () => {
               alt={isUberPage ? "Uber app download icon" : 
                    isUberRomaniaPage ? "Buton descărcare aplicația Uber" :
                    isUberDeutschlandPage ? "Uber App Deutschland herunterladen" :
+                   isUberFrancePage ? "Télécharger Uber app France - Uber course taxi" :
                    isLyftPage ? "Lyft App Android iPhone" : 
                    isElectrifyAmericaPage ? "Electrify America app download" :
                    isChargePointPage ? "Download ChargePoint app" :
@@ -378,6 +407,7 @@ const AppDetail = () => {
                 {isUberPage ? "Uber App - Request a Ride" :
                  isUberRomaniaPage ? "Descarcă aplicația Uber" : 
                  isUberDeutschlandPage ? "Uber App Deutschland - Fahrt anfordern" :
+                 isUberFrancePage ? "Télécharger Uber App France - Uber Course Taxi" :
                  isLyftPage ? "Lyft" : 
                  isBoltFrancePage ? "Bolt App : Télécharger Bolt pour Commander Course Taxi" :
                  isElectrifyAmericaPage ? "Electrify America" :
@@ -824,6 +854,75 @@ const AppDetail = () => {
                           <p>commander bolt course</p>
                           <p>bolt taxi paris</p>
                           <p>trajet bolt paris</p>
+                        </div>
+                      </>
+                    ) : isUberFrancePage ? (
+                      <>
+                        <div className="space-y-4">
+                          <h2 className="text-xl font-bold text-blue-600">Télécharger Uber app France - Réservez votre course en quelques clics</h2>
+                          
+                          <p className="text-lg leading-relaxed">
+                            <strong>Télécharger Uber</strong> en France et découvrez l'application de transport la plus populaire au monde. 
+                            L'<strong>Uber app</strong> vous permet de réserver une course rapidement et facilement dans toute la France.
+                          </p>
+                          
+                          <div className="bg-blue-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">🚗 Fonctionnalités Uber app France :</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>Uber app</strong> disponible 24h/24 et 7j/7</li>
+                              <li><strong>Télécharger Uber</strong> gratuitement sur Android et iOS</li>
+                              <li><strong>Uber France</strong> - courses dans toutes les grandes villes</li>
+                              <li><strong>Application Uber</strong> avec paiement sécurisé intégré</li>
+                              <li><strong>Uber transport</strong> avec chauffeurs professionnels</li>
+                            </ul>
+                          </div>
+                          
+                          <div className="bg-green-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">⭐ Avantages de télécharger Uber app :</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>Uber course</strong> - réservation instantanée</li>
+                              <li><strong>Uber taxi</strong> - tarifs transparents et sans surprise</li>
+                              <li><strong>Uber chauffeur</strong> - conducteurs vérifiés et notés</li>
+                              <li><strong>Uber voiture</strong> - large choix de véhicules</li>
+                              <li><strong>Uber prix</strong> - estimation avant la course</li>
+                            </ul>
+                          </div>
+                          
+                          <p className="text-lg leading-relaxed">
+                            Avec plus de 5 milliards de téléchargements dans le monde, <strong>Uber app</strong> est la référence du transport urbain. 
+                            <strong>Télécharger Uber</strong> maintenant et profitez de courses fiables partout en France avec l'<strong>application Uber</strong>.
+                          </p>
+                          
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">🇫🇷 Uber France - Villes disponibles :</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>Uber Paris</strong> - service premium dans la capitale</li>
+                              <li><strong>Uber Lyon</strong> - transport rapide et efficace</li>
+                              <li><strong>Uber Marseille</strong> - courses dans toute la métropole</li>
+                              <li><strong>Uber Toulouse</strong> - déplacements urbains simplifiés</li>
+                            </ul>
+                          </div>
+                          
+                          <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
+                            <p className="text-xl font-bold text-blue-700 mb-2">Télécharger Uber app France</p>
+                            <p className="text-gray-600">Réservez votre prochaine course avec l'application Uber !</p>
+                          </div>
+                          
+                          <div className="text-center my-6 p-4 bg-green-50 rounded-lg">
+                            <p className="text-xl font-bold text-green-700 mb-2">Uber France - Transport fiable</p>
+                            <p className="text-gray-600">Télécharger Uber et voyagez en toute sécurité !</p>
+                          </div>
+                        </div>
+                        
+                        {/* SEO optimized hidden content for Uber France */}
+                        <div className="sr-only">
+                          <h4>Uber France Keywords</h4>
+                          <p>télécharger Uber, Uber app, application Uber, Uber France, Uber course, Uber taxi, Uber transport, Uber chauffeur, Uber voiture, Uber prix</p>
+                          <p>Uber Paris, Uber Lyon, Uber Marseille, Uber Toulouse, Uber app France, télécharger Uber France</p>
+                          <img alt="télécharger Uber app" />
+                          <img alt="Uber France transport" />
+                          <img alt="application Uber course" />
+                          <img alt="Uber taxi France" />
                         </div>
                       </>
                     ) : isLyftPage ? (
