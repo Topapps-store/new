@@ -112,6 +112,7 @@ The application supports three deployment scenarios:
 - June 16, 2025: Initial setup
 - June 16, 2025: Implemented automatic language detection for app URLs - system now extracts content in original language from App Store (/fr/, /es/, etc.) and Google Play (&hl=fr) URLs. Fixed 18 French apps that were incorrectly processed in English, now displaying authentic French content for French market targeting.
 - July 14, 2025: Enhanced multilingual translation system - added missing translation keys for ExpertAnswer promotional content across all supported languages (Spanish, English, French, German). Fixed automatic browser language detection for UI elements including downloads, developer, category, advertisement text, and green continue button. System now properly translates all promotional content based on browser language settings.
+- July 14, 2025: Removed Uber Romania app - eliminated all references to uber-romania app including SEO optimization, custom description, download buttons, and special handling in AppDetail.tsx and DownloadButton.tsx components. Cleaned up conditional logic and Romanian-specific content.
 
 ## User Preferences
 
