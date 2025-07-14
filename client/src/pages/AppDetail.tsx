@@ -859,7 +859,7 @@ const AppDetail = () => {
                     ) : isUberFrancePage ? (
                       <>
                         <div className="space-y-4">
-                          <h2 className="text-xl font-bold text-blue-600">Télécharger Uber app France - Réservez votre course en quelques clics</h2>
+                          <h2 className="text-xl font-bold text-[#374151]">Télécharger Uber app France - Réservez votre course en quelques clics</h2>
                           
                           <p className="text-lg leading-relaxed">
                             <strong>Télécharger Uber</strong> en France et découvrez l'application de transport la plus populaire au monde. 
