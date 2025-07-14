@@ -130,9 +130,8 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         
 
       </a>
-      
       {/* Gradient box containing all promotional content */}
-      <div className="rounded-lg p-4" style={{
+      <div className="rounded-lg p-4 pt-[28px] pb-[28px] mt-[9px] mb-[9px]" style={{
         background: 'linear-gradient(to bottom, #fafafa, #f2f2f2)'
       }}>
         {/* Steps below the button - matching the image */}
@@ -157,7 +156,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
             href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer mt-[0px] mb-[0px] pt-[11px] pb-[11px]"
             onClick={handleClick}
             data-event="click:expertAnswerPromo"
             data-app-id={appId}
@@ -175,7 +174,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
             href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer pt-[11px] pb-[11px]"
             onClick={handleClick}
             data-event="click:expertsAccess"
             data-app-id={appId}
@@ -193,7 +192,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
             href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer pt-[11px] pb-[11px]"
             onClick={handleClick}
             data-event="click:verifiedExperts"
             data-app-id={appId}
