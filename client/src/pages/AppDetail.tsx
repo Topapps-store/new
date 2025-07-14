@@ -355,7 +355,7 @@ const AppDetail = () => {
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-4">
           {/* Header section with app logo on the left */}
-          <div className="flex items-start space-x-4 mb-6">
+          <div className="flex items-start space-x-4 mb-8 mt-6">
             <img 
               src={app.iconUrl} 
               alt={isUberPage ? "Uber app download icon" : 
@@ -395,99 +395,110 @@ const AppDetail = () => {
                  app.name}
               </h1>
               
-              <div className="flex items-center mb-3">
+              <div className="flex items-center mb-6">
                 <StarRating rating={app.rating} showScore={true} />
               </div>
+            </div>
+          </div>
+          
+          {/* App Info Cards - moved below and full width justified */}
+          <div className="grid grid-cols-3 gap-4 text-sm mb-8 px-4">
+            <div>
+              <p className="text-gray-600 font-medium mb-1">{translate('ui.downloads', 'Downloads')}</p>
+              <p className="text-gray-500 text-xs">{app.downloads || '100.8M'}</p>
+            </div>
+            
+            <div>
+              <p className="text-gray-600 font-medium mb-1">{translate('ui.developer', 'Developer')}</p>
+              <p className="text-gray-500 text-xs">{app.developer}</p>
+            </div>
+            
+            <div>
+              <p className="text-gray-600 font-medium mb-1">Category</p>
+              <p className="text-gray-500 text-xs">{getCategoryName(app)}</p>
+            </div>
+          </div>
+          
+          {/* Advertisement and download button section */}
+          <div className="px-4">
+            <div className="text-[9px] text-gray-400 mb-6 text-left">
+              {translate('ui.advertisement', 'ADVERTISEMENT')}
+            </div>
+            <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex flex-col justify-center items-center min-h-[50px] mb-8">
+              <button className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs">
+                ×
+              </button>
               
-              {/* App Info Cards - horizontal layout */}
-              <div className="grid grid-cols-3 gap-4 text-sm">
-                <div>
-                  <p className="text-gray-600 font-medium mb-1">{translate('ui.downloads', 'Downloads')}</p>
-                  <p className="text-gray-500 text-xs">{app.downloads || '100.8M'}</p>
+              <div className="mb-6">
+                <DownloadButton 
+                  appId={app?.id || ''} 
+                  customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
+                />
+              </div>
+              
+              {/* Gradient box with promotional content */}
+              <div className="bg-gradient-to-b from-[#fafafa] to-[#f2f2f2] p-4 rounded-lg mt-6">
+                {/* ExpertAnswer live chat text - for all apps */}
+                <div className="flex items-center justify-center mb-3 text-xs text-gray-600">
+                  <div className="flex items-center">
+                    <img 
+                      src="https://cdn.expertanswer.com/logo-small.png" 
+                      alt="ExpertAnswer logo" 
+                      className="w-3 h-3 mr-1"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    <span>{translate('ui.expertAnswer', 'ExpertAnswer: 24/7 chat en directo')}</span>
+                  </div>
                 </div>
                 
-                <div>
-                  <p className="text-gray-600 font-medium mb-1">{translate('ui.developer', 'Developer')}</p>
-                  <p className="text-gray-500 text-xs">{app.developer}</p>
-                </div>
-                
-                <div>
-                  <p className="text-gray-600 font-medium mb-1">Category</p>
-                  <p className="text-gray-500 text-xs">{getCategoryName(app)}</p>
+                {/* Verified Experts row */}
+                <div className="flex items-center justify-center text-xs text-gray-600">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                  <span>Verified Experts only on ExpertAnswer</span>
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Advertisement and download button section */}
-          <div className="mb-6">
-            <div className="text-[9px] text-gray-400 mb-1 text-left">
-              {translate('ui.advertisement', 'ADVERTISEMENT')}
-            </div>
-            <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex flex-col justify-center items-center min-h-[50px]">
-              <button className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs">
-                ×
-              </button>
-              
-              <DownloadButton 
-                appId={app?.id || ''} 
-                customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
-              />
-              
-              {/* ExpertAnswer live chat text - for all apps */}
-              <div className="flex items-center justify-center mt-6 text-xs text-gray-600">
-                <div className="flex items-center">
-                  <img 
-                    src="https://cdn.expertanswer.com/logo-small.png" 
-                    alt="ExpertAnswer logo" 
-                    className="w-3 h-3 mr-1"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                    }}
-                  />
-                  <span>{translate('ui.expertAnswer', 'ExpertAnswer: 24/7 chat en directo')}</span>
+          <div className="px-4">
+            <div className="flex flex-col md:flex-row">
+              <div className="md:w-full">
+                <div className="flex space-x-4 border-b mb-3">
+                  <button
+                    className={`pb-1 text-sm font-medium ${
+                      activeTab === "description"
+                        ? "text-primary border-b-2 border-primary"
+                        : "text-gray-500"
+                    }`}
+                    onClick={() => setActiveTab("description")}
+                  >
+                    {translate('ui.description', 'Description')}
+                  </button>
+                  <button
+                    className={`pb-1 text-sm font-medium ${
+                      activeTab === "screenshots"
+                        ? "text-primary border-b-2 border-primary"
+                        : "text-gray-500"
+                    }`}
+                    onClick={() => setActiveTab("screenshots")}
+                  >
+                    {translate('ui.screenshots', 'Screenshots')}
+                  </button>
+                  <button
+                    className={`pb-1 text-sm font-medium ${
+                      activeTab === "info"
+                        ? "text-primary border-b-2 border-primary"
+                        : "text-gray-500"
+                    }`}
+                    onClick={() => setActiveTab("info")}
+                  >
+                    {translate('ui.information', 'Information')}
+                  </button>
                 </div>
-              </div>
-            </div>
-          </div>
-            
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-full">
-              <div className="flex space-x-4 border-b mb-3">
-                <button
-                  className={`pb-1 text-sm font-medium ${
-                    activeTab === "description"
-                      ? "text-primary border-b-2 border-primary"
-                      : "text-gray-500"
-                  }`}
-                  onClick={() => setActiveTab("description")}
-                >
-                  {translate('ui.description', 'Description')}
-                </button>
-                <button
-                  className={`pb-1 text-sm font-medium ${
-                    activeTab === "screenshots"
-                      ? "text-primary border-b-2 border-primary"
-                      : "text-gray-500"
-                  }`}
-                  onClick={() => setActiveTab("screenshots")}
-                >
-                  {translate('ui.screenshots', 'Screenshots')}
-                </button>
-                <button
-                  className={`pb-1 text-sm font-medium ${
-                    activeTab === "info"
-                      ? "text-primary border-b-2 border-primary"
-                      : "text-gray-500"
-                  }`}
-                  onClick={() => setActiveTab("info")}
-                >
-                  {translate('ui.information', 'Information')}
-                </button>
-
-              </div>
               
-              {activeTab === "description" && (
+                {activeTab === "description" && (
                 <div className="mb-3">
                   <div className="text-gray-700 whitespace-pre-line text-sm">
                     {isUberPage ? (
@@ -1785,6 +1796,7 @@ const AppDetail = () => {
                   </div>
                 </div>
               )}
+              </div>
             </div>
           </div>
         </div>
