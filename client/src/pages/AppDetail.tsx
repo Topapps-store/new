@@ -349,11 +349,8 @@ const AppDetail = () => {
       {/* Special App SEO optimizations */}
       {isUberRomaniaPage && app && <UberAppSEO app={app} />}
       {isBookingComPage && app && <BookingComSEO app={app} />}
-      
-
-
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="p-4">
+        <div className="p-4 bg-[#e8f2fb]">
           {/* Header section with app logo on the left */}
           <div className="flex items-start space-x-4 mb-8 mt-6">
             <img 
