@@ -108,8 +108,8 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         rel="noopener noreferrer"
         className={`group relative block w-full mx-auto text-center text-white font-bold py-5 px-8 rounded-2xl mb-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden ${className}`}
         style={{
-          backgroundColor: '#18a204',
-          boxShadow: '0 4px 16px 0 rgba(24, 162, 4, 0.4)',
+          backgroundColor: '#18a103',
+          boxShadow: '0 4px 16px 0 rgba(24, 161, 3, 0.4)',
           textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
           textDecoration: 'none'
         }}
@@ -117,10 +117,10 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         data-event="click:customDownload"
         data-app-id={appId}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = '#148a03';
+          e.currentTarget.style.backgroundColor = '#148902';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = '#18a204';
+          e.currentTarget.style.backgroundColor = '#18a103';
         }}
       >
         {/* Botón simple solo con texto */}
