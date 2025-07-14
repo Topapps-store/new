@@ -106,12 +106,12 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         href={downloadUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={`group relative block w-full mx-auto text-center text-white font-bold py-5 px-8 rounded-2xl mb-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden ${className}`}
+        className={`group relative block w-3/4 mx-auto text-center text-white py-4 px-6 rounded-2xl mb-4 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${className}`}
         style={{
           backgroundColor: '#18a103',
           boxShadow: '0 4px 16px 0 rgba(24, 161, 3, 0.4)',
-          textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
-          textDecoration: 'none'
+          textDecoration: 'none',
+          fontFamily: 'Georgia, "Times New Roman", serif'
         }}
         onClick={handleClick}
         data-event="click:customDownload"
@@ -125,7 +125,9 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
       >
         {/* Botón simple solo con texto */}
         <span className="relative z-10 flex items-center justify-center">
-          <span className="text-xl font-bold">{getButtonText().toUpperCase()}</span>
+          <span className="text-xl font-semibold text-white" style={{ color: '#ffffff' }}>
+            {getButtonText().charAt(0).toUpperCase() + getButtonText().slice(1).toLowerCase()}
+          </span>
         </span>
         
 
