@@ -42,31 +42,31 @@ const AppDetail = () => {
     // Guardar el título original para restaurarlo al desmontar
     const originalTitle = document.title;
     
-    // SEO optimization for Chargemap page
+    // SEO optimization for Chargemap page - targeting "Chargemap Pass" keyword
     if (appId === 'chargemap-charging-stations') {
-      // Update page title with French keywords
-      document.title = 'Chargemap app | Télécharger & Utiliser le Pass';
+      // Update page title with focus on "Chargemap Pass" keyword
+      document.title = 'Chargemap Pass | Télécharger App & Utiliser le Pass de Recharge';
       
-      // Update meta description with all keywords
+      // Update meta description with primary focus on "Chargemap Pass"
       let metaDescription = document.querySelector('meta[name="description"]');
       if (!metaDescription) {
         metaDescription = document.createElement('meta');
         metaDescription.setAttribute('name', 'description');
         document.head.appendChild(metaDescription);
       }
-      metaDescription.setAttribute('content', 'Téléchargez l\'application Chargemap, utilisez le pass et rechargez facilement votre voiture électrique. Disponible sur iOS et Android.');
+      metaDescription.setAttribute('content', 'Obtenez le Chargemap Pass, localisez les bornes et rechargez votre véhicule avec Chargemap app. Télécharger l\'application Chargemap Pass maintenant.');
       
       // Add lang attribute for French
       document.documentElement.setAttribute('lang', 'fr');
       
-      // Add keywords meta tag
+      // Add keywords meta tag focused on "Chargemap Pass"
       let metaKeywords = document.querySelector('meta[name="keywords"]');
       if (!metaKeywords) {
         metaKeywords = document.createElement('meta');
         metaKeywords.setAttribute('name', 'keywords');
         document.head.appendChild(metaKeywords);
       }
-      metaKeywords.setAttribute('content', 'télécharger Chargemap, application Chargemap, Chargemap app, utiliser Chargemap Pass, bornes de recharge Chargemap');
+      metaKeywords.setAttribute('content', 'Chargemap Pass, utiliser Chargemap Pass, Chargemap pass recharge, application Chargemap Pass, badge Chargemap Pass');
     }
     // SEO optimization for Electra page
     else if (appId === 'electra-charging-hubs') {
@@ -378,7 +378,7 @@ const AppDetail = () => {
                        isLoseWeightPage ? "Lose weight app for women - Get fit at home" :
                        isDeliverooPage ? "telecharger deliveroo app" :
                        isBookingComPage ? "Booking app download - Beach hotel & hotels close to the beach" :
-                       isChargemapPage ? "télécharger Chargemap" :
+                       isChargemapPage ? "Chargemap Pass - télécharger application recharge" :
                        isElectraPage ? "application Electra" :
                        isUberPage ? "download uber rides app" :
                        app.name} 
@@ -396,7 +396,7 @@ const AppDetail = () => {
                    isLoseWeightPage ? "Lose Weight App for Women" :
                    isDeliverooPage ? "Telecharger deliveroo app – livraison repas rapide" :
                    isBookingComPage ? "Booking.com App: Hotels & Travel" :
-                   isChargemapPage ? "Chargemap app – Bornes de recharge" :
+                   isChargemapPage ? "Obtenez le Chargemap Pass, localisez les bornes et rechargez votre véhicule avec Chargemap app" :
                    isElectraPage ? "Electra – Application Recharge Rapide" :
                    isUberPage ? "Download Uber Rides App – Get an Uber Ride Now" :
                    app.name}
@@ -1484,6 +1484,65 @@ const AppDetail = () => {
                           <img alt="Electra app mobile" />
                         </div>
                       </>
+                    ) : isChargemapPage ? (
+                      <>
+                        <div className="space-y-4">
+                          <h2 className="text-xl font-bold text-blue-600">Obtenez le Chargemap Pass, localisez les bornes et rechargez votre véhicule avec Chargemap app</h2>
+                          
+                          <p className="text-lg leading-relaxed">
+                            <strong>Télécharger Chargemap</strong> vous permet d'accéder à plus d'un million de bornes de recharge en Europe. 
+                            L'<strong>application Chargemap</strong> est l'outil indispensable pour tous les conducteurs de véhicules électriques qui souhaitent voyager sereinement.
+                          </p>
+                          
+                          <div className="bg-blue-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">🔋 Fonctionnalités Chargemap app :</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li>Localiser les <strong>bornes de recharge Chargemap</strong> près de vous</li>
+                              <li>Utiliser <strong>Chargemap Pass</strong> pour payer facilement</li>
+                              <li>Planifier vos trajets avec <strong>l'application Chargemap</strong></li>
+                              <li>Accéder aux informations temps réel avec <strong>Chargemap app</strong></li>
+                            </ul>
+                          </div>
+                          
+                          <div className="bg-green-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">⚡ Avantages de télécharger Chargemap :</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>Application Chargemap</strong> gratuite sur iOS et Android</li>
+                              <li><strong>Chargemap app</strong> couvre toute l'Europe</li>
+                              <li><strong>Utiliser Chargemap Pass</strong> - paiement universel</li>
+                              <li>Communauté active sur <strong>l'application Chargemap</strong></li>
+                            </ul>
+                          </div>
+                          
+                          <p className="text-lg leading-relaxed">
+                            Avec plus de 2,5 millions d'utilisateurs, <strong>Chargemap app</strong> est 
+                            la référence pour la recharge de véhicules électriques. <strong>Télécharger Chargemap</strong> aujourd'hui et découvrez comment 
+                            <strong>utiliser Chargemap Pass</strong> pour simplifier vos recharges.
+                          </p>
+                          
+                          <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
+                            <p className="text-xl font-bold text-blue-700 mb-2">Télécharger Chargemap maintenant</p>
+                            <p className="text-gray-600">Rejoignez la plus grande communauté de conducteurs électriques !</p>
+                          </div>
+                          
+                          <div className="text-center my-6 p-4 bg-green-50 rounded-lg">
+                            <p className="text-xl font-bold text-green-700 mb-2">Télécharger Chargemap maintenant</p>
+                            <p className="text-gray-600">Repérez la plus grande communauté de conducteurs électriques en Europe.</p>
+                          </div>
+                        </div>
+                        
+                        {/* SEO optimized hidden content for Chargemap Pass */}
+                        <div className="sr-only">
+                          <h4>Chargemap Pass Keywords</h4>
+                          <p>Chargemap Pass, utiliser Chargemap Pass, Chargemap pass recharge, application Chargemap Pass, badge Chargemap Pass</p>
+                          <p>télécharger Chargemap, application Chargemap, Chargemap app, utiliser Chargemap Pass, bornes de recharge Chargemap</p>
+                          <p>Chargemap Pass badge, Chargemap Pass recharge, Chargemap Pass paiement, Chargemap Pass Europe</p>
+                          <img alt="Chargemap Pass badge" />
+                          <img alt="utiliser Chargemap Pass" />
+                          <img alt="Chargemap Pass recharge" />
+                          <img alt="application Chargemap Pass" />
+                        </div>
+                      </>
                     ) : (
                       app.description
                     )}
@@ -1511,7 +1570,7 @@ const AppDetail = () => {
                          isLoseWeightPage ? "Download lose weight app for women on Google Play" :
                          isDeliverooPage ? "Telecharger deliveroo app sur Google Play - commande repas deliveroo" :
                          isBookingComPage ? "Download Booking App for Android - Beach Hotel Bookings" :
-                         isChargemapPage ? "Télécharger Chargemap app sur Google Play" :
+                         isChargemapPage ? "Télécharger Chargemap Pass app sur Google Play" :
                          isElectraPage ? "Télécharger Electra app sur Google Play" :
                          isUberPage ? "Download Uber Rides App Now" : "Google Play"}
                       </a>
@@ -1632,7 +1691,7 @@ const AppDetail = () => {
                           data-event="click:appStore"
                         >
                           <i className="fab fa-apple text-lg"></i>
-                          Télécharger Chargemap app sur App Store
+                          Télécharger Chargemap Pass app sur App Store
                         </a>
                       )}
                       
