@@ -110,8 +110,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         style={{
           backgroundColor: '#18a103',
           boxShadow: '0 4px 16px 0 rgba(24, 161, 3, 0.4)',
-          textDecoration: 'none',
-          fontFamily: 'Georgia, "Times New Roman", serif'
+          textDecoration: 'none'
         }}
         onClick={handleClick}
         data-event="click:customDownload"
