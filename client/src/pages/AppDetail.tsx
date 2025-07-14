@@ -381,11 +381,11 @@ const AppDetail = () => {
                    isElectraPage ? "application Electra" :
                    isUberPage ? "download uber rides app" :
                    app.name} 
-              className="w-20 h-20 object-contain rounded-xl flex-shrink-0"
+              className="w-16 h-16 object-contain rounded-2xl flex-shrink-0"
             />
             
             <div className="flex-1">
-              <h1 className="text-xl font-bold mb-2">
+              <h1 className="text-lg font-bold mb-2">
                 {isUberPage ? "Uber App - Request a Ride" :
                  isUberRomaniaPage ? "Descarcă aplicația Uber" : 
                  isUberDeutschlandPage ? "Uber App Deutschland - Fahrt anfordern" :
@@ -408,20 +408,20 @@ const AppDetail = () => {
               </div>
               
               {/* App Info Cards - horizontal layout */}
-              <div className="grid grid-cols-3 gap-4 text-center text-sm">
+              <div className="grid grid-cols-3 gap-4 text-sm">
                 <div>
-                  <p className="text-xs text-gray-500 mb-1">{translate('ui.downloads', 'Downloads')}</p>
-                  <p className="font-medium">{app.downloads || '10M+'}</p>
+                  <p className="text-gray-600 font-medium mb-1">{translate('ui.downloads', 'Downloads')}</p>
+                  <p className="text-gray-500 text-xs">{app.downloads || '100.8M'}</p>
                 </div>
                 
                 <div>
-                  <p className="text-xs text-gray-500 mb-1">{translate('ui.developer', 'Developer')}</p>
-                  <p className="font-medium">{app.developer}</p>
+                  <p className="text-gray-600 font-medium mb-1">{translate('ui.developer', 'Developer')}</p>
+                  <p className="text-gray-500 text-xs">{app.developer}</p>
                 </div>
                 
                 <div>
-                  <p className="text-xs text-gray-500 mb-1">Category</p>
-                  <p className="font-medium">{getCategoryName(app)}</p>
+                  <p className="text-gray-600 font-medium mb-1">Category</p>
+                  <p className="text-gray-500 text-xs">{getCategoryName(app)}</p>
                 </div>
               </div>
             </div>
@@ -429,7 +429,7 @@ const AppDetail = () => {
           
           {/* Advertisement and download button section */}
           <div className="mb-6">
-            <div className="text-[10px] text-gray-500 mb-1">
+            <div className="text-[9px] text-gray-400 mb-1 text-center">
               {translate('ui.advertisement', 'ADVERTISEMENT')}
             </div>
             <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex flex-col justify-center items-center min-h-[50px]">
