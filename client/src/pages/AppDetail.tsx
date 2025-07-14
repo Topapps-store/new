@@ -350,15 +350,7 @@ const AppDetail = () => {
       {isUberRomaniaPage && app && <UberAppSEO app={app} />}
       {isBookingComPage && app && <BookingComSEO app={app} />}
       
-      {/* Back button - reduced margin */}
-      <div className="mb-2">
-        <Link href="/">
-          <div className="flex items-center text-gray-600 hover:text-primary cursor-pointer">
-            <i className="fas fa-arrow-left mr-2"></i>
-            <span>{translate('ui.backToApps', 'Back')}</span>
-          </div>
-        </Link>
-      </div>
+
 
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-4">
