@@ -418,7 +418,7 @@ const AppDetail = () => {
           
           {/* Advertisement and download button section */}
           <div className="px-4">
-            <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex flex-col justify-center items-center min-h-[50px] mb-4 bg-[#f9faf9]">
+            <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex flex-col justify-center items-center min-h-[50px] mb-4 bg-[#f9faf9] ml-[-24px] mr-[-24px]">
               <div className="text-[9px] text-gray-400 mb-3 text-left absolute top-1 left-2">
                 {translate('ui.advertisement', 'ADVERTISEMENT')}
               </div>
