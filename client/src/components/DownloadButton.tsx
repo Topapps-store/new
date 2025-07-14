@@ -106,10 +106,10 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         href={downloadUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={`group relative block w-full mx-auto text-center text-white font-bold py-4 px-6 rounded-2xl mb-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden ${className}`}
+        className={`group relative block w-full mx-auto text-center text-white font-bold py-5 px-8 rounded-2xl mb-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden ${className}`}
         style={{
-          backgroundColor: '#22c55e',
-          boxShadow: '0 4px 16px 0 rgba(34, 197, 94, 0.3)',
+          backgroundColor: '#00d084',
+          boxShadow: '0 4px 16px 0 rgba(0, 208, 132, 0.4)',
           textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
           textDecoration: 'none'
         }}
@@ -117,30 +117,18 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         data-event="click:customDownload"
         data-app-id={appId}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = '#16a34a';
+          e.currentTarget.style.backgroundColor = '#00b874';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = '#22c55e';
+          e.currentTarget.style.backgroundColor = '#00d084';
         }}
       >
         {/* Botón simple solo con texto */}
         <span className="relative z-10 flex items-center justify-center">
-          <span className="text-lg font-bold">Continuer</span>
+          <span className="text-xl font-bold">Continuer</span>
         </span>
         
-        {/* Efecto de hover */}
-        <span className="absolute inset-0 h-full w-full scale-0 rounded-xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></span>
-        
-        {/* Animación de reflejo */}
-        <span 
-          className="absolute top-0 left-0 w-1/3 h-full bg-white/20 transform -skew-x-12 opacity-0 group-hover:animate-shimmer"
-          style={{
-            animation: 'shimmer 2s infinite',
-          }}
-        ></span>
-        
-        {/* Efecto de brillo pulsante */}
-        <span className="absolute inset-0 rounded-xl ring-2 ring-white/30 animate-pulse-slow"></span>
+
       </a>
       
       {/* Steps below the button - matching the image */}
