@@ -362,108 +362,105 @@ const AppDetail = () => {
 
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-4">
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/3 mb-4 md:mb-0">
-              <div className="flex flex-col items-center">
-                <img 
-                  src={app.iconUrl} 
-                  alt={isUberPage ? "Uber app download icon" : 
-                       isUberRomaniaPage ? "Buton descărcare aplicația Uber" :
-                       isUberDeutschlandPage ? "Uber App Deutschland herunterladen" :
-                       isLyftPage ? "Lyft App Android iPhone" : 
-                       isElectrifyAmericaPage ? "Electrify America app download" :
-                       isChargePointPage ? "Download ChargePoint app" :
-                       isBPPulsePage ? "Descargar BP Pulse app" :
-                       isEnBWPage ? "EnBW App herunterladen" :
-                       isLoseWeightPage ? "Lose weight app for women - Get fit at home" :
-                       isDeliverooPage ? "telecharger deliveroo app" :
-                       isBookingComPage ? "Booking app download - Beach hotel & hotels close to the beach" :
-                       isChargemapPage ? "Chargemap Pass - télécharger application recharge" :
-                       isElectraPage ? "application Electra" :
-                       isUberPage ? "download uber rides app" :
-                       app.name} 
-                  className="w-24 h-24 object-contain mb-2 rounded-xl"
-                />
-                <h1 className="text-xl font-bold text-center">
-                  {isUberPage ? "Uber App - Request a Ride" :
-                   isUberRomaniaPage ? "Descarcă aplicația Uber" : 
-                   isUberDeutschlandPage ? "Uber App Deutschland - Fahrt anfordern" :
-                   isLyftPage ? "Lyft" : 
-                   isBoltFrancePage ? "Bolt App : Télécharger Bolt pour Commander Course Taxi" :
-                   isElectrifyAmericaPage ? "Electrify America" :
-                   isChargePointPage ? "ChargePoint" :
-                   isBPPulsePage ? "BP Pulse" :
-                   isLoseWeightPage ? "Lose Weight App for Women" :
-                   isDeliverooPage ? "Telecharger deliveroo app – livraison repas rapide" :
-                   isBookingComPage ? "Booking.com App: Hotels & Travel" :
-                   isChargemapPage ? "Chargemap app – Bornes de recharge" :
-                   isElectraPage ? "Electra – Application Recharge Rapide" :
-                   isUberPage ? "Download Uber Rides App – Get an Uber Ride Now" :
-                   app.name}
-                </h1>
-                
-                <div className="flex items-center mt-1 mb-3">
-                  <StarRating rating={app.rating} showScore={true} />
+          {/* Header section with app logo on the left */}
+          <div className="flex items-start space-x-4 mb-6">
+            <img 
+              src={app.iconUrl} 
+              alt={isUberPage ? "Uber app download icon" : 
+                   isUberRomaniaPage ? "Buton descărcare aplicația Uber" :
+                   isUberDeutschlandPage ? "Uber App Deutschland herunterladen" :
+                   isLyftPage ? "Lyft App Android iPhone" : 
+                   isElectrifyAmericaPage ? "Electrify America app download" :
+                   isChargePointPage ? "Download ChargePoint app" :
+                   isBPPulsePage ? "Descargar BP Pulse app" :
+                   isEnBWPage ? "EnBW App herunterladen" :
+                   isLoseWeightPage ? "Lose weight app for women - Get fit at home" :
+                   isDeliverooPage ? "telecharger deliveroo app" :
+                   isBookingComPage ? "Booking app download - Beach hotel & hotels close to the beach" :
+                   isChargemapPage ? "Chargemap Pass - télécharger application recharge" :
+                   isElectraPage ? "application Electra" :
+                   isUberPage ? "download uber rides app" :
+                   app.name} 
+              className="w-20 h-20 object-contain rounded-xl flex-shrink-0"
+            />
+            
+            <div className="flex-1">
+              <h1 className="text-xl font-bold mb-2">
+                {isUberPage ? "Uber App - Request a Ride" :
+                 isUberRomaniaPage ? "Descarcă aplicația Uber" : 
+                 isUberDeutschlandPage ? "Uber App Deutschland - Fahrt anfordern" :
+                 isLyftPage ? "Lyft" : 
+                 isBoltFrancePage ? "Bolt App : Télécharger Bolt pour Commander Course Taxi" :
+                 isElectrifyAmericaPage ? "Electrify America" :
+                 isChargePointPage ? "ChargePoint" :
+                 isBPPulsePage ? "BP Pulse" :
+                 isLoseWeightPage ? "Lose Weight App for Women" :
+                 isDeliverooPage ? "Telecharger deliveroo app – livraison repas rapide" :
+                 isBookingComPage ? "Booking.com App: Hotels & Travel" :
+                 isChargemapPage ? "Chargemap app – Bornes de recharge" :
+                 isElectraPage ? "Electra – Application Recharge Rapide" :
+                 isUberPage ? "Download Uber Rides App – Get an Uber Ride Now" :
+                 app.name}
+              </h1>
+              
+              <div className="flex items-center mb-3">
+                <StarRating rating={app.rating} showScore={true} />
+              </div>
+              
+              {/* App Info Cards - horizontal layout */}
+              <div className="grid grid-cols-3 gap-4 text-center text-sm">
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">{translate('ui.downloads', 'Downloads')}</p>
+                  <p className="font-medium">{app.downloads || '10M+'}</p>
                 </div>
                 
-                {/* App Info Cards - two columns side by side - moved between rating and download button */}
-                <div className="w-full grid grid-cols-2 gap-3 mb-3">
-                  <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
-                    <i className="fas fa-download text-green-500 w-6 text-lg"></i>
-                    <div>
-                      <p className="text-xs text-gray-500">{translate('ui.downloads', 'Downloads')}</p>
-                      <p className="font-medium text-sm">{app.downloads || '10M+'}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center border border-gray-200 rounded-lg p-2.5 bg-gray-50">
-                    <i className="fas fa-code-branch text-blue-500 w-6 text-lg"></i>
-                    <div>
-                      <p className="text-xs text-gray-500">{translate('ui.developer', 'Developer')}</p>
-                      <p className="font-medium text-sm">{app.developer}</p>
-                    </div>
-                  </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">{translate('ui.developer', 'Developer')}</p>
+                  <p className="font-medium">{app.developer}</p>
                 </div>
                 
-                {/* Advertisement buttons with affiliate links - moved below info cards */}
-                <div className="w-full mb-2">
-                  <div className="text-[10px] text-gray-500 mb-1">
-                    {translate('ui.advertisement', 'ADVERTISEMENT')}
-                  </div>
-                  <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex flex-col justify-center items-center min-h-[50px]">
-                    <button className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs">
-                      ×
-                    </button>
-                    
-                    {/* Solo mostramos el botón de descarga verde */}
-                    <DownloadButton 
-                      appId={app?.id || ''} 
-                      customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
-                    />
-                    
-                    {/* ExpertAnswer live chat text - for all apps */}
-                    <div className="flex items-center justify-center mt-6 text-xs text-gray-600">
-                      <div className="flex items-center">
-                        <img 
-                          src="https://cdn.expertanswer.com/logo-small.png" 
-                          alt="ExpertAnswer logo" 
-                          className="w-3 h-3 mr-1"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                        <span>{translate('ui.expertAnswer', 'ExpertAnswer: 24/7 chat en directo')}</span>
-                      </div>
-                    </div>
-                  </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Category</p>
+                  <p className="font-medium">{getCategoryName(app)}</p>
                 </div>
-                
-
-
               </div>
             </div>
+          </div>
+          
+          {/* Advertisement and download button section */}
+          <div className="mb-6">
+            <div className="text-[10px] text-gray-500 mb-1">
+              {translate('ui.advertisement', 'ADVERTISEMENT')}
+            </div>
+            <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex flex-col justify-center items-center min-h-[50px]">
+              <button className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs">
+                ×
+              </button>
+              
+              <DownloadButton 
+                appId={app?.id || ''} 
+                customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
+              />
+              
+              {/* ExpertAnswer live chat text - for all apps */}
+              <div className="flex items-center justify-center mt-6 text-xs text-gray-600">
+                <div className="flex items-center">
+                  <img 
+                    src="https://cdn.expertanswer.com/logo-small.png" 
+                    alt="ExpertAnswer logo" 
+                    className="w-3 h-3 mr-1"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                  <span>{translate('ui.expertAnswer', 'ExpertAnswer: 24/7 chat en directo')}</span>
+                </div>
+              </div>
+            </div>
+          </div>
             
-            <div className="md:w-2/3 md:pl-4">
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-full">
               <div className="flex space-x-4 border-b mb-3">
                 <button
                   className={`pb-1 text-sm font-medium ${
