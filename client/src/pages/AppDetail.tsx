@@ -904,7 +904,7 @@ const AppDetail = () => {
                           </div>
                           
                           <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
-                            <p className="text-xl font-bold text-blue-700 mb-2">Télécharger Uber app France</p>
+                            <p className="text-xl font-bold text-blue-700 mb-2">Télécharger Uber App France - Uber Course Tax</p>
                             <p className="text-gray-600">Réservez votre prochaine course avec l'application Uber !</p>
                           </div>
                           
