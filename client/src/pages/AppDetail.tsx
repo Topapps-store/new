@@ -1631,6 +1631,11 @@ const AppDetail = () => {
                     />
                   </div>
                   
+                  {/* Advertisement label */}
+                  <div className="text-center text-gray-400 text-xs mb-2">
+                    {translate('ui.advertisement', 'ADVERTISEMENT')}
+                  </div>
+                  
                   {/* Elegant Google Play Button */}
                   <div className="mt-6 mb-6">
                     <a 
