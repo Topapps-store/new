@@ -131,41 +131,56 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
 
       </a>
       
-      {/* Steps below the button - matching the image */}
-      <div className="flex justify-center items-center space-x-6 text-xs text-gray-500 mb-4">
-        <div className="flex items-center">
-          <div className="w-2 h-2 bg-gray-400 rounded-full mr-2"></div>
-          <span>Create Account</span>
-        </div>
-        <div className="flex items-center">
-          <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-          <span>Start Trial</span>
-        </div>
-        <div className="flex items-center">
-          <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-          <span>Get Answers</span>
-        </div>
-      </div>
-      
-      {/* Additional promotional text sections */}
-      <div className="space-y-2 text-xs text-gray-500">
-        <div className="flex items-center p-2 bg-gray-50 rounded-lg">
-          <div className="w-1 h-4 bg-blue-500 rounded-full mr-3"></div>
-          <span>Join ExpertAnswer.com Today</span>
-          <div className="ml-auto">
-            <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+      {/* Gradient box containing all promotional content */}
+      <div className="rounded-lg p-4" style={{
+        background: 'linear-gradient(to bottom, #fafafa, #f2f2f2)'
+      }}>
+        {/* Steps below the button - matching the image */}
+        <div className="flex justify-center items-center space-x-6 text-xs text-gray-500 mb-4">
+          <div className="flex items-center">
+            <div className="w-2 h-2 bg-gray-400 rounded-full mr-2"></div>
+            <span>Create Account</span>
+          </div>
+          <div className="flex items-center">
+            <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+            <span>Start Trial</span>
+          </div>
+          <div className="flex items-center">
+            <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+            <span>Get Answers</span>
           </div>
         </div>
         
-        <div className="flex items-center p-2 bg-gray-50 rounded-lg">
-          <div className="w-1 h-4 bg-yellow-500 rounded-full mr-3"></div>
-          <span>Access to 12,000+ Experts in seconds</span>
-          <div className="ml-auto">
-            <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+        {/* Additional promotional text sections */}
+        <div className="space-y-2 text-xs text-gray-500">
+          <div className="flex items-center p-2 bg-gray-50 rounded-lg">
+            <div className="w-1 h-4 bg-blue-500 rounded-full mr-3"></div>
+            <span>Join ExpertAnswer.com Today</span>
+            <div className="ml-auto">
+              <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+          
+          <div className="flex items-center p-2 bg-gray-50 rounded-lg">
+            <div className="w-1 h-4 bg-yellow-500 rounded-full mr-3"></div>
+            <span>Access to 12,000+ Experts in seconds</span>
+            <div className="ml-auto">
+              <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+          
+          <div className="flex items-center p-2 bg-gray-50 rounded-lg">
+            <div className="w-1 h-4 bg-green-500 rounded-full mr-3"></div>
+            <span>Verified Experts only on <strong>ExpertAnswer</strong></span>
+            <div className="ml-auto">
+              <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
