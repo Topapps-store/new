@@ -418,15 +418,16 @@ const AppDetail = () => {
           
           {/* Advertisement and download button section */}
           <div className="px-4">
-            <div className="text-[9px] text-gray-400 mb-3 text-left">
-              {translate('ui.advertisement', 'ADVERTISEMENT')}
-            </div>
             <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex flex-col justify-center items-center min-h-[50px] mb-4 bg-[#f9faf9]">
+              <div className="text-[9px] text-gray-400 mb-3 text-left absolute top-1 left-2">
+                {translate('ui.advertisement', 'ADVERTISEMENT')}
+              </div>
+              
               <button className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xs">
                 ×
               </button>
               
-              <div className="mb-6">
+              <div className="mb-6 mt-4">
                 <DownloadButton 
                   appId={app?.id || ''} 
                   customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
