@@ -396,7 +396,7 @@ const AppDetail = () => {
                    isLoseWeightPage ? "Lose Weight App for Women" :
                    isDeliverooPage ? "Telecharger deliveroo app – livraison repas rapide" :
                    isBookingComPage ? "Booking.com App: Hotels & Travel" :
-                   isChargemapPage ? "Obtenez le Chargemap Pass, localisez les bornes et rechargez votre véhicule avec Chargemap app" :
+                   isChargemapPage ? "Chargemap app – Bornes de recharge" :
                    isElectraPage ? "Electra – Application Recharge Rapide" :
                    isUberPage ? "Download Uber Rides App – Get an Uber Ride Now" :
                    app.name}
