@@ -1524,6 +1524,60 @@ const AppDetail = () => {
                     )}
                   </div>
                   
+                  {/* Additional Download Button at the end of description */}
+                  <div className="mt-6 mb-6">
+                    <DownloadButton 
+                      appId={app?.id || ''} 
+                      customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
+                    />
+                  </div>
+                  
+                  {/* Elegant Google Play Button */}
+                  <div className="mt-6 mb-6">
+                    <a 
+                      href={isUberRomaniaPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=ro&gl=ro" : 
+                            isUberDeutschlandPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=de&gl=de" : 
+                            isBoltFrancePage ? "https://play.google.com/store/apps/details?id=ee.mtakso.client&hl=fr&gl=fr" :
+                            isLyftPage ? "https://play.google.com/store/apps/details?id=me.lyft.android&hl=en&gl=us" :
+                            app.googlePlayUrl || app.downloadUrl}
+                      className="group relative block w-full mx-auto text-center text-white font-bold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden"
+                      style={{
+                        backgroundColor: '#0F9D58',
+                        boxShadow: '0 4px 16px 0 rgba(15, 157, 88, 0.4)',
+                        textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
+                        textDecoration: 'none'
+                      }}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-app-id={app.id}
+                      data-event="click:googlePlayElegant"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#0E8A4F';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#0F9D58';
+                      }}
+                    >
+                      <div className="flex items-center justify-center space-x-3">
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.807 1.626L15.833 12l1.865-1.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/>
+                        </svg>
+                        <span className="text-lg font-bold">
+                          {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : 
+                           isUberRomaniaPage ? "Descarcă pe Google Play" :
+                           isUberDeutschlandPage ? "Uber App Deutschland auf Google Play herunterladen" :
+                           isBoltFrancePage ? "Télécharger Bolt App sur Google Play" :
+                           isLoseWeightPage ? "Download lose weight app for women on Google Play" :
+                           isDeliverooPage ? "Telecharger deliveroo app sur Google Play - commande repas deliveroo" :
+                           isBookingComPage ? "Download Booking App for Android - Beach Hotel Bookings" :
+                           isChargemapPage ? "Télécharger Chargemap Pass app sur Google Play" :
+                           isElectraPage ? "Télécharger Electra app sur Google Play" :
+                           isUberPage ? "Download Uber Rides App Now" : "GET IT ON Google Play"}
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                  
                   {/* App Store links - Hidden for BP Pulse and HBO Max as they have integrated download buttons */}
                   {!isBPPulsePage && !isHBOMaxPage && (
                     <div className="mt-4 flex flex-col space-y-3">
