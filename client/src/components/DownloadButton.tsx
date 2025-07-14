@@ -20,6 +20,10 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
 
   // Obtener el texto del botón usando el sistema de traducción
   const getButtonText = () => {
+    // Romanian text for uber-romania page
+    if (appId === 'uber-romania') {
+      return 'Continuă';
+    }
     // Custom text for lose weight app for women
     if (appId === 'lose-weight-app-for-women') {
       return 'Continue';

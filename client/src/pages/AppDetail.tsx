@@ -120,7 +120,33 @@ const AppDetail = () => {
       }
       metaKeywords.setAttribute('content', 'download uber rides app, uber ride app, need uber ride now, get an uber, uber ride sharing app, uber app download, uber app download for android, uber app download free for android');
     }
-
+    // SEO optimization for Romanian Uber page
+    else if (appId === 'uber-romania') {
+      // Update page title with Romanian keywords
+      document.title = 'Descarcă Uber App | Comandă Uber Taxi Rapid în România';
+      
+      // Update meta description with all keywords
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.setAttribute('name', 'description');
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.setAttribute('content', 'Descarcă Uber app, comandă Uber taxi rapid și sigur în România. Transport urban sigur cu aplicația Uber pentru călătorii rapide în România.');
+      
+      // Add lang attribute for Romanian
+      document.documentElement.setAttribute('lang', 'ro');
+      
+      // Add keywords meta tag
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.setAttribute('content', 'Uber, Uber taxi, Uber app, transport urban, aplicație taxi, ride sharing, călătorii rapide, România');
+      
+    }
     
     // Get or create meta description element
     let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
@@ -303,6 +329,7 @@ const AppDetail = () => {
 
   // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse, EnBW mobility+, HBO Max, Lose Weight App o Deliveroo
   const isUberPage = appId === 'uber-request-a-ride';
+  const isUberRomaniaPage = appId === 'uber-romania';
   const isUberDeutschlandPage = appId === 'uber-deutschland';
   const isLyftPage = appId === 'lyft';
   const isBoltFrancePage = appId === 'bolt-france';
@@ -502,6 +529,79 @@ const AppDetail = () => {
                           <p>uber app download for android</p>
                           <p>uber app download free for android</p>
                           <p>Fast, Safe, and Easy Rides</p>
+                        </div>
+                      </>
+                    ) : isUberRomaniaPage ? (
+                      <>
+                        <h2 className="text-xl font-bold mb-4">Uber taxi rapid și sigur în România</h2>
+                        
+                        <p className="mb-3">Descarcă aplicația Uber și comandă un Uber taxi rapid și sigur în România. Uber app îți oferă acces instant la transport urban de calitate cu șoferi verificați.</p>
+                        
+                        <p className="mb-3">Cu aplicația Uber, poți comanda un Uber taxi în câteva secunde și urmări călătoria în timp real. Uber app este disponibilă pentru Android și iPhone, oferind servicii de transport sigur în toate orașele mari din România.</p>
+                        
+                        <p className="mb-3">Uber taxi în România înseamnă călătorii rapide, sigure și convenabile. Aplicația Uber îți permite să plătești direct din telefon și să evaluezi experiența cu fiecare Uber taxi.</p>
+                        
+                        <p className="mb-3">Descarcă Uber app acum și bucură-te de serviciul de Uber taxi care conectează milioane de utilizatori cu șoferi profesioniști. Transport urban nu a fost niciodată mai simplu cu aplicația Uber.</p>
+                        
+                        <h4 className="font-semibold mb-2">De ce să alegi Uber app în România?</h4>
+                        <ul className="list-disc pl-5 mt-2 mb-3">
+                          <li>Descarcă aplicația Uber pentru acces instant la transport</li>
+                          <li>Uber taxi cu urmărire în timp real</li>
+                          <li>Uber app compatibilă cu Android și iOS</li>
+                          <li>Plată simplă și sigură prin aplicația Uber</li>
+                          <li>Estimări de preț înainte de comandă</li>
+                          <li>Șoferi verificați pentru călătorii sigure</li>
+                        </ul>
+                        
+                        <p className="mb-3">Alătură-te milioanelor de utilizatori care au ales aplicația Uber pentru transport urban în România. Comandă primul tău Uber taxi și experimentează diferența!</p>
+                        
+                        {/* Call to Action */}
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-blue-600 mb-2">Descarcă Uber app acum</p>
+                        </div>
+                        
+                        {/* Botones de descarga para Uber Romania */}
+                        <div className="flex flex-col gap-3 mt-4">
+                          <a 
+                            href="https://play.google.com/store/apps/details?id=com.ubercab&hl=ro"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.807 1.626L15.833 12l1.865-1.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/>
+                            </svg>
+                            Descarcă Uber app - Google Play
+                          </a>
+                          
+                          <a 
+                            href="https://apps.apple.com/ro/app/uber-comand%C4%83-o-ma%C8%99in%C4%83/id368677368?l=ro"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Descarcă Uber app - App Store
+                          </a>
+                        </div>
+                        
+                        {/* Second Call to Action */}
+                        <div className="text-center my-6">
+                          <p className="text-lg font-semibold text-green-600">Comandă primul tău Uber taxi</p>
+                        </div>
+                        
+                        {/* Keywords pentru SEO în română */}
+                        <div className="sr-only">
+                          <p>Uber</p>
+                          <p>Uber taxi</p>
+                          <p>Uber app</p>
+                          <p>aplicația Uber</p>
+                          <p>descarcă Uber app</p>
+                          <p>transport urban România</p>
+                          <p>călătorii rapide</p>
+                          <p>taxi sigur România</p>
                         </div>
                       </>
                     ) : isUberDeutschlandPage ? (
@@ -1435,7 +1535,8 @@ const AppDetail = () => {
                   {/* Elegant Google Play Button */}
                   <div className="mt-6 mb-6">
                     <a 
-                      href={isUberDeutschlandPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=de&gl=de" : 
+                      href={isUberRomaniaPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=ro&gl=ro" : 
+                            isUberDeutschlandPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=de&gl=de" : 
                             isBoltFrancePage ? "https://play.google.com/store/apps/details?id=ee.mtakso.client&hl=fr&gl=fr" :
                             isLyftPage ? "https://play.google.com/store/apps/details?id=me.lyft.android&hl=en&gl=us" :
                             app.googlePlayUrl || app.downloadUrl}
@@ -1463,6 +1564,7 @@ const AppDetail = () => {
                         </svg>
                         <span className="text-lg font-bold">
                           {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : 
+                           isUberRomaniaPage ? "Descarcă pe Google Play" :
                            isUberDeutschlandPage ? "Uber App Deutschland auf Google Play herunterladen" :
                            isBoltFrancePage ? "Télécharger Bolt App sur Google Play" :
                            isLoseWeightPage ? "Download lose weight app for women on Google Play" :
@@ -1481,7 +1583,8 @@ const AppDetail = () => {
                     <div className="mt-4 flex flex-col space-y-3">
                       {/* Google Play download link */}
                       <a 
-                        href={isUberDeutschlandPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=de&gl=de" : 
+                        href={isUberRomaniaPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=ro&gl=ro" : 
+                              isUberDeutschlandPage ? "https://play.google.com/store/apps/details?id=com.ubercab&hl=de&gl=de" : 
                               app.googlePlayUrl || app.downloadUrl}
                         className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                         onClick={(e) => handleGooglePlayClick(e)}
@@ -1492,6 +1595,7 @@ const AppDetail = () => {
                       >
                         <PlayCircle size={20} />
                         {isUberPage || isLyftPage || isElectrifyAmericaPage || isChargePointPage ? "Download for Android on Google Play" : 
+                         isUberRomaniaPage ? "Descarcă pe Google Play" :
                          isUberDeutschlandPage ? "Uber App Deutschland auf Google Play herunterladen" :
                          isLoseWeightPage ? "Download lose weight app for women on Google Play" :
                          isDeliverooPage ? "Telecharger deliveroo app sur Google Play - commande repas deliveroo" :
@@ -1546,7 +1650,20 @@ const AppDetail = () => {
                         </a>
                       )}
                       
-
+                      {/* iOS App Store link for Romanian Uber */}
+                      {isUberRomaniaPage && (
+                        <a 
+                          href="https://apps.apple.com/ro/app/uber-request-a-ride/id368677368"
+                          className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-app-id={app.id}
+                          data-event="click:appStore"
+                        >
+                          <i className="fab fa-apple text-lg"></i>
+                          Descarcă pe App Store
+                        </a>
+                      )}
                       
                       {/* iOS App Store link for ChargePoint */}
                       {isChargePointPage && (
