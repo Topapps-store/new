@@ -17,7 +17,7 @@ import Disclaimer from "./pages/Disclaimer";
 import Contact from "./pages/Contact";
 import TestPage from "./pages/TestPage";
 import HardcodedTerms from "./pages/HardcodedTerms";
-import Search from "./pages/Search";
+
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import GoogleAdsManager from "./pages/GoogleAdsManager";
@@ -57,7 +57,7 @@ function Router() {
               <Route path="/de/apps/add" component={AddApp} />
               <Route path="/de/apps/:appId" component={AppDetail} />
               <Route path="/de/categories/:categoryId" component={Category} />
-              <Route path="/de/search" component={Search} />
+
               <Route path="/de/terms-of-service" component={HardcodedTerms} />
               <Route path="/de/privacy-policy" component={PrivacyPolicy} />
               <Route path="/de/disclaimer" component={Disclaimer} />
@@ -69,7 +69,7 @@ function Router() {
               <Route path="/es/apps/add" component={AddApp} />
               <Route path="/es/apps/:appId" component={AppDetail} />
               <Route path="/es/categories/:categoryId" component={Category} />
-              <Route path="/es/search" component={Search} />
+
               <Route path="/es/terms-of-service" component={HardcodedTerms} />
               <Route path="/es/privacy-policy" component={PrivacyPolicy} />
               <Route path="/es/disclaimer" component={Disclaimer} />
@@ -81,7 +81,7 @@ function Router() {
               <Route path="/fr/apps/add" component={AddApp} />
               <Route path="/fr/apps/:appId" component={AppDetail} />
               <Route path="/fr/categories/:categoryId" component={Category} />
-              <Route path="/fr/search" component={Search} />
+
               <Route path="/fr/terms-of-service" component={HardcodedTerms} />
               <Route path="/fr/privacy-policy" component={PrivacyPolicy} />
               <Route path="/fr/disclaimer" component={Disclaimer} />
@@ -93,7 +93,7 @@ function Router() {
               <Route path="/apps/add" component={AddApp} />
               <Route path="/apps/:appId" component={AppDetail} />
               <Route path="/categories/:categoryId" component={Category} />
-              <Route path="/search" component={Search} />
+
               <Route path="/terms-of-service" component={HardcodedTerms} />
               <Route path="/privacy-policy" component={PrivacyPolicy} />
               <Route path="/disclaimer" component={Disclaimer} />

@@ -101,39 +101,84 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
   const downloadUrl = buildDownloadUrl();
 
   return (
-    <a 
-      href={downloadUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`group relative block w-4/5 mx-auto text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full mb-4 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 overflow-hidden scale-125 ${className}`}
-      style={{
-        boxShadow: '0 4px 16px 0 rgba(34, 197, 94, 0.6)',
-        textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
-        textDecoration: 'none'
-      }}
-      onClick={handleClick}
-      data-event="click:customDownload"
-      data-app-id={appId}
-    >
-      {/* Botón simple solo con texto */}
-      <span className="relative z-10 flex items-center justify-center">
-        <span className="text-lg font-medium">{getButtonText()}</span>
-      </span>
-      
-      {/* Efecto de hover */}
-      <span className="absolute inset-0 h-full w-full scale-0 rounded-lg transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></span>
-      
-      {/* Animación de reflejo */}
-      <span 
-        className="absolute top-0 left-0 w-1/3 h-full bg-white/20 transform -skew-x-12 opacity-0 group-hover:animate-shimmer"
+    <div className="w-full">
+      <a 
+        href={downloadUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`group relative block w-full mx-auto text-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl mb-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden ${className}`}
         style={{
-          animation: 'shimmer 2s infinite',
+          boxShadow: '0 4px 16px 0 rgba(34, 197, 94, 0.6)',
+          textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
+          textDecoration: 'none'
         }}
-      ></span>
+        onClick={handleClick}
+        data-event="click:customDownload"
+        data-app-id={appId}
+      >
+        {/* Botón simple solo con texto */}
+        <span className="relative z-10 flex items-center justify-center">
+          <span className="text-lg font-bold">Start Now</span>
+        </span>
+        
+        {/* Efecto de hover */}
+        <span className="absolute inset-0 h-full w-full scale-0 rounded-xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></span>
+        
+        {/* Animación de reflejo */}
+        <span 
+          className="absolute top-0 left-0 w-1/3 h-full bg-white/20 transform -skew-x-12 opacity-0 group-hover:animate-shimmer"
+          style={{
+            animation: 'shimmer 2s infinite',
+          }}
+        ></span>
+        
+        {/* Efecto de brillo pulsante */}
+        <span className="absolute inset-0 rounded-xl ring-2 ring-white/30 animate-pulse-slow"></span>
+      </a>
       
-      {/* Efecto de brillo pulsante */}
-      <span className="absolute inset-0 rounded-lg ring-2 ring-white/30 animate-pulse-slow"></span>
-    </a>
+      {/* Steps below the button - matching the image */}
+      <div className="flex justify-center items-center space-x-4 text-sm text-gray-600 mb-4">
+        <div className="flex items-center">
+          <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+          <span>Create Account</span>
+        </div>
+        <div className="flex items-center">
+          <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+          <span>Start Trial</span>
+        </div>
+        <div className="flex items-center">
+          <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+          <span>Get Answers</span>
+        </div>
+      </div>
+      
+      {/* Additional promotional text sections */}
+      <div className="space-y-2 text-sm text-gray-600">
+        <div className="flex items-center p-2 bg-gray-50 rounded-lg">
+          <div className="w-1 h-4 bg-blue-500 rounded-full mr-3"></div>
+          <span>Join ExpertAnswer.com Today</span>
+          <div className="ml-auto">
+            <i className="fas fa-chevron-right text-gray-400"></i>
+          </div>
+        </div>
+        
+        <div className="flex items-center p-2 bg-gray-50 rounded-lg">
+          <div className="w-1 h-4 bg-yellow-500 rounded-full mr-3"></div>
+          <span>Access to 12,000+ Experts in seconds</span>
+          <div className="ml-auto">
+            <i className="fas fa-chevron-right text-gray-400"></i>
+          </div>
+        </div>
+        
+        <div className="flex items-center p-2 bg-gray-50 rounded-lg">
+          <div className="w-1 h-4 bg-green-500 rounded-full mr-3"></div>
+          <span>Verified Experts only on <strong>ExpertAnswer</strong></span>
+          <div className="ml-auto">
+            <i className="fas fa-chevron-right text-gray-400"></i>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
 import Logo from "./Logo";
-import SearchBar from "./SearchBar";
 import { useLanguage } from "../context/StaticLanguageContext";
 import TranslatedText from "./TranslatedText";
 import TranslatedParagraph from "./TranslatedParagraph";
@@ -20,15 +19,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Logo />
 
-          <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
-            <SearchBar />
-          </div>
-
-
-        </div>
-
-        <div className="md:hidden px-4 pb-3">
-          <SearchBar />
         </div>
       </header>
 
