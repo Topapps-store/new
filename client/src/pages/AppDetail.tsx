@@ -1623,17 +1623,17 @@ const AppDetail = () => {
                     )}
                   </div>
                   
+                  {/* Advertisement label */}
+                  <div className="text-center text-gray-400 text-xs mb-2">
+                    {translate('ui.advertisement', 'ADVERTISEMENT')}
+                  </div>
+                  
                   {/* Additional Download Button at the end of description */}
                   <div className="mt-6 mb-6">
                     <DownloadButton 
                       appId={app?.id || ''} 
                       customUrl={app?.downloadUrl || 'https://topapps.store/download'} 
                     />
-                  </div>
-                  
-                  {/* Advertisement label */}
-                  <div className="text-center text-gray-400 text-xs mb-2">
-                    {translate('ui.advertisement', 'ADVERTISEMENT')}
                   </div>
                   
                   {/* Elegant Google Play Button */}
