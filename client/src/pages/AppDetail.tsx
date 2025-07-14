@@ -436,29 +436,7 @@ const AppDetail = () => {
                 />
               </div>
               
-              {/* Gradient box with promotional content */}
-              <div className="bg-gradient-to-b from-[#fafafa] to-[#f2f2f2] p-4 rounded-lg mt-6">
-                {/* ExpertAnswer live chat text - for all apps */}
-                <div className="flex items-center justify-center mb-3 text-xs text-gray-600">
-                  <div className="flex items-center">
-                    <img 
-                      src="https://cdn.expertanswer.com/logo-small.png" 
-                      alt="ExpertAnswer logo" 
-                      className="w-3 h-3 mr-1"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
-                    <span>{translate('ui.expertAnswer', 'ExpertAnswer: 24/7 chat en directo')}</span>
-                  </div>
-                </div>
-                
-                {/* Verified Experts row */}
-                <div className="flex items-center justify-center text-xs text-gray-600">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                  <span>{translate('ui.verifiedExpertsOnly', 'Verified Experts only on ExpertAnswer')}</span>
-                </div>
-              </div>
+              
             </div>
           </div>
           
