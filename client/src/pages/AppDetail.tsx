@@ -456,7 +456,7 @@ const AppDetail = () => {
                 {/* Verified Experts row */}
                 <div className="flex items-center justify-center text-xs text-gray-600">
                   <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                  <span>Verified Experts only on ExpertAnswer</span>
+                  <span>{translate('ui.verifiedExpertsOnly', 'Verified Experts only on ExpertAnswer')}</span>
                 </div>
               </div>
             </div>

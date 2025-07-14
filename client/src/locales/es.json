@@ -30,7 +30,9 @@
     "topApps": "Aplicaciones destacadas",
     "newApps": "Nuevas aplicaciones",
     "popularApps": "Aplicaciones populares",
-    "advertisement": "ANUNCIO"
+    "advertisement": "ANUNCIO",
+    "expertAnswer": "ExpertAnswer: Chat en directo 24/7",
+    "verifiedExpertsOnly": "Solo expertos verificados en ExpertAnswer"
   },
   "categories": {
     "productivity": "Productividad",

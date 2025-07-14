@@ -63,7 +63,9 @@
     "majorUpdate": "Major Update",
     "latest": "Latest",
     "noReleaseNotes": "No Release Notes Available for This Version",
-    "loadMore": "Load More"
+    "loadMore": "Load More",
+    "expertAnswer": "ExpertAnswer: 24/7 live chat",
+    "verifiedExpertsOnly": "Verified Experts only on ExpertAnswer"
   },
   "category": {
     "appsInCategory": "Apps in {category}"

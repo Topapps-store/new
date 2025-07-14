@@ -57,7 +57,9 @@
     "majorUpdate": "Mise à Jour Majeure",
     "latest": "Plus Récente",
     "noReleaseNotes": "Aucune Note de Version Disponible pour Cette Version",
-    "loadMore": "Charger Plus"
+    "loadMore": "Charger Plus",
+    "expertAnswer": "ExpertAnswer: Chat en direct 24/7",
+    "verifiedExpertsOnly": "Experts vérifiés uniquement sur ExpertAnswer"
   },
   "category": {
     "appsInCategory": "Applications dans {category}"

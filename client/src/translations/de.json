@@ -101,7 +101,8 @@
     "popularSearches": "Beliebte Suchen",
     "recentSearches": "Letzte Suchen",
     "clearSearchHistory": "Suchverlauf löschen",
-    "expertAnswer": "ExpertAnswer: 24/7 Live-Chat"
+    "expertAnswer": "ExpertAnswer: 24/7 Live-Chat",
+    "verifiedExpertsOnly": "Nur verifizierte Experten bei ExpertAnswer"
   },
   "categories": {
     "allCategories": "Alle Kategorien",
