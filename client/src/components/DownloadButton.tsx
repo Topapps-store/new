@@ -125,7 +125,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
       >
         {/* Botón simple solo con texto */}
         <span className="relative z-10 flex items-center justify-center">
-          <span className="text-xl font-bold">CONTINUER</span>
+          <span className="text-xl font-bold">{getButtonText().toUpperCase()}</span>
         </span>
         
 
@@ -175,7 +175,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
           
           <div className="flex items-center p-2 bg-gray-50 rounded-lg">
             <div className="w-1 h-4 bg-green-500 rounded-full mr-3"></div>
-            <span>Verified Experts only on <strong>ExpertAnswer</strong></span>
+            <span>{t('ui.verifiedExpertsOnly', 'Verified Experts only on ExpertAnswer')}</span>
             <div className="ml-auto">
               <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

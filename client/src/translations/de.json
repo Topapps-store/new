@@ -78,7 +78,7 @@
     "showMore": "Mehr anzeigen",
     "showLess": "Weniger anzeigen",
     "advertisement": "WERBUNG",
-    "continue": "Weiter",
+    "continue": "WEITER",
     "downloads": "Downloads",
     "developer": "Entwickler",
     "description": "Beschreibung",
@@ -89,7 +89,9 @@
     "version": "Version",
     "size": "Größe",
     "requires": "Benötigt",
-    "relatedApps": "Ähnliche Apps"
+    "relatedApps": "Ähnliche Apps",
+    "expertAnswer": "ExpertAnswer: 24/7 Live-Chat",
+    "verifiedExpertsOnly": "Nur verifizierte Experten bei ExpertAnswer"
   },
   "search": {
     "searchApps": "Apps suchen",

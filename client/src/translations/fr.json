@@ -61,6 +61,15 @@
     "expertAnswer": "ExpertAnswer: Chat en direct 24/7",
     "verifiedExpertsOnly": "Experts vérifiés uniquement sur ExpertAnswer"
   },
+  "ui": {
+    "continue": "CONTINUER",
+    "downloads": "Téléchargements",
+    "developer": "Développeur",
+    "category": "Catégorie",
+    "advertisement": "PUBLICITÉ",
+    "expertAnswer": "ExpertAnswer: Chat en direct 24/7",
+    "verifiedExpertsOnly": "Experts vérifiés uniquement sur ExpertAnswer"
+  },
   "category": {
     "appsInCategory": "Applications dans {category}"
   },
