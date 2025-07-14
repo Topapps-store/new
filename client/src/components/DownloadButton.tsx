@@ -124,7 +124,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
       >
         {/* Botón simple solo con texto */}
         <span className="relative z-10 flex items-center justify-center">
-          <span className="text-xl font-semibold text-white" style={{ color: '#ffffff' }}>
+          <span className="font-semibold text-white text-[25px]" style={{ color: '#ffffff' }}>
             {getButtonText().charAt(0).toUpperCase() + getButtonText().slice(1).toLowerCase()}
           </span>
         </span>
