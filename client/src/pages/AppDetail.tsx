@@ -352,7 +352,7 @@ const AppDetail = () => {
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-4 bg-[#f2f2f2]">
           {/* Header section with app logo on the left */}
-          <div className="flex items-start space-x-4 mb-8 mt-6">
+          <div className="flex items-start space-x-4 mt-[14px] mb-[14px]">
             <img 
               src={app.iconUrl} 
               alt={isUberPage ? "Uber app download icon" : 
@@ -418,7 +418,7 @@ const AppDetail = () => {
           
           {/* Advertisement and download button section */}
           <div className="px-4">
-            <div className="border border-gray-200 rounded-lg pt-3 pb-2 px-2 relative flex flex-col justify-center items-center min-h-[50px] mb-4 bg-[#f9faf9] ml-[-24px] mr-[-24px]">
+            <div className="border border-gray-200 rounded-lg px-2 relative flex flex-col justify-center items-center min-h-[50px] mb-4 bg-[#f9faf9] ml-[-24px] mr-[-24px] pt-[17px] pb-[17px]">
               <div className="text-[9px] text-gray-400 mb-3 text-left absolute top-1 left-2">
                 {translate('ui.advertisement', 'ADVERTISEMENT')}
               </div>
