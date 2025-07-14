@@ -153,7 +153,15 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         
         {/* Additional promotional text sections */}
         <div className="space-y-2 text-xs text-gray-500">
-          <div className="flex items-center p-2 bg-gray-50 rounded-lg">
+          <a 
+            href={downloadUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+            onClick={handleClick}
+            data-event="click:expertAnswerPromo"
+            data-app-id={appId}
+          >
             <div className="w-1 h-4 bg-blue-500 rounded-full mr-3"></div>
             <span>Join ExpertAnswer.com Today</span>
             <div className="ml-auto">
@@ -161,9 +169,17 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
-          </div>
+          </a>
           
-          <div className="flex items-center p-2 bg-gray-50 rounded-lg">
+          <a 
+            href={downloadUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+            onClick={handleClick}
+            data-event="click:expertsAccess"
+            data-app-id={appId}
+          >
             <div className="w-1 h-4 bg-yellow-500 rounded-full mr-3"></div>
             <span>Access to 12,000+ Experts in seconds</span>
             <div className="ml-auto">
@@ -171,9 +187,17 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
-          </div>
+          </a>
           
-          <div className="flex items-center p-2 bg-gray-50 rounded-lg">
+          <a 
+            href={downloadUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+            onClick={handleClick}
+            data-event="click:verifiedExperts"
+            data-app-id={appId}
+          >
             <div className="w-1 h-4 bg-green-500 rounded-full mr-3"></div>
             <span>{t('ui.verifiedExpertsOnly', 'Verified Experts only on ExpertAnswer')}</span>
             <div className="ml-auto">
@@ -181,7 +205,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
