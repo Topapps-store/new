@@ -21,6 +21,7 @@ import HardcodedTerms from "./pages/HardcodedTerms";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import GoogleAdsManager from "./pages/GoogleAdsManager";
+import FraudProtectionDashboard from "./pages/FraudProtectionDashboard";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AdminProvider } from "./context/AdminContext";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -46,6 +47,7 @@ function Router() {
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin/dashboard" component={AdminDashboard} />
         <Route path="/admin/google-ads" component={GoogleAdsManager} />
+        <Route path="/admin/fraud-protection" component={FraudProtectionDashboard} />
         
         {/* Main site routes with Layout */}
         <Route path="*">

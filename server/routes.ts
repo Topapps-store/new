@@ -29,6 +29,7 @@ import { InsertAffiliateLink, insertAffiliateLinkSchema } from "@shared/schema";
 import { z } from "zod";
 import { translateText, bulkTranslate } from "./translation-service";
 import { googleAdsRouter } from "./routes/googleAds";
+import fraudProtectionRouter from "./routes/fraud-protection";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Configure session middleware
@@ -307,6 +308,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Google Ads integration routes
   apiRouter.use("/google-ads", requireAdmin, googleAdsRouter);
+  
+  // Fraud protection routes
+  apiRouter.use("/fraud-protection", fraudProtectionRouter);
   
   app.use("/api", apiRouter);
 

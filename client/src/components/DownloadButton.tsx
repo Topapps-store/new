@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from '../hooks/useTranslation';
+import ClickTracker from './ClickTracker';
 
 interface DownloadButtonProps {
   appId: string;
@@ -96,41 +97,52 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
       }
     }
   };
+
+  // Manejador para datos de clic del sistema de protección contra fraude
+  const handleClickData = (data: any) => {
+    console.log("Click data captured:", data);
+    // Los datos se envían automáticamente al servidor para análisis
+  };
   
   // Generar URL estática de descarga para casos sin redirección especial
   const downloadUrl = buildDownloadUrl();
 
   return (
     <div className="w-full">
-      <a 
-        href={downloadUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`group relative block w-3/4 mx-auto text-center text-white py-4 px-6 rounded-2xl mb-4 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${className}`}
-        style={{
-          backgroundColor: '#18a103',
-          boxShadow: '0 4px 16px 0 rgba(24, 161, 3, 0.4)',
-          textDecoration: 'none'
-        }}
-        onClick={handleClick}
-        data-event="click:customDownload"
-        data-app-id={appId}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = '#148902';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = '#18a103';
-        }}
+      <ClickTracker
+        appId={appId}
+        onClickData={handleClickData}
       >
-        {/* Botón simple solo con texto */}
-        <span className="relative z-10 flex items-center justify-center">
-          <span className="font-semibold text-white text-[25px]" style={{ color: '#ffffff' }}>
-            {getButtonText().charAt(0).toUpperCase() + getButtonText().slice(1).toLowerCase()}
+        <a 
+          href={downloadUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`group relative block w-3/4 mx-auto text-center text-white py-4 px-6 rounded-2xl mb-4 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${className}`}
+          style={{
+            backgroundColor: '#18a103',
+            boxShadow: '0 4px 16px 0 rgba(24, 161, 3, 0.4)',
+            textDecoration: 'none'
+          }}
+          onClick={handleClick}
+          data-event="click:customDownload"
+          data-app-id={appId}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#148902';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#18a103';
+          }}
+        >
+          {/* Botón simple solo con texto */}
+          <span className="relative z-10 flex items-center justify-center">
+            <span className="font-semibold text-white text-[25px]" style={{ color: '#ffffff' }}>
+              {getButtonText().charAt(0).toUpperCase() + getButtonText().slice(1).toLowerCase()}
+            </span>
           </span>
-        </span>
-        
+          
 
-      </a>
+        </a>
+      </ClickTracker>
       {/* Gradient box containing all promotional content */}
       <div className="rounded-lg p-4 pt-[28px] pb-[28px] mt-[9px] mb-[9px]" style={{
         background: 'linear-gradient(to bottom, #fafafa, #f2f2f2)'
@@ -153,59 +165,74 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         
         {/* Additional promotional text sections */}
         <div className="space-y-2 text-xs text-gray-500">
-          <a 
-            href={downloadUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer mt-[0px] mb-[0px] pt-[11px] pb-[11px]"
-            onClick={handleClick}
-            data-event="click:expertAnswerPromo"
-            data-app-id={appId}
+          <ClickTracker
+            appId={appId}
+            onClickData={handleClickData}
           >
-            <div className="w-1 h-4 bg-blue-500 rounded-full mr-3"></div>
-            <span>Join JustAnswer.com Today - 4.8★ Rating</span>
-            <div className="ml-auto">
-              <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </a>
+            <a 
+              href={downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer mt-[0px] mb-[0px] pt-[11px] pb-[11px]"
+              onClick={handleClick}
+              data-event="click:expertAnswerPromo"
+              data-app-id={appId}
+            >
+              <div className="w-1 h-4 bg-blue-500 rounded-full mr-3"></div>
+              <span>Join JustAnswer.com Today - 4.8★ Rating</span>
+              <div className="ml-auto">
+                <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+          </ClickTracker>
           
-          <a 
-            href={downloadUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer pt-[11px] pb-[11px]"
-            onClick={handleClick}
-            data-event="click:expertsAccess"
-            data-app-id={appId}
+          <ClickTracker
+            appId={appId}
+            onClickData={handleClickData}
           >
-            <div className="w-1 h-4 bg-yellow-500 rounded-full mr-3"></div>
-            <span>Access to 12,000+ Experts in seconds</span>
-            <div className="ml-auto">
-              <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </a>
+            <a 
+              href={downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer pt-[11px] pb-[11px]"
+              onClick={handleClick}
+              data-event="click:expertsAccess"
+              data-app-id={appId}
+            >
+              <div className="w-1 h-4 bg-yellow-500 rounded-full mr-3"></div>
+              <span>Access to 12,000+ Experts in seconds</span>
+              <div className="ml-auto">
+                <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+          </ClickTracker>
           
-          <a 
-            href={downloadUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer pt-[11px] pb-[11px]"
-            onClick={handleClick}
-            data-event="click:verifiedExperts"
-            data-app-id={appId}
+          <ClickTracker
+            appId={appId}
+            onClickData={handleClickData}
           >
-            <div className="w-1 h-4 bg-green-500 rounded-full mr-3"></div>
-            <span>{t('ui.verifiedExpertsOnly', 'Verified Experts only on ExpertAnswer')}</span>
-            <div className="ml-auto">
-              <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </a>
+            <a 
+              href={downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer pt-[11px] pb-[11px]"
+              onClick={handleClick}
+              data-event="click:verifiedExperts"
+              data-app-id={appId}
+            >
+              <div className="w-1 h-4 bg-green-500 rounded-full mr-3"></div>
+              <span>{t('ui.verifiedExpertsOnly', 'Verified Experts only on ExpertAnswer')}</span>
+              <div className="ml-auto">
+                <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+          </ClickTracker>
         </div>
       </div>
     </div>

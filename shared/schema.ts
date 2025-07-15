@@ -175,3 +175,122 @@ export const insertAppVersionHistorySchema = createInsertSchema(appVersionHistor
 
 export type InsertAppVersionHistory = z.infer<typeof insertAppVersionHistorySchema>;
 export type AppVersionHistory = typeof appVersionHistory.$inferSelect;
+
+// Click Fraud Protection tables
+
+// Blocked IPs table for storing fraudulent/suspicious IP addresses
+export const blockedIps = pgTable("blocked_ips", {
+  id: serial("id").primaryKey(),
+  ipAddress: varchar("ip_address", { length: 45 }).notNull().unique(),
+  reason: varchar("reason", { length: 255 }).notNull(),
+  riskScore: integer("risk_score").notNull().default(0),
+  isVpn: boolean("is_vpn").notNull().default(false),
+  isProxy: boolean("is_proxy").notNull().default(false),
+  country: varchar("country", { length: 2 }),
+  city: varchar("city", { length: 100 }),
+  userAgent: text("user_agent"),
+  clickCount: integer("click_count").notNull().default(0),
+  lastClickAt: timestamp("last_click_at"),
+  blockedAt: timestamp("blocked_at").defaultNow(),
+  isActive: boolean("is_active").notNull().default(true),
+  notes: text("notes"),
+});
+
+export const insertBlockedIpSchema = createInsertSchema(blockedIps).omit({
+  id: true,
+  clickCount: true,
+  blockedAt: true,
+});
+
+export type InsertBlockedIp = z.infer<typeof insertBlockedIpSchema>;
+export type BlockedIp = typeof blockedIps.$inferSelect;
+
+// Click Events table for tracking all clicks and analyzing patterns
+export const clickEvents = pgTable("click_events", {
+  id: serial("id").primaryKey(),
+  appId: varchar("app_id", { length: 100 }).references(() => apps.id),
+  ipAddress: varchar("ip_address", { length: 45 }).notNull(),
+  userAgent: text("user_agent"),
+  referrer: text("referrer"),
+  clickTimestamp: timestamp("click_timestamp").defaultNow(),
+  sessionId: varchar("session_id", { length: 100 }),
+  country: varchar("country", { length: 2 }),
+  city: varchar("city", { length: 100 }),
+  isVpn: boolean("is_vpn").notNull().default(false),
+  isProxy: boolean("is_proxy").notNull().default(false),
+  isBot: boolean("is_bot").notNull().default(false),
+  riskScore: integer("risk_score").notNull().default(0),
+  clickDuration: integer("click_duration"), // Time from page load to click in milliseconds
+  mouseMovements: integer("mouse_movements").notNull().default(0),
+  keyboardEvents: integer("keyboard_events").notNull().default(0),
+  scrollEvents: integer("scroll_events").notNull().default(0),
+  screenResolution: varchar("screen_resolution", { length: 20 }),
+  timezone: varchar("timezone", { length: 50 }),
+  language: varchar("language", { length: 10 }),
+  isFraudulent: boolean("is_fraudulent").notNull().default(false),
+  fraudReason: varchar("fraud_reason", { length: 255 }),
+  conversionTracked: boolean("conversion_tracked").notNull().default(false),
+});
+
+export const clickEventsRelations = relations(clickEvents, ({ one }) => ({
+  app: one(apps, {
+    fields: [clickEvents.appId],
+    references: [apps.id]
+  })
+}));
+
+export const insertClickEventSchema = createInsertSchema(clickEvents).omit({
+  id: true,
+  clickTimestamp: true,
+});
+
+export type InsertClickEvent = z.infer<typeof insertClickEventSchema>;
+export type ClickEvent = typeof clickEvents.$inferSelect;
+
+// Fraud Detection Rules table for configurable detection rules
+export const fraudDetectionRules = pgTable("fraud_detection_rules", {
+  id: serial("id").primaryKey(),
+  ruleName: varchar("rule_name", { length: 100 }).notNull().unique(),
+  description: text("description"),
+  ruleType: varchar("rule_type", { length: 50 }).notNull(), // 'ip_based', 'behavioral', 'time_based', 'pattern_based'
+  conditions: jsonb("conditions").notNull(), // JSON with rule conditions
+  action: varchar("action", { length: 50 }).notNull(), // 'block', 'flag', 'monitor'
+  severity: integer("severity").notNull().default(1), // 1-10 scale
+  isActive: boolean("is_active").notNull().default(true),
+  triggerCount: integer("trigger_count").notNull().default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertFraudDetectionRuleSchema = createInsertSchema(fraudDetectionRules).omit({
+  id: true,
+  triggerCount: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertFraudDetectionRule = z.infer<typeof insertFraudDetectionRuleSchema>;
+export type FraudDetectionRule = typeof fraudDetectionRules.$inferSelect;
+
+// Google Ads Integration table for managing campaign exclusions
+export const googleAdsExclusions = pgTable("google_ads_exclusions", {
+  id: serial("id").primaryKey(),
+  campaignId: varchar("campaign_id", { length: 100 }).notNull(),
+  campaignName: varchar("campaign_name", { length: 255 }),
+  excludedIpAddress: varchar("excluded_ip_address", { length: 45 }).notNull(),
+  exclusionReason: varchar("exclusion_reason", { length: 255 }).notNull(),
+  status: varchar("status", { length: 50 }).notNull().default('pending'), // 'pending', 'active', 'failed'
+  googleAdsResponse: jsonb("google_ads_response"),
+  excludedAt: timestamp("excluded_at").defaultNow(),
+  lastSyncAt: timestamp("last_sync_at"),
+  isActive: boolean("is_active").notNull().default(true),
+});
+
+export const insertGoogleAdsExclusionSchema = createInsertSchema(googleAdsExclusions).omit({
+  id: true,
+  excludedAt: true,
+  lastSyncAt: true,
+});
+
+export type InsertGoogleAdsExclusion = z.infer<typeof insertGoogleAdsExclusionSchema>;
+export type GoogleAdsExclusion = typeof googleAdsExclusions.$inferSelect;
