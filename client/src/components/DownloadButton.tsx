@@ -163,7 +163,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
             data-app-id={appId}
           >
             <div className="w-1 h-4 bg-blue-500 rounded-full mr-3"></div>
-            <span>Join ExpertAnswer.com Today</span>
+            <span>Join JustAnswer.com Today - 4.8★ Rating</span>
             <div className="ml-auto">
               <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
