@@ -66,7 +66,7 @@ async function getAppStoreInfo(appStoreId, language = 'en') {
     
     // Formatear los datos para nuestro formato JSON
     const appData = {
-      id: createAppId(appInfo.title),
+      id: createAppId(appInfo.title, language),
       name: appInfo.title,
       category: appInfo.genres?.[0] || 'Utilities',
       categoryId: convertCategoryToId(appInfo.genres?.[0] || 'Utilities'),
@@ -113,7 +113,7 @@ async function getGooglePlayInfo(googlePlayId, language = 'en') {
     
     // Formatear los datos para nuestro formato JSON
     const appData = {
-      id: createAppId(appInfo.title),
+      id: createAppId(appInfo.title, language),
       name: appInfo.title,
       category: appInfo.genre,
       categoryId: convertCategoryToId(appInfo.genre),
@@ -221,13 +221,21 @@ function convertCategoryToId(category) {
 /**
  * Crea un ID amigable basado en el nombre de la app
  * @param {string} appName - Nombre de la aplicación
+ * @param {string} language - Código de idioma (opcional)
  * @returns {string} - ID amigable para URLs
  */
-function createAppId(appName) {
-  return appName
+function createAppId(appName, language = null) {
+  const baseId = appName
     .toLowerCase()
     .replace(/[^a-z0-9 ]/g, '')
     .replace(/ +/g, '-');
+  
+  // Si hay un idioma específico y no es inglés, añadirlo al ID
+  if (language && language !== 'en') {
+    return `${baseId}-${language}`;
+  }
+  
+  return baseId;
 }
 
 /**
@@ -334,12 +342,14 @@ async function updateAppsJson(newApps) {
     const appsData = JSON.parse(appsJsonContent);
     
     // Crear un mapa de las apps existentes por ID para verificación rápida
+    // Ahora consideramos el idioma en el ID, así que apps con diferentes idiomas se tratan como apps distintas
     const existingAppsMap = {};
     appsData.apps.forEach(app => {
       existingAppsMap[app.id] = true;
     });
     
     // Filtrar las nuevas apps que no existen aún
+    // Con el nuevo sistema, cada idioma crea un ID único, por lo que no habrá conflictos
     const uniqueNewApps = newApps.filter(app => app && !existingAppsMap[app.id]);
     
     if (uniqueNewApps.length === 0) {
