@@ -1,7 +1,5 @@
 {
-  "pendingUrls": [
-    "https://play.google.com/store/apps/details?id=com.justanswer.google&hl=fr
-  ],
+  "pendingUrls": [],
   "processedUrls": [
     "https://play.google.com/store/apps/details?id=com.ubercab&hl=es",
     "https://play.google.com/store/apps/details?id=com.pdf.editor.viewer.pdfreader.pdfviewer&hl=ca",
@@ -141,6 +139,7 @@
     "https://play.google.com/store/apps/details?id=com.thenewmotion.thenewmotion&hl=fr",
     "https://play.google.com/store/apps/details?id=com.chargemap_beta.android&hl=fr",
     "https://play.google.com/store/apps/details?id=com.deliveroo.orderapp&hl=fr",
-    "https://play.google.com/store/apps/details?id=com.ubercab&hl=fr"
+    "https://play.google.com/store/apps/details?id=com.ubercab&hl=fr",
+    "https://play.google.com/store/apps/details?id=com.justanswer.google&hl=fr"
   ]
 }
