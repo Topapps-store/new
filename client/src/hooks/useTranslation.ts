@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import esTranslations from '../locales/es.json';
+import arLocales from '../locales/ar.json';
 import deTranslations from '../translations/de.json';
 import enTranslations from '../translations/en.json';
 import frTranslations from '../translations/fr.json';
@@ -9,6 +10,7 @@ import fiTranslations from '../translations/fi.json';
 import ptTranslations from '../translations/pt.json';
 import roTranslations from '../translations/ro.json';
 import huTranslations from '../translations/hu.json';
+import arTranslations from '../translations/ar.json';
 
 type TranslationKey = keyof typeof esTranslations;
 type NestedTranslationKey<T> = T extends object ? {
@@ -45,6 +47,8 @@ export function useTranslation() {
       setLocale('ro');
     } else if (urlPath.startsWith('/hu/') || urlPath.startsWith('/hu')) {
       setLocale('hu');
+    } else if (urlPath.startsWith('/ar/') || urlPath.startsWith('/ar')) {
+      setLocale('ar');
     } else if (langCode === 'de') {
       setLocale('de');
     } else if (langCode === 'es' || langCode === 'ca') {
@@ -63,6 +67,8 @@ export function useTranslation() {
       setLocale('ro');
     } else if (langCode === 'hu') {
       setLocale('hu');
+    } else if (langCode === 'ar') {
+      setLocale('ar');
     } else {
       setLocale('en');
     }
@@ -101,6 +107,9 @@ export function useTranslation() {
         break;
       case 'hu':
         translations = huTranslations;
+        break;
+      case 'ar':
+        translations = arTranslations;
         break;
       case 'es':
       default:
