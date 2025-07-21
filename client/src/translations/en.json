@@ -65,7 +65,7 @@
     "noReleaseNotes": "No Release Notes Available for This Version",
     "loadMore": "Load More",
     "expertAnswer": "ExpertAnswer: 24/7 live chat",
-    "verifiedExpertsOnly": "Verified Experts only on JustAnswer - 4.8★"
+    "verifiedExpertsOnly": "Verified Experts only on ExpertAnswer - 4.8★"
   },
   "category": {
     "appsInCategory": "Apps in {category}"
@@ -175,6 +175,11 @@
     "popularApps": "Popular Apps",
     "advertisement": "ADVERTISEMENT",
     "expertAnswer": "ExpertAnswer: 24/7 live chat",
-    "verifiedExpertsOnly": "Verified Experts only on JustAnswer - 4.8★"
+    "verifiedExpertsOnly": "Verified Experts only on ExpertAnswer - 4.8★",
+    "createAccount": "Create Account",
+    "startTrial": "Start Trial",
+    "getAnswers": "Get Answers",
+    "joinExpertAnswer": "Join ExpertAnswer.com Today - 4.8★ rating",
+    "accessExperts": "Access to 12,000+ experts in seconds"
   }
 }

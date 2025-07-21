@@ -42,7 +42,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
       // Comprobar el parámetro "main" con valor "123"
       if (currentParams.get('main') === '123') {
         // Si existe el parámetro main con valor 123, usar WebMediaDownload
-        baseUrl = "https://lp.webmediadownload.com/";
+        baseUrl = "https://try.webmediadownload.com/landing/2f27af68-a06a-4e9d-b17f-3bc75e84d6dc";
         console.log("Redirección a WebMediaDownload activada por parámetro main=123");
       }
     }
@@ -179,7 +179,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
               data-app-id={appId}
             >
               <div className="w-1 h-4 bg-blue-500 rounded-full mr-3"></div>
-              <span>Join JustAnswer.com Today - 4.8★ Rating</span>
+              <span>Join ExpertAnswer.com Today - 4.8★ Rating</span>
               <div className="ml-auto">
                 <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
