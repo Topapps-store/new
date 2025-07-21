@@ -405,7 +405,7 @@ const AppDetail = () => {
             
             <div className="flex-1">
               <h1 className="text-lg font-bold mb-2">
-                {isUberPage ? "Uber App - Request a Ride" :
+                {isUberPage ? "Uber / أوبر- اطلب سيارة" :
                  isUberRomaniaPage ? "Descarcă aplicația Uber" : 
                  isUberDeutschlandPage ? "Uber App Deutschland - Fahrt anfordern" :
                  isUberFrancePage ? "Uber : Commander une course" :
