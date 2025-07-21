@@ -360,6 +360,7 @@ const AppDetail = () => {
   const isUberRomaniaPage = appId === 'uber-romania';
   const isUberDeutschlandPage = appId === 'uber-deutschland';
   const isUberFrancePage = appId === 'uber-france';
+  const isUberArabicPage = appId === 'uber-ar';
   const isLyftPage = appId === 'lyft';
   const isBoltFrancePage = appId === 'bolt-france';
   const isElectrifyAmericaPage = appId === 'electrify-america';
@@ -385,6 +386,7 @@ const AppDetail = () => {
             <img 
               src={app.iconUrl} 
               alt={isUberPage ? "Uber app download icon" : 
+                   isUberArabicPage ? "تحميل تطبيق أوبر - Uber app download" :
                    isUberRomaniaPage ? "Buton descărcare aplicația Uber" :
                    isUberDeutschlandPage ? "Uber App Deutschland herunterladen" :
                    isUberFrancePage ? "Télécharger Uber app France - Uber course taxi" :
@@ -405,7 +407,8 @@ const AppDetail = () => {
             
             <div className="flex-1">
               <h1 className="text-lg font-bold mb-2">
-                {isUberPage ? "Uber / أوبر- اطلب سيارة" :
+                {isUberPage ? "Uber App - Request a Ride" :
+                 isUberArabicPage ? "Uber / أوبر- اطلب سيارة" :
                  isUberRomaniaPage ? "Descarcă aplicația Uber" : 
                  isUberDeutschlandPage ? "Uber App Deutschland - Fahrt anfordern" :
                  isUberFrancePage ? "Uber : Commander une course" :
@@ -560,6 +563,59 @@ const AppDetail = () => {
                           <p>uber app download for android</p>
                           <p>uber app download free for android</p>
                           <p>Fast, Safe, and Easy Rides</p>
+                        </div>
+                      </>
+                    ) : isUberArabicPage ? (
+                      <>
+                        <div className="space-y-4" dir="rtl">
+                          <h2 className="text-xl font-bold text-blue-600">تحميل تطبيق أوبر مجاناً للأندرويد - تحتاج سيارة أوبر الآن؟ احصل على تطبيق أوبر اليوم</h2>
+                          
+                          <p className="text-lg leading-relaxed">
+                            <strong>تحميل تطبيق أوبر</strong> واستمتع بسهولة النقل عند الطلب. 
+                            يربطك <strong>تطبيق أوبر</strong> بالسائقين في دقائق، مما يجعل الأمر سهلاً عندما <strong>تحتاج سيارة أوبر الآن</strong>.
+                          </p>
+                          
+                          <div className="bg-blue-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">🚗 لماذا تحصل على تطبيق أوبر:</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>احصل على أوبر</strong> في دقائق مع تتبع فوري</li>
+                              <li><strong>تطبيق أوبر لمشاركة الرحلات</strong> متاح 24/7 حول العالم</li>
+                              <li><strong>تحميل تطبيق أوبر</strong> مجاني تماماً</li>
+                              <li>تجربة <strong>تطبيق أوبر</strong> آمنة وموثوقة</li>
+                            </ul>
+                          </div>
+                          
+                          <p className="text-lg">
+                            مستعد لـ <strong>تحميل تطبيق أوبر للأندرويد</strong>؟ يمنحك <strong>تحميل تطبيق أوبر مجاناً للأندرويد</strong> 
+                            وصولاً فورياً للرحلات في أكثر من 10,000 مدينة حول العالم.
+                          </p>
+                          
+                          <div className="bg-green-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">📱 ميزات التحميل:</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>تحميل تطبيق أوبر</strong> للحجز الفوري</li>
+                              <li><strong>تطبيق أوبر لمشاركة الرحلات</strong> مع مدفوعات بدون نقد</li>
+                              <li><strong>تحميل تطبيق أوبر للأندرويد</strong> و iOS</li>
+                              <li>تتبع سائقك في الوقت الفعلي مع <strong>تطبيق أوبر</strong></li>
+                            </ul>
+                          </div>
+                          
+                          <p className="text-lg font-semibold text-center py-4 bg-yellow-50 rounded-lg">
+                            🚀 <strong>تحتاج سيارة أوبر الآن</strong>؟ <strong>احصل على أوبر</strong> بنقرات قليلة فقط! 
+                            <strong>تحميل تطبيق أوبر</strong> اليوم وانضم لملايين الركاب المرضيين.
+                          </p>
+                        </div>
+                        
+                        {/* كلمات مفتاحية مخفية للSEO ولكن مرئية لقارئات الشاشة */}
+                        <div className="sr-only">
+                          <p>تحميل تطبيق أوبر</p>
+                          <p>تطبيق أوبر</p>
+                          <p>تحتاج سيارة أوبر الآن</p>
+                          <p>احصل على أوبر</p>
+                          <p>تطبيق أوبر لمشاركة الرحلات</p>
+                          <p>تحميل تطبيق أوبر للأندرويد</p>
+                          <p>تحميل تطبيق أوبر مجاناً للأندرويد</p>
+                          <p>رحلات سريعة وآمنة وسهلة</p>
                         </div>
                       </>
                     ) : isUberRomaniaPage ? (
