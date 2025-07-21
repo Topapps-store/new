@@ -4484,6 +4484,36 @@
       ],
       "isAffiliate": false,
       "originalLanguage": "ar"
+    },
+    {
+      "id": "uber-ar",
+      "name": "Uber - Request a ride",
+      "category": "الخرائط والتنقل",
+      "categoryId": "maps-and-navigation",
+      "description": "انضم إلى ملايين الركاب الذين يثقون في أوبر لتلبية احتياجات السفر اليومية. سواء كنت تقوم بأعمال عبر المدينة أو تستكشف مدناً جديدة، يجب أن يكون الوصول سهلاً.\n\nاعثر على الرحلة التي تريدها\n\nاعثر على الرحلة المثالية في متناول يديك! أوبر هنا لجعل رحلتك خالية من التوتر وممتعة.\n\nاختر من مجموعة واسعة من الرحلات التي يقدمها تطبيق أوبر بما في ذلك:\n\n- UberX: رحلات بأسعار معقولة، كلها لك وحدك\n- Uber Green: صديق للبيئة\n- UberX Priority: الاستلام ذو الأولوية\n- UberXL: رحلات للمجموعات حتى 6 أشخاص\n- Comfort: سيارات أحدث مع مساحة إضافية للأرجل\n- Comfort Electric: سيارات متميزة بدون انبعاثات\n- Uber Pet: رحلات لك ولحيوانك الأليف\n- Black: رحلات فاخرة مع سائقين محترفين\n- Taxi: لديك الآن خيار طلب سيارة أجرة في مدن مختارة\n- 2-wheels: اعثر على سكوتر لبدء الركوب اليوم\n- Premier: رحلات فاخرة مع سائقين عاليي التقييم\n\nالتسعير المسبق\n\nمع أوبر، لن تحتاج بعد الآن للقلق بشأن التكاليف المخفية أو المفاجآت غير المتوقعة. عند إدخال وجهتك في التطبيق، تحصل على تسعير مسبق والوقت المقدر للوصول.\n\nالأمان معاً\n\nالأمان هو أولوية قصوى في أوبر. لقد وضعنا ميزات أمان شاملة للمساعدة في ضمان شعور كل راكب وسائق بالأمان والراحة.\n\nالتسعير\n\nنحن نفعل كل ما في وسعنا لجعل تسعيرنا واضحاً قدر الإمكان.\n\n- UberX Share: يربطك UberX Share بركاب آخرين متجهين في نفس الاتجاه\n- الرحلات الجماعية: شارك الرحلة مع الأصدقاء\n- تقسيم الأجرة: قسم التكلفة بالتساوي بينما لا تزال في الرحلة\n\nانضم إلى Uber One للحصول على امتيازات حصرية\n\nاستفد من رسوم التوصيل بقيمة 0 دولار وخصم يصل إلى 10% على طلبات التوصيل والاستلام المؤهلة و6% استرداد نقدي من Uber على الرحلات المؤهلة.\n\nاحجز الرحلات مسبقاً\n\nتحتاج رحلة في وقت محدد؟ لا مشكلة! يتيح لك أوبر حجز الرحلات مسبقاً، حتى تتمكن من التخطيط ليومك بثقة.\n\nاذهب للأخضر\n\nأوبر ملتزم ببناء مستقبل مستدام لمدننا. اختر من أسطولنا المتنامي الصديق للبيئة من المركبات الكهربائية والهجين للمساعدة في تقليل بصمتك الكربونية.\n\nإننا نُحدِّث تطبيق أوبر كلما كان ذلك ممكناً لتعزيز سرعة تشغيله وضمان حصولك على خدمة مضمونة. يتضمَّن هذا الإصدار إصلاحات متعددة للأخطاء وتحسينات للأداء.\n\nهل أعجبك التطبيق؟ يُرجى تقييمنا. تحافظ تعليقاتك على استمرار تحسين تطبيقات أوبر.",
+      "iconUrl": "https://play-lh.googleusercontent.com/AQtSF5Sl18yp3mQ2tcbOrBLekb7cyP3kyg5BB1uUuc55zfcnbkCDLHFTBwZfYiu1aDI",
+      "rating": 4.4,
+      "downloads": "+500 مليون",
+      "version": "4.489.10002",
+      "updated": "17‏/07‏/2025",
+      "requires": "Android 6.0+",
+      "developer": "Uber Technologies, Inc.",
+      "installs": "500,000,000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.ubercab&hl=ar",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.ubercab&hl=ar",
+      "appStoreUrl": "",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/JWzREHRyz1VttPQfiKXlMRYOAvz78h6SY_1RUoDjJvW4ClVYoHEZA3tkJ_1RaFe2JA",
+        "https://play-lh.googleusercontent.com/cZUMicgTrQQkFashDnSRHl0yFl75_EAIJmCT6Sq6SeVbdh96ASMJBRAqZ0DLWBILWJ4",
+        "https://play-lh.googleusercontent.com/RV30Q4DxJo_DsXW1shnNtBjb2-U9NELF5p-p0vW3lwJ6c4sbL1itdMRMAk_1tLB5PwP0",
+        "https://play-lh.googleusercontent.com/ja9uQUfj5v1rTEQ6kTD0LuS9TwnlTeyTSlkcHmGcrV9r__W_63Y86qQy-ZwoPOBYckXx",
+        "https://play-lh.googleusercontent.com/i217dMTZdhUC8DSiR73QWIhY9kNbayXPNw9oLLGgBGDJZOaW4uxL7HeDoaNu7XdAfA",
+        "https://play-lh.googleusercontent.com/Dt3NM-vPypk7ZZW3L0W0HJSRs5lOHczMnzxkmJ8n_0lgL1xysGeRy5T7cy-PVT-hMjxQ",
+        "https://play-lh.googleusercontent.com/2cISv6OLIGgaNjRN9FiHXrSUjRsxGLau9mse7d5daVMYlTAEGb9sOtK8Ut8X10uWRfE",
+        "https://play-lh.googleusercontent.com/llO9AHYMf7c94N3CVQ4CstxmmZ_dI4G6fGw6XYy0i-oqvE5OBEwZY6v2hIrh2Kd70Ag"
+      ],
+      "isAffiliate": false,
+      "originalLanguage": "ar"
     }
   ],
   "categories": [
