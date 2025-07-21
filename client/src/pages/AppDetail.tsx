@@ -445,7 +445,7 @@ const AppDetail = () => {
             </div>
             
             <div>
-              <p className="text-gray-600 font-medium mb-1">Category</p>
+              <p className="text-gray-600 font-medium mb-1">{translate('ui.category', 'Category')}</p>
               <p className="text-gray-500 text-xs">{getCategoryName(app)}</p>
             </div>
           </div>

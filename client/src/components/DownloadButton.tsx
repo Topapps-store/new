@@ -151,15 +151,15 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
         <div className="flex justify-center items-center space-x-6 text-xs text-gray-500 mb-4">
           <div className="flex items-center">
             <div className="w-2 h-2 bg-gray-400 rounded-full mr-2"></div>
-            <span>Create Account</span>
+            <span>{t('ui.createAccount', 'Create Account')}</span>
           </div>
           <div className="flex items-center">
             <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-            <span>Start Trial</span>
+            <span>{t('ui.startTrial', 'Start Trial')}</span>
           </div>
           <div className="flex items-center">
             <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-            <span>Get Answers</span>
+            <span>{t('ui.getAnswers', 'Get Answers')}</span>
           </div>
         </div>
         
@@ -179,7 +179,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
               data-app-id={appId}
             >
               <div className="w-1 h-4 bg-blue-500 rounded-full mr-3"></div>
-              <span>Join ExpertAnswer.com Today - 4.8★ Rating</span>
+              <span>{t('ui.joinExpertAnswer', 'Join ExpertAnswer.com Today - 4.8★ rating')}</span>
               <div className="ml-auto">
                 <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -202,7 +202,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
               data-app-id={appId}
             >
               <div className="w-1 h-4 bg-yellow-500 rounded-full mr-3"></div>
-              <span>Access to 12,000+ Experts in seconds</span>
+              <span>{t('ui.accessExperts', 'Access to 12,000+ experts in seconds')}</span>
               <div className="ml-auto">
                 <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
