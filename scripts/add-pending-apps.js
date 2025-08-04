@@ -79,9 +79,9 @@ async function getAppStoreInfo(appStoreId, language = 'en') {
       requires: `iOS ${appInfo.requiredOsVersion}+`,
       developer: appInfo.developer,
       installs: '1,000,000+',
-      downloadUrl: appInfo.url,
-      googlePlayUrl: appInfo.url,
-      appStoreUrl: appInfo.url,
+      downloadUrl: `https://apps.apple.com/${language}/app/id${appStoreId}`,
+      googlePlayUrl: `https://apps.apple.com/${language}/app/id${appStoreId}`,
+      appStoreUrl: `https://apps.apple.com/${language}/app/id${appStoreId}`,
       screenshots: appInfo.screenshots,
       isAffiliate: false,
       originalLanguage: language
@@ -111,6 +111,9 @@ async function getGooglePlayInfo(googlePlayId, language = 'en') {
       country: getCountryFromLanguage(language)
     });
     
+    // Construir URL correcta con el idioma detectado
+    const googlePlayUrl = `https://play.google.com/store/apps/details?id=${googlePlayId}&hl=${language}&gl=${getCountryFromLanguage(language)}`;
+    
     // Formatear los datos para nuestro formato JSON
     const appData = {
       id: createAppId(appInfo.title, language),
@@ -126,8 +129,8 @@ async function getGooglePlayInfo(googlePlayId, language = 'en') {
       requires: `Android ${appInfo.androidVersion}+`,
       developer: appInfo.developer,
       installs: appInfo.installs,
-      downloadUrl: appInfo.url,
-      googlePlayUrl: appInfo.url,
+      downloadUrl: googlePlayUrl,
+      googlePlayUrl: googlePlayUrl,
       screenshots: appInfo.screenshots,
       isAffiliate: false,
       originalLanguage: language
