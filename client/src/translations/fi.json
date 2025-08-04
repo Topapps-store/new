@@ -173,6 +173,12 @@
     "newApps": "Uudet Sovellukset",
     "popularApps": "Suositut Sovellukset",
     "advertisement": "MAINOS",
-    "expertAnswer": "ExpertAnswer: 24/7 live chat"
+    "expertAnswer": "ExpertAnswer: 24/7 live chat",
+    "verifiedExpertsOnly": "Vain vahvistetut asiantuntijat ExpertAnswerissa - 4.8★",
+    "createAccount": "Luo Tili",
+    "startTrial": "Aloita Kokeilu",
+    "getAnswers": "Hanki Vastauksia",
+    "joinExpertAnswer": "Liity ExpertAnswer.com tänään - 4.8★ arvostelu",
+    "accessExperts": "Pääsy 12,000+ asiantuntijaan sekunneissa"
   }
 }
