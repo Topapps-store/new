@@ -63,7 +63,9 @@
     "majorUpdate": "Større Opdatering",
     "latest": "Seneste",
     "noReleaseNotes": "Ingen Udgivelsesnoter Tilgængelige for Denne Version",
-    "loadMore": "Indlæs Mere"
+    "loadMore": "Indlæs Mere",
+    "appNotFound": "App ikke fundet",
+    "noAppsInCategory": "Ingen apps fundet i denne kategori"
   },
   "category": {
     "appsInCategory": "Apps i {category}"

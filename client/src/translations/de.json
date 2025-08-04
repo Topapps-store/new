@@ -47,7 +47,9 @@
     "developer": "Entwickler",
     "moreFromDeveloper": "Mehr von diesem Entwickler",
     "noScreenshotsAvailable": "Keine Screenshots verfügbar",
-    "noRelatedAppsFound": "Keine ähnlichen Apps gefunden"
+    "noRelatedAppsFound": "Keine ähnlichen Apps gefunden",
+    "appNotFound": "App nicht gefunden",
+    "noAppsInCategory": "Keine Apps in dieser Kategorie gefunden"
   },
   "ui": {
     "loading": "Laden...",

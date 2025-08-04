@@ -63,7 +63,9 @@
     "majorUpdate": "Suuri Päivitys",
     "latest": "Uusin",
     "noReleaseNotes": "Ei Julkaisumuistiinpanoja Saatavilla Tälle Versiolle",
-    "loadMore": "Lataa Lisää"
+    "loadMore": "Lataa Lisää",
+    "appNotFound": "Sovellusta ei löytynyt",
+    "noAppsInCategory": "Tässä kategoriassa ei löytynyt sovelluksia"
   },
   "category": {
     "appsInCategory": "Sovellukset kategoriassa {category}"

@@ -63,7 +63,9 @@
     "majorUpdate": "Stor Oppdatering",
     "latest": "Nyeste",
     "noReleaseNotes": "Ingen Utgivelsesnotater Tilgjengelig for Denne Versjonen",
-    "loadMore": "Last Mer"
+    "loadMore": "Last Mer",
+    "appNotFound": "App ikke funnet",
+    "noAppsInCategory": "Ingen apper funnet i denne kategorien"
   },
   "category": {
     "appsInCategory": "Apper i {category}"

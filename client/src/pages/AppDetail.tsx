@@ -352,7 +352,7 @@ const AppDetail = () => {
   }
 
   if (!app) {
-    return <div className="text-center py-10">App not found</div>;
+    return <div className="text-center py-10">{translate('common.appNotFound', 'App not found')}</div>;
   }
 
   // Verificar si estamos en la página de Uber, Lyft, Electrify America, ChargePoint, BP Pulse, EnBW mobility+, HBO Max, Lose Weight App o Deliveroo

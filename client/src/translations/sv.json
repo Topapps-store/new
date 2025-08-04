@@ -63,7 +63,9 @@
     "majorUpdate": "Större Uppdatering",
     "latest": "Senaste",
     "noReleaseNotes": "Inga Versionsanteckningar Tillgängliga för Denna Version",
-    "loadMore": "Ladda Mer"
+    "loadMore": "Ladda Mer",
+    "appNotFound": "App hittades inte",
+    "noAppsInCategory": "Inga appar hittades i denna kategori"
   },
   "category": {
     "appsInCategory": "Appar i {category}"

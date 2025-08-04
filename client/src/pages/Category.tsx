@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "wouter";
 import AppCard from "../components/AppCard";
+import { useTranslation } from "../hooks/useTranslation";
 
 const CategoryPage = () => {
   const { categoryId } = useParams();
+  const { t: translate } = useTranslation();
 
   const { data: category, isLoading: isLoadingCategory } = useQuery({
     queryKey: [`/api/categories/${categoryId}`],
@@ -67,7 +69,7 @@ const CategoryPage = () => {
       
       {!apps || apps.length === 0 ? (
         <div className="text-center py-10">
-          <p className="text-gray-500">No apps found in this category</p>
+          <p className="text-gray-500">{translate('common.noAppsInCategory', 'No apps found in this category')}</p>
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

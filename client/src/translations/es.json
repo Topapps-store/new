@@ -63,7 +63,9 @@
     "majorUpdate": "Actualización Mayor",
     "latest": "Más Reciente",
     "noReleaseNotes": "No Hay Notas de Lanzamiento Disponibles para Esta Versión",
-    "loadMore": "Cargar Más"
+    "loadMore": "Cargar Más",
+    "appNotFound": "Aplicación no encontrada",
+    "noAppsInCategory": "No se encontraron aplicaciones en esta categoría"
   },
   "category": {
     "appsInCategory": "Aplicaciones en {category}"

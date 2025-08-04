@@ -59,7 +59,9 @@
     "noReleaseNotes": "Aucune Note de Version Disponible pour Cette Version",
     "loadMore": "Charger Plus",
     "expertAnswer": "ExpertAnswer: Chat en direct 24/7",
-    "verifiedExpertsOnly": "Experts vérifiés uniquement sur JustAnswer - 4.8★"
+    "verifiedExpertsOnly": "Experts vérifiés uniquement sur JustAnswer - 4.8★",
+    "appNotFound": "Application non trouvée",
+    "noAppsInCategory": "Aucune application trouvée dans cette catégorie"
   },
   "ui": {
     "continue": "CONTINUER",

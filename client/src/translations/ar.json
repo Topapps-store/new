@@ -63,7 +63,9 @@
     "majorUpdate": "تحديث رئيسي",
     "latest": "الأحدث",
     "noReleaseNotes": "لا توجد ملاحظات إصدار متاحة لهذا الإصدار",
-    "loadMore": "تحميل المزيد"
+    "loadMore": "تحميل المزيد",
+    "appNotFound": "التطبيق غير موجود",
+    "noAppsInCategory": "لم يتم العثور على تطبيقات في هذه الفئة"
   },
   "category": {
     "appsInCategory": "التطبيقات في {category}"
