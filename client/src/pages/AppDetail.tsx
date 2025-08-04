@@ -798,7 +798,7 @@ const AppDetail = () => {
                         
                         <p className="mb-3">Télécharger bolt app officielle et commander bolt course en quelques secondes ! Bolt app paris vous permet de réserver bolt taxi premium avec des chauffeurs vérifiés. Installer bolt maintenant pour profiter du meilleur service de bolt transport en France.</p>
                         
-                        <h3 className="text-lg font-semibold mb-2">🚗 Pourquoi Télécharger Bolt App Paris ?</h3>
+                        <h3 className="text-lg font-semibold mb-2">🚗 Pourquoi Télécharger Bolt App?</h3>
                         <ul className="list-disc pl-6 mb-4 space-y-1">
                           <li>Commander bolt course instantanément 24h/24 et 7j/7</li>
                           <li>Bolt app paris optimisé pour la région parisienne</li>
