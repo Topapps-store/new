@@ -7,6 +7,7 @@ import frTranslations from '../translations/fr.json';
 import daTranslations from '../translations/da.json';
 import svTranslations from '../translations/sv.json';
 import fiTranslations from '../translations/fi.json';
+import noTranslations from '../translations/no.json';
 import ptTranslations from '../translations/pt.json';
 import roTranslations from '../translations/ro.json';
 import huTranslations from '../translations/hu.json';
@@ -28,6 +29,8 @@ export function useTranslation() {
     const langCode = browserLang.split('-')[0];
     const urlPath = window.location.pathname;
     
+    console.log('🌐 Language detection:', { browserLang, langCode, urlPath });
+    
     // Detectar desde la URL primero
     if (urlPath.startsWith('/de/') || urlPath.startsWith('/de')) {
       setLocale('de');
@@ -41,6 +44,8 @@ export function useTranslation() {
       setLocale('sv');
     } else if (urlPath.startsWith('/fi/') || urlPath.startsWith('/fi')) {
       setLocale('fi');
+    } else if (urlPath.startsWith('/no/') || urlPath.startsWith('/no')) {
+      setLocale('no');
     } else if (urlPath.startsWith('/pt/') || urlPath.startsWith('/pt')) {
       setLocale('pt');
     } else if (urlPath.startsWith('/ro/') || urlPath.startsWith('/ro')) {
@@ -61,6 +66,8 @@ export function useTranslation() {
       setLocale('sv');
     } else if (langCode === 'fi') {
       setLocale('fi');
+    } else if (langCode === 'no' || langCode === 'nb' || langCode === 'nn') {
+      setLocale('no');
     } else if (langCode === 'pt') {
       setLocale('pt');
     } else if (langCode === 'ro') {
@@ -98,6 +105,9 @@ export function useTranslation() {
         break;
       case 'fi':
         translations = fiTranslations;
+        break;
+      case 'no':
+        translations = noTranslations;
         break;
       case 'pt':
         translations = ptTranslations;
