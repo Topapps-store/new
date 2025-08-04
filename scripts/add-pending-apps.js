@@ -384,7 +384,7 @@ async function updateAppsJson(newApps) {
 async function processPendingApps() {
   try {
     // Ruta al archivo de URLs pendientes
-    const pendingAppsPath = path.join(__dirname, '../client/src/data/pending-apps.json');
+    const pendingAppsPath = path.join(__dirname, '../pending-apps.json');
     
     // Leer el archivo actual
     const pendingAppsContent = fs.readFileSync(pendingAppsPath, 'utf8');
