@@ -521,7 +521,7 @@ const AppDetail = () => {
                             The <strong>uber ride app</strong> connects you with drivers in minutes, making it easy when you <strong>need uber ride now</strong>.
                           </p>
                           
-                          <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="bg-gray-50 p-4 rounded-lg">
                             <h3 className="font-bold text-lg mb-2">🚗 Why Get an Uber App:</h3>
                             <ul className="list-disc list-inside space-y-1">
                               <li><strong>Get an uber</strong> in minutes with real-time tracking</li>
@@ -575,7 +575,7 @@ const AppDetail = () => {
                             يربطك <strong>تطبيق أوبر</strong> بالسائقين في دقائق، مما يجعل الأمر سهلاً عندما <strong>تحتاج سيارة أوبر الآن</strong>.
                           </p>
                           
-                          <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="bg-gray-50 p-4 rounded-lg">
                             <h3 className="font-bold text-lg mb-2">🚗 لماذا تحصل على تطبيق أوبر:</h3>
                             <ul className="list-disc list-inside space-y-1">
                               <li><strong>احصل على أوبر</strong> في دقائق مع تتبع فوري</li>
@@ -868,8 +868,8 @@ const AppDetail = () => {
                         </div>
                         
                         {/* Section spéciale Bolt Paris */}
-                        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                          <h3 className="text-lg font-bold text-blue-700 mb-2">🚕 Bolt App Paris - Service Premium</h3>
+                        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                          <h3 className="text-lg font-bold text-gray-700 mb-2">🚕 Bolt App Paris - Service Premium</h3>
                           <p className="text-gray-700 mb-2">Bolt app paris couvre toute l'Île-de-France avec des milliers de chauffeurs disponibles. Commander bolt course à Paris n'a jamais été aussi simple !</p>
                           <ul className="list-disc pl-6 text-sm text-gray-600 space-y-1">
                             <li>Bolt paris - service disponible 24h/24</li>
@@ -923,7 +923,7 @@ const AppDetail = () => {
                             L'<strong>Uber app</strong> vous permet de réserver une course rapidement et facilement dans toute la France.
                           </p>
                           
-                          <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="bg-gray-50 p-4 rounded-lg">
                             <h3 className="font-bold text-lg mb-2">🚗 Fonctionnalités Uber app France :</h3>
                             <ul className="list-disc list-inside space-y-1">
                               <li><strong>Uber app</strong> disponible 24h/24 et 7j/7</li>
@@ -960,8 +960,8 @@ const AppDetail = () => {
                             </ul>
                           </div>
                           
-                          <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
-                            <p className="text-xl font-bold text-blue-700 mb-2">Télécharger Uber App France - Uber Course Tax</p>
+                          <div className="text-center my-6 p-4 bg-gray-50 rounded-lg">
+                            <p className="text-xl font-bold text-gray-700 mb-2">Télécharger Uber App France - Uber Course Tax</p>
                             <p className="text-gray-600">Réservez votre prochaine course avec l'application Uber !</p>
                           </div>
                           
@@ -1470,7 +1470,7 @@ const AppDetail = () => {
                             Our <strong>booking app download</strong> gives you instant access to thousands of <strong>hotel beach</strong> properties worldwide.
                           </p>
                           
-                          <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="bg-gray-50 p-4 rounded-lg">
                             <h3 className="font-bold text-lg mb-2">🏖️ Beach Hotel Booking Features:</h3>
                             <ul className="list-disc list-inside space-y-1">
                               <li><strong>Hotel beach</strong> properties with ocean views</li>
@@ -1505,14 +1505,14 @@ const AppDetail = () => {
                     ) : isChargemapPage ? (
                       <>
                         <div className="space-y-4">
-                          <h2 className="text-xl font-bold text-blue-600">Obtenez le Chargemap Pass, localisez les bornes et rechargez votre véhicule avec Chargemap app</h2>
+                          <h2 className="text-xl font-bold text-gray-800">Obtenez le Chargemap Pass, localisez les bornes et rechargez votre véhicule avec Chargemap app</h2>
                           
                           <p className="text-lg leading-relaxed">
                             <strong>Télécharger Chargemap</strong> vous permet d'accéder à plus d'un million de bornes de recharge en Europe. 
                             L'<strong>application Chargemap</strong> est l'outil indispensable pour tous les conducteurs de véhicules électriques qui souhaitent voyager sereinement.
                           </p>
                           
-                          <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="bg-gray-50 p-4 rounded-lg">
                             <h3 className="font-bold text-lg mb-2">🔌 Fonctionnalités <strong>Chargemap application</strong> :</h3>
                             <ul className="list-disc list-inside space-y-1">
                               <li>Localiser les <strong>chargemap bornes de recharge</strong> près de vous</li>
@@ -1540,8 +1540,8 @@ const AppDetail = () => {
                             Utilisez <strong>Chargemap Pass</strong> pour simplifier vos recharges sur toutes les bornes compatibles.
                           </p>
                           
-                          <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
-                            <p className="text-xl font-bold text-blue-700 mb-2">Télécharger Chargemap maintenant</p>
+                          <div className="text-center my-6 p-4 bg-gray-50 rounded-lg">
+                            <p className="text-xl font-bold text-gray-700 mb-2">Télécharger Chargemap maintenant</p>
                             <p className="text-gray-600">Rejoignez la plus grande communauté de conducteurs électriques !</p>
                           </div>
                           
@@ -1576,7 +1576,7 @@ const AppDetail = () => {
                             L'<strong>application Electra</strong> est la solution idéale pour recharger votre <strong>Electra voiture électrique</strong> en quelques minutes seulement.
                           </p>
                           
-                          <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="bg-gray-50 p-4 rounded-lg">
                             <h3 className="font-bold text-lg mb-2">⚡ Fonctionnalités Electra app :</h3>
                             <ul className="list-disc list-inside space-y-1">
                               <li>Localiser les <strong>Electra bornes recharge</strong> ultra-rapides</li>
@@ -1601,8 +1601,8 @@ const AppDetail = () => {
                             <strong>Télécharger Electra</strong> maintenant et profitez de l'<strong>app Electra gratuite</strong> pour tous vos trajets.
                           </p>
                           
-                          <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
-                            <p className="text-xl font-bold text-blue-700 mb-2">Télécharger Electra app</p>
+                          <div className="text-center my-6 p-4 bg-gray-50 rounded-lg">
+                            <p className="text-xl font-bold text-gray-700 mb-2">Télécharger Electra app</p>
                             <p className="text-gray-600">Rechargez votre voiture électrique en 15 minutes !</p>
                           </div>
                           
@@ -1626,14 +1626,14 @@ const AppDetail = () => {
                     ) : isChargemapPage ? (
                       <>
                         <div className="space-y-4">
-                          <h2 className="text-xl font-bold text-blue-600">Obtenez le Chargemap Pass, localisez les bornes et rechargez votre véhicule avec Chargemap app</h2>
+                          <h2 className="text-xl font-bold text-gray-800">Obtenez le Chargemap Pass, localisez les bornes et rechargez votre véhicule avec Chargemap app</h2>
                           
                           <p className="text-lg leading-relaxed">
                             <strong>Télécharger Chargemap</strong> vous permet d'accéder à plus d'un million de bornes de recharge en Europe. 
                             L'<strong>application Chargemap</strong> est l'outil indispensable pour tous les conducteurs de véhicules électriques qui souhaitent voyager sereinement.
                           </p>
                           
-                          <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="bg-gray-50 p-4 rounded-lg">
                             <h3 className="font-bold text-lg mb-2">🔋 Fonctionnalités Chargemap app :</h3>
                             <ul className="list-disc list-inside space-y-1">
                               <li>Localiser les <strong>bornes de recharge Chargemap</strong> près de vous</li>
@@ -1659,8 +1659,8 @@ const AppDetail = () => {
                             <strong>utiliser Chargemap Pass</strong> pour simplifier vos recharges.
                           </p>
                           
-                          <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
-                            <p className="text-xl font-bold text-blue-700 mb-2">Télécharger Chargemap maintenant</p>
+                          <div className="text-center my-6 p-4 bg-gray-50 rounded-lg">
+                            <p className="text-xl font-bold text-gray-700 mb-2">Télécharger Chargemap maintenant</p>
                             <p className="text-gray-600">Rejoignez la plus grande communauté de conducteurs électriques !</p>
                           </div>
                           
