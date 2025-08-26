@@ -1513,28 +1513,31 @@ const AppDetail = () => {
                           </p>
                           
                           <div className="bg-blue-50 p-4 rounded-lg">
-                            <h3 className="font-bold text-lg mb-2">🔌 Fonctionnalités Chargemap app :</h3>
+                            <h3 className="font-bold text-lg mb-2">🔌 Fonctionnalités <strong>Chargemap application</strong> :</h3>
                             <ul className="list-disc list-inside space-y-1">
-                              <li>Localiser les <strong>bornes de recharge Chargemap</strong> près de vous</li>
-                              <li><strong>Utiliser Chargemap Pass</strong> pour payer facilement</li>
-                              <li>Planifier vos trajets avec l'<strong>application Chargemap</strong></li>
-                              <li>Accéder aux informations en temps réel avec <strong>Chargemap app</strong></li>
+                              <li>Localiser les <strong>chargemap bornes de recharge</strong> près de vous</li>
+                              <li><strong>Chargemap Pass</strong> - paiement universel pour recharger</li>
+                              <li>Consulter la <strong>carte Chargemap</strong> interactive</li>
+                              <li>Planifier vos trajets avec l'<strong>chargemap application</strong></li>
+                              <li>Accéder aux informations en temps réel</li>
                             </ul>
                           </div>
                           
                           <div className="bg-green-50 p-4 rounded-lg">
-                            <h3 className="font-bold text-lg mb-2">⚡ Avantages de télécharger Chargemap :</h3>
+                            <h3 className="font-bold text-lg mb-2">⚡ Avantages <strong>Chargemap Pass</strong> et <strong>carte Chargemap</strong> :</h3>
                             <ul className="list-disc list-inside space-y-1">
-                              <li><strong>Application Chargemap</strong> gratuite sur iOS et Android</li>
-                              <li><strong>Chargemap app</strong> couvre toute l'Europe</li>
-                              <li><strong>Utiliser Chargemap Pass</strong> - paiement universel</li>
-                              <li>Communauté active sur l'<strong>application Chargemap</strong></li>
+                              <li><strong>Chargemap application</strong> gratuite sur iOS et Android</li>
+                              <li><strong>Carte Chargemap</strong> - plus d'1 million de bornes</li>
+                              <li><strong>Chargemap Pass</strong> - paiement universel sur 700k bornes</li>
+                              <li><strong>Chargemap bornes de recharge</strong> partout en Europe</li>
+                              <li>Communauté active sur l'<strong>chargemap application</strong></li>
                             </ul>
                           </div>
                           
                           <p className="text-lg leading-relaxed">
-                            Avec plus de 2,5 millions d'utilisateurs, <strong>Chargemap app</strong> est la référence pour la recharge de véhicules électriques. 
-                            <strong>Télécharger Chargemap</strong> aujourd'hui et découvrez comment <strong>utiliser Chargemap Pass</strong> pour simplifier vos recharges.
+                            Avec plus de 2,5 millions d'utilisateurs, <strong>chargemap application</strong> est la référence pour la recharge de véhicules électriques. 
+                            <strong>Télécharger Chargemap</strong> aujourd'hui et découvrez la <strong>carte Chargemap</strong> avec <strong>chargemap bornes de recharge</strong>. 
+                            Utilisez <strong>Chargemap Pass</strong> pour simplifier vos recharges sur toutes les bornes compatibles.
                           </p>
                           
                           <div className="text-center my-6 p-4 bg-blue-50 rounded-lg">
@@ -1549,14 +1552,18 @@ const AppDetail = () => {
                           </div>
                         </div>
                         
-                        {/* SEO optimized hidden content for Chargemap */}
+                        {/* SEO optimized hidden content for Chargemap with Google Ads keywords */}
                         <div className="sr-only">
-                          <h4>Chargemap Keywords</h4>
-                          <p>télécharger Chargemap, application Chargemap, Chargemap app, utiliser Chargemap Pass, bornes de recharge Chargemap</p>
-                          <img alt="télécharger Chargemap" />
-                          <img alt="Chargemap app" />
-                          <img alt="Chargemap pass recharge" />
-                          <img alt="application Chargemap voiture" />
+                          <h4>Chargemap Keywords Google Ads Optimized</h4>
+                          <p>chargemap pass, chargemap application, carte chargemap, chargemap bornes de recharge, télécharger chargemap, chargemap app, utiliser chargemap pass, application chargemap, bornes de recharge chargemap</p>
+                          <img alt="chargemap pass" />
+                          <img alt="chargemap application" />
+                          <img alt="carte chargemap" />
+                          <img alt="chargemap bornes de recharge" />
+                          <img alt="télécharger chargemap" />
+                          <img alt="chargemap app" />
+                          <img alt="application chargemap voiture" />
+                          <img alt="chargemap pass recharge voiture électrique" />
                         </div>
                       </>
                     ) : isElectraPage ? (
