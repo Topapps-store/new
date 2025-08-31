@@ -4592,6 +4592,33 @@
       ],
       "isAffiliate": false,
       "originalLanguage": "fi"
+    },
+    {
+      "id": "lyft-fr",
+      "name": "Lyft",
+      "category": "Cartes et navigation",
+      "categoryId": "cartes-et-navigation",
+      "description": "Sachez où vous allez avec Lyft.\t\n\nQue vous deviez vous déplacer pour un vol à prendre, une sortie en soirée, vous rendre au bureau ou faire des courses en vitesse, l'appli Lyft vous offre plusieurs options pour vous y rendre.\t\n\nFACILE À UTILISER\t\n\nEntrez votre destination. Voyez votre itinéraire et le coût de votre course à l'avance. Choisissez Départ prioritaire pour vous déplacer rapidement. Boum. C'est fait. Simple.\t\n\nCHOISISSEZ VOS 2 ROUES\t\n\nChoisissez parmi les courses en solo, Attendez et économisez, un Départ prioritaire, les vélos et trottinettes, Lyft XL, Lyft Luxe, Transit ou même les locations.\t\n\nCOURSES ABORDABLES\t\n\n** Les types de courses Lyft varient en fonction des régions. Consultez l'appli pour voir ce qui est offert dans votre ville.\t\n\nLes prix varient selon les conditions du marché.\t\n\nEn téléchargeant l'application, vous permettez à Lyft de récolter des données concernant les paramètres linguistiques de votre appareil.",
+      "iconUrl": "https://play-lh.googleusercontent.com/9S5meuYdg2nVNA0jAN3cV_W4AQ3r8wV2PtL_--AgY3znqIC7MQGH5niI4wKLF76ebB4",
+      "rating": 4.02,
+      "downloads": "50M+",
+      "version": "2025.32.3.1755675827",
+      "updated": "Aug 31, 2025",
+      "requires": "Android 7.0+",
+      "developer": "Lyft, Inc.",
+      "installs": "50 000 000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=me.lyft.android&hl=fr&gl=fr",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=me.lyft.android&hl=fr&gl=fr",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/NXzt5nzh1ASJeAjPNsUudJF8C2AIiBGxl_eb13cclJGIVjezuSRsiCIp5115IkUwo7tU",
+        "https://play-lh.googleusercontent.com/FERDK-NZOfg-IJw0fb21hO0neRnm6--jDzIlwXRzQoPTPjteR4s2kfvBpZSJMdErXw",
+        "https://play-lh.googleusercontent.com/VrxTryjxle3oBUQxDNcWoLkivcPc7XgDw0EwvuofuDB5QAeFxPjxGOgVIFLlYphztx4",
+        "https://play-lh.googleusercontent.com/zsddoZUYGG3cIPP54EO47klYpDigWBiV-g9k0wDP0xlS8AkU7uZnt-eHCBI5axdIHA8",
+        "https://play-lh.googleusercontent.com/GWEeoTs5YodkhVLIMw_X_9Ebxs4P28hpqPr0PttQ1AcLwAFov2fLJ--SL9F3SuzCCQ",
+        "https://play-lh.googleusercontent.com/MJoWJcKjwtJ-yMALVpdtIsMLkHx0b7nMtLwumpep7-67zQGkisBIzR0gqe9x5HTZPIg"
+      ],
+      "isAffiliate": false,
+      "originalLanguage": "fr"
     }
   ],
   "categories": [
