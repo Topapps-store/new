@@ -13,7 +13,7 @@ import DownloadButton from "../components/DownloadButton";
 import UberAppSEO from "../components/UberAppSEO";
 import BookingComSEO from "../components/BookingComSEO";
 import { useTranslation } from "../hooks/useTranslation";
-// Removed unused ClickTracker import
+import { ClickTracker } from "../components/ClickTracker";
 
 
 
@@ -239,11 +239,8 @@ const AppDetail = () => {
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
     queryKey: [`/api/apps/${appId}`],
     queryFn: async () => {
-      const response = await fetch(`/api/apps/${appId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch app');
-      }
-      return response.json();
+      const { getAppById } = await import('../services/staticDataService');
+      return getAppById(appId || '');
     },
     enabled: !!appId
   });
@@ -251,11 +248,8 @@ const AppDetail = () => {
   const { data: relatedApps, isLoading: isLoadingRelated } = useQuery<(App | AppLegacy)[]>({
     queryKey: ["/api/apps/related", appId],
     queryFn: async () => {
-      const response = await fetch(`/api/apps/related/${appId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch related apps');
-      }
-      return response.json();
+      const { getRelatedApps } = await import('../services/staticDataService');
+      return getRelatedApps(appId || '');
     },
     enabled: !!appId
   });
@@ -264,11 +258,8 @@ const AppDetail = () => {
   const { data: affiliateLinks, isLoading: isLoadingAffiliateLinks } = useQuery<AffiliateLink[]>({
     queryKey: [`/api/apps/${appId}/affiliate-links`],
     queryFn: async () => {
-      const response = await fetch(`/api/apps/${appId}/affiliate-links`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch affiliate links');
-      }
-      return response.json();
+      const { getAffiliateLinks } = await import('../services/staticDataService');
+      return getAffiliateLinks(appId || '');
     },
     enabled: !!appId
   });
@@ -386,7 +377,7 @@ const AppDetail = () => {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Special App SEO optimizations */}
-      {isUberRomaniaPage && app && <UberAppSEO />}
+      {isUberRomaniaPage && app && <UberAppSEO app={app} />}
       {isBookingComPage && app && <BookingComSEO app={app} />}
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-4 bg-[#f2f2f2]">
@@ -954,60 +945,24 @@ const AppDetail = () => {
                             </ul>
                           </div>
                           
-                          {/* Section spéciale Uber Taxi - optimisée pour Google Ads 10/10 */}
-                          <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                            <h3 className="text-lg font-bold text-blue-700 mb-3">🚕 Uber Taxi France - Service Premium 24h/24</h3>
-                            <p className="text-gray-700 mb-3">
-                              <strong>Uber Taxi</strong> révolutionne le transport urbain en France. Avec <strong>Uber Taxi</strong>, 
-                              profitez d'un service de qualité supérieure dans toutes les grandes villes françaises.
-                            </p>
-                            <div className="grid md:grid-cols-2 gap-3">
-                              <ul className="list-disc pl-6 text-sm text-gray-700 space-y-1">
-                                <li><strong>Uber Taxi</strong> - disponible 24h/24 et 7j/7</li>
-                                <li><strong>Uber Taxi</strong> - tarification transparente</li>
-                                <li><strong>Uber Taxi</strong> - géolocalisation en temps réel</li>
-                                <li><strong>Uber Taxi</strong> - paiement sécurisé</li>
-                              </ul>
-                              <ul className="list-disc pl-6 text-sm text-gray-700 space-y-1">
-                                <li><strong>Uber Taxi</strong> - chauffeurs professionnels</li>
-                                <li><strong>Uber Taxi</strong> - véhicules confortables</li>
-                                <li><strong>Uber Taxi</strong> - service clientèle réactif</li>
-                                <li><strong>Uber Taxi</strong> - réservation instantanée</li>
-                              </ul>
-                            </div>
-                            <div className="mt-3 p-3 bg-white rounded border">
-                              <p className="text-center text-blue-700 font-semibold">
-                                🌟 <strong>Uber Taxi</strong> - Votre solution de transport de confiance en France
-                              </p>
-                            </div>
-                          </div>
-                          
                           <p className="text-lg leading-relaxed">
                             Avec plus de 5 milliards de téléchargements dans le monde, <strong>Uber app</strong> est la référence du transport urbain. 
                             <strong>Télécharger Uber</strong> maintenant et profitez de courses fiables partout en France avec l'<strong>application Uber</strong>.
                           </p>
                           
                           <div className="bg-gray-50 p-4 rounded-lg">
-                            <h3 className="font-bold text-lg mb-2">🇫🇷 Uber Taxi France - Villes disponibles :</h3>
+                            <h3 className="font-bold text-lg mb-2">🇫🇷 Uber France - Villes disponibles :</h3>
                             <ul className="list-disc list-inside space-y-1">
-                              <li><strong>Uber Taxi Paris</strong> - service premium dans la capitale</li>
-                              <li><strong>Uber Taxi Lyon</strong> - transport rapide et efficace</li>
-                              <li><strong>Uber Taxi Marseille</strong> - courses dans toute la métropole</li>
-                              <li><strong>Uber Taxi Toulouse</strong> - déplacements urbains simplifiés</li>
+                              <li><strong>Uber Paris</strong> - service premium dans la capitale</li>
+                              <li><strong>Uber Lyon</strong> - transport rapide et efficace</li>
+                              <li><strong>Uber Marseille</strong> - courses dans toute la métropole</li>
+                              <li><strong>Uber Toulouse</strong> - déplacements urbains simplifiés</li>
                             </ul>
-                            <div className="mt-3 p-3 bg-white rounded border">
-                              <p className="text-sm text-gray-600 text-center">
-                                <strong>Uber Taxi</strong> disponible dans plus de 50 villes françaises - Service <strong>Uber Taxi</strong> de qualité partout en France
-                              </p>
-                            </div>
                           </div>
                           
-                          <div className="text-center my-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                            <p className="text-xl font-bold text-blue-700 mb-2">🚕 <strong>Uber Taxi</strong> France - Votre Transport Premium</p>
-                            <p className="text-gray-700">Réservez votre <strong>Uber Taxi</strong> maintenant et voyagez en toute sécurité !</p>
-                            <p className="text-sm text-blue-600 mt-2">
-                              <strong>Uber Taxi</strong> - La solution de transport de confiance en France
-                            </p>
+                          <div className="text-center my-6 p-4 bg-gray-50 rounded-lg">
+                            <p className="text-xl font-bold text-gray-700 mb-2">Télécharger Uber App France - Uber Course Tax</p>
+                            <p className="text-gray-600">Réservez votre prochaine course avec l'application Uber !</p>
                           </div>
                           
                           <div className="text-center my-6 p-4 bg-green-50 rounded-lg">
@@ -1016,41 +971,7 @@ const AppDetail = () => {
                           </div>
                         </div>
                         
-                        {/* SEO optimized hidden content for Uber France - Uber Taxi 10/10 Quality Score */}
-                        <div className="sr-only">
-                          <p>uber taxi</p>
-                          <p>uber taxi france</p>
-                          <p>uber taxi paris</p>
-                          <p>uber taxi lyon</p>
-                          <p>uber taxi marseille</p>
-                          <p>uber taxi toulouse</p>
-                          <p>uber taxi premium</p>
-                          <p>uber taxi 24h</p>
-                          <p>uber taxi rapide</p>
-                          <p>uber taxi sécurisé</p>
-                          <p>uber taxi professionnel</p>
-                          <p>uber taxi fiable</p>
-                          <p>uber taxi app</p>
-                          <p>uber taxi application</p>
-                          <p>uber taxi service</p>
-                          <p>uber taxi transport</p>
-                          <p>uber taxi réservation</p>
-                          <p>uber taxi course</p>
-                          <p>uber taxi chauffeur</p>
-                          <p>uber taxi véhicule</p>
-                          <p>uber taxi tarif</p>
-                          <p>uber taxi prix</p>
-                          <p>uber taxi instantané</p>
-                          <p>uber taxi géolocalisation</p>
-                          <p>uber taxi paiement</p>
-                          <p>commander uber taxi</p>
-                          <p>réserver uber taxi</p>
-                          <p>télécharger uber taxi</p>
-                          <p>installer uber taxi</p>
-                          <p>uber taxi gratuit</p>
-                        </div>
-                        
-                        {/* Additional hidden SEO content for general Uber France keywords */}
+                        {/* SEO optimized hidden content for Uber France */}
                         <div className="sr-only">
                           <h4>Uber France Keywords</h4>
                           <p>télécharger Uber, Uber app, application Uber, Uber France, Uber course, Uber taxi, Uber transport, Uber chauffeur, Uber voiture, Uber prix</p>
@@ -1298,7 +1219,7 @@ const AppDetail = () => {
                           </a>
                           
                           <a 
-                            href={app.iosAppStoreUrl || "https://apps.apple.com/de/app/enbw-mobility-e-auto-laden/id1232210521"}
+                            href={app.appStoreUrl || "https://apps.apple.com/de/app/enbw-mobility-e-auto-laden/id1232210521"}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center px-4 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
@@ -1930,7 +1851,7 @@ const AppDetail = () => {
                       {/* iOS App Store link for Lose Weight App */}
                       {isLoseWeightPage && (
                         <a 
-                          href={app.iosAppStoreUrl}
+                          href={app.appStoreUrl}
                           className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -1960,7 +1881,7 @@ const AppDetail = () => {
                       {/* iOS App Store link for Chargemap */}
                       {isChargemapPage && (
                         <a 
-                          href={app.iosAppStoreUrl}
+                          href={app.appStoreUrl}
                           className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -1975,7 +1896,7 @@ const AppDetail = () => {
                       {/* iOS App Store link for Electra */}
                       {isElectraPage && (
                         <a 
-                          href={app.iosAppStoreUrl}
+                          href={app.appStoreUrl}
                           className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -1990,7 +1911,7 @@ const AppDetail = () => {
                       {/* iOS App Store link for Uber Ride App */}
                       {isUberPage && (
                         <a 
-                          href={app.iosAppStoreUrl}
+                          href={app.appStoreUrl}
                           className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -2119,7 +2040,7 @@ const AppDetail = () => {
                   Download Uber Rides App Now
                 </a>
                 <a 
-                  href={app.iosAppStoreUrl || "https://apps.apple.com/app/uber/id368677368"}
+                  href={app.appStoreUrl || "https://apps.apple.com/app/uber/id368677368"}
                   className="inline-flex items-center justify-center px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-800 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
