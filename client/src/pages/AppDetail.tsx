@@ -238,17 +238,38 @@ const AppDetail = () => {
 
   const { data: app, isLoading } = useQuery<App | AppLegacy>({
     queryKey: [`/api/apps/${appId}`],
+    queryFn: async () => {
+      const response = await fetch(`/api/apps/${appId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch app');
+      }
+      return response.json();
+    },
     enabled: !!appId
   });
 
   const { data: relatedApps, isLoading: isLoadingRelated } = useQuery<(App | AppLegacy)[]>({
     queryKey: ["/api/apps/related", appId],
+    queryFn: async () => {
+      const response = await fetch(`/api/apps/related/${appId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch related apps');
+      }
+      return response.json();
+    },
     enabled: !!appId
   });
   
   // Fetch affiliate links for this app
   const { data: affiliateLinks, isLoading: isLoadingAffiliateLinks } = useQuery<AffiliateLink[]>({
     queryKey: [`/api/apps/${appId}/affiliate-links`],
+    queryFn: async () => {
+      const response = await fetch(`/api/apps/${appId}/affiliate-links`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch affiliate links');
+      }
+      return response.json();
+    },
     enabled: !!appId
   });
 
@@ -366,7 +387,7 @@ const AppDetail = () => {
     <div className="max-w-4xl mx-auto">
       {/* Special App SEO optimizations */}
       {isUberRomaniaPage && app && <UberAppSEO />}
-      {isBookingComPage && app && <BookingComSEO />}
+      {isBookingComPage && app && <BookingComSEO app={app} />}
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-4 bg-[#f2f2f2]">
           {/* Header section with app logo on the left */}
@@ -1277,7 +1298,7 @@ const AppDetail = () => {
                           </a>
                           
                           <a 
-                            href={app.appStoreUrl || "https://apps.apple.com/de/app/enbw-mobility-e-auto-laden/id1232210521"}
+                            href={app.iosAppStoreUrl || "https://apps.apple.com/de/app/enbw-mobility-e-auto-laden/id1232210521"}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center px-4 py-3 bg-black hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
@@ -1909,7 +1930,7 @@ const AppDetail = () => {
                       {/* iOS App Store link for Lose Weight App */}
                       {isLoseWeightPage && (
                         <a 
-                          href={app.appStoreUrl}
+                          href={app.iosAppStoreUrl}
                           className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -1939,7 +1960,7 @@ const AppDetail = () => {
                       {/* iOS App Store link for Chargemap */}
                       {isChargemapPage && (
                         <a 
-                          href={app.appStoreUrl}
+                          href={app.iosAppStoreUrl}
                           className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -1954,7 +1975,7 @@ const AppDetail = () => {
                       {/* iOS App Store link for Electra */}
                       {isElectraPage && (
                         <a 
-                          href={app.appStoreUrl}
+                          href={app.iosAppStoreUrl}
                           className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -1969,7 +1990,7 @@ const AppDetail = () => {
                       {/* iOS App Store link for Uber Ride App */}
                       {isUberPage && (
                         <a 
-                          href={app.appStoreUrl}
+                          href={app.iosAppStoreUrl}
                           className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-800 text-lg transition-colors"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -2098,7 +2119,7 @@ const AppDetail = () => {
                   Download Uber Rides App Now
                 </a>
                 <a 
-                  href={app.appStoreUrl || "https://apps.apple.com/app/uber/id368677368"}
+                  href={app.iosAppStoreUrl || "https://apps.apple.com/app/uber/id368677368"}
                   className="inline-flex items-center justify-center px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-800 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
