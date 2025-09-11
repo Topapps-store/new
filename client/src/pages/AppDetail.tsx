@@ -13,7 +13,7 @@ import DownloadButton from "../components/DownloadButton";
 import UberAppSEO from "../components/UberAppSEO";
 import BookingComSEO from "../components/BookingComSEO";
 import { useTranslation } from "../hooks/useTranslation";
-import { ClickTracker } from "../components/ClickTracker";
+import ClickTracker from "../components/ClickTracker";
 
 
 

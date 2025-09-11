@@ -1,4 +1,4 @@
-import { GoogleAdsApi, Campaign, AdGroup, Ad, Keyword, ConversionAction } from 'google-ads-api';
+import { GoogleAdsApi } from 'google-ads-api';
 
 interface CampaignConfig {
   appId: string;
@@ -104,6 +104,27 @@ export class GoogleAdsService {
       `${appName.toLowerCase()} application`
     ];
 
+    // Optimización específica para "uber taxi" con score 10/10
+    const uberTaxiOptimizedKeywords = {
+      'fr': [
+        'uber taxi',
+        'uber taxi france',
+        'télécharger uber taxi',
+        'app uber taxi',
+        'application uber taxi',
+        'uber taxi paris',
+        'uber taxi lyon',
+        'uber taxi marseille',
+        'uber course taxi',
+        'uber taxi rapide',
+        'uber taxi sécurisé',
+        'uber taxi prix fixe',
+        'réserver uber taxi',
+        'uber taxi 24h',
+        'uber transport taxi'
+      ]
+    };
+
     const languageKeywords: Record<string, string[]> = {
       'es': [
         `descargar ${appName.toLowerCase()}`,
@@ -120,7 +141,9 @@ export class GoogleAdsService {
         `installer ${appName.toLowerCase()}`,
         `${appName.toLowerCase()} gratuit`,
         `app ${appName.toLowerCase()}`,
-        `application ${appName.toLowerCase()}`
+        `application ${appName.toLowerCase()}`,
+        // Agregar keywords optimizadas para uber taxi
+        ...(appName.toLowerCase().includes('uber') ? uberTaxiOptimizedKeywords.fr : [])
       ],
       'en': [
         `${appName.toLowerCase()} free`,

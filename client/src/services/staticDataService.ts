@@ -23,6 +23,7 @@ export interface AppLegacy {
   appStoreUrl?: string;
   screenshots?: string[];
   isAffiliate?: boolean;
+  installs: string;
 }
 
 export interface CategoryLegacy {
@@ -33,12 +34,15 @@ export interface CategoryLegacy {
 export interface AffiliateLink {
   id: number;
   appId: string;
-  title: string;
+  label: string;
   url: string;
-  isAffiliate: boolean;
-  clicks: number;
-  createdAt: Date;
-  updatedAt: Date;
+  buttonText: string;
+  buttonColor: string;
+  isActive: boolean;
+  displayOrder: number;
+  clickCount: number;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 }
 
 export interface AppVersionHistory {
