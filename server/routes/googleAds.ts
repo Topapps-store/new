@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { GoogleAdsService } from '../services/googleAdsService';
+import { requireAdmin } from '../controllers/auth-controller';
 
 const router = Router();
 
@@ -109,6 +110,20 @@ router.put('/campaigns/:campaignId/optimize', async (req, res) => {
   } catch (error) {
     console.error('Campaign optimization failed:', error);
     res.status(500).json({ error: 'Failed to optimize campaign' });
+  }
+});
+
+// POST /api/google-ads/uber-taxi-campaign - Create optimized "uber taxi" campaign for Quality Score 10/10
+router.post('/uber-taxi-campaign', requireAdmin, async (req, res) => {
+  try {
+    const result = await googleAdsService.createUberTaxiOptimizedCampaign();
+    res.json(result);
+  } catch (error) {
+    console.error('Error creating Uber Taxi optimized campaign:', error);
+    res.status(500).json({ 
+      error: 'Failed to create Uber Taxi optimized campaign',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
   }
 });
 

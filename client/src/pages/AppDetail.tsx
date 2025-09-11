@@ -148,31 +148,58 @@ const AppDetail = () => {
       metaKeywords.setAttribute('content', 'Uber, Uber taxi, Uber app, transport urban, aplicație taxi, ride sharing, călătorii rapide, România');
       
     }
-    // SEO optimization for Uber France page - optimized for Google Ads 10/10 Quality Score
+    // SEO optimization for Uber France page - OPTIMIZED FOR "UBER TAXI" QUALITY SCORE 10/10
     else if (appId === 'uber-france') {
-      // Update page title with main French keywords
-      document.title = 'Télécharger Uber App France | Uber Course Taxi Transport';
+      // Update page title with primary focus on "uber taxi" keyword
+      document.title = 'Uber Taxi France | Télécharger App Uber Taxi - Réservation Rapide';
       
-      // Update meta description with all keywords
+      // Update meta description with ultra-focused "uber taxi" optimization
       let metaDescription = document.querySelector('meta[name="description"]');
       if (!metaDescription) {
         metaDescription = document.createElement('meta');
         metaDescription.setAttribute('name', 'description');
         document.head.appendChild(metaDescription);
       }
-      metaDescription.setAttribute('content', 'Télécharger Uber app France. Réservez votre course en quelques clics. Uber taxi, transport fiable 24h/24 dans toute la France.');
+      metaDescription.setAttribute('content', 'Uber taxi France - Télécharger l\'application Uber taxi pour réserver votre course taxi. Uber taxi disponible 24h/24 dans toute la France. Service uber taxi fiable et sécurisé.');
       
       // Add lang attribute for French
       document.documentElement.setAttribute('lang', 'fr');
       
-      // Add keywords meta tag with all Google Ads keywords
+      // Add keywords meta tag optimized specifically for "uber taxi" - 10/10 Quality Score focus
       let metaKeywords = document.querySelector('meta[name="keywords"]');
       if (!metaKeywords) {
         metaKeywords = document.createElement('meta');
         metaKeywords.setAttribute('name', 'keywords');
         document.head.appendChild(metaKeywords);
       }
-      metaKeywords.setAttribute('content', 'télécharger uber, uber app, application uber, uber france, uber course, uber taxi, uber transport, uber paris, uber lyon, uber marseille, uber chauffeur, uber voiture, uber prix');
+      metaKeywords.setAttribute('content', 'uber taxi, uber taxi france, télécharger uber taxi, app uber taxi, application uber taxi, uber taxi paris, uber taxi lyon, uber taxi marseille, uber course taxi, uber taxi rapide, uber taxi sécurisé, uber taxi prix fixe, réserver uber taxi, uber taxi 24h, uber transport taxi');
+      
+      // Add structured data for enhanced SERP visibility and Quality Score
+      let structuredData = document.querySelector('script[type="application/ld+json"]');
+      if (!structuredData) {
+        structuredData = document.createElement('script');
+        structuredData.setAttribute('type', 'application/ld+json');
+        document.head.appendChild(structuredData);
+      }
+      structuredData.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Uber Taxi France",
+        "description": "Application Uber taxi pour réserver votre course taxi en France. Service uber taxi 24h/24, rapide et sécurisé.",
+        "operatingSystem": ["Android", "iOS"],
+        "applicationCategory": "TransportApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "description": "Téléchargement gratuit de l'app uber taxi"
+        },
+        "keywords": ["uber taxi", "uber taxi france", "app uber taxi", "application uber taxi"],
+        "serviceArea": {
+          "@type": "Country",
+          "name": "France"
+        }
+      });
       
     }
     
