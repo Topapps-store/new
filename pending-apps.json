@@ -1,10 +1,21 @@
 {
-  "pendingUrls": [],
+  "pendingUrls": [
+    "https://play.google.com/store/apps/details?id=com.gopark.gopark&hl=fr"
+  ],
   "processedUrls": [
     "https://play.google.com/store/apps/details?id=com.lidl.eci.lidlplus&hl=de",
     "https://play.google.com/store/apps/details?id=com.fortum.chargeanddrivenorway&hl=no",
     "https://play.google.com/store/apps/details?id=com.fortum.chargeanddrivesweden&hl=sv",
     "https://play.google.com/store/apps/details?id=com.fortum.chargeanddrivefinland&hl=fi",
-    "https://play.google.com/store/apps/details?id=me.lyft.android&hl=fr"
+    "https://play.google.com/store/apps/details?id=me.lyft.android&hl=fr",
+    "https://play.google.com/store/apps/details?id=com.iemgroup.v2.prestopark&hl=fr",
+    "https://play.google.com/store/apps/details?id=group.flowbird.mpp&hl=fr",
+    "https://play.google.com/store/apps/details?id=com.opngo.live&hl=fr",
+    "https://play.google.com/store/apps/details?id=com.delaware.empark&hl=es",
+    "https://play.google.com/store/apps/details?id=net.easypark.android&hl=es",
+    "https://play.google.com/store/apps/details?id=com.elparking.elparking&hl=es",
+    "https://play.google.com/store/apps/details?id=es.apk2.ecosystem&hl=es",
+    "https://play.google.com/store/apps/details?id=com.ubercab&hl=es",
+    "https://play.google.com/store/apps/details?id=ee.mtakso.client&hl=es"
   ]
 }
