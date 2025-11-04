@@ -202,6 +202,60 @@ const AppDetail = () => {
       });
       
     }
+    // SEO optimization for EasyPark page - OPTIMIZED FOR GOOGLE ADS KEYWORDS 10/10
+    else if (appId === 'easypark-parking-made-easy') {
+      // Update page title with primary focus on "EasyPark" keywords
+      document.title = 'EasyPark App France | Télécharger Easypark - Paris, Lille, Bordeaux';
+      
+      // Update meta description with ultra-focused "EasyPark" optimization
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.setAttribute('name', 'description');
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.setAttribute('content', 'Télécharger Easypark application pour stationnement facile en France. EasyPark App disponible à Paris, Lille, Bordeaux. Easy park partout en France avec l\'application Easypark.');
+      
+      // Add lang attribute for French
+      document.documentElement.setAttribute('lang', 'fr');
+      
+      // Add keywords meta tag optimized specifically for EasyPark keywords - 10/10 Quality Score focus
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.setAttribute('content', 'EasyPark App, Télécharger Easypark, easypark bordeaux, easypark France, easypark Paris, Easypark Lille, easy park, Easypark application, application easypark, télécharger easypark app, easypark stationnement, easypark parking');
+      
+      // Add structured data for enhanced SERP visibility and Quality Score
+      let structuredData = document.querySelector('script[type="application/ld+json"]');
+      if (!structuredData) {
+        structuredData = document.createElement('script');
+        structuredData.setAttribute('type', 'application/ld+json');
+        document.head.appendChild(structuredData);
+      }
+      structuredData.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "EasyPark App - Télécharger Easypark",
+        "description": "Télécharger Easypark application pour stationnement facile. EasyPark App disponible à easypark Paris, Easypark Lille, easypark bordeaux et partout en easypark France.",
+        "operatingSystem": ["Android", "iOS"],
+        "applicationCategory": "TravelApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "description": "Téléchargement gratuit de l'EasyPark App"
+        },
+        "keywords": ["EasyPark App", "Télécharger Easypark", "easypark bordeaux", "easypark France", "easypark Paris", "Easypark Lille", "easy park", "Easypark application"],
+        "serviceArea": {
+          "@type": "Country",
+          "name": "France"
+        }
+      });
+      
+    }
     
     // Get or create meta description element
     let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
@@ -400,6 +454,7 @@ const AppDetail = () => {
   const isBookingComPage = appId === 'bookingcom-hotels-travel';
   const isChargemapPage = appId === 'chargemap-charging-stations';
   const isElectraPage = appId === 'electra-charging-hubs';
+  const isEasyParkPage = appId === 'easypark-parking-made-easy';
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -427,6 +482,7 @@ const AppDetail = () => {
                    isBookingComPage ? "Booking app download - Beach hotel & hotels close to the beach" :
                    isChargemapPage ? "Chargemap Pass - télécharger application recharge" :
                    isElectraPage ? "application Electra" :
+                   isEasyParkPage ? "EasyPark App - Télécharger Easypark application France" :
                    isUberPage ? "download uber rides app" :
                    app.name} 
               className="w-16 h-16 object-contain rounded-2xl flex-shrink-0"
@@ -449,6 +505,7 @@ const AppDetail = () => {
                  isBookingComPage ? "Booking.com App: Hotels & Travel" :
                  isChargemapPage ? "Chargemap app – Bornes de recharge" :
                  isElectraPage ? "Electra – Application Recharge Rapide" :
+                 isEasyParkPage ? "EasyPark App – Stationnement Facile en France" :
                  isUberPage ? "Download Uber Rides App – Get an Uber Ride Now" :
                  app.name}
               </h1>
@@ -1650,6 +1707,84 @@ const AppDetail = () => {
                           <img alt="Electra app mobile" />
                         </div>
                       </>
+                    ) : isEasyParkPage ? (
+                      <>
+                        <div className="space-y-4">
+                          <h2 className="text-xl font-bold text-green-700">Télécharger Easypark - L'EasyPark App N°1 en France pour Stationnement Facile</h2>
+                          
+                          <p className="text-lg leading-relaxed">
+                            <strong>Télécharger Easypark</strong> vous permet de gérer facilement votre stationnement partout en France. 
+                            L'<strong>EasyPark App</strong> est l'<strong>Easypark application</strong> de référence pour le stationnement intelligent à <strong>easypark Paris</strong>, <strong>Easypark Lille</strong>, <strong>easypark bordeaux</strong> et dans toute la <strong>easypark France</strong>.
+                          </p>
+                          
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">🅿️ Pourquoi télécharger Easypark application :</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li><strong>Easy park</strong> dans plus de 3 000 villes en Europe</li>
+                              <li><strong>EasyPark App</strong> disponible à <strong>easypark Paris</strong>, <strong>Easypark Lille</strong> et <strong>easypark bordeaux</strong></li>
+                              <li>Paiement sécurisé avec l'<strong>Easypark application</strong></li>
+                              <li>Service disponible partout en <strong>easypark France</strong></li>
+                            </ul>
+                          </div>
+                          
+                          <p className="text-lg leading-relaxed">
+                            Avec <strong>EasyPark App</strong>, le stationnement devient simple. <strong>Télécharger Easypark</strong> maintenant pour profiter d'<strong>easy park</strong> où que vous soyez en <strong>easypark France</strong>.
+                          </p>
+                          
+                          <div className="bg-blue-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">📱 Fonctionnalités de l'Easypark application :</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                              <li>Démarrez et arrêtez votre session depuis l'<strong>EasyPark App</strong></li>
+                              <li>Trouvez un parking à <strong>easypark Paris</strong>, <strong>Easypark Lille</strong>, <strong>easypark bordeaux</strong></li>
+                              <li>Prolongez votre session à distance avec <strong>Easypark application</strong></li>
+                              <li>Notifications avant expiration du stationnement</li>
+                            </ul>
+                          </div>
+                          
+                          <div className="bg-green-50 p-4 rounded-lg">
+                            <h3 className="font-bold text-lg mb-2">🇫🇷 EasyPark en France :</h3>
+                            <p className="text-base leading-relaxed">
+                              L'<strong>EasyPark App</strong> est disponible dans toute la <strong>easypark France</strong> :
+                            </p>
+                            <ul className="list-disc list-inside space-y-1 mt-2">
+                              <li><strong>easypark Paris</strong> - Stationnement dans la capitale</li>
+                              <li><strong>Easypark Lille</strong> - Parking facile dans le Nord</li>
+                              <li><strong>easypark bordeaux</strong> - Solutions de stationnement en Nouvelle-Aquitaine</li>
+                              <li>Et dans plus de 100 villes en <strong>easypark France</strong></li>
+                            </ul>
+                          </div>
+                          
+                          <p className="text-lg leading-relaxed font-semibold">
+                            <strong>Télécharger Easypark</strong> maintenant et découvrez pourquoi l'<strong>Easypark application</strong> est l'app de stationnement préférée en <strong>easypark France</strong>. 
+                            Avec <strong>easy park</strong>, stationnez en quelques secondes à <strong>easypark Paris</strong>, <strong>Easypark Lille</strong>, <strong>easypark bordeaux</strong> et partout ailleurs !
+                          </p>
+                          
+                          <div className="text-center my-6 p-4 bg-gray-50 rounded-lg">
+                            <p className="text-xl font-bold text-gray-700 mb-2">Télécharger Easypark maintenant</p>
+                            <p className="text-gray-600">L'EasyPark App pour un stationnement facile en France !</p>
+                          </div>
+                          
+                          {/* Second CTA at bottom of page */}
+                          <div className="text-center my-6 p-4 bg-green-50 rounded-lg">
+                            <p className="text-xl font-bold text-green-700 mb-2">Télécharger Easypark application</p>
+                            <p className="text-gray-600">Easy park à Paris, Lille, Bordeaux et partout en France !</p>
+                          </div>
+                        </div>
+                        
+                        {/* SEO optimized hidden content for EasyPark with Google Ads keywords */}
+                        <div className="sr-only">
+                          <h4>EasyPark Keywords Google Ads Optimized</h4>
+                          <p>EasyPark App, Télécharger Easypark, easypark bordeaux, easypark France, easypark Paris, Easypark Lille, easy park, Easypark application, application easypark france, télécharger easypark app, easypark stationnement paris lille bordeaux</p>
+                          <img alt="EasyPark App" />
+                          <img alt="Télécharger Easypark" />
+                          <img alt="easypark bordeaux" />
+                          <img alt="easypark France" />
+                          <img alt="easypark Paris" />
+                          <img alt="Easypark Lille" />
+                          <img alt="easy park france" />
+                          <img alt="Easypark application" />
+                        </div>
+                      </>
                     ) : isChargemapPage ? (
                       <>
                         <div className="space-y-4">
@@ -1767,6 +1902,7 @@ const AppDetail = () => {
                            isBookingComPage ? "Download Booking App for Android - Beach Hotel Bookings" :
                            isChargemapPage ? "Télécharger Chargemap Pass app sur Google Play" :
                            isElectraPage ? "Télécharger Electra app sur Google Play" :
+                           isEasyParkPage ? "Télécharger Easypark" :
                            isUberPage ? "Download Uber Rides App Now" : "GET IT ON Google Play"}
                         </span>
                       </div>
@@ -1795,6 +1931,7 @@ const AppDetail = () => {
                          isLoseWeightPage ? "Download lose weight app for women on Google Play" :
                          isDeliverooPage ? "Telecharger deliveroo app sur Google Play - commande repas deliveroo" :
                          isBookingComPage ? "Download Booking App for Android - Beach Hotel Bookings" :
+                         isEasyParkPage ? "Télécharger Easypark" :
                          isChargemapPage ? "Télécharger Chargemap Pass app sur Google Play" :
                          isElectraPage ? "Télécharger Electra app sur Google Play" :
                          isUberPage ? "Download Uber Rides App Now" : "Google Play"}
