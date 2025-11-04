@@ -410,9 +410,18 @@ async function processPendingApps() {
         
         const appData = await getAppInfo(url);
         if (appData) {
-          newApps.push(appData);
-          newProcessedUrls.push(url);
-          console.log(`✓ Procesada app: ${appData.name} (Idioma: ${appData.originalLanguage || 'en'})`);
+          // FILTRO DE CALIDAD: Solo agregar apps con rating >= 4.0
+          const rating = Number(appData.rating) || 0;
+          const ratingDisplay = rating > 0 ? rating.toFixed(2) : 'N/A';
+          
+          if (rating >= 4.0) {
+            newApps.push(appData);
+            newProcessedUrls.push(url);
+            console.log(`✓ Procesada app: ${appData.name} (Rating: ${ratingDisplay}, Idioma: ${appData.originalLanguage || 'en'})`);
+          } else {
+            console.log(`✗ RECHAZADA por rating bajo: ${appData.name} (Rating: ${ratingDisplay} < 4.0)`);
+            newProcessedUrls.push(url); // Marcar como procesada para no intentar de nuevo
+          }
         } else {
           console.error(`No se pudo obtener información para la URL: ${url}`);
           failedUrls.push(url);
