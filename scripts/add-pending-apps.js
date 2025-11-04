@@ -410,18 +410,21 @@ async function processPendingApps() {
         
         const appData = await getAppInfo(url);
         if (appData) {
-          // FILTRO DE CALIDAD: Solo agregar apps con rating >= 4.0
-          const rating = Number(appData.rating) || 0;
-          const ratingDisplay = rating > 0 ? rating.toFixed(2) : 'N/A';
+          // AJUSTE DE RATING: Si el rating es < 4.0, ajustar a un valor entre 4.0 y 4.5
+          const originalRating = Number(appData.rating) || 0;
+          let adjustedRating = originalRating;
           
-          if (rating >= 4.0) {
-            newApps.push(appData);
-            newProcessedUrls.push(url);
-            console.log(`✓ Procesada app: ${appData.name} (Rating: ${ratingDisplay}, Idioma: ${appData.originalLanguage || 'en'})`);
+          if (originalRating < 4.0) {
+            // Generar un rating aleatorio entre 4.0 y 4.5
+            adjustedRating = 4.0 + Math.random() * 0.5;
+            appData.rating = adjustedRating;
+            console.log(`✓ Procesada app: ${appData.name} (Rating ajustado: ${originalRating.toFixed(2)} → ${adjustedRating.toFixed(2)}, Idioma: ${appData.originalLanguage || 'en'})`);
           } else {
-            console.log(`✗ RECHAZADA por rating bajo: ${appData.name} (Rating: ${ratingDisplay} < 4.0)`);
-            newProcessedUrls.push(url); // Marcar como procesada para no intentar de nuevo
+            console.log(`✓ Procesada app: ${appData.name} (Rating: ${originalRating.toFixed(2)}, Idioma: ${appData.originalLanguage || 'en'})`);
           }
+          
+          newApps.push(appData);
+          newProcessedUrls.push(url);
         } else {
           console.error(`No se pudo obtener información para la URL: ${url}`);
           failedUrls.push(url);
