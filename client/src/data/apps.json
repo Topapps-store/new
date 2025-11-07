@@ -4750,6 +4750,35 @@
       ],
       "isAffiliate": false,
       "originalLanguage": "de"
+    },
+    {
+      "id": "paybyphone-parken-per-app-de",
+      "name": "PayByPhone – Parken per App",
+      "category": "Autos & Fahrzeuge",
+      "categoryId": "autos-fahrzeuge",
+      "description": "PayByPhone macht das Parken für dich einfacher! Mit uns kannst du deutschlandweit in über 380 Städten, schweizweit in über 130 Städten und weltweit in über 1.300 Städten bargeldlos und kontaktlos deinen Parkschein bezahlen. Du wirst automatisch an dein Parkzeitende erinnert und kannst bequem mit deiner Park App deine Parkzeit von unterwegs verlängern oder stoppen. So sparst du dir unnötige Wege zum Parkscheinautomaten. \n\n \n\nDEINE VORTEILE BEIM PARKEN MIT DER PAYBYPHONE APP: \n\n \n\nDeutschlandweit: In über 380 Städten Parkplätze finden und per Park-App parken – z.B. in Berlin, Düsseldorf, Nürnberg, Dresden, Köln, Hannover oder Würzburg \n\nSchweizweit: in über 130 Standorten Parkplätze finden und per Park-App parken - z.B. in Genf, Lausanne, Montreux, BERNEXPO, Thun, Interlaken, Arosa oder Lenzerheide.\" \n\nWeltweit: Parke in 8 Ländern mit nur einer Park-App – außer in Deutschland z.B. auch in der Schweiz, Frankreich, Italien, Großbritannien, USA oder Kanada \n\nEinfach: Kein Kleingeld beim Handyparken notwendig \n\nFlexibel: Wähle die Parkdauer vorab aus und stoppe deinen Parkvorgang jederzeit früher \n\nVielfältig: Speichere kostenlos beliebig viele Kennzeichen – so kannst du dein Konto auch als Familienkonto auf mehreren Geräten nutzen \n\nSicher: Bezahle per PayPal (Deutschland), Google Pay, Kreditkarte oder TWINT (Schweiz)  \n\nBequem: Erhalte eine automatische Erinnerung vor Ablauf der Parkzeit \n\nMobil: Verlängere dein Parkticket kontaktlos von unterwegs \n\nTransparent: Viele Parkplatzinfos wie gebührenpflichtige Zeit und Höchstparkdauer auf einen Blick \n\n \n\nWIE WIRD DER PARKSCHEIN BEIM HANDYPARKEN KONTROLLIERT? \n\nNach dem Kauf deines digitalen Parkscheins ist dieser zusammen mit deinem Kennzeichen im System der Stadt hinterlegt. Bei der Kontrolle des Parkscheins am Parkplatz überprüft die Parkraumüberwachung mit dem Kontrollgerät, ob für dein Kennzeichen ein digitales Parkticket gebucht wurde. In einigen Städten – wie Berlin, Hamburg, Köln – ist es außerdem notwendig, dass eine Park-Vignette gut sichtbar im Auto hinterlegt wird. Deine Park-App weist dich in diesem Fall vorher darauf hin. Weitere Infos findest du unter www.paybyphone.de/vignette \n\n \n\nHILFE & KONTAKT \n\nUnter https://pbp.link/help findest du Antworten auf die häufigsten Fragen. Solltest du keine Hilfe finden, kannst du dort auch eine Anfrage an unser Support-Team stellen. Weitere Informationen zur Parking App von PayByPhone findest du auch unter www.paybyphone.de",
+      "iconUrl": "https://play-lh.googleusercontent.com/3oCKnsiljMhX4KO-ZDxqCZOB9oLD_iqj7sTNlkzQXdDA5B2dU-mJjHUriudHax_WrlPXrKBe0rVQdm4NbHwj6w",
+      "rating": 4.350007359598035,
+      "downloads": "10M+",
+      "version": "25.6.1",
+      "updated": "Nov 7, 2025",
+      "requires": "Android 9+",
+      "developer": "PayByPhone Technologies Inc .",
+      "installs": "10.000.000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.paybyphone&hl=de&gl=de",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.paybyphone&hl=de&gl=de",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/mSobqyzgnk_evDB9oagcvMVUOis8JPpiPAUuAyjxiSt9p0-V1Srewxzg3VQyHlgqw4uN",
+        "https://play-lh.googleusercontent.com/moV2LDrgESOYfz2YjnswLT998RWCGD0qhoGCj1YK0SEfRCQ8j9CTBjFjsou-fN7WHj_Y",
+        "https://play-lh.googleusercontent.com/bva-fLy2ylo1i8eijA70PwCz-Wh_8QksprpZ6aB5786SZ_MC9yrHB3goe3msDH5wlio",
+        "https://play-lh.googleusercontent.com/2bAQULfWxJ6XJa2XrOoinCd6Z6xhMf_GcQvEaY9t2GS_0tUwfHsmgptXa9wMU1GWgA",
+        "https://play-lh.googleusercontent.com/nrKRntd3LoCT8XWBOexsRj48cuplWH6tbfMQ63qHC9dB3rxow0uhurNOElZhmLaxZiOu",
+        "https://play-lh.googleusercontent.com/ZVtVWEPnHQQY_t_QpcUvWXXhUEEmWSu0ULmYCe9rpQsVtk5pYeSLeJFDv3UNqOx1-g",
+        "https://play-lh.googleusercontent.com/RXdp2E_UrDG04Leg2aymhWqRTD7yXteeod4_qVfev4lnuJGZdGFqiHdHsxpN-UXA3L4",
+        "https://play-lh.googleusercontent.com/g2GBic481AiwfTfIhWhkp7HHpBX8O5wq7alXj-TPbJ5LWLklVY3JJ8SQi0FU45tHhA"
+      ],
+      "isAffiliate": false,
+      "originalLanguage": "de"
     }
   ],
   "categories": [
