@@ -4861,6 +4861,30 @@
       ],
       "isAffiliate": false,
       "originalLanguage": "sv"
+    },
+    {
+      "id": "apcoa-flow-parken-per-app-de",
+      "name": "APCOA FLOW | Parken per App",
+      "category": "Autos & Fahrzeuge",
+      "categoryId": "autos-fahrzeuge",
+      "description": "Mit der gratis APCOA FLOW Park App einfach und ohne Zusatzkosten parken. Ohne Ticket. Ohne Bargeld. Ohne Stress. \n\nDeine Vorteile auf einen Blick:\n\n💚 ohne Ticket,\n💚 ohne Bargeld,\n💚 ohne versteckte Zusatzkosten,\n\nan über 300 Standorten in Deutschland und Österreich.\nUnsere App erleichtert dir nicht nur das Parken, sondern nun auch das Laden von E-Fahrzeugen! \n\nBitte beachten ☝️: Unser Service ist länderspezifisch aufgebaut. Für die Nutzung in anderen Ländern bitte die APCOA FLOW App neu installieren und im gewünschten Land registrieren. Im Folgenden findest du den Funktionsumfang unserer App für Deutschland und Österreich.\n \nFür DEUTSCHLAND:\nTicketlos parken: Dein Kennzeichen ist deine Parkberechtigung\nEinfach und komfortabel ins Parkhaus ein- und ausfahren, die Schranke öffnet sich vollautomatisch.\nDie Bezahlung per Apple Pay, Google Pay, Mastercard, VISA oder AMEX erfolgt einfach per App\nNach jedem abgeschlossenen Parkvorgang bekommst du eine E-Mail mit allen Abrechnungsdetails\nFür Freunde: In-App-Empfehlung verschicken und beim Parken sparen.\n \nFür ÖSTERREICH:\nEinfach ticketlos parken: Dein Kennzeichen ist deine neue Parkberechtigung.\nBequeme Buchung per Handy: An Standorten ohne Schrankenkontrolle buchst und verlängerst du deine Parkzeit bequem per Handy.\nAutomatische Schrankenöffnung: An Standorten mit Schrankenkontrolle öffnet sich die Schranke automatisch bei der Ein- und Ausfahrt.\nPauschalangebote: Buchung von attraktiven Tages-, Wochen- oder Monatspauschalen sowie Event-Tickets.\nE-Laden: Nutze unsere Ladestationen an ausgewählten Standorten zum Laden deines Elektroautos.\nUnsere Zahlungsmethoden: Mastercard, Visa, Diners, Amex, Apple Pay und Google Pay.\nAbrechnung auf einen Blick: Nach jedem abgeschlossenen Parkvorgang erhältst du eine E-Mail mit allen Abrechnungsdetails. Alle Rechnungen sind immer in deinem Konto digital verfügbar.\n\nMehr Informationen:\nAPCOA FLOW Deutschland: https://flow.apcoa.de/\nAPCOA FLOW Österreich: https://flow.apcoa.at/\n\nWir verlangen keine Servicepauschale. Für die Verwendung von APCOA FLOW in Deutschland und Österreich entstehen dir - neben den Parktarifen - keine weiteren Kosten.",
+      "iconUrl": "https://play-lh.googleusercontent.com/8efqI46HDOIHKPmy3OJZ_mKN1_L5qNIoF2tImw-RntUazsRBfGaOtqFSf9JZq5qknsY",
+      "rating": 4.0765422906089945,
+      "downloads": "1M+",
+      "version": "6.76.1",
+      "updated": "Nov 13, 2025",
+      "requires": "Android 8.0+",
+      "developer": "APCOA FLOW",
+      "installs": "1.000.000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.apcoaflow.consumer&hl=de&gl=de",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.apcoaflow.consumer&hl=de&gl=de",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/jSTdr-FpG14fOGWxoDhbXFUK-dp5IiKTengMbkCr_2Kry0PVB3Z_5gk9xEai4RqGLA",
+        "https://play-lh.googleusercontent.com/U04U5Vwwu2ntQPyXgF8MzV_0EU7wTpZTgS04dKIgZU9lY5BYnkiM2t4B7KR7AToV7tE",
+        "https://play-lh.googleusercontent.com/gDvi0jzAXC7DCn7tv-hTfpMjbLow8gB6D3dVD_2UfPfnk8bKKi1kr5-EY1kkmwWUjmo4"
+      ],
+      "isAffiliate": false,
+      "originalLanguage": "de"
     }
   ],
   "categories": [
