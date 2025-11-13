@@ -1,5 +1,9 @@
 {
-  "pendingUrls": [],
+  "pendingUrls": [
+    "https://play.google.com/store/apps/details?id=com.neligrate.parkman&hl=sv",
+    "https://play.google.com/store/apps/details?id=com.apcoaflow.consumer&hl=sv",
+    "https://play.google.com/store/apps/details?id=net.easypark.android&hl=sv"
+  ],
   "processedUrls": [
     "https://play.google.com/store/apps/details?id=com.ubercab&hl=es",
     "https://play.google.com/store/apps/details?id=com.pdf.editor.viewer.pdfreader.pdfviewer&hl=ca",
