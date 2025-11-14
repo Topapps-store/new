@@ -1,0 +1,36 @@
+~/workspace$ node scripts/add-pending-apps.js
+Procesando 2 URLs pendientes...
+Procesando URL: https://play.google.com/store/apps/details?id=cl.redcomercio.parkapplascondes&hl=es
+Detectado idioma: es desde URL: https://play.google.com/store/apps/details?id=cl.redcomercio.parkapplascondes&hl=es
+Obteniendo información de Google Play para: cl.redcomercio.parkapplascondes en idioma: es
+Error al obtener información de Google Play para cl.redcomercio.parkapplascondes: TypeError: Cannot read properties of undefined (reading 'length')
+    at Object.extractCategories (file:///home/runner/workspace/node_modules/google-play-scraper/lib/utils/mappingHelpers.js:110:43)
+    at Object.fun (file:///home/runner/workspace/node_modules/google-play-scraper/lib/app.js:132:33)
+    at file:///home/runner/workspace/node_modules/google-play-scraper/lib/utils/scriptData.js:52:19
+    at file:///home/runner/workspace/node_modules/ramda/es/map.js:57:20
+    at _arrayReduce (file:///home/runner/workspace/node_modules/ramda/es/internal/_arrayReduce.js:6:11)
+    at map (file:///home/runner/workspace/node_modules/ramda/es/map.js:56:14)
+    at file:///home/runner/workspace/node_modules/ramda/es/internal/_dispatchable.js:44:15
+    at Module.f2 (file:///home/runner/workspace/node_modules/ramda/es/internal/_curry2.js:28:14)
+    at extractFields (file:///home/runner/workspace/node_modules/google-play-scraper/lib/utils/scriptData.js:40:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+No se pudo obtener información para la URL: https://play.google.com/store/apps/details?id=cl.redcomercio.parkapplascondes&hl=es
+Procesando URL: https://play.google.com/store/apps/details?id=cl.redcomercio.parkapp&hl=es_419
+Detectado idioma: es desde URL: https://play.google.com/store/apps/details?id=cl.redcomercio.parkapp&hl=es_419
+Obteniendo información de Google Play para: cl.redcomercio.parkapp en idioma: es
+Error al obtener información de Google Play para cl.redcomercio.parkapp: TypeError: Cannot read properties of undefined (reading 'length')
+    at Object.extractCategories (file:///home/runner/workspace/node_modules/google-play-scraper/lib/utils/mappingHelpers.js:110:43)
+    at Object.fun (file:///home/runner/workspace/node_modules/google-play-scraper/lib/app.js:132:33)
+    at file:///home/runner/workspace/node_modules/google-play-scraper/lib/utils/scriptData.js:52:19
+    at file:///home/runner/workspace/node_modules/ramda/es/map.js:57:20
+    at _arrayReduce (file:///home/runner/workspace/node_modules/ramda/es/internal/_arrayReduce.js:6:11)
+    at map (file:///home/runner/workspace/node_modules/ramda/es/map.js:56:14)
+    at file:///home/runner/workspace/node_modules/ramda/es/internal/_dispatchable.js:44:15
+    at Module.f2 (file:///home/runner/workspace/node_modules/ramda/es/internal/_curry2.js:28:14)
+    at extractFields (file:///home/runner/workspace/node_modules/google-play-scraper/lib/utils/scriptData.js:40:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+No se pudo obtener información para la URL: https://play.google.com/store/apps/details?id=cl.redcomercio.parkapp&hl=es_419
+No hay nuevas apps para añadir.
+No se añadieron nuevas apps al catálogo.
+ATENCIÓN: 2 URLs no pudieron ser procesadas y permanecen pendientes.
+Proceso de sincronización finalizado.
