@@ -4968,6 +4968,33 @@
       ],
       "isAffiliate": false,
       "originalLanguage": "es"
+    },
+    {
+      "id": "paybyphone-parking-it",
+      "name": "PayByPhone - Parking",
+      "category": "Auto e veicoli",
+      "categoryId": "auto-e-veicoli",
+      "description": "L'applicazione PayByPhone ti semplifica la vita. Dalla registrazione al pagamento del parcheggio in pochi secondi, all'estensione della durata della sosta senza dover tornare al tuo veicolo, o anche agli avvisi prima che il tempo finisca… Sappiamo che hai ben altro a cui pensare, oltre al parcheggio!\n\nL'applicazione PayByPhone può essere utilizzata in più di 1.000 città in tutto il mondo ed è ora disponibile in 10 lingue, rendendola più facile che mai.\n\nI vantaggi di PayByPhone:\n\n• Non c'è bisogno di correre al parchimetro o di tornare al tuo veicolo; paghi e regoli il tuo tempo di parcheggio a distanza\n• Niente monete con te? Nessun problema! I pagamenti sono effettuati direttamente con la carta di credito (Visa, Mastercard), con PayPal o con Google Pay\n• Non pensare più al tuo parcheggio: l'app ti manda un promemoria automatico appena prima che giunga l'ora che hai impostato\n• Paga in pochi secondi e risparmia tempo! La tua targa e la tua carta di credito sono registrate nell'applicazione\n• La tua riunione dura più del previsto? Estendi la tua sosta a distanza!\n• Hai finito di fare shopping e ti è rimasto un po' di tempo per parcheggiare? Interrompi subito la sessione di parcheggio per pagare solo il tempo che hai effettivamente utilizzato\n\nCaratteristiche:\n\n• Paga in totale sicurezza e prolunga la tua sessione di parcheggio a distanza\n• Controlla il tempo rimanente in tempo reale sull'app\n• Localizzati o usa la mappa interattiva per trovare le zone di parcheggio nelle vicinanze\n• Ricevi un avviso sul tuo smartphone appena prima che il tuo tempo di parcheggio finisca\n• Termina la sessione di parcheggio e paga solo il tempo effettivamente utilizzato\n• Gestisci il tuo conto (informazioni personali, modi di pagamento, veicoli, password...)\n• Contatta il nostro servizio clienti per tutte le tue domande\n\nPuoi usare in oltre 130 città in Italia ed in tutte le città all'estero dove l'app è attiva (ad esempio Parigi, Ginevra, Londra, Berlino, San Francisco, Vancouver, Miami, Losanna, Monaco).",
+      "iconUrl": "https://play-lh.googleusercontent.com/3oCKnsiljMhX4KO-ZDxqCZOB9oLD_iqj7sTNlkzQXdDA5B2dU-mJjHUriudHax_WrlPXrKBe0rVQdm4NbHwj6w",
+      "rating": 4,
+      "downloads": "10M+",
+      "version": "Varia in base al dispositivo",
+      "updated": "Nov 12, 2025",
+      "requires": "Android 5.0+",
+      "developer": "PayByPhone Technologies Inc.",
+      "installs": "10.000.000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.paybyphone&hl=it",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.paybyphone&hl=it",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/-bGX_Xje1AnNBltouH1LMB6bBwRDy3EnoMufCqnI4Ji2AAtyp9EP9JGvyOJmf40X_A",
+        "https://play-lh.googleusercontent.com/lfLRNrqnZNMYjGbLfkiu0Me1vGxtJchNxD3RkHETJQuWNNmT1xmB7i1rSAEbk89o8NNH",
+        "https://play-lh.googleusercontent.com/bVMB5WxJtL0FG0RuFcDdPG4m9bnev8M_dSq8VfB_McgRRx489Cb5ZsOYlC2OvIxrmRCd",
+        "https://play-lh.googleusercontent.com/4Q9SjD29_SVHL48Auwv0mOsVhvXa_Oej9fyUF0Ux0qDfXtwU7BK57vLNN487VJZJKA",
+        "https://play-lh.googleusercontent.com/gLD4TrYsk8PWsmiW90Ems83dv0ijNX4BEK_6Js-DQqHik9XPt6UArVkeeVNS0NRFQWs",
+        "https://play-lh.googleusercontent.com/xq0UBvadRO6qrH42ke0GYkwTFLPeoSo-nHy45qbTBR7ENpiJqJd1XnKtm7HbxpjvMOA"
+      ],
+      "isAffiliate": false,
+      "originalLanguage": "it"
     }
   ],
   "categories": [
