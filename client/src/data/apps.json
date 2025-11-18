@@ -5024,6 +5024,34 @@
       ],
       "isAffiliate": false,
       "originalLanguage": "it"
+    },
+    {
+      "id": "yellowbrick-parking-fr",
+      "name": "Yellowbrick Parking",
+      "category": "Voyages et infos locales",
+      "categoryId": "voyages-et-infos-locales",
+      "description": "Park, Click, Yellowbrick ! Avec Yellowbrick, vous stationnez facilement et à moindre coût via votre mobile dans la rue et dans les parkings.\n\nNe payez que le temps de stationnement réel\n\nAvec l'application de stationnement Yellowbrick, vous ne payez que le temps de stationnement réellement consommé. Vous pouvez facilement définir votre heure de fin et recevoir des rappels de stationnement gratuits pour les stationnements en cours. Vous payez ensuite les frais de stationnement via la facture que vous recevez.\n\nUn forfait qui vous ressemble\n\nChez Yellowbrick, vous pouvez choisir parmi différents forfaits. Vous disposez de ce fait du forfait le plus avantageux et qui convient à habitudes de stationnement. Vous pouvez payer à l'utilisation ou démarrer et arrêter un nombre illimité de stationnements pour un montant fixe. Vous pouvez modifier et ajouter des plaques d'immatriculation de manière illimitée.\n\nTout à portée de main\n\nDans l'application Yellowbrick, vous pouvez facilement consulter votre historique de stationnement et vos factures. Vous pouvez facilement gérer vos coordonnées, plaques d'immatriculation et codes de zone préférés.\n\nSmart parking pour professionnels\n\nGagnez du temps et économisez des frais de stationnement avec Yellowbrick Business. Vous payez ensuite les frais de stationnement et toutes vos sessions de stationnement sont clairement indiquées sur votre facture mensuelle.\n\nVos données et vos paiements sont traités en toute sécurité par des tiers certifiés.",
+      "iconUrl": "https://play-lh.googleusercontent.com/obP7Z64awFNKof5brAreg2c5FJ1oGl2Hw5KAj5BnJoaVQgyAT7KtmDW7caiJ_g_FcA",
+      "rating": 4,
+      "downloads": "1M+",
+      "version": "Varie selon les appareils",
+      "updated": "Aug 6, 2025",
+      "requires": "Android 5.0+",
+      "developer": "Yellowbrick",
+      "installs": "1.000.000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.oneshoe.yellowbrick&hl=fr",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.oneshoe.yellowbrick&hl=fr",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/LdLAvTuBwil1R15tXqzIJmlz-JyHnpuzDVcRe8OE5JJJwEWvQ4km6nsJ-FUnUyinBA",
+        "https://play-lh.googleusercontent.com/CVJhy3mU8SICPGYoFgdZ7pqg7fImMLaAqEhVOkQHOlR5yFMVKmQEN4k1tSoWVrEag008",
+        "https://play-lh.googleusercontent.com/nklPKHjQLYIa-ZZQEmzGLOpE5ITwGdAW1xQMrAAYWFQLCTzTkrirF9clKMeIpEG6ow",
+        "https://play-lh.googleusercontent.com/KsTWNLwCC9vqduFg09Wxb3S9WE9RnQg4ctQFw39G8ca_JU56-5CR08PIj-9r2A7o4ZQ",
+        "https://play-lh.googleusercontent.com/oiidWFlwzu5aAnDEvTJ9NobUAI3wyL_ScbkFlRZgSdeCRp2Zo0CyQ2W0t-sPvmjuC08",
+        "https://play-lh.googleusercontent.com/pH7-K7HztEVU11s5adYvyzNRajqB8tmK1qHuGxXn4vkPMTpyffGBoZTPHwfS_ok__moR",
+        "https://play-lh.googleusercontent.com/Xeo1rUG-I2dD-VTSa3HLU5F1cXr7l_vGmziM0iakcppye9hASymyi-_qV1wUhpVWNg"
+      ],
+      "isAffiliate": false,
+      "originalLanguage": "fr"
     }
   ],
   "categories": [
