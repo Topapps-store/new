@@ -5317,6 +5317,62 @@
       ],
       "isAffiliate": false,
       "originalLanguage": "sv"
+    },
+    {
+      "id": "flowbird-sv",
+      "name": "flowbird",
+      "category": "Bilar och fordon",
+      "categoryId": "bilar-och-fordon",
+      "description": "Från och med den 17 november kommer Flowbird-appen inte längre att vara tillgänglig i Sverige. Använd istället EasyPark.",
+      "iconUrl": "https://play-lh.googleusercontent.com/wN4vTO9WnIvRTKNl1Du-UopkB7siyBEGyZuVviuM_Dm3_HxEvclTrlc61E5pEN_TFg",
+      "rating": 4.256471973631478,
+      "downloads": "1M+",
+      "version": "3.15.0",
+      "updated": "Nov 19, 2025",
+      "requires": "Android 7.1+",
+      "developer": "Flowbird",
+      "installs": "1 000 000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=group.flowbird.mpp&hl=sv&gl=se",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=group.flowbird.mpp&hl=sv&gl=se",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/f0Banl6NHtyxjRiJ2Yb2azGayZUFPGRVBeta3Fc2Qc71l240c7AaF36JDftazEcNnOM",
+        "https://play-lh.googleusercontent.com/WfPMQuae7eCUM-YmhBBXbuOgA7jhBbOUUCbdW69w8B7gDyT5icYByFaeJtK-9D1UAg",
+        "https://play-lh.googleusercontent.com/ymhLlzARu0GNyRAT4ijZDsvsTuDfGZ6u6MJ7G43BOxOZNIhAgvcqn643x_1qWopR0rg",
+        "https://play-lh.googleusercontent.com/iIytVr22qPe9kUnNlxKRwmqdQyx56MvE_LSEfRQqmNmh7mVNcBPxrs8iYjLt5vbFbfBn",
+        "https://play-lh.googleusercontent.com/29RrzVRuX_8ZWwFT7becCpvDWpXba4p7F_tvR6q5E6JXdOYOskPTdEZ7vmrLTbnbNw",
+        "https://play-lh.googleusercontent.com/4aD5AhEiazKBaDT9Sps-Q4rsiMGCBeCBW8uvww6TtUe1r5cc1wq5lMvsMT2MddWtAlA",
+        "https://play-lh.googleusercontent.com/zBGOk0fMcgO6wy58S1pPEvA9dkE_DigqI7v4_b9bCaj_27jlDnGgaaNRj0bFLutVLUKt",
+        "https://play-lh.googleusercontent.com/sUW-oBKcZTzVYPj0vZkfq7ozo-BECCW7KXhz7eKPAPrhjBdoxm9ijAhNHaOdICy8tMf0"
+      ],
+      "isAffiliate": false,
+      "originalLanguage": "sv"
+    },
+    {
+      "id": "handyparken-de",
+      "name": "HANDYPARKEN",
+      "category": "Reisen & Lokales",
+      "categoryId": "reisen-lokales",
+      "description": "Ob privat oder beruflich unterwegs – entdecken Sie die Vorteile der HANDYPARKEN App:\n\n• Vorab Infos zu den aktuellen Parkbedingungen\n• Parkscheinbuchung – schnell und unkompliziert\n• Restlaufzeit immer im Blick\n• Automatische Erinnerung vor Ablauf des Parkscheins\n• CarFinder – nie wieder vergessen, wo Ihr Auto steht\n• Mehrere Kennzeichen hinterlegen, bei Bedarf mühelos auswählen\n• Parkscheinhistorie - Ihre letzten Parkscheine im Überblick\n• Parken auf Firmenrechnung – für klare Ausgabentrennung\n\nEntdecken Sie HANDYPARKEN auch auf www.handyparken.at\n\nWie funktioniert die Parkscheinbuchung?\n1) Parkguthaben aufladen\n2) Kennzeichen wählen und Parkdauer festlegen\n3) Parkschein buchen\n\nHANDYPARKEN für Unternehmen:\nMit business paybox – der Firmenlösung zu HANDYPARKEN – können Sie oder Ihre MitarbeiterInnen bei der Parkscheinbuchung einfach \"Business\" auswählen, um den Parkschein auf Firmenrechnung zu bezahlen. Sie erhalten eine monatliche Sammelrechnung über alle Ausgaben. Mehr Informationen finden Sie hier.\n\nHaben Sie Fragen zu HANDYPARKEN?\nAntworten zu den häufigsten Fragen finden Sie in unseren FAQ.\n\nDie Serviceline im Auftrag der Stadt Wien hilft Ihnen gerne weiter: 0820 660 0990 (EUR 0,14 pro Minute)",
+      "iconUrl": "https://play-lh.googleusercontent.com/q6Z-JyTJqwy25dV8tex3j0KhEoQE1U8lZM-M6iUWcOtjpr93KEaa7MuIAFll35pdw5Y",
+      "rating": 4.236750368028624,
+      "downloads": "1M+",
+      "version": "VARY",
+      "updated": "Nov 19, 2025",
+      "requires": "Android 8.0+",
+      "developer": "A1 Telekom Austria AG",
+      "installs": "1.000.000+",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=at.mobilkom.android.handyparken&hl=de&gl=de",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=at.mobilkom.android.handyparken&hl=de&gl=de",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/czsxZptoWagp9i0EbbsWAJLlsDJSPry-W5rn2ZYD0trHVBsrhtxLW3FJ2ya0EkjndRY",
+        "https://play-lh.googleusercontent.com/RB5iq7NMbiW12zZtBsMK_S0RdbG3uo1XqBzGMg3egzCqvzajGRe8UCW46PrSNLH4Y12E",
+        "https://play-lh.googleusercontent.com/tG6Rn-_cqLkC32j0nmB9O8dGKtRE_CvpifX_rvmQDIzFlz41UUFe7-HRzALlUWCYREM",
+        "https://play-lh.googleusercontent.com/wvz3qDT-_XuJXWKAQpq1p8e72z68WtAmDE-5oSdLpFebzXM5UFrgbFsbe_ALi20C8Cw",
+        "https://play-lh.googleusercontent.com/RZImM5pt-S79DdZu_kMriMfp9mnQ_tAR3sOMARAhQMmxSy6Gnz5KbSPxwnwWZsnUzQYW",
+        "https://play-lh.googleusercontent.com/BoCgVYLl3cZxG9gjSjkEcauooqhUgEwwusa3BkYNO2jQJ3yNwG-m6nHa97Li4BGMBL8"
+      ],
+      "isAffiliate": false,
+      "originalLanguage": "de"
     }
   ],
   "categories": [
